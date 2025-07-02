@@ -5,7 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PartnerDesk - Grow With Us</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
@@ -13,25 +17,57 @@
       background-color: #f9f9f9;
       color: #333;
     }
-    header {
-      background: linear-gradient(to right, #2196f3, #21cbf3);
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: #2196f3;
       color: white;
-      padding: 3rem 1rem;
+      padding: 1rem;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-around;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    header {
+      background: url('header-bg.jpg') no-repeat center center/cover;
+      color: white;
+      padding: 6rem 1rem 8rem;
       text-align: center;
       position: relative;
+    }
+    header::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(33, 150, 243, 0.75);
+      z-index: 0;
+    }
+    header * {
+      position: relative;
+      z-index: 1;
     }
     header img.logo {
       position: absolute;
       top: 20px;
       left: 20px;
       width: 120px;
+      z-index: 2;
     }
     header h1 {
-      font-size: 2.5rem;
+      font-size: 2.8rem;
       margin: 0 0 1rem;
     }
     header p {
-      font-size: 1.2rem;
+      font-size: 1.3rem;
       margin-bottom: 2rem;
     }
     .cta-buttons a {
@@ -50,24 +86,19 @@
       color: white;
     }
     .section {
-      padding: 2rem 1rem;
+      padding: 3rem 1rem;
       max-width: 1000px;
       margin: auto;
-      animation: fadeIn 1s ease-in;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
     }
     .services-preview {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      gap: 1.5rem;
     }
     .card {
       background: white;
       border-radius: 8px;
-      padding: 1rem;
+      padding: 1.2rem;
       box-shadow: 0 2px 6px rgba(0,0,0,0.1);
       transition: transform 0.3s, box-shadow 0.3s;
     }
@@ -91,9 +122,33 @@
       background: #eee;
       font-size: 0.9rem;
     }
+    .about, .contact {
+      background: white;
+      margin-top: 2rem;
+      border-radius: 8px;
+      padding: 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    .about h2, .contact h2 {
+      margin-top: 0;
+    }
+    .contact p a {
+      color: #2196f3;
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#internships">Internships</a>
+    <a href="#learning">Learning</a>
+    <a href="#freelancing">Freelancing</a>
+    <a href="#partners">Partners</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
   <header>
     <img src="logo.png" alt="PartnerDesk Logo" class="logo">
     <h1>Grow With Us — PartnerDesk</h1>
@@ -105,7 +160,7 @@
     </div>
   </header>
 
-  <section class="section">
+  <section class="section" id="internships">
     <h2>Explore Our Ecosystem</h2>
     <div class="services-preview">
       <div class="card">
@@ -131,8 +186,43 @@
     </div>
   </section>
 
+  <section class="section about" id="about">
+    <h2>About Us</h2>
+    <p>PartnerDesk is an initiative that connects driven youth with industry experience through internships, freelancing, and learning opportunities. Built to bridge the gap between passion and profession, we’ve helped 800+ interns and collaborated with 12+ companies to deliver impactful projects.</p>
+  </section>
+
+  <section class="section contact" id="contact">
+    <h2>Contact Us</h2>
+    <p>Have questions or want to get in touch?</p>
+    <p>Email: <a href="mailto:partnerdesk@gmail.com">partnerdesk@gmail.com</a></p>
+    <p>Follow us: 
+      <a href="#">LinkedIn</a> | 
+      <a href="#">Instagram</a> | 
+      <a href="#">WhatsApp</a>
+    </p>
+  </section>
+
   <footer>
     &copy; 2025 PartnerDesk. All rights reserved.
   </footer>
+
+  <script>
+    ScrollReveal().reveal('.section', { 
+      delay: 200, 
+      distance: '40px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+    ScrollReveal().reveal('.card', { 
+      interval: 150, 
+      delay: 400, 
+      distance: '20px',
+      origin: 'bottom',
+      duration: 600,
+      easing: 'ease-in-out'
+    });
+  </script>
 </body>
 </html>
