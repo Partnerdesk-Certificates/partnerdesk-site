@@ -35,32 +35,15 @@
       font-weight: 600;
     }
     header {
-      background: url('header-bg.jpg') no-repeat center center/cover;
+      background: linear-gradient(to right, #007bff, #00c6ff);
       color: white;
-      padding: 6rem 1rem 8rem;
+      padding: 10rem 1rem 10rem;
       text-align: center;
       position: relative;
     }
-    header::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(33, 150, 243, 0.75);
-      z-index: 0;
-    }
-    header * {
-      position: relative;
-      z-index: 1;
-    }
     header img.logo {
-      position: absolute;
-      top: 20px;
-      left: 20px;
       width: 120px;
-      z-index: 2;
+      margin-bottom: 1rem;
     }
     header h1 {
       font-size: 2.8rem;
@@ -116,25 +99,23 @@
       text-decoration: none;
       font-weight: 600;
     }
+    .extra-content {
+      margin-top: 4rem;
+      text-align: center;
+    }
+    .extra-content h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .extra-content p {
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+    }
     footer {
       text-align: center;
       padding: 2rem;
       background: #eee;
       font-size: 0.9rem;
-    }
-    .about, .contact {
-      background: white;
-      margin-top: 2rem;
-      border-radius: 8px;
-      padding: 2rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-    .about h2, .contact h2 {
-      margin-top: 0;
-    }
-    .contact p a {
-      color: #2196f3;
-      text-decoration: none;
     }
   </style>
 </head>
@@ -145,8 +126,8 @@
     <a href="#learning">Learning</a>
     <a href="#freelancing">Freelancing</a>
     <a href="#partners">Partners</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
   </nav>
 
   <header>
@@ -186,20 +167,11 @@
     </div>
   </section>
 
-  <section class="section about" id="about">
-    <h2>About Us</h2>
-    <p>PartnerDesk is an initiative that connects driven youth with industry experience through internships, freelancing, and learning opportunities. Built to bridge the gap between passion and profession, we’ve helped 800+ interns and collaborated with 12+ companies to deliver impactful projects.</p>
-  </section>
-
-  <section class="section contact" id="contact">
-    <h2>Contact Us</h2>
-    <p>Have questions or want to get in touch?</p>
-    <p>Email: <a href="mailto:partnerdesk@gmail.com">partnerdesk@gmail.com</a></p>
-    <p>Follow us: 
-      <a href="#">LinkedIn</a> | 
-      <a href="#">Instagram</a> | 
-      <a href="#">WhatsApp</a>
-    </p>
+  <section class="section extra-content">
+    <h2>Why Choose PartnerDesk?</h2>
+    <p>We are more than just an internship provider. PartnerDesk is a community of learners, innovators, and dreamers who want to do more. We empower our interns to take ownership, grow their portfolios, and contribute meaningfully to the real world.</p>
+    <p>Through our freelancing platform, students get hands-on project opportunities from trusted clients. Our learning centre offers practical courses designed by industry professionals, keeping career-readiness at the core of every offering.</p>
+    <p>We believe in building partnerships that last. Whether you're a student, startup, or enterprise — there's a space for you at PartnerDesk.</p>
   </section>
 
   <footer>
