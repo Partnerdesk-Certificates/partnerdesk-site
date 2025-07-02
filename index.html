@@ -4,8 +4,9 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PartnerDesk - Grow With Us</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
     html {
       scroll-behavior: smooth;
@@ -14,154 +15,386 @@
       margin: 0;
       font-family: 'Inter', sans-serif;
       line-height: 1.6;
-      background-color: #f9f9f9;
-      color: #333;
+      background-color: #121212; /* Deeper dark background */
+      color: #e0e0e0; /* Light text for dark background */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      transition: background-color 0.3s ease; /* Smooth background transition */
     }
+
+    body.no-scroll {
+      overflow: hidden; /* Prevent body scroll when nav is open */
+    }
+
+    /* Custom styles for the logo and site title */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)); /* Gradient for subtle effect */
+      width: 300px; /* Adjust width as needed */
+    }
+
+    .logo-title-container .logo {
+      width: 40px; /* Smaller logo */
+      height: 40px;
+      margin-right: 1rem;
+      border-radius: 8px; /* Rounded corners for logo */
+      object-fit: cover; /* Ensure logo covers the area */
+    }
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem; /* Big PartnerDesk */
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.05em;
+    }
+
+    /* Navigation Bar */
     nav {
       position: fixed;
       top: 0;
-      width: 100%;
-      background: #2196f3;
+      right: 0; /* Align to right */
+      height: 100vh; /* Full height */
+      width: 250px; /* Reduced width */
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+      backdrop-filter: blur(10px); /* Frosted glass effect */
       color: white;
-      padding: 1rem;
+      padding: 2rem 1rem;
       z-index: 1000;
       display: flex;
-      justify-content: space-around;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      flex-direction: column; /* Stack links vertically */
+      justify-content: center; /* Center links vertically */
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Shadow on the left side */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for responsiveness */
+      transform: translateX(100%); /* Hidden by default */
     }
+
+    nav.active {
+      transform: translateX(0%); /* Show when active */
+    }
+
     nav a {
-      color: white;
+      color: #ffffff;
       text-decoration: none;
       font-weight: 600;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px; /* Rounded corners */
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right; /* Align text to the right */
     }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #8a2be2; /* Accent color: Amethyst */
+      transform: translateX(-5px); /* Slight hover effect */
+    }
+
+    /* Hamburger menu */
+    .hamburger-menu {
+      display: flex; /* Always visible */
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Overlay for when nav is open */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+      z-index: 999; /* Below nav, above content */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Header Section */
     header {
-      background: linear-gradient(to right, #007bff, #00c6ff);
+      background: linear-gradient(to bottom right, #4b0082, #8a2be2); /* Deep Purple to Amethyst gradient */
       color: white;
-      padding: 10rem 1rem 10rem;
+      padding: 12rem 1rem 10rem; /* Increased padding */
       text-align: center;
       position: relative;
+      overflow: hidden; /* For background animations */
+      border-bottom-left-radius: 50px; /* Rounded bottom corners */
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Stronger shadow */
     }
-    header img.logo {
-      width: 120px;
-      margin-bottom: 1rem;
-    }
+
     header h1 {
-      font-size: 2.8rem;
-      margin: 0 0 1rem;
+      font-size: 3.5rem; /* Larger font size */
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.08em; /* Tighter letter spacing */
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Text shadow */
     }
+
     header p {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
+      font-size: 1.5rem; /* Larger paragraph font */
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
     }
+
     .cta-buttons a {
       display: inline-block;
-      margin: 0.5rem;
-      padding: 0.8rem 1.5rem;
-      background-color: white;
-      color: #2196f3;
+      margin: 0.7rem;
+      padding: 1rem 2.5rem; /* Larger buttons */
+      background-color: #ffffff;
+      color: #4b0082; /* Primary purple */
       text-decoration: none;
-      border-radius: 5px;
-      font-weight: 600;
-      transition: background-color 0.3s, color 0.3s;
+      border-radius: 30px; /* Pill-shaped buttons */
+      font-weight: 700;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
+
     .cta-buttons a:hover {
-      background-color: #1976d2;
+      background-color: #4b0082;
       color: white;
+      transform: translateY(-3px); /* Lift effect */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
+
+    /* Section Styling */
     .section {
-      padding: 3rem 1rem;
-      max-width: 1000px;
+      padding: 5rem 1.5rem; /* Increased padding */
+      max-width: 1200px;
       margin: auto;
+      text-align: center;
     }
+
+    .section h2 {
+      font-size: 2.5rem; /* Larger section titles */
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #ffffff; /* White for dark background */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
     .services-preview {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger cards */
+      gap: 2rem; /* Increased gap */
     }
+
     .card {
-      background: white;
-      border-radius: 8px;
-      padding: 1.2rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
+      background: rgba(255, 255, 255, 0.05); /* Semi-transparent white for cards */
+      border-radius: 15px; /* More rounded corners */
+      padding: 2rem; /* Increased padding */
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3); /* Stronger shadow */
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother animation */
+      border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
+      text-align: left; /* Align text left within cards */
     }
+
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      transform: translateY(-10px) scale(1.02); /* More pronounced lift and slight scale */
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5); /* Even stronger shadow on hover */
     }
+
     .card h3 {
       margin-top: 0;
+      font-size: 1.8rem; /* Larger card titles */
+      color: #8a2be2; /* Accent color: Amethyst */
+      margin-bottom: 1rem;
     }
+
+    .card p {
+      font-size: 1.1rem;
+      color: #c0c0c0; /* Lighter grey for card text */
+      margin-bottom: 1.5rem;
+    }
+
     .card a {
       display: inline-block;
       margin-top: 0.5rem;
-      color: #2196f3;
+      color: #8a2be2; /* Primary purple for links */
       text-decoration: none;
       font-weight: 600;
+      transition: color 0.3s, transform 0.2s;
     }
+
+    .card a:hover {
+      color: #9370db; /* Medium Purple on hover */
+      transform: translateX(5px); /* Slide effect for link */
+    }
+
     .extra-content {
-      margin-top: 4rem;
+      margin-top: 6rem; /* More space */
       text-align: center;
     }
+
     .extra-content h2 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
+      font-size: 3rem; /* Even larger title */
+      margin-bottom: 2rem;
+      color: #ffffff;
     }
+
     .extra-content p {
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+      color: #c0c0c0;
     }
+
     footer {
       text-align: center;
-      padding: 2rem;
-      background: #eee;
+      padding: 3rem;
+      background: #0a0a0a; /* Very dark footer */
       font-size: 0.9rem;
+      color: #888888;
+      border-top-left-radius: 30px; /* Rounded top corners */
+      border-top-right-radius: 30px;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        width: auto;
+        background: rgba(0,0,0,0.8);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border-bottom-right-radius: 15px;
+      }
+      nav {
+        width: 300px; /* Keep nav width consistent */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      nav {
+        width: 100%; /* Full width on very small screens when active */
+        padding-top: 5rem; /* Make space for hamburger */
+      }
+      header {
+        padding: 8rem 1rem 6rem;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .cta-buttons a {
+        padding: 0.8rem 1.8rem;
+        margin: 0.4rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .card {
+        padding: 1.5rem;
+      }
+      .card h3 {
+        font-size: 1.5rem;
+      }
+      .extra-content h2 {
+        font-size: 2rem;
+      }
+      .extra-content p {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <a href="#">Home</a>
-    <a href="internships.html">Internships</a>
-    <a href="#learning">Learning</a>
-    <a href="#freelancing">Freelancing</a>
-    <a href="#partners">Partners</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+
+  <!-- Logo and Site Title -->
+  <div class="logo-title-container">
+    <img src="logo.jpg" alt="PartnerDesk Logo" class="logo">
+    <span class="site-title">PartnerDesk</span>
+  </div>
+
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu" onclick="toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navigation Overlay -->
+  <div class="overlay" onclick="toggleNav()"></div>
+
+  <!-- Navigation Bar -->
+  <nav id="main-nav">
+    <a href="#" onclick="toggleNav()">Home</a>
+    <a href="#internships" onclick="toggleNav()">Internships</a>
+    <a href="#learning" onclick="toggleNav()">Learning</a>
+    <a href="#freelancing" onclick="toggleNav()">Freelancing</a>
+    <a href="#partners" onclick="toggleNav()">Partners</a>
+    <a href="#" onclick="toggleNav()">About</a>
+    <a href="#" onclick="toggleNav()">Contact</a>
   </nav>
 
+  <!-- Header Section -->
   <header>
-    <img src="logo.png" alt="PartnerDesk Logo" class="logo">
     <h1>Grow With Us — PartnerDesk</h1>
     <p>Your bridge to internships, freelancing, and real business collaboration.</p>
     <div class="cta-buttons">
-      <a href="internships.html">Explore Internships</a>
+      <a href="#internships">Explore Internships</a>
       <a href="#freelancing">Hire a Freelancer</a>
       <a href="#partners">Partner with Us</a>
     </div>
   </header>
 
+  <!-- Main Content Sections -->
   <section class="section" id="internships">
     <h2>Explore Our Ecosystem</h2>
     <div class="services-preview">
       <div class="card">
         <h3>Internships</h3>
-        <p>Gain experience in digital marketing, sales, AI, and more.</p>
-        <a href="internships.html">Read More →</a>
+        <p>Gain invaluable experience in digital marketing, sales, AI, and more, shaping your future career.</p>
+        <a href="#internships">Read More →</a>
       </div>
       <div class="card">
         <h3>Learning Centre</h3>
-        <p>Access curated paid courses to grow your skills.</p>
-        <a href="internships.html">Read More →</a>
+        <p>Access expertly curated paid courses designed by industry professionals to elevate your skills.</p>
+        <a href="#learning">Read More →</a>
       </div>
       <div class="card">
         <h3>Freelancing</h3>
-        <p>Earn through real-world projects under the PartnerDesk umbrella.</p>
+        <p>Earn through engaging in real-world projects under the trusted PartnerDesk umbrella, building your portfolio.</p>
         <a href="#freelancing">Read More →</a>
       </div>
       <div class="card">
         <h3>Partner With Us</h3>
-        <p>Join hands with PartnerDesk for mutual growth and impact.</p>
+        <p>Join hands with PartnerDesk for mutual growth, innovation, and significant impact in your industry.</p>
         <a href="#partners">Read More →</a>
       </div>
     </div>
@@ -169,32 +402,121 @@
 
   <section class="section extra-content">
     <h2>Why Choose PartnerDesk?</h2>
-    <p>We are more than just an internship provider. PartnerDesk is a community of learners, innovators, and dreamers who want to do more. We empower our interns to take ownership, grow their portfolios, and contribute meaningfully to the real world.</p>
-    <p>Through our freelancing platform, students get hands-on project opportunities from trusted clients. Our learning centre offers practical courses designed by industry professionals, keeping career-readiness at the core of every offering.</p>
-    <p>We believe in building partnerships that last. Whether you're a student, startup, or enterprise — there's a space for you at PartnerDesk.</p>
+    <p>We are more than just an internship provider. PartnerDesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.</p>
+    <p>Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.</p>
+    <p>We are committed to building partnerships that last and foster long-term success. Whether you're an ambitious student, an innovative startup, or an established enterprise — there's a dedicated space for you to thrive and collaborate at PartnerDesk.</p>
   </section>
 
+  <!-- Footer -->
   <footer>
     &copy; 2025 PartnerDesk. All rights reserved.
   </footer>
 
   <script>
-    ScrollReveal().reveal('.section', { 
-      delay: 200, 
+    // Function to toggle navigation for mobile
+    function toggleNav() {
+      const nav = document.getElementById('main-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('no-scroll'); // Prevent scrolling when nav is open
+    }
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.cta-buttons a', {
+      interval: 100,
+      delay: 700,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
       distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true // Reset for re-animation on scroll
+    });
+
+    ScrollReveal().reveal('.card', {
+      interval: 150,
+      delay: 400,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true // Reset for re-animation on scroll
+    });
+
+    ScrollReveal().reveal('.extra-content h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true
+    });
+
+    ScrollReveal().reveal('.extra-content p', {
+      delay: 300,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true
+    });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
       origin: 'bottom',
       duration: 800,
       easing: 'ease-in-out',
       reset: false
     });
-    ScrollReveal().reveal('.card', { 
-      interval: 150, 
-      delay: 400, 
-      distance: '20px',
-      origin: 'bottom',
-      duration: 600,
-      easing: 'ease-in-out'
+
+    // Close nav when a nav link is clicked
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 1024) { // Only close if on smaller screens
+          toggleNav();
+        }
+      });
     });
+
   </script>
 </body>
 </html>
