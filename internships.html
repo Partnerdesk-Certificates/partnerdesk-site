@@ -20,6 +20,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
     nav a {
       color: white;
@@ -31,8 +32,9 @@
       background: linear-gradient(to right, #007bff, #00c6ff);
       color: white;
       text-align: center;
-      padding: 4rem 1rem 2rem;
+      padding: 5rem 1rem 3rem;
       position: relative;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
     header img.logo {
       position: absolute;
@@ -44,6 +46,10 @@
       margin-bottom: 1rem;
       font-size: 2.5rem;
     }
+    header p {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
     .section {
       padding: 3rem 1rem;
       max-width: 960px;
@@ -54,22 +60,41 @@
       color: #007bff;
       margin-bottom: 1rem;
     }
-    .section ul {
-      padding-left: 1.2rem;
-    }
-    .section li {
-      margin-bottom: 0.5rem;
-    }
     .domain-section {
       background-color: #fff;
       border-left: 4px solid #007bff;
-      padding: 1rem;
-      margin-bottom: 1rem;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.08);
       transition: transform 0.3s ease;
     }
     .domain-section:hover {
       transform: scale(1.02);
+    }
+    .domain-section h3 {
+      margin-top: 0;
+    }
+    .apply-btn {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      background: #007bff;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 4px;
+      font-weight: 600;
+      transition: background 0.3s ease;
+    }
+    .apply-btn:hover {
+      background: #005bb5;
+    }
+    .img-banner {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      margin-bottom: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
     }
     footer {
       text-align: center;
@@ -91,42 +116,59 @@
   <header class="animate__animated animate__fadeInDown">
     <img src="logo.png" alt="PartnerDesk Logo" class="logo">
     <h1>Internship Program at PartnerDesk</h1>
-    <p>Partnerdesk offers a variety of remote internships for the duration of 30 / 60 / 90 days designed to equip you with real-world skills, meaningful exposure, and growth-oriented experiences.</p>
+    <p>Not just an internship — a launchpad to your career. Learn, grow, earn and get certified — all from the comfort of your home!</p>
   </header>
 
   <section class="section">
+    <img src="internship-banner.jpg" alt="Internship Banner" class="img-banner">
     <h2>Choose from 8 Exciting Domains</h2>
+
     <div class="domain-section">
       <h3>1. Human Resource Management</h3>
       <p>Get hands-on experience of sourcing, screening, scheduling and conducting interviews, hiring, onboarding and performance tracking. Work with cross-functional teams and play a key role in ensuring smooth HR operations while enhancing your people management skills.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" class="apply-btn">Apply Now</a>
     </div>
+
     <div class="domain-section">
       <h3>2. Sales and Marketing</h3>
       <p>Develop client acquisition strategies, conduct market research, support sales campaigns, and manage client relationships. Analyze trends and create impactful outreach plans.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" class="apply-btn">Apply Now</a>
     </div>
+
     <div class="domain-section">
       <h3>3. Digital Marketing & Content Creation</h3>
       <p>Execute digital strategies using SEO, Google Ads, and email marketing. Design social media posts, logos, and brand visuals. Produce content including blogs, videos, and infographics.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" class="apply-btn">Apply Now</a>
     </div>
+
     <div class="domain-section">
       <h3>4. Entrepreneurship & Startup Strategy</h3>
       <p>Contribute to business plans, branding, go-to-market strategies. Learn to pitch, innovate, and help early-stage ideas become scalable ventures.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" class="apply-btn">Apply Now</a>
     </div>
+
     <div class="domain-section">
       <h3>5. Financial Literacy & Stock Market Analysis</h3>
       <p>Develop and share knowledge on personal finance, investments, and the stock market. Interpret data, read charts, and educate others on financial decisions.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" class="apply-btn">Apply Now</a>
     </div>
+
     <div class="domain-section">
       <h3>6. NGO & Social Work</h3>
       <p>Organize awareness drives, fundraising efforts, and manage volunteers. Work on meaningful outreach initiatives and create community impact.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" class="apply-btn">Apply Now</a>
     </div>
+
     <div class="domain-section">
       <h3>7. Law Internship</h3>
       <p>Assist in legal research, documentation, drafting, and compliance support. Apply your legal knowledge in practical settings for real-world exposure.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" class="apply-btn">Apply Now</a>
     </div>
+
     <div class="domain-section">
       <h3>8. Leadership & Volunteership</h3>
       <p>Coordinate tasks, manage intern engagement, lead sessions, and support the core team. Develop leadership qualities through active participation.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" class="apply-btn">Apply Now</a>
     </div>
   </section>
 
