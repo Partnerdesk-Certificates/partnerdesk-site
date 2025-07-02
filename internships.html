@@ -39,12 +39,14 @@
       position: relative;
       box-shadow: 0 4px 10px rgba(0,0,0,0.5);
     }
-    header img.logo {
+    header a.logo-link {
       position: absolute;
       top: 1rem;
       left: 1rem;
-      height: 60px;
       z-index: 10;
+    }
+    header img.logo {
+      height: 60px;
     }
     header h1 {
       margin-bottom: 1rem;
@@ -80,6 +82,14 @@
     .domain-section h3 {
       margin-top: 0;
       color: #ffffff;
+    }
+    .domain-section img {
+      width: 100%;
+      max-height: 250px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
     .apply-btn {
       display: inline-block;
@@ -126,7 +136,7 @@
   </nav>
 
   <header class="animate__animated animate__fadeInDown">
-    <img src="logo.png" alt="PartnerDesk Logo" class="logo">
+    <a href="index.html" class="logo-link"><img src="logo.png" alt="PartnerDesk Logo" class="logo"></a>
     <h1>Internship Program at PartnerDesk</h1>
     <p>Not just an internship — a launchpad to your career. Learn, grow, earn and get certified — all from the comfort of your home!</p>
   </header>
@@ -135,51 +145,61 @@
     <img src="internship-banner.jpg" alt="Internship Banner" class="img-banner">
     <h2>Choose from 8 Exciting Domains</h2>
 
+    <!-- Example domain section with placeholder -->
     <div class="domain-section">
+      <img src="hr.jpg" alt="Human Resource Management">
       <h3>1. Human Resource Management</h3>
       <p>Get hands-on experience in sourcing, screening, conducting interviews, hiring, onboarding, and performance tracking. Collaborate with teams and sharpen your people management skills.</p>
       <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
     </div>
 
+    <!-- Repeat the same structure for other domains using these filenames: -->
     <div class="domain-section">
+      <img src="sales.jpg" alt="Sales and Marketing">
       <h3>2. Sales and Marketing</h3>
-      <p>Design client acquisition strategies, perform market research, manage sales campaigns, and build strong client relationships to enhance satisfaction and drive retention.</p>
+      <p>Develop client acquisition strategies, conduct market research, and support sales campaigns. Engage in promotional activities, prepare proposals, and maintain client relations for enhanced customer satisfaction.</p>
       <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
     </div>
 
     <div class="domain-section">
+      <img src="digital.jpg" alt="Digital Marketing & Content Creation">
       <h3>3. Digital Marketing & Content Creation</h3>
-      <p>Run digital strategies using SEO, Google Ads, and social media. Create engaging content — blogs, videos, infographics — and grow online audiences with real impact.</p>
+      <p>Execute SEO strategies, manage Google Ads, and email campaigns. Design visuals, write blogs, edit videos, and create infographics to drive brand engagement and lead generation.</p>
       <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
     </div>
 
     <div class="domain-section">
+      <img src="startup.jpg" alt="Entrepreneurship & Startup Strategy">
       <h3>4. Entrepreneurship & Startup Strategy</h3>
-      <p>Join the startup ecosystem. Contribute to business plans, branding, pitches, and innovative go-to-market strategies for early-stage ventures.</p>
+      <p>Contribute to business plans, branding, and go-to-market strategies. Participate in pitching, innovation, and building sustainable early-stage ventures.</p>
       <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
     </div>
 
     <div class="domain-section">
+      <img src="finance.jpg" alt="Financial Literacy & Stock Market Analysis">
       <h3>5. Financial Literacy & Stock Market Analysis</h3>
-      <p>Learn about personal finance, investment strategies, and technical analysis. Interpret data and make smart financial decisions while educating others.</p>
+      <p>Learn about personal finance, investment strategies, and stock market analysis. Interpret data, read charts, and educate others on financial planning and literacy.</p>
       <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
     </div>
 
     <div class="domain-section">
+      <img src="ngo.jpg" alt="NGO & Social Work">
       <h3>6. NGO & Social Work</h3>
-      <p>Lead awareness drives, fundraising campaigns, and volunteer programs. Create meaningful social impact through outreach and community engagement.</p>
+      <p>Organize awareness drives, lead fundraising efforts, and manage volunteers. Work closely with communities and contribute to meaningful social change initiatives.</p>
       <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
     </div>
 
     <div class="domain-section">
+      <img src="law.jpg" alt="Law Internship">
       <h3>7. Law Internship</h3>
-      <p>Assist in legal research, drafting, documentation, and compliance. A great opportunity for law students to apply theory in practice.</p>
+      <p>Assist in legal research, document drafting, and compliance support. Apply legal knowledge practically in a structured and dynamic environment.</p>
       <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
     </div>
 
     <div class="domain-section">
+      <img src="leadership.jpg" alt="Leadership & Volunteership">
       <h3>8. Leadership & Volunteership</h3>
-      <p>Manage intern engagement, team support, and coordination. Guide your peers and work with core teams to develop leadership skills.</p>
+      <p>Coordinate interns, manage sessions, and support team operations. Build leadership skills by working closely with the core team to ensure smooth daily execution.</p>
       <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
     </div>
 
