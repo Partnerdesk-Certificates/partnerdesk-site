@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learning Centre - Partnerdesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #1a1a2e; /* Darker purple-blue background */
+      color: #e0e0eb; /* Light text for dark background */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      transition: background-color 0.3s ease; /* Smooth background transition */
+    }
+
+    body.no-scroll {
+      overflow: hidden; /* Prevent body scroll when nav is open */
+    }
+
+    /* Custom styles for the logo and site title - consistent with index.html */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)); /* Gradient for subtle effect */
+      width: 300px; /* Adjust width as needed */
+    }
+
+    .logo-title-container .logo {
+      width: 40px; /* Smaller logo */
+      height: 40px;
+      margin-right: 1rem;
+      border-radius: 8px; /* Rounded corners for logo */
+      object-fit: cover; /* Ensure logo covers the area */
+    }
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem; /* Big Partnerdesk */
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.05em;
+    }
+
+    /* Navigation Bar - consistent with index.html */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0; /* Align to right */
+      height: 100vh; /* Full height */
+      width: 250px; /* Reduced width */
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+      backdrop-filter: blur(10px); /* Frosted glass effect */
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column; /* Stack links vertically */
+      justify-content: center; /* Center links vertically */
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Shadow on the left side */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for responsiveness */
+      transform: translateX(100%); /* Hidden by default */
+    }
+
+    nav.active {
+      transform: translateX(0%); /* Show when active */
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px; /* Rounded corners */
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right; /* Align text to the right */
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #e94560; /* Accent color: Pink */
+      transform: translateX(-5px); /* Slight hover effect */
+    }
+
+    /* Hamburger menu - consistent with index.html */
+    .hamburger-menu {
+      display: flex; /* Always visible */
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Overlay for when nav is open - consistent with index.html */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+      z-index: 999; /* Below nav, above content */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Page Header Section - New Purple/Pink Gradient */
+    .page-header {
+      background: linear-gradient(to bottom right, #533483, #9a2e85, #e94560); /* Purple to Pink to Red-Pink */
+      color: white;
+      padding: 8rem 1rem 4rem; /* Adjusted padding for sub-pages */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .page-header h1 {
+      font-size: 3rem; /* Slightly smaller for sub-pages */
+      margin: 0 0 1rem;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 1.5rem; /* Increased padding */
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem; /* Larger section titles */
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #e0e0eb; /* Light text for dark background */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .course-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .course-card {
+      background: #2e2e4a; /* Slightly lighter dark background for cards */
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center content within card */
+    }
+
+    .course-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .course-card img {
+      width: 100%; /* Make image responsive within card */
+      max-width: 250px; /* Limit max size */
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+    }
+
+    .course-card h3 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: #e94560; /* Accent color: Pink */
+      margin-bottom: 1rem;
+      text-align: center; /* Center course title */
+    }
+
+    .course-card p {
+      font-size: 1.1rem;
+      color: #a0a0b5; /* Lighter grey for card text */
+      margin-bottom: 1.5rem;
+      text-align: center; /* Center course description */
+      flex-grow: 1; /* Allow description to take available space */
+    }
+
+    .course-card .register-button {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #e94560; /* Pink button */
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: auto; /* Push button to the bottom */
+    }
+
+    .course-card .register-button:hover {
+      background-color: #d63050; /* Darker Pink on hover */
+      transform: translateY(-2px);
+    }
+
+    .how-to-register-section {
+      background: #2e2e4a;
+      padding: 3rem;
+      border-radius: 20px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    .how-to-register-section h2 {
+      color: #e94560;
+      margin-bottom: 1.5rem;
+    }
+
+    .how-to-register-section p {
+      font-size: 1.1rem;
+      color: #a0a0b5;
+      margin-bottom: 1.5rem;
+    }
+
+    .how-to-register-section .register-button {
+      background-color: #e94560;
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+
+    .how-to-register-section .register-button:hover {
+      background-color: #d63050;
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: #0a0a0a; /* Very dark footer */
+      font-size: 0.9rem;
+      color: #888888;
+      border-top-left-radius: 30px; /* Rounded top corners */
+      border-top-right-radius: 30px;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem; /* Spacing for footer lines */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        width: auto;
+        background: rgba(0,0,0,0.8);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border-bottom-right-radius: 15px;
+      }
+      nav {
+        width: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      nav {
+        width: 100%;
+        padding-top: 5rem;
+      }
+      .page-header {
+        padding: 6rem 1rem 3rem;
+      }
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .course-card {
+        padding: 1.5rem;
+      }
+      .course-card h3 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo and Site Title - Consistent with other pages -->
+  <div class="logo-title-container">
+    <img src="logo.png" alt="Partnerdesk Logo" class="logo">
+    <span class="site-title">Partnerdesk</span>
+  </div>
+
+  <!-- Hamburger Menu - Consistent with other pages -->
+  <div class="hamburger-menu" onclick="toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navigation Overlay - Consistent with other pages -->
+  <div class="overlay" onclick="toggleNav()"></div>
+
+  <!-- Navigation Bar - Consistent with other pages -->
+  <nav id="main-nav">
+    <a href="index.html" onclick="toggleNav()">Home</a>
+    <a href="internships.html" onclick="toggleNav()">Internships</a>
+    <a href="learning.html" onclick="toggleNav()">Learning</a>
+    <a href="freelancing.html" onclick="toggleNav()">Freelancing</a>
+    <a href="partners.html" onclick="toggleNav()">Partners</a>
+    <a href="about.html" onclick="toggleNav()">About</a>
+    <a href="contact.html" onclick="toggleNav()">Contact</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div>
+    <a href="authenticate.html" onclick="toggleNav()">Authenticate Your Certificate</a>
+  </nav>
+
+  <!-- Page Header Section -->
+  <header class="page-header">
+    <h1>Empower Your Skills with Partnerdesk Learning Centre</h1>
+    <p>At Partnerdesk Learning Centre, we believe learning should never stop. Our platform offers exclusive courses, workshops, seminars / webinars, and skill-building sessions to help you grow faster and perform better in your chosen field.</p>
+  </header>
+
+  <!-- Introduction Section -->
+  <section class="section">
+    <p class="text-xl max-w-3xl mx-auto text-center" style="color: #c0c0d0;">
+      Whether you're an intern, student, or working professional, our Learning Centre provides the tools you need to succeed. Explore our diverse range of courses designed by industry experts to give you practical, career-ready skills.
+    </p>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="section" id="courses-section">
+    <h2>Our Skill-Building Courses</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10" style="color: #a0a0b5;">
+      Dive into our comprehensive courses, crafted to provide you with in-depth knowledge and practical expertise in various domains. Each course is designed to be interactive and impactful.
+    </p>
+
+    <div class="course-grid">
+      <div class="course-card">
+        <img src="images/financial_stock_market_course.png" alt="Financial Literacy & Stock Market Course">
+        <h3>1. Financial Literacy & Stock Market (3 months) – ₹14999/- only</h3>
+        <p>This course simplifies core financial concepts such as saving, budgeting, investments, and understanding how the stock market works. Learners will explore personal finance management, investment strategies, and risk handling. Perfect for beginners, students, or anyone who wants to become financially independent, this course empowers individuals to make smarter money decisions and begin their journey into the world of financial planning and stock market investing with confidence and clarity.</p>
+        <a href="https://forms.gle/Jz7HGYPvtsdFYLGr9" target="_blank" class="register-button">Register Now</a>
+      </div>
+
+      <div class="course-card">
+        <img src="images/english_communication_course.png" alt="English Communication & Personality Enhancement Course">
+        <h3>2. English Communication & Personality Enhancement (3 months) – ₹999/- only</h3>
+        <p>This course is designed to enhance both verbal and written English skills while focusing on personal grooming and self-confidence. Topics include body language, pronunciation, public speaking, and interpersonal skills essential for interviews and workplace success. Ideal for students, job seekers, and professionals, this course promotes personal and career growth by building fluency in English communication and cultivating a confident, charismatic personality ready for real-world challenges.</p>
+        <a href="https://forms.gle/LADRmHJZj4Z2PuEy8" target="_blank" class="register-button">Register Now</a>
+      </div>
+
+      <div class="course-card">
+        <img src="images/digital_literacy_course.png" alt="Digital Literacy Course">
+        <h3>3. Digital Literacy (1 month) – ₹499/- only</h3>
+        <p>This course helps learners gain confidence in using technology by teaching basic computer operations, safe internet practices, and essential digital tools like email, browsers, and online apps. It's designed for beginners who wish to become digitally independent and navigate the online world confidently. Whether for daily life, job readiness, or further education, this course builds a strong foundation for using digital devices and participating in the modern tech-based environment.</p>
+        <a href="https://forms.gle/9A2jyUMiaDUGqr2E8" target="_blank" class="register-button">Register Now</a>
+      </div>
+
+      <div class="course-card">
+        <img src="images/content_creation_course.png" alt="Content Creation Course">
+        <h3>4. Content Creation (1 month) – ₹999/- only</h3>
+        <p>In this course, students learn to develop engaging content in various formats—written, visual, and video—specifically for brands and social media platforms. The course focuses on storytelling, creativity, and strategic communication to capture audience interest. It’s perfect for aspiring influencers, marketers, or entrepreneurs who want to build an audience, express ideas effectively, and generate content that drives interaction and builds trust with their online community.</p>
+        <a href="https://forms.gle/3r9qb4Zv3zcyNA6K6" target="_blank" class="register-button">Register Now</a>
+      </div>
+
+      <div class="course-card">
+        <img src="images/graphic_design_course.png" alt="Graphic Design Course">
+        <h3>5. Graphic Design (1 month) - ₹999/- only</h3>
+        <p>This course focuses on the basics of visual design using popular tools like Canva and Adobe Photoshop. Students will learn how to create digital graphics, posters, social media content, and branding materials. It’s ideal for beginners who want to enhance their creative skills or pursue freelancing in design. By the end, learners will be able to design eye-catching content and contribute visually to marketing, branding, and communication projects.</p>
+        <a href="https://forms.gle/Wm465xRjPcH1pKa17" target="_blank" class="register-button">Register Now</a>
+      </div>
+
+      <div class="course-card">
+        <img src="images/digital_marketing_course.png" alt="Digital Marketing Course">
+        <h3>6. Digital Marketing (2 months) - ₹1999/- only</h3>
+        <p>This course introduces the essential tools and techniques of digital marketing, including SEO, social media platforms, email marketing, and online ad campaigns. Learners gain a practical understanding of how to build a brand's online presence, attract more traffic, and engage with potential customers. It’s a great starting point for beginners or small business owners looking to market products or services effectively in the digital space without needing advanced technical skills.</p>
+        <a href="https://forms.gle/wZXCMKrk6mD5MvLu9" target="_blank" class="register-button">Register Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- How to Register Section -->
+  <section class="section how-to-register-section">
+    <h2>Ready to Elevate Your Skills?</h2>
+    <p>
+      Join the Partnerdesk Learning Centre and start your journey towards mastering new skills and achieving your career goals. Our flexible and practical courses are designed for learners of all levels.
+    </p>
+    <p class="font-bold text-xl">📩 Here’s how you can register:</p>
+    <p>Simply click the "Register Now" button below or on any course card to fill out the registration form.</p>
+    <p class="text-lg mt-4">
+      💡 Invest in yourself today and unlock your full potential with Partnerdesk!
+    </p>
+    <a href="#courses-section" class="register-button">Register Now</a>
+    <p class="text-xl mt-8" style="color: #e0e0eb;">For Queries Contact Us at : <strong>7525869600</strong></p>
+  </section>
+
+  <!-- Footer - Consistent with other pages -->
+  <footer>
+    <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
+    <p>Partnerdesk is a registered MSME under the Government of India.</p>
+    <p>Registration No. : UDYAM-UP-03-0104523</p>
+    <p>Registered Office :</p>
+    <p>9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</p>
+    <p>Email: info@partnerdesk.in</p>
+  </footer>
+
+  <script>
+    // Function to toggle navigation for mobile
+    function toggleNav() {
+      const nav = document.getElementById('main-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    }
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.course-card', {
+      interval: 150,
+      delay: 400,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true
+    });
+
+    ScrollReveal().reveal('.how-to-register-section', {
+      delay: 200,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Close nav when a nav link is clicked
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = document.getElementById('main-nav');
+        if (nav.classList.contains('active')) {
+          toggleNav();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
