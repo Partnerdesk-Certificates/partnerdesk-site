@@ -1,212 +1,768 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PartnerDesk Internships</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Internships - Partnerdesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background-color: #121212;
-      color: #f0f0f0;
       line-height: 1.6;
-      background-image: url('bg-doodle.png');
-      background-size: contain;
-      background-repeat: repeat;
+      background-color: #1A202C; /* Dark Blue-Gray background */
+      color: #E2E8F0; /* Light text for dark background */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      transition: background-color 0.3s ease; /* Smooth background transition */
     }
-    nav {
-      background: #2196f3;
-      padding: 1rem;
+
+    body.no-scroll {
+      overflow: hidden; /* Prevent body scroll when nav is open */
+    }
+
+    /* Custom styles for the logo and site title - consistent with index.html */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)); /* Gradient for subtle effect */
+      width: 300px; /* Adjust width as needed */
     }
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin: 0 1rem;
-      font-weight: 600;
+
+    .logo-title-container .logo {
+      width: 40px; /* Smaller logo */
+      height: 40px;
+      margin-right: 1rem;
+      border-radius: 8px; /* Rounded corners for logo */
+      object-fit: cover; /* Ensure logo covers the area */
     }
-    header {
-      background: linear-gradient(to right, #007bff, #00c6ff);
-      color: white;
-      text-align: center;
-      padding: 5rem 1rem 3rem;
-      position: relative;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    }
-    header a.logo-link {
-      position: absolute;
-      top: 1rem;
-      left: 1rem;
-      z-index: 10;
-    }
-    header img.logo {
-      height: 60px;
-    }
-    header h1 {
-      margin-bottom: 1rem;
-      font-size: 2.5rem;
-    }
-    header p {
-      font-size: 1.2rem;
-      font-weight: 500;
-    }
-    .section {
-      padding: 3rem 1rem;
-      max-width: 960px;
-      margin: auto;
-      animation: fadeInUp 1s;
-    }
-    .section h2 {
-      color: #00c6ff;
-      margin-top: 4rem;
-      margin-bottom: 1rem;
-    }
-    .domain-section {
-      background-color: #1f1f1f;
-      border-left: 4px solid #00c6ff;
-      padding: 1.5rem;
-      margin-bottom: 2rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-      transition: transform 0.3s ease;
-      border-radius: 8px;
-    }
-    .domain-section:hover {
-      transform: scale(1.03);
-    }
-    .domain-section h3 {
-      margin-top: 0;
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem; /* Big Partnerdesk */
+      font-weight: 700;
       color: #ffffff;
+      letter-spacing: -0.05em;
     }
-    .domain-section img {
-      width: 100%;
-      max-height: 250px;
-      object-fit: cover;
-      margin-bottom: 1rem;
-      border-radius: 6px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+
+    /* Navigation Bar - consistent with index.html */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0; /* Align to right */
+      height: 100vh; /* Full height */
+      width: 250px; /* Reduced width */
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+      backdrop-filter: blur(10px); /* Frosted glass effect */
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column; /* Stack links vertically */
+      justify-content: center; /* Center links vertically */
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Shadow on the left side */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for responsiveness */
+      transform: translateX(100%); /* Hidden by default */
     }
-    .apply-btn {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: #00c6ff;
-      color: #121212;
+
+    nav.active {
+      transform: translateX(0%); /* Show when active */
+    }
+
+    nav a {
+      color: #ffffff;
       text-decoration: none;
-      border-radius: 4px;
       font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px; /* Rounded corners */
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right; /* Align text to the right */
     }
-    .apply-btn:hover {
-      background: #00a0d1;
-      transform: scale(1.05);
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #00BCD4; /* Accent color: Cyan */
+      transform: translateX(-5px); /* Slight hover effect */
     }
-    .img-banner {
+
+    /* Hamburger menu - consistent with index.html */
+    .hamburger-menu {
+      display: flex; /* Always visible */
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
       width: 100%;
-      max-height: 400px;
-      object-fit: cover;
-      margin-bottom: 4rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
     }
+
+    /* Overlay for when nav is open - consistent with index.html */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+      z-index: 999; /* Below nav, above content */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Page Header Section - New Blue/Teal Gradient */
+    .page-header {
+      background: linear-gradient(to bottom right, #00796B, #00BCD4, #4DD0E1); /* Dark Teal to Cyan to Light Cyan */
+      color: white;
+      padding: 8rem 1rem 4rem; /* Adjusted padding for sub-pages */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .page-header h1 {
+      font-size: 3rem; /* Slightly smaller for sub-pages */
+      margin: 0 0 1rem;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 1.5rem; /* Increased padding */
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem; /* Larger section titles */
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #E2E8F0; /* Light text for dark background */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .domain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+
+    .domain-card {
+      background: #2D3748; /* Slightly lighter dark background for cards */
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center content within card */
+    }
+
+    .domain-card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .domain-card img {
+      width: 100%; /* Make image responsive within card */
+      max-width: 250px; /* Limit max size */
+      height: auto;
+      border-radius: 10px;
+      margin-bottom: 1.5rem;
+      object-fit: cover;
+    }
+
+    .domain-card h3 {
+      margin-top: 0;
+      font-size: 1.8rem;
+      color: #00BCD4; /* Accent color: Cyan */
+      margin-bottom: 1rem;
+      text-align: center; /* Center domain title */
+    }
+
+    .domain-card p {
+      font-size: 1.1rem;
+      color: #A0AEC0; /* Lighter grey for card text */
+      margin-bottom: 1.5rem;
+      text-align: center; /* Center domain description */
+      flex-grow: 1; /* Allow description to take available space */
+    }
+
+    .domain-card .apply-button {
+      display: inline-block;
+      padding: 0.8rem 1.5rem;
+      background-color: #00BCD4; /* Cyan button */
+      color: white;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      margin-top: auto; /* Push button to the bottom */
+    }
+
+    .domain-card .apply-button:hover {
+      background-color: #00ACC1; /* Darker Cyan on hover */
+      transform: translateY(-2px);
+    }
+
+    .benefits-list {
+      text-align: left;
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .benefit-item {
+      background: #2D3748;
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .benefit-item h3 {
+      font-size: 1.4rem;
+      color: #00BCD4;
+      margin-bottom: 0.8rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .benefit-item h3 svg {
+      margin-right: 0.7rem;
+      color: #4DD0E1; /* Light Cyan icon */
+    }
+
+    .benefit-item p {
+      font-size: 1rem;
+      color: #A0AEC0;
+    }
+
+    .qualifications-section ul {
+      list-style: none; /* Remove default bullet points */
+      padding-left: 0;
+      text-align: left;
+      max-width: 800px;
+      margin: 2rem auto;
+    }
+
+    .qualifications-section li {
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      color: #E2E8F0;
+      position: relative;
+      padding-left: 1.8rem; /* Space for custom bullet */
+    }
+
+    .qualifications-section li::before {
+      content: '✓'; /* Custom bullet point */
+      color: #00BCD4;
+      font-weight: bold;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+
+    .how-to-apply-section {
+      background: #2D3748;
+      padding: 3rem;
+      border-radius: 20px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    .how-to-apply-section h2 {
+      color: #00BCD4;
+      margin-bottom: 1.5rem;
+    }
+
+    .how-to-apply-section p {
+      font-size: 1.1rem;
+      color: #A0AEC0;
+      margin-bottom: 1.5rem;
+    }
+
+    .how-to-apply-section .apply-button {
+      background-color: #00BCD4;
+      color: white;
+      padding: 1rem 2.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1.5rem;
+    }
+
+    .how-to-apply-section .apply-button:hover {
+      background-color: #00ACC1;
+      transform: translateY(-3px);
+    }
+
+
     footer {
       text-align: center;
-      padding: 2rem;
-      background: #1e1e1e;
+      padding: 3rem;
+      background: #0a0a0a; /* Very dark footer */
       font-size: 0.9rem;
-      color: #aaa;
+      color: #888888;
+      border-top-left-radius: 30px; /* Rounded top corners */
+      border-top-right-radius: 30px;
     }
-    ul li {
-      margin-bottom: 0.5rem;
+
+    footer p {
+      margin-bottom: 0.5rem; /* Spacing for footer lines */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        width: auto;
+        background: rgba(0,0,0,0.8);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border-bottom-right-radius: 15px;
+      }
+      nav {
+        width: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      nav {
+        width: 100%;
+        padding-top: 5rem;
+      }
+      .page-header {
+        padding: 6rem 1rem 3rem;
+      }
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .domain-card {
+        padding: 1.5rem;
+      }
+      .domain-card h3 {
+        font-size: 1.5rem;
+      }
+      .benefits-list {
+        grid-template-columns: 1fr; /* Stack benefits on small screens */
+      }
     }
   </style>
 </head>
 <body>
-  <nav>
-    <div><a href="index.html">← Back to Home</a></div>
-    <div>
-      <a href="#">About</a>
-      <a href="#">Contact</a>
-    </div>
+
+  <!-- Logo and Site Title - Consistent with index.html -->
+  <div class="logo-title-container">
+    <img src="logo.png" alt="Partnerdesk Logo" class="logo">
+    <span class="site-title">Partnerdesk</span>
+  </div>
+
+  <!-- Hamburger Menu - Consistent with index.html -->
+  <div class="hamburger-menu" onclick="toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navigation Overlay - Consistent with index.html -->
+  <div class="overlay" onclick="toggleNav()"></div>
+
+  <!-- Navigation Bar - Consistent with index.html -->
+  <nav id="main-nav">
+    <a href="index.html" onclick="toggleNav()">Home</a>
+    <a href="internships.html" onclick="toggleNav()">Internships</a>
+    <a href="learning.html" onclick="toggleNav()">Learning</a>
+    <a href="freelancing.html" onclick="toggleNav()">Freelancing</a>
+    <a href="partners.html" onclick="toggleNav()">Partners</a>
+    <a href="about.html" onclick="toggleNav()">About</a>
+    <a href="contact.html" onclick="toggleNav()">Contact</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div>
+    <a href="authenticate.html" onclick="toggleNav()">Authenticate Your Certificate</a>
   </nav>
 
-  <header class="animate__animated animate__fadeInDown">
-    <a href="index.html" class="logo-link"><img src="logo.png" alt="PartnerDesk Logo" class="logo"></a>
-    <h1>Internship Program at PartnerDesk</h1>
-    <p>Not just an internship — a launchpad to your career. Learn, grow, earn and get certified — all from the comfort of your home!</p>
+  <!-- Page Header Section -->
+  <header class="page-header">
+    <h1>Internship Opportunities at Partnerdesk</h1>
+    <p>Your gateway to real-world experience, skill development, and career acceleration.</p>
   </header>
 
+  <!-- Introduction Section -->
   <section class="section">
-    <img src="internship-banner.jpg" alt="Internship Banner" class="img-banner">
-    <h2>Choose from 8 Exciting Domains</h2>
-
-    <!-- Example domain section with placeholder -->
-    <div class="domain-section">
-      <img src="hr.jpg" alt="Human Resource Management">
-      <h3>1. Human Resource Management</h3>
-      <p>Get hands-on experience in sourcing, screening, conducting interviews, hiring, onboarding, and performance tracking. Collaborate with teams and sharpen your people management skills.</p>
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
-    </div>
-
-    <!-- Repeat the same structure for other domains using these filenames: -->
-    <div class="domain-section">
-      <img src="sales.jpg" alt="Sales and Marketing">
-      <h3>2. Sales and Marketing</h3>
-      <p>Develop client acquisition strategies, conduct market research, and support sales campaigns. Engage in promotional activities, prepare proposals, and maintain client relations for enhanced customer satisfaction.</p>
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
-    </div>
-
-    <div class="domain-section">
-      <img src="digital.jpg" alt="Digital Marketing & Content Creation">
-      <h3>3. Digital Marketing & Content Creation</h3>
-      <p>Execute SEO strategies, manage Google Ads, and email campaigns. Design visuals, write blogs, edit videos, and create infographics to drive brand engagement and lead generation.</p>
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
-    </div>
-
-    <div class="domain-section">
-      <img src="startup.jpg" alt="Entrepreneurship & Startup Strategy">
-      <h3>4. Entrepreneurship & Startup Strategy</h3>
-      <p>Contribute to business plans, branding, and go-to-market strategies. Participate in pitching, innovation, and building sustainable early-stage ventures.</p>
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
-    </div>
-
-    <div class="domain-section">
-      <img src="finance.jpg" alt="Financial Literacy & Stock Market Analysis">
-      <h3>5. Financial Literacy & Stock Market Analysis</h3>
-      <p>Learn about personal finance, investment strategies, and stock market analysis. Interpret data, read charts, and educate others on financial planning and literacy.</p>
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
-    </div>
-
-    <div class="domain-section">
-      <img src="ngo.jpg" alt="NGO & Social Work">
-      <h3>6. NGO & Social Work</h3>
-      <p>Organize awareness drives, lead fundraising efforts, and manage volunteers. Work closely with communities and contribute to meaningful social change initiatives.</p>
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
-    </div>
-
-    <div class="domain-section">
-      <img src="law.jpg" alt="Law Internship">
-      <h3>7. Law Internship</h3>
-      <p>Assist in legal research, document drafting, and compliance support. Apply legal knowledge practically in a structured and dynamic environment.</p>
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
-    </div>
-
-    <div class="domain-section">
-      <img src="leadership.jpg" alt="Leadership & Volunteership">
-      <h3>8. Leadership & Volunteership</h3>
-      <p>Coordinate interns, manage sessions, and support team operations. Build leadership skills by working closely with the core team to ensure smooth daily execution.</p>
-      <a class="apply-btn" href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank">Apply Now</a>
-    </div>
-
+    <p class="text-xl max-w-3xl mx-auto text-center text-gray-300">
+      Partnerdesk offers a variety of remote internships for the duration of <strong>30 days / 60 days / 90 days</strong> designed to equip you with real-world skills, meaningful exposure, and growth-oriented experiences. Our internship program is flexible, <strong>revenue-based paid</strong>, and built to help you stand out in your professional journey.
+    </p>
   </section>
 
+  <!-- Domain Spotlight Section -->
+  <section class="section">
+    <h2>Choose from 8 Exciting Domains to Launch Your Career</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
+      Are you ready to gain hands-on experience, work on real-world projects, and develop career-building skills? At Partnerdesk, our Internship Program offers dynamic roles across multiple fields — whether you're creative, analytical, people-oriented, or passionate about change. Explore your potential through diverse domains, guided mentorship, and a vibrant work culture.
+    </p>
+
+    <div class="domain-grid">
+      <div class="domain-card">
+        <img src="https://placehold.co/300x200/00ACC1/ffffff?text=HR+Management" alt="Human Resource Management">
+        <h3>1. Human Resource Management</h3>
+        <p>Get hands-on experience of sourcing, screening, scheduling and conducting interviews, hiring, onboarding and performance tracking. Work with cross-functional teams and play a key role in ensuring smooth HR operations while enhancing your people management skills.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+      </div>
+
+      <div class="domain-card">
+        <img src="https://placehold.co/300x200/00ACC1/ffffff?text=Sales+%26+Marketing" alt="Sales and Marketing">
+        <h3>2. Sales and Marketing</h3>
+        <p>Interns will develop client acquisition strategies, conduct market research, and support sales campaigns. They’ll engage in promotional activities, prepare proposals, and analyze market trends. Additionally, as relationship managers, they’ll maintain client relations, gather feedback, and ensure consistent communication to enhance customer satisfaction and retention.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+      </div>
+
+      <div class="domain-card">
+        <img src="https://placehold.co/300x200/00ACC1/ffffff?text=Digital+Marketing" alt="Digital Marketing & Content Creation">
+        <h3>3. Digital Marketing & Content Creation</h3>
+        <p>Execute digital strategies using tools like SEO, Google Ads, and email marketing. Plan impactful campaigns across social platforms to improve brand engagement and drive leads in a data-driven environment. Unleash your creativity by designing social media posts, logos, banners, and brand visuals. Write, edit, and produce blogs, articles, videos, and infographics. Get real exposure to building online audiences across podcasting and YouTube platforms as well. Create engaging content including blogs, videos, and graphics to boost online visibility.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+      </div>
+
+      <div class="domain-card">
+        <img src="https://placehold.co/300x200/00ACC1/ffffff?text=Entrepreneurship" alt="Entrepreneurship & Startup Strategy">
+        <h3>4. Entrepreneurship & Startup Strategy</h3>
+        <p>Be part of the startup ecosystem! Contribute to business plans, branding ideas, and go-to-market strategies. Understand how to pitch, innovate, and help early-stage ideas become sustainable ventures.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+      </div>
+
+      <div class="domain-card">
+        <img src="https://placehold.co/300x200/00ACC1/ffffff?text=Financial+Literacy" alt="Financial Literacy & Stock Market Analysis">
+        <h3>5. Financial Literacy & Stock Market Analysis</h3>
+        <p>Develop and share knowledge on personal finance, investments, and the stock market. Learn how to interpret data, read charts, and make smart financial decisions while educating others.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+      </div>
+
+      <div class="domain-card">
+        <img src="https://placehold.co/300x200/00ACC1/ffffff?text=NGO+%26+Social+Work" alt="NGO & Social Work">
+        <h3>6. NGO & Social Work</h3>
+        <p>Engage with causes you care about by organizing awareness drives, leading fundraising efforts, and managing volunteers. Gain meaningful experience in outreach and community impact.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+      </div>
+
+      <div class="domain-card">
+        <img src="https://placehold.co/300x200/00ACC1/ffffff?text=Law+Internship" alt="Law Internship">
+        <h3>7. Law Internship</h3>
+        <p>Assist in legal research, documentation, drafting, and compliance support. A valuable opportunity for law students to apply legal knowledge in a practical setting.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+      </div>
+
+      <div class="domain-card">
+        <img src="https://placehold.co/300x200/00ACC1/ffffff?text=Leadership" alt="Leadership & Volunteership">
+        <h3>8. Leadership & Volunteership</h3>
+        <p>Take charge of intern engagement, task coordination, session management, and team support. Develop leadership qualities by working directly with the core team, guiding peers, and ensuring smooth daily operations.</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits of Interning with Partnerdesk Section -->
+  <section class="section">
+    <h2>Why Intern with Partnerdesk?</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
+      We don’t just offer internships — we create an experience that transforms your potential into performance. Here’s why Partnerdesk is the perfect place to start your professional journey:
+    </p>
+    <div class="benefits-list">
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+          </svg>
+          Real-Time Projects & Practical Exposure
+        </h3>
+        <p>Get hands-on experience by working on live assignments and real client tasks. No coffee runs or dummy tasks — you’ll be contributing to actual projects that make a difference.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+          Mentorship by Industry Experts
+        </h3>
+        <p>Work under the guidance of experienced professionals who offer practical knowledge, career advice, and one-on-one mentorship. Learn what textbooks can’t teach.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/>
+          </svg>
+          Certificates & Letter of Recommendation
+        </h3>
+        <p>Every intern receives a certificate of completion and eligible candidates are awarded personalized Letters of Recommendation (LORs) — great for your resume and job interviews.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M12 2c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+          Flexible Work Environment
+        </h3>
+        <p>We understand students juggle multiple responsibilities. That’s why we offer flexible working hours and a remote-friendly setup — so you can learn without stress.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+          Skill Development Across Domains
+        </h3>
+        <p>Choose from 16 diverse fields, including HR, Marketing, Finance, Design, and more. Pick the path that matches your passion, and we’ll help you grow in it.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+          </svg>
+          Professional Networking
+        </h3>
+        <p>Connect with industry peers, mentors, and professionals from various fields. Build meaningful relationships that could open doors for future job opportunities.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+          </svg>
+          Resume & Portfolio Boost
+        </h3>
+        <p>Gain work experience that stands out on your resume. Whether you're applying for higher studies or your first job, your time at Partnerdesk will give you the edge.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+          Growth-Oriented Culture
+        </h3>
+        <p>We value fresh ideas and creativity. Interns at Partnerdesk are encouraged to take initiative, voice their opinions, and think like entrepreneurs.</p>
+      </div>
+      <div class="benefit-item">
+        <h3>
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+          </svg>
+          Impact-Driven Work
+        </h3>
+        <p>Whether you're designing a campaign, writing content, or helping NGOs raise funds — your work will have real-world impact on people, businesses, and communities.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Qualifications & Required Skills Section -->
+  <section class="section qualifications-section">
+    <h2>Qualifications & Required Skills</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-6 text-gray-400">
+      We’re looking for passionate learners who are ready to explore, contribute, and grow — no matter which domain they choose. Here’s what we value in our interns across all internship tracks:
+    </p>
+
+    <h3 class="text-2xl font-semibold text-white mb-4">🎓 Basic Qualifications:</h3>
+    <ul>
+      <li>Currently pursuing or recently completed a degree in any field related to: Business Administration, Marketing, Finance, Design, HR, Fashion, Media, Education, Psychology, or relevant disciplines.</li>
+      <li>Open to undergraduates, graduates, and postgraduates.</li>
+      <li>No prior experience required — just a willingness to learn and grow!</li>
+      <li>📌 You don’t need to be an expert — you just need to be eager to explore. Choose your domain. Sharpen your skills. Let’s build something great together at Partnerdesk.</li>
+    </ul>
+
+    <h3 class="text-2xl font-semibold text-white mt-8 mb-4">🙌 We Welcome:</h3>
+    <ul>
+      <li>Students seeking hands-on learning</li>
+      <li>Fresh graduates ready to explore new paths</li>
+      <li>Self-starters with a hunger to grow</li>
+      <li>Candidates from all academic backgrounds — because we believe innovation comes from everywhere.</li>
+    </ul>
+    <p class="text-lg max-w-3xl mx-auto mt-6 text-gray-300">
+      If you're curious, committed, and ready to make an impact, Partnerdesk is the launchpad you’ve been looking for. 🚀
+    </p>
+  </section>
+
+  <!-- How to Apply Section -->
+  <section class="section how-to-apply-section">
+    <h2>🔎 How to Apply</h2>
+    <p>
+      Ready to launch your career in a domain you're passionate about? Whether it's Human Resource Management, Digital Marketing & Content Creation, Financial Literacy, NGO & Social Work, or anything in between — Partnerdesk has a place for you!
+    </p>
+    <p class="font-bold text-xl">📩 Here’s how you can apply:</p>
+    <p>Register through the official application link.</p>
+    <p class="text-lg mt-4">
+      🎯 Let’s work together to shape your future, develop your talents, and turn your interests into real impact.
+    </p>
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+    <p class="text-xl mt-8 text-white">For Queries Contact Us at : <strong>7525869600</strong></p>
+  </section>
+
+  <!-- Footer - Consistent with index.html -->
   <footer>
-    &copy; 2025 PartnerDesk. All rights reserved.
+    <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
+    <p>Partnerdesk is a registered MSME under the Government of India.</p>
+    <p>Registration No. : UDYAM-UP-03-0104523</p>
+    <p>Registered Office :</p>
+    <p>9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</p>
+    <p>Email: info@partnerdesk.in</p>
   </footer>
+
+  <script>
+    // Function to toggle navigation for mobile
+    function toggleNav() {
+      const nav = document.getElementById('main-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    }
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true
+    });
+
+    ScrollReveal().reveal('.domain-card', {
+      interval: 150,
+      delay: 400,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true
+    });
+
+    ScrollReveal().reveal('.benefits-list .benefit-item', {
+      interval: 100,
+      delay: 300,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: true
+    });
+
+    ScrollReveal().reveal('.qualifications-section h3, .qualifications-section ul', {
+      delay: 200,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true
+    });
+
+    ScrollReveal().reveal('.how-to-apply-section', {
+      delay: 200,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: true
+    });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Close nav when a nav link is clicked
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = document.getElementById('main-nav');
+        if (nav.classList.contains('active')) {
+          toggleNav();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
