@@ -698,13 +698,14 @@
       reset: false
     });
 
+    // Changed reset to false for these sections to make them animate only once
     ScrollReveal().reveal('.section h2', {
       delay: 200,
       distance: '40px',
       origin: 'top',
       duration: 900,
       easing: 'ease-in-out',
-      reset: true
+      reset: false // Changed from true
     });
 
     ScrollReveal().reveal('.domain-card', {
@@ -714,7 +715,7 @@
       origin: 'bottom',
       duration: 900,
       easing: 'ease-in-out',
-      reset: true
+      reset: true // Keep this true for individual card animation on scroll
     });
 
     ScrollReveal().reveal('.benefits-list .benefit-item', {
@@ -724,7 +725,7 @@
       origin: 'bottom',
       duration: 800,
       easing: 'ease-in-out',
-      reset: true
+      reset: false // Changed from true
     });
 
     ScrollReveal().reveal('.qualifications-section h3, .qualifications-section ul', {
@@ -733,7 +734,7 @@
       origin: 'bottom',
       duration: 900,
       easing: 'ease-in-out',
-      reset: true
+      reset: false // Changed from true
     });
 
     ScrollReveal().reveal('.how-to-apply-section', {
@@ -742,7 +743,7 @@
       origin: 'bottom',
       duration: 900,
       easing: 'ease-in-out',
-      reset: true
+      reset: false // Changed from true
     });
 
     ScrollReveal().reveal('footer', {
