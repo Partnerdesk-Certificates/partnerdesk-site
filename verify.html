@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Certificate Verification</title>
+    <!-- Tailwind CSS for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Simple animation for the result card */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="w-full max-w-md mx-auto bg-white rounded-2xl shadow-lg p-8">
+        <div class="text-center mb-8">
+            <h1 class="text-3xl font-bold text-gray-800">Certificate Verification</h1>
+            <p class="text-gray-500 mt-2">Enter the unique code found on the certificate to verify its authenticity.</p>
+        </div>
+
+        <!-- Input Form -->
+        <div class="space-y-4">
+            <div>
+                <label for="certificateCode" class="block text-sm font-medium text-gray-700 mb-1">Certificate Code</label>
+                <input type="text" id="certificateCode" name="certificateCode" placeholder="e.g., ABCDE12345" class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+            </div>
+            <button id="verifyButton" class="w-full bg-blue-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition-transform transform hover:scale-105">
+                Verify
+            </button>
+        </div>
+
+        <!-- Result Display Area -->
+        <div id="result" class="mt-8 text-center">
+            <!-- Verification results will be displayed here -->
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // --- IMPORTANT ---
+        // TODO: Replace the following with your app's Firebase project configuration.
+        // You can find this in your Firebase project settings under "General".
+        const firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "certificates-b42ef", // This seems to be your project ID
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Get references to HTML elements
+        const verifyButton = document.getElementById('verifyButton');
+        const certificateCodeInput = document.getElementById('certificateCode');
+        const resultDiv = document.getElementById('result');
+
+        /**
+         * Core logic to fetch and verify a certificate from Firebase.
+         * @param {string} code - The certificate code to verify.
+         */
+        async function verifyCertificate(code) {
+            // Basic validation
+            if (!code) {
+                displayMessage('Please enter a certificate code.', 'error');
+                return;
+            }
+            
+            // Show a loading state
+            displayMessage('Verifying...', 'loading');
+
+            try {
+                // Reference to the document in the 'certificates' collection
+                const docRef = doc(db, "certificates", code);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    // Document found, display the data
+                    const data = docSnap.data();
+                    displayCertificateInfo(data.name, data.date);
+                } else {
+                    // Document does not exist
+                    displayMessage(`No certificate found for code: <strong>${code}</strong>. Please check the code and try again.`, 'error');
+                }
+            } catch (error) {
+                // Handle potential errors (e.g., network issues, permissions)
+                console.error("Error fetching document: ", error);
+                displayMessage('Could not connect to the verification service. Please try again later.', 'error');
+            }
+        }
+
+        /**
+         * Displays a message in the result area.
+         * @param {string} message - The message to display (can be HTML).
+         * @param {'success'|'error'|'loading'} type - The type of message for styling.
+         */
+        function displayMessage(message, type) {
+            let colorClass = '';
+            if (type === 'error') colorClass = 'text-red-600';
+            if (type === 'loading') colorClass = 'text-gray-500';
+            
+            resultDiv.innerHTML = `<p class="${colorClass} p-4 rounded-lg bg-gray-50 fade-in">${message}</p>`;
+        }
+        
+        /**
+         * Displays the verified certificate information in a styled card.
+         * @param {string} name - The name of the certificate holder.
+         * @param {string} date - The date the certificate was issued.
+         */
+        function displayCertificateInfo(name, date) {
+            resultDiv.innerHTML = `
+                <div class="bg-green-50 border-l-4 border-green-500 text-green-800 p-6 rounded-lg shadow-md text-left fade-in">
+                    <h3 class="text-lg font-bold mb-2">Certificate Verified!</h3>
+                    <p class="mb-1"><strong class="font-medium">Issued To:</strong> ${name}</p>
+                    <p><strong class="font-medium">Date of Issue:</strong> ${date}</p>
+                </div>
+            `;
+        }
+        
+        // --- Event Listener for the manual Verify Button click ---
+        verifyButton.addEventListener('click', () => {
+            const code = certificateCodeInput.value.trim().toUpperCase();
+            verifyCertificate(code);
+        });
+
+        // --- Automatically verify if a code is in the URL on page load ---
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const codeFromUrl = params.get('code');
+
+            if (codeFromUrl) {
+                const sanitizedCode = codeFromUrl.trim().toUpperCase();
+                certificateCodeInput.value = sanitizedCode;
+                verifyCertificate(sanitizedCode);
+            }
+        });
+
+    </script>
+</body>
+</html>
