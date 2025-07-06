@@ -39,8 +39,8 @@
     }
 
     .logo-title-container .logo {
-      width: 40px; /* Smaller logo */
-      height: 40px;
+      width: 60px; /* Increased logo size for consistency */
+      height: 60px; /* Increased logo size for consistency */
       margin-right: 1rem;
       border-radius: 8px; /* Rounded corners for logo */
       object-fit: cover; /* Ensure logo covers the area */
@@ -203,53 +203,91 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    .services-preview {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Larger cards */
-      gap: 2rem; /* Increased gap */
+    /* Styles for the prominent showcase cards */
+    .showcase-card {
+      border-radius: 20px; /* Even more rounded corners */
+      padding: 3rem; /* Increased padding for larger content */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid; /* Border will be colored per card */
+      text-align: center; /* Center content within this card */
+      margin-bottom: 4rem; /* Space between cards */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .card {
-      background: rgba(255, 255, 255, 0.05); /* Semi-transparent white for cards */
-      border-radius: 15px; /* More rounded corners */
-      padding: 2rem; /* Increased padding */
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3); /* Stronger shadow */
-      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother animation */
-      border: 1px solid rgba(255, 255, 255, 0.1); /* Subtle border */
-      text-align: left; /* Align text left within cards */
+    .showcase-card img {
+      max-width: 80%; /* Make image responsive within card */
+      height: auto;
+      border-radius: 15px; /* Rounded corners for image */
+      margin-bottom: 2rem;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
-    .card:hover {
-      transform: translateY(-10px) scale(1.02); /* More pronounced lift and slight scale */
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5); /* Even stronger shadow on hover */
-    }
-
-    .card h3 {
-      margin-top: 0;
-      font-size: 1.8rem; /* Larger card titles */
-      color: #8a2be2; /* Accent color: Amethyst */
-      margin-bottom: 1rem;
-    }
-
-    .card p {
-      font-size: 1.1rem;
-      color: #c0c0c0; /* Lighter grey for card text */
+    .showcase-card h3 {
+      font-size: 2.5rem; /* Larger title for this prominent card */
       margin-bottom: 1.5rem;
     }
 
-    .card a {
-      display: inline-block;
-      margin-top: 0.5rem;
-      color: #8a2be2; /* Primary purple for links */
-      text-decoration: none;
-      font-weight: 600;
-      transition: color 0.3s, transform 0.2s;
+    .showcase-card p {
+      font-size: 1.3rem; /* Larger text for this card */
+      color: #c0c0c0;
+      margin-bottom: 2rem;
+      max-width: 800px;
     }
 
-    .card a:hover {
-      color: #9370db; /* Medium Purple on hover */
-      transform: translateX(5px); /* Slide effect for link */
+    .showcase-card .cta-button {
+      display: inline-block;
+      padding: 1.2rem 3rem; /* Even larger button */
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
+
+    .showcase-card .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Specific colors for each showcase card */
+    .internship-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #8a2be2; /* Purple border */
+    }
+    .internship-card h3 { color: #8a2be2; }
+    .internship-card .cta-button { background-color: #8a2be2; }
+    .internship-card .cta-button:hover { background-color: #9370db; }
+
+    .learning-card {
+      background: #2a2a40; /* Darker purple-blue */
+      border-color: #e94560; /* Pink border from learning page */
+    }
+    .learning-card h3 { color: #e94560; }
+    .learning-card .cta-button { background-color: #e94560; }
+    .learning-card .cta-button:hover { background-color: #d63050; }
+
+    .freelancing-card {
+      background: #283040; /* Dark blue-grey */
+      border-color: #00BCD4; /* Cyan border from internships page */
+    }
+    .freelancing-card h3 { color: #00BCD4; }
+    .freelancing-card .cta-button { background-color: #00BCD4; }
+    .freelancing-card .cta-button:hover { background-color: #00ACC1; }
+
+    .partners-card {
+      background: #253028; /* Dark green-grey */
+      border-color: #00796B; /* Teal border from internships page */
+    }
+    .partners-card h3 { color: #00796B; }
+    .partners-card .cta-button { background-color: #00796B; }
+    .partners-card .cta-button:hover { background-color: #00695C; }
+
 
     .extra-content {
       margin-top: 6rem; /* More space */
@@ -303,6 +341,10 @@
       .logo-title-container .site-title {
         font-size: 1.5rem;
       }
+      .logo-title-container .logo {
+        width: 50px; /* Adjusted for smaller screens */
+        height: 50px; /* Adjusted for smaller screens */
+      }
       nav {
         width: 100%; /* Full width on very small screens when active */
         padding-top: 5rem; /* Make space for hamburger */
@@ -323,10 +365,10 @@
       .section {
         padding: 3rem 1rem;
       }
-      .card {
+      .showcase-card { /* Apply responsive padding to both card types */
         padding: 1.5rem;
       }
-      .card h3 {
+      .showcase-card h3 {
         font-size: 1.5rem;
       }
       .extra-content h2 {
@@ -366,7 +408,7 @@
     <a href="about.html" onclick="toggleNav()">About</a>
     <a href="contact.html" onclick="toggleNav()">Contact</a>
     <div class="nav-divider my-4 h-px bg-gray-700"></div> <!-- Divider for new section -->
-    <a href="authenticate.html" onclick="toggleNav()">Authenticate Your Certificate</a>
+    <a href="verify.html" onclick="toggleNav()">Authenticate Your Certificate</a>
   </nav>
 
   <!-- Header Section -->
@@ -375,36 +417,49 @@
     <p>Your bridge to internships, freelancing, and real business collaboration.</p>
     <div class="cta-buttons">
       <a href="internships.html">Explore Internships</a>
+      <a href="partners.html">Our Partners</a>
+      <a href="learning.html">Learning Centre</a>
       <a href="freelancing.html">Hire a Freelancer</a>
       <a href="partners.html">Partner with Us</a>
     </div>
   </header>
 
   <!-- Main Content Sections -->
-  <section class="section" id="internships">
+  <section class="section">
     <h2>Explore Our Ecosystem</h2>
-    <div class="services-preview">
-      <div class="card">
-        <h3>Internships</h3>
-        <p>Gain invaluable experience in digital marketing, sales, AI, and more, shaping your future career.</p>
-        <a href="internships.html">Read More →</a>
-      </div>
-      <div class="card">
-        <h3>Learning Centre</h3>
-        <p>Access expertly curated paid courses designed by industry professionals to elevate your skills.</p>
-        <a href="learning.html">Read More →</a>
-      </div>
-      <div class="card">
-        <h3>Freelancing</h3>
-        <p>Earn through engaging in real-world projects under the trusted Partnerdesk umbrella, building your portfolio.</p>
-        <a href="freelancing.html">Read More →</a>
-      </div>
-      <div class="card">
-        <h3>Partner With Us</h3>
-        <p>Join hands with Partnerdesk for mutual growth, innovation, and significant impact in your industry.</p>
-        <a href="partners.html">Read More →</a>
-      </div>
+
+    <!-- Prominent Internships Showcase Card -->
+    <div class="showcase-card internship-card">
+      <img src="images/internship_showcase.png" alt="Internships Showcase">
+      <h3>Internships</h3>
+      <p>Gain invaluable experience in digital marketing, sales, AI, and more, shaping your future career with real-world projects and expert mentorship.</p>
+      <a href="internships.html" class="cta-button">Learn More About Internships →</a>
     </div>
+
+    <!-- Prominent Learning Centre Showcase Card -->
+    <div class="showcase-card learning-card">
+      <img src="images/learning_showcase.png" alt="Learning Centre Showcase">
+      <h3>Learning Centre</h3>
+      <p>Access expertly curated paid courses designed by industry professionals to elevate your skills and stay ahead in your career.</p>
+      <a href="learning.html" class="cta-button">Explore Courses →</a>
+    </div>
+
+    <!-- Prominent Freelancing Showcase Card -->
+    <div class="showcase-card freelancing-card">
+      <img src="images/freelancing_showcase.png" alt="Freelancing Showcase">
+      <h3>Freelancing</h3>
+      <p>Earn through engaging in real-world projects under the trusted Partnerdesk umbrella, building your portfolio and expanding your professional network.</p>
+      <a href="freelancing.html" class="cta-button">Find Freelance Work →</a>
+    </div>
+
+    <!-- Prominent Partner With Us Showcase Card -->
+    <div class="showcase-card partners-card">
+      <img src="images/partners_showcase.png" alt="Partner With Us Showcase">
+      <h3>Partner With Us</h3>
+      <p>Join hands with Partnerdesk for mutual growth, innovation, and significant impact, leveraging our network for your business success.</p>
+      <a href="partners.html" class="cta-button">Become a Partner →</a>
+    </div>
+
   </section>
 
   <section class="section extra-content">
@@ -480,17 +535,44 @@
       origin: 'top',
       duration: 900,
       easing: 'ease-in-out',
-      reset: true // Reset for re-animation on scroll
+      reset: false /* Changed to false for single animation */
     });
 
-    ScrollReveal().reveal('.card', {
-      interval: 150,
+    // Animations for the new prominent showcase cards
+    ScrollReveal().reveal('.internship-card', {
       delay: 400,
-      distance: '30px',
+      distance: '50px',
       origin: 'bottom',
-      duration: 900,
+      duration: 1000,
       easing: 'ease-in-out',
-      reset: true // Reset for re-animation on scroll
+      reset: false
+    });
+
+    ScrollReveal().reveal('.learning-card', {
+      delay: 600, /* Adjusted delay to appear after the internship showcase */
+      distance: '50px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.freelancing-card', {
+      delay: 800, /* Adjusted delay */
+      distance: '50px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.partners-card', {
+      delay: 1000, /* Adjusted delay */
+      distance: '50px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-in-out',
+      reset: false
     });
 
     ScrollReveal().reveal('.extra-content h2', {
