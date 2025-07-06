@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Freelancing - Partnerdesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #1c1c2e; /* Darker background, slightly different from learning */
+      color: #e0e0eb; /* Light text for dark background */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      transition: background-color 0.3s ease; /* Smooth background transition */
+    }
+
+    body.no-scroll {
+      overflow: hidden; /* Prevent body scroll when nav is open */
+    }
+
+    /* Custom styles for the logo and site title - consistent with other pages */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)); /* Gradient for subtle effect */
+      width: 300px; /* Adjust width as needed */
+    }
+
+    .logo-title-container .logo {
+      width: 60px; /* Increased logo size */
+      height: 60px; /* Increased logo size */
+      margin-right: 1rem;
+      border-radius: 8px; /* Rounded corners for logo */
+      object-fit: cover; /* Ensure logo covers the area */
+    }
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem; /* Big Partnerdesk */
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.05em;
+    }
+
+    /* Navigation Bar - consistent with other pages */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0; /* Align to right */
+      height: 100vh; /* Full height */
+      width: 250px; /* Reduced width */
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+      backdrop-filter: blur(10px); /* Frosted glass effect */
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column; /* Stack links vertically */
+      justify-content: center; /* Center links vertically */
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Shadow on the left side */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for responsiveness */
+      transform: translateX(100%); /* Hidden by default */
+    }
+
+    nav.active {
+      transform: translateX(0%); /* Show when active */
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px; /* Rounded corners */
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right; /* Align text to the right */
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #FFD700; /* Accent color: Gold for freelancing */
+      transform: translateX(-5px); /* Slight hover effect */
+    }
+
+    /* Hamburger menu - consistent with other pages */
+    .hamburger-menu {
+      display: flex; /* Always visible */
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Overlay for when nav is open - consistent with other pages */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+      z-index: 999; /* Below nav, above content */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Page Header Section - New Freelancing Gradient (Professional Blue/Gold) */
+    .page-header {
+      background: linear-gradient(to bottom right, #2C3E50, #34495E, #FFD700); /* Dark Blue to Gold */
+      color: white;
+      padding: 8rem 1rem 4rem; /* Adjusted padding for sub-pages */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .page-header h1 {
+      font-size: 3rem; /* Slightly smaller for sub-pages */
+      margin: 0 0 1rem;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 1.5rem; /* Increased padding */
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem; /* Larger section titles */
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #e0e0eb; /* Light text for dark background */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* How It Works Section */
+    .how-it-works-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+
+    .how-it-works-step {
+      background: #2a2a4a; /* Slightly lighter background for steps */
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .how-it-works-step:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+    }
+
+    .how-it-works-step .step-icon {
+      width: 70px;
+      height: 70px;
+      background-color: #FFD700; /* Gold icon background */
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .how-it-works-step .step-icon svg {
+      width: 40px;
+      height: 40px;
+      color: #1c1c2e; /* Dark color for icon inside gold circle */
+    }
+
+    .how-it-works-step h3 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.8rem;
+      color: #FFD700; /* Gold for step titles */
+    }
+
+    .how-it-works-step p {
+      font-size: 1rem;
+      color: #c0c0d0;
+    }
+
+    /* Styles for the "Why Freelance with Partnerdesk?" section (vertical list) */
+    .why-freelance-section {
+      background: linear-gradient(to bottom right, #34495E, #2C3E50); /* Darker blue gradient */
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 4rem auto;
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      color: white;
+    }
+
+    .why-freelance-section h2 {
+      font-size: 3rem;
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+    }
+
+    .why-freelance-section .intro-text {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      opacity: 0.9;
+    }
+
+    .freelance-benefits-list { /* Changed from grid to list */
+      display: flex;
+      flex-direction: column; /* Stack vertically */
+      gap: 1.5rem; /* Spacing between cards */
+      margin-top: 2rem;
+      align-items: center; /* Center cards in the column */
+    }
+
+    .freelance-benefit-card {
+      background: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
+      border-radius: 18px;
+      padding: 2.5rem;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      width: 100%; /* Take full width of its container */
+      max-width: 700px; /* Limit max width for readability */
+    }
+
+    .freelance-benefit-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
+    }
+
+    .freelance-benefit-card .icon-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: 2px solid; /* Border color will be set by specific class */
+    }
+
+    .freelance-benefit-card .icon-circle svg {
+      width: 45px;
+      height: 45px;
+      color: white; /* Icons are white */
+    }
+
+    .freelance-benefit-card h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #ffffff;
+    }
+
+    .freelance-benefit-card p {
+      font-size: 1rem;
+      color: #e0e0eb;
+      flex-grow: 1;
+    }
+
+    /* Freelance Benefit Card Colors (using some bright, professional tones) */
+    .freelance-benefit-card.fb-color-1 .icon-circle { background-color: #FFD700; border-color: #FFEA00; } /* Gold */
+    .freelance-benefit-card.fb-color-2 .icon-circle { background-color: #00BCD4; border-color: #4DD0E1; } /* Cyan */
+    .freelance-benefit-card.fb-color-3 .icon-circle { background-color: #4CAF50; border-color: #8BC34A; } /* Green */
+    .freelance-benefit-card.fb-color-4 .icon-circle { background-color: #FF9800; border-color: #FFB74D; } /* Amber */
+    .freelance-benefit-card.fb-color-5 .icon-circle { background-color: #9C27B0; border-color: #CE93D8; } /* Deep Purple */
+
+    /* Styles for the prominent service showcase cards */
+    .service-showcase-card {
+      border-radius: 20px; /* Even more rounded corners */
+      padding: 3rem; /* Increased padding for larger content */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid; /* Border will be colored per card */
+      text-align: center; /* Center content within this card */
+      margin-bottom: 4rem; /* Space between cards */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .service-showcase-card img {
+      max-width: 80%; /* Make image responsive within card */
+      height: auto;
+      border-radius: 15px; /* Rounded corners for image */
+      margin-bottom: 2rem;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .service-showcase-card h3 {
+      font-size: 2.5rem; /* Larger title for this prominent card */
+      margin-bottom: 1.5rem;
+    }
+
+    .service-showcase-card p {
+      font-size: 1.3rem; /* Larger text for this card */
+      color: #c0c0c0;
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+
+    .service-showcase-card .cta-button {
+      display: inline-block;
+      padding: 1.2rem 3rem; /* Even larger button */
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .service-showcase-card .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Specific colors for service showcase cards (using shades of blue/grey with accents) */
+    .service-card-1 { background-color: #2D3748; border-color: #4299E1; } /* Blue */
+    .service-card-1 h3 { color: #4299E1; }
+    .service-card-1 .cta-button { background-color: #4299E1; }
+    .service-card-1 .cta-button:hover { background-color: #3182CE; }
+
+    .service-card-2 { background-color: #283040; border-color: #48BB78; } /* Green */
+    .service-card-2 h3 { color: #48BB78; }
+    .service-card-2 .cta-button { background-color: #48BB78; }
+    .service-card-2 .cta-button:hover { background-color: #38A169; }
+
+    .service-card-3 { background-color: #2D3748; border-color: #ED8936; } /* Orange */
+    .service-card-3 h3 { color: #ED8936; }
+    .service-card-3 .cta-button { background-color: #ED8936; }
+    .service-card-3 .cta-button:hover { background-color: #B7791F; }
+
+    .service-card-4 { background-color: #283040; border-color: #D53F8C; } /* Pink */
+    .service-card-4 h3 { color: #D53F8C; }
+    .service-card-4 .cta-button { background-color: #D53F8C; }
+    .service-card-4 .cta-button:hover { background-color: #9B2C65; }
+
+
+    .final-cta-section {
+      background: #2a2a4a;
+      padding: 3rem;
+      border-radius: 20px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    .final-cta-section h2 {
+      color: #FFD700; /* Gold accent for CTA */
+      margin-bottom: 1.5rem;
+    }
+
+    .final-cta-section p {
+      font-size: 1.1rem;
+      color: #c0c0d0;
+      margin-bottom: 1.5rem;
+    }
+
+    .final-cta-section .cta-button-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .final-cta-section .cta-button-group a {
+      background-color: #FFD700; /* Gold button */
+      color: #1c1c2e; /* Dark text on gold */
+      padding: 1rem 2.5rem;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      display: inline-block;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .final-cta-section .cta-button-group a:hover {
+      background-color: #FFC107; /* Slightly darker gold on hover */
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: #0a0a0a; /* Very dark footer */
+      font-size: 0.9rem;
+      color: #888888;
+      border-top-left-radius: 30px; /* Rounded top corners */
+      border-top-right-radius: 30px;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem; /* Spacing for footer lines */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        width: auto;
+        background: rgba(0,0,0,0.8);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border-bottom-right-radius: 15px;
+      }
+      nav {
+        width: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      .logo-title-container .logo {
+        width: 50px; /* Adjusted for smaller screens */
+        height: 50px; /* Adjusted for smaller screens */
+      }
+      nav {
+        width: 100%;
+        padding-top: 5rem;
+      }
+      .page-header {
+        padding: 6rem 1rem 3rem;
+      }
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .how-it-works-step, .freelance-benefit-card, .service-showcase-card { /* Apply responsive padding */
+        padding: 1.5rem;
+      }
+      .how-it-works-step h3, .freelance-benefit-card h3, .service-showcase-card h3 {
+        font-size: 1.5rem;
+      }
+      .how-it-works-grid, .freelance-benefits-list { /* Changed to list */
+        grid-template-columns: 1fr; /* Stack on small screens */
+      }
+      .how-it-works-step .step-icon, .freelance-benefit-card .icon-circle {
+        width: 60px;
+        height: 60px;
+      }
+      .how-it-works-step .step-icon svg, .freelance-benefit-card .icon-circle svg {
+        width: 35px;
+        height: 35px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo and Site Title - Consistent with other pages -->
+  <div class="logo-title-container">
+    <img src="logo.png" alt="Partnerdesk Logo" class="logo">
+    <span class="site-title">Partnerdesk</span>
+  </div>
+
+  <!-- Hamburger Menu - Consistent with other pages -->
+  <div class="hamburger-menu" onclick="toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navigation Overlay - Consistent with other pages -->
+  <div class="overlay" onclick="toggleNav()"></div>
+
+  <!-- Navigation Bar - Consistent with other pages -->
+  <nav id="main-nav">
+    <a href="index.html" onclick="toggleNav()">Home</a>
+    <a href="internships.html" onclick="toggleNav()">Internships</a>
+    <a href="learning.html" onclick="toggleNav()">Learning</a>
+    <a href="freelancing.html" onclick="toggleNav()">Freelancing</a>
+    <a href="partners.html" onclick="toggleNav()">Partners</a>
+    <a href="about.html" onclick="toggleNav()">About</a>
+    <a href="contact.html" onclick="toggleNav()">Contact</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div>
+    <a href="authenticate.html" onclick="toggleNav()">Authenticate Your Certificate</a>
+  </nav>
+
+  <!-- Page Header Section -->
+  <header class="page-header">
+    <h1>Unlock Your Potential: Freelancing with Partnerdesk</h1>
+    <p>Connect with clients, build your portfolio, and earn on your terms through our trusted platform.</p>
+  </header>
+
+  <!-- Introduction Section -->
+  <section class="section">
+    <p class="text-xl max-w-3xl mx-auto text-center text-gray-300">
+      Partnerdesk's freelancing platform empowers talented individuals to find meaningful work and helps businesses connect with skilled professionals for their projects. Whether you're looking for flexible work or seeking top-tier talent, we've got you covered.
+    </p>
+  </section>
+
+  <!-- How It Works Section -->
+  <section class="section">
+    <h2>How It Works for Partnerdesk Freelancers</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
+      Our freelancing opportunities are primarily offered to Partnerdesk interns. If you're an intern, here's how you can leverage our platform:
+    </p>
+    <div class="how-it-works-grid">
+      <div class="how-it-works-step">
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <h3>1. Intern Profile Activation</h3>
+        <p>As a Partnerdesk intern, your profile is automatically set up for freelancing opportunities based on your skills.</p>
+      </div>
+      <div class="how-it-works-step">
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 6h-4V4c0-1.11-.89-2-2-2h-4c-1.11 0-2 .89-2 2v2H4c-1.11 0-1.99.89-1.99 2L2 19c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V8c0-1.11-.89-2-2-2zm-6 0h-4V4h4v2z"/>
+          </svg>
+        </div>
+        <h3>2. Project Matching</h3>
+        <p>We match you with relevant projects from our clients, ensuring they align with your learning and expertise.</p>
+      </div>
+      <div class="how-it-works-step">
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+          </svg>
+        </div>
+        <h3>3. Guided Execution</h3>
+        <p>Work on projects with mentorship and support, turning theoretical knowledge into practical skills and a strong portfolio.</p>
+      </div>
+      <div class="how-it-works-step">
+        <div class="step-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+        </div>
+        <h3>4. Earn & Grow</h3>
+        <p>Receive revenue-based compensation for your work, enhancing your financial independence and professional growth.</p>
+      </div>
+    </div>
+    <p class="text-lg max-w-3xl mx-auto mt-10 text-gray-400">
+      <strong class="text-white">Interested in becoming a Partnerdesk Freelancer but not an intern yet?</strong> <br>
+      Our freelancing opportunities are primarily for our interns. For direct enrollment inquiries, please contact us at <strong class="text-yellow-300">info@partnerdesk.in</strong> or call <strong class="text-yellow-300">7525869600</strong>.
+    </p>
+  </section>
+
+  <!-- Why Freelance with Partnerdesk? Section -->
+  <section class="section why-freelance-section">
+    <h2>Why Freelance with Partnerdesk?</h2>
+    <p class="intro-text">
+      Our platform is built to empower freelancers, providing the tools, support, and opportunities you need to thrive in the gig economy.
+    </p>
+    <div class="freelance-benefits-list"> <!-- Changed from freelance-benefits-grid -->
+      <div class="freelance-benefit-card fb-color-1">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-13h2v6h-2zm0 8h2v2h-2z"/>
+          </svg>
+        </div>
+        <h3>True Flexibility</h3>
+        <p>Work on projects that fit your schedule and lifestyle. Take control of your time and choose when and where you work.</p>
+      </div>
+      <div class="freelance-benefit-card fb-color-2">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+          </svg>
+        </div>
+        <h3>Diverse Project Opportunities</h3>
+        <p>Access a wide array of projects across various industries and skill sets, ensuring there's always something new to challenge you.</p>
+      </div>
+      <div class="freelance-benefit-card fb-color-3">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+          </svg>
+        </div>
+        <h3>Secure & Timely Payments</h3>
+        <p>Rest assured with our secure payment system. Get paid on time, every time, for your hard work and dedication.</p>
+      </div>
+      <div class="freelance-benefit-card fb-color-4">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-2-10h4v2h-4z"/>
+          </svg>
+        </div>
+        <h3>Skill Enhancement & Growth</h3>
+        <p>Continuously develop your skills by tackling new challenges and learning from diverse project requirements.</p>
+      </div>
+      <div class="freelance-benefit-card fb-color-5">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+          </svg>
+        </div>
+        <h3>Strong Community Support</h3>
+        <p>Join a thriving community of freelancers. Share insights, get advice, and collaborate with peers.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Popular Freelancing Services Section -->
+  <section class="section">
+    <h2>Popular Freelancing Services</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
+      Discover the in-demand services you can offer or find skilled freelancers for your specific needs.
+    </p>
+
+    <!-- Individual Service Showcase Cards -->
+    <div class="service-showcase-card service-card-1">
+      <img src="images/freelance_digital_marketing.png" alt="Digital Marketing Freelancer">
+      <h3>Digital Marketing</h3>
+      <p>From SEO and social media to content strategy and paid ads, find or offer expertise to boost online presence.</p>
+      <a href="hire_talent.html#digital-marketing" class="cta-button">Explore Digital Marketing →</a>
+    </div>
+
+    <div class="service-showcase-card service-card-2">
+      <img src="images/freelance_content_writing.png" alt="Content Writing Freelancer">
+      <h3>Content Writing</h3>
+      <p>Craft compelling articles, blog posts, website copy, and more to engage audiences and drive conversions.</p>
+      <a href="hire_talent.html#content-writing" class="cta-button">Explore Content Writing →</a>
+    </div>
+
+    <div class="service-showcase-card service-card-3">
+      <img src="images/freelance_graphic_design.png" alt="Graphic Design Freelancer">
+      <h3>Graphic Design</h3>
+      <p>Create stunning logos, branding, marketing materials, and visual assets that capture attention.</p>
+      <a href="hire_talent.html#graphic-design" class="cta-button">Explore Graphic Design →</a>
+    </div>
+
+    <div class="service-showcase-card service-card-4">
+      <img src="images/freelance_web_development.png" alt="Web Development Freelancer">
+      <h3>Web Development</h3>
+      <p>Build responsive websites, e-commerce stores, and custom web applications tailored to specific needs.</p>
+      <a href="hire_talent.html#web-development" class="cta-button">Explore Web Development →</a>
+    </div>
+
+  </section>
+
+  <!-- Final Call to Action Section -->
+  <section class="section final-cta-section">
+    <h2>Ready to Get Started?</h2>
+    <p>
+      Whether you're a talented Partnerdesk intern looking for your next project or a business seeking expert help, Partnerdesk is your ideal platform.
+    </p>
+    <div class="cta-button-group">
+      <!-- Removed "Become a Freelancer" button -->
+      <a href="hire_talent.html" class="apply-button">Hire Talent</a>
+    </div>
+    <p class="text-xl mt-8" style="color: #e0e0eb;">For Queries Contact Us at : <strong>7525869600</strong></p>
+  </section>
+
+  <!-- Footer - Consistent with other pages -->
+  <footer>
+    <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
+    <p>Partnerdesk is a registered MSME under the Government of India.</p>
+    <p>Registration No. : UDYAM-UP-03-0104523</p>
+    <p>Registered Office :</p>
+    <p>9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</p>
+    <p>Email: info@partnerdesk.in</p>
+  </footer>
+
+  <script>
+    // Function to toggle navigation for mobile
+    function toggleNav() {
+      const nav = document.getElementById('main-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    }
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Animations for How It Works steps
+    ScrollReveal().reveal('.how-it-works-step', {
+      interval: 150,
+      delay: 400,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Animations for "Why Freelance with Partnerdesk?" benefits (now vertical)
+    ScrollReveal().reveal('.freelance-benefit-card', {
+      interval: 150,
+      delay: 500,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Animations for Popular Freelancing Services showcase cards
+    ScrollReveal().reveal('.service-showcase-card', {
+      interval: 200,
+      delay: 400,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.final-cta-section', {
+      delay: 200,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Close nav when a nav link is clicked
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = document.getElementById('main-nav');
+        if (nav.classList.contains('active')) {
+          toggleNav();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

@@ -39,8 +39,8 @@
     }
 
     .logo-title-container .logo {
-      width: 40px; /* Smaller logo */
-      height: 40px;
+      width: 60px; /* Increased logo size */
+      height: 60px; /* Increased logo size */
       margin-right: 1rem;
       border-radius: 8px; /* Rounded corners for logo */
       object-fit: cover; /* Ensure logo covers the area */
@@ -181,71 +181,200 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    .course-grid {
+    /* Styles for the prominent course showcase cards */
+    .course-showcase-card {
+      border-radius: 20px; /* Even more rounded corners */
+      padding: 3rem; /* Increased padding for larger content */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid; /* Border will be colored per card */
+      text-align: center; /* Center content within this card */
+      margin-bottom: 4rem; /* Space between cards */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .course-showcase-card img {
+      max-width: 80%; /* Make image responsive within card */
+      height: auto;
+      border-radius: 15px; /* Rounded corners for image */
+      margin-bottom: 2rem;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .course-showcase-card h3 {
+      font-size: 2.5rem; /* Larger title for this prominent card */
+      margin-bottom: 1.5rem;
+    }
+
+    .course-showcase-card p {
+      font-size: 1.3rem; /* Larger text for this card */
+      color: #c0c0c0;
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+
+    .course-showcase-card .button-group {
+      display: flex;
+      flex-wrap: wrap; /* Allow buttons to wrap on smaller screens */
+      justify-content: center;
+      gap: 1rem; /* Space between buttons */
+      margin-top: auto; /* Push button group to the bottom */
+    }
+
+    .course-showcase-card .register-button,
+    .course-showcase-card .syllabus-button {
+      display: inline-block;
+      padding: 1.2rem 2.5rem; /* Even larger button */
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .course-showcase-card .register-button:hover,
+    .course-showcase-card .syllabus-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Specific bright colors for course showcase cards */
+    .course-showcase-color-1 { background-color: #3182CE; border-color: #63B3ED; } /* Blue */
+    .course-showcase-color-1 h3 { color: #E2E8F0; }
+    .course-showcase-color-1 .register-button { background-color: #4299E1; }
+    .course-showcase-color-1 .register-button:hover { background-color: #3182CE; }
+    .course-showcase-color-1 .syllabus-button { background-color: #2C5282; } /* Darker blue for syllabus */
+    .course-showcase-color-1 .syllabus-button:hover { background-color: #2A4365; }
+
+    .course-showcase-color-2 { background-color: #38A169; border-color: #68D391; } /* Green */
+    .course-showcase-color-2 h3 { color: #E2E8F0; }
+    .course-showcase-color-2 .register-button { background-color: #48BB78; }
+    .course-showcase-color-2 .register-button:hover { background-color: #38A169; }
+    .course-showcase-color-2 .syllabus-button { background-color: #2F855A; } /* Darker green for syllabus */
+    .course-showcase-color-2 .syllabus-button:hover { background-color: #276749; }
+
+    .course-showcase-color-3 { background-color: #B7791F; border-color: #F6AD55; } /* Orange */
+    .course-showcase-color-3 h3 { color: #E2E8F0; }
+    .course-showcase-color-3 .register-button { background-color: #ED8936; }
+    .course-showcase-color-3 .register-button:hover { background-color: #B7791F; }
+    .course-showcase-color-3 .syllabus-button { background-color: #975A16; } /* Darker orange for syllabus */
+    .course-showcase-color-3 .syllabus-button:hover { background-color: #7B341A; }
+
+    .course-showcase-color-4 { background-color: #D53F8C; border-color: #F687B3; } /* Pink */
+    .course-showcase-color-4 h3 { color: #E2E8F0; }
+    .course-showcase-color-4 .register-button { background-color: #ED64A6; }
+    .course-showcase-color-4 .register-button:hover { background-color: #D53F8C; }
+    .course-showcase-color-4 .syllabus-button { background-color: #9B2C65; } /* Darker pink for syllabus */
+    .course-showcase-color-4 .syllabus-button:hover { background-color: #702459; }
+
+    .course-showcase-color-5 { background-color: #00A3C4; border-color: #00D1FF; } /* Bright Cyan */
+    .course-showcase-color-5 h3 { color: #E2E8F0; }
+    .course-showcase-color-5 .register-button { background-color: #00BCD4; }
+    .course-showcase-color-5 .register-button:hover { background-color: #00A3C4; }
+    .course-showcase-color-5 .syllabus-button { background-color: #007B8C; } /* Darker cyan for syllabus */
+    .course-showcase-color-5 .syllabus-button:hover { background-color: #005F6B; }
+
+    .course-showcase-color-6 { background-color: #805AD5; border-color: #B794F4; } /* Purple */
+    .course-showcase-color-6 h3 { color: #E2E8F0; }
+    .course-showcase-color-6 .register-button { background-color: #9F7AEA; }
+    .course-showcase-color-6 .register-button:hover { background-color: #805AD5; }
+    .course-showcase-color-6 .syllabus-button { background-color: #553C9A; } /* Darker purple for syllabus */
+    .course-showcase-color-6 .syllabus-button:hover { background-color: #44337A; }
+
+
+    .why-join-section {
+      background: linear-gradient(to bottom right, #533483, #9a2e85); /* Gradient background */
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 4rem auto; /* Added margin to separate from other sections */
+      border-radius: 25px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+      color: white;
+    }
+
+    .why-join-section h2 {
+      font-size: 3rem;
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #ffffff;
+      text-shadow: 0 3px 15px rgba(0,0,0,0.4);
+    }
+
+    .why-join-section .intro-text {
+      font-size: 1.3rem;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      opacity: 0.9;
+    }
+
+    .benefits-grid-unique {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 2rem;
     }
 
-    .course-card {
-      background: #2e2e4a; /* Slightly lighter dark background for cards */
-      border-radius: 15px;
-      padding: 2rem;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: left;
+    .unique-benefit-card {
+      background: rgba(255, 255, 255, 0.15); /* Slightly transparent white */
+      border-radius: 18px;
+      padding: 2.5rem;
+      box-shadow: 0 5px 25px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      text-align: center;
       display: flex;
       flex-direction: column;
-      align-items: center; /* Center content within card */
+      align-items: center;
+      justify-content: flex-start;
     }
 
-    .course-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    .unique-benefit-card:hover {
+      transform: translateY(-8px) scale(1.01);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.5);
     }
 
-    .course-card img {
-      width: 100%; /* Make image responsive within card */
-      max-width: 250px; /* Limit max size */
-      height: auto;
-      border-radius: 10px;
+    .unique-benefit-card .icon-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 1.5rem;
-      object-fit: cover;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border: 2px solid; /* Border color will be set by specific class */
     }
 
-    .course-card h3 {
-      margin-top: 0;
-      font-size: 1.8rem;
-      color: #e94560; /* Accent color: Pink */
+    .unique-benefit-card .icon-circle svg {
+      width: 45px;
+      height: 45px;
+      color: white; /* Icons are white */
+    }
+
+    .unique-benefit-card h3 {
+      font-size: 1.6rem;
+      font-weight: 700;
       margin-bottom: 1rem;
-      text-align: center; /* Center course title */
+      color: #ffffff;
     }
 
-    .course-card p {
-      font-size: 1.1rem;
-      color: #a0a0b5; /* Lighter grey for card text */
-      margin-bottom: 1.5rem;
-      text-align: center; /* Center course description */
-      flex-grow: 1; /* Allow description to take available space */
+    .unique-benefit-card p {
+      font-size: 1rem;
+      color: #e0e0eb;
+      flex-grow: 1;
     }
 
-    .course-card .register-button {
-      display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background-color: #e94560; /* Pink button */
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: 600;
-      transition: background-color 0.3s, transform 0.2s;
-      margin-top: auto; /* Push button to the bottom */
-    }
+    /* Unique Benefit Card Colors */
+    .unique-benefit-card.ub-color-1 .icon-circle { background-color: #FFD700; border-color: #FFEA00; } /* Gold */
+    .unique-benefit-card.ub-color-2 .icon-circle { background-color: #32CD32; border-color: #7CFC00; } /* Lime Green */
+    .unique-benefit-card.ub-color-3 .icon-circle { background-color: #87CEEB; border-color: #ADD8E6; } /* Sky Blue */
+    .unique-benefit-card.ub-color-4 .icon-circle { background-color: #FF7F50; border-color: #FFA07A; } /* Coral */
+    .unique-benefit-card.ub-color-5 .icon-circle { background-color: #E6E6FA; border-color: #D8BFD8; } /* Lavender */
 
-    .course-card .register-button:hover {
-      background-color: #d63050; /* Darker Pink on hover */
-      transform: translateY(-2px);
-    }
 
     .how-to-register-section {
       background: #2e2e4a;
@@ -317,6 +446,10 @@
       .logo-title-container .site-title {
         font-size: 1.5rem;
       }
+      .logo-title-container .logo {
+        width: 50px; /* Adjusted for smaller screens */
+        height: 50px; /* Adjusted for smaller screens */
+      }
       nav {
         width: 100%;
         padding-top: 5rem;
@@ -333,11 +466,22 @@
       .section {
         padding: 3rem 1rem;
       }
-      .course-card {
+      .course-showcase-card, .unique-benefit-card { /* Apply responsive padding */
         padding: 1.5rem;
       }
-      .course-card h3 {
+      .course-showcase-card h3, .unique-benefit-card h3 {
         font-size: 1.5rem;
+      }
+      .benefits-grid-unique {
+        grid-template-columns: 1fr; /* Stack on small screens */
+      }
+      .unique-benefit-card .icon-circle {
+        width: 60px;
+        height: 60px;
+      }
+      .unique-benefit-card .icon-circle svg {
+        width: 35px;
+        height: 35px;
       }
     }
   </style>
@@ -393,52 +537,124 @@
       Dive into our comprehensive courses, crafted to provide you with in-depth knowledge and practical expertise in various domains. Each course is designed to be interactive and impactful.
     </p>
 
-    <div class="course-grid">
-      <div class="course-card">
-        <img src="images/financial_stock_market_course.png" alt="Financial Literacy & Stock Market Course">
-        <h3>1. Financial Literacy & Stock Market (3 months) – ₹14999/- only</h3>
-        <p>This course simplifies core financial concepts such as saving, budgeting, investments, and understanding how the stock market works. Learners will explore personal finance management, investment strategies, and risk handling. Perfect for beginners, students, or anyone who wants to become financially independent, this course empowers individuals to make smarter money decisions and begin their journey into the world of financial planning and stock market investing with confidence and clarity.</p>
-        <a href="https://forms.gle/Jz7HGYPvtsdFYLGr9" target="_blank" class="register-button">Register Now</a>
-      </div>
-
-      <div class="course-card">
-        <img src="images/english_communication_course.png" alt="English Communication & Personality Enhancement Course">
-        <h3>2. English Communication & Personality Enhancement (3 months) – ₹999/- only</h3>
-        <p>This course is designed to enhance both verbal and written English skills while focusing on personal grooming and self-confidence. Topics include body language, pronunciation, public speaking, and interpersonal skills essential for interviews and workplace success. Ideal for students, job seekers, and professionals, this course promotes personal and career growth by building fluency in English communication and cultivating a confident, charismatic personality ready for real-world challenges.</p>
-        <a href="https://forms.gle/LADRmHJZj4Z2PuEy8" target="_blank" class="register-button">Register Now</a>
-      </div>
-
-      <div class="course-card">
-        <img src="images/digital_literacy_course.png" alt="Digital Literacy Course">
-        <h3>3. Digital Literacy (1 month) – ₹499/- only</h3>
-        <p>This course helps learners gain confidence in using technology by teaching basic computer operations, safe internet practices, and essential digital tools like email, browsers, and online apps. It's designed for beginners who wish to become digitally independent and navigate the online world confidently. Whether for daily life, job readiness, or further education, this course builds a strong foundation for using digital devices and participating in the modern tech-based environment.</p>
-        <a href="https://forms.gle/9A2jyUMiaDUGqr2E8" target="_blank" class="register-button">Register Now</a>
-      </div>
-
-      <div class="course-card">
-        <img src="images/content_creation_course.png" alt="Content Creation Course">
-        <h3>4. Content Creation (1 month) – ₹999/- only</h3>
-        <p>In this course, students learn to develop engaging content in various formats—written, visual, and video—specifically for brands and social media platforms. The course focuses on storytelling, creativity, and strategic communication to capture audience interest. It’s perfect for aspiring influencers, marketers, or entrepreneurs who want to build an audience, express ideas effectively, and generate content that drives interaction and builds trust with their online community.</p>
-        <a href="https://forms.gle/3r9qb4Zv3zcyNA6K6" target="_blank" class="register-button">Register Now</a>
-      </div>
-
-      <div class="course-card">
-        <img src="images/graphic_design_course.png" alt="Graphic Design Course">
-        <h3>5. Graphic Design (1 month) - ₹999/- only</h3>
-        <p>This course focuses on the basics of visual design using popular tools like Canva and Adobe Photoshop. Students will learn how to create digital graphics, posters, social media content, and branding materials. It’s ideal for beginners who want to enhance their creative skills or pursue freelancing in design. By the end, learners will be able to design eye-catching content and contribute visually to marketing, branding, and communication projects.</p>
-        <a href="https://forms.gle/Wm465xRjPcH1pKa17" target="_blank" class="register-button">Register Now</a>
-      </div>
-
-      <div class="course-card">
-        <img src="images/digital_marketing_course.png" alt="Digital Marketing Course">
-        <h3>6. Digital Marketing (2 months) - ₹1999/- only</h3>
-        <p>This course introduces the essential tools and techniques of digital marketing, including SEO, social media platforms, email marketing, and online ad campaigns. Learners gain a practical understanding of how to build a brand's online presence, attract more traffic, and engage with potential customers. It’s a great starting point for beginners or small business owners looking to market products or services effectively in the digital space without needing advanced technical skills.</p>
+    <!-- Individual Course Showcase Cards -->
+    <div class="course-showcase-card course-color-1">
+      <img src="images/financial_stock_market_course.png" alt="Financial Literacy & Stock Market Course">
+      <h3>1. Financial Literacy & Stock Market (3 months) – ₹14999/- only</h3>
+      <p>This course simplifies core financial concepts such as saving, budgeting, investments, and understanding how the stock market works. Learners will explore personal finance management, investment strategies, and risk handling. Perfect for beginners, students, or anyone who wants to become financially independent, this course empowers individuals to make smarter money decisions and begin their journey into the world of financial planning and stock market investing with confidence and clarity.</p>
+      <div class="button-group">
         <a href="https://forms.gle/wZXCMKrk6mD5MvLu9" target="_blank" class="register-button">Register Now</a>
+        <a href="#" target="_blank" class="syllabus-button">Download Syllabus</a>
+      </div>
+    </div>
+
+    <div class="course-showcase-card course-color-2">
+      <img src="images/english_communication_course.png" alt="English Communication & Personality Enhancement Course">
+      <h3>2. English Communication & Personality Enhancement (3 months) – ₹999/- only</h3>
+      <p>This course is designed to enhance both verbal and written English skills while focusing on personal grooming and self-confidence. Topics include body language, pronunciation, public speaking, and interpersonal skills essential for interviews and workplace success. Ideal for students, job seekers, and professionals, this course promotes personal and career growth by building fluency in English communication and cultivating a confident, charismatic personality ready for real-world challenges.</p>
+      <div class="button-group">
+        <a href="https://forms.gle/Wm465xRjPcH1pKa17" target="_blank" class="register-button">Register Now</a>
+        <a href="#" target="_blank" class="syllabus-button">Download Syllabus</a>
+      </div>
+    </div>
+
+    <div class="course-showcase-card course-color-3">
+      <img src="images/digital_literacy_course.png" alt="Digital Literacy Course">
+      <h3>3. Digital Literacy (1 month) – ₹499/- only</h3>
+      <p>This course helps learners gain confidence in using technology by teaching basic computer operations, safe internet practices, and essential digital tools like email, browsers, and online apps. It's designed for beginners who wish to become digitally independent and navigate the online world confidently. Whether for daily life, job readiness, or further education, this course builds a strong foundation for using digital devices and participating in the modern tech-based environment.</p>
+      <div class="button-group">
+        <a href="https://forms.gle/3r9qb4Zv3zcyNA6K6" target="_blank" class="register-button">Register Now</a>
+        <a href="#" target="_blank" class="syllabus-button">Download Syllabus</a>
+      </div>
+    </div>
+
+    <div class="course-showcase-card course-color-4">
+      <img src="images/content_creation_course.png" alt="Content Creation Course">
+      <h3>4. Content Creation (1 month) – ₹999/- only</h3>
+      <p>In this course, students learn to develop engaging content in various formats—written, visual, and video—specifically for brands and social media platforms. The course focuses on storytelling, creativity, and strategic communication to capture audience interest. It’s perfect for aspiring influencers, marketers, or entrepreneurs who want to build an audience, express ideas effectively, and generate content that drives interaction and builds trust with their online community.</p>
+      <div class="button-group">
+        <a href="https://forms.gle/9A2jyUMiaDUGqr2E8" target="_blank" class="register-button">Register Now</a>
+        <a href="#" target="_blank" class="syllabus-button">Download Syllabus</a>
+      </div>
+    </div>
+
+    <div class="course-showcase-card course-color-5">
+      <img src="images/graphic_design_course.png" alt="Graphic Design Course">
+      <h3>5. Graphic Design (1 month) - ₹999/- only</h3>
+      <p>This course focuses on the basics of visual design using popular tools like Canva and Adobe Photoshop. Students will learn how to create digital graphics, posters, social media content, and branding materials. It’s ideal for beginners who want to enhance their creative skills or pursue freelancing in design. By the end, learners will be able to design eye-catching content and contribute visually to marketing, branding, and communication projects.</p>
+      <div class="button-group">
+        <a href="https://forms.gle/LADRmHJZj4Z2PuEy8" target="_blank" class="register-button">Register Now</a>
+        <a href="#" target="_blank" class="syllabus-button">Download Syllabus</a>
+      </div>
+    </div>
+
+    <div class="course-showcase-card course-color-6">
+      <img src="images/digital_marketing_course.png" alt="Digital Marketing Course">
+      <h3>6. Digital Marketing (2 months) - ₹1999/- only</h3>
+      <p>This course introduces the essential tools and techniques of digital marketing, including SEO, social media platforms, email marketing, and online ad campaigns. Learners gain a practical understanding of how to build a brand's online presence, attract more traffic, and engage with potential customers. It’s a great starting point for beginners or small business owners looking to market products or services effectively in the digital space without needing advanced technical skills.</p>
+      <div class="button-group">
+        <a href="https://forms.gle/Jz7HGYPvtsdFYLGr9" target="_blank" class="register-button">Register Now</a>
+        <a href="#" target="_blank" class="syllabus-button">Download Syllabus</a>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Why Join Our Course? Section -->
+  <section class="section why-join-section">
+    <h2>Why Choose Partnerdesk Courses?</h2>
+    <p class="intro-text">
+      Our courses are meticulously designed to transform your potential into tangible skills and career opportunities. Here's what makes Partnerdesk Learning Centre truly unique:
+    </p>
+    <div class="benefits-grid-unique">
+      <div class="unique-benefit-card ub-color-1">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
+          </svg>
+        </div>
+        <h3>Industry-Led Curriculum</h3>
+        <p>Learn from active professionals and experts who bring real-world insights and the latest industry trends directly to your lessons.</p>
+      </div>
+      <div class="unique-benefit-card ub-color-2">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
+          </svg>
+        </div>
+        <h3>Hands-On Practical Training</h3>
+        <p>Our courses focus on practical application, not just theory. Work on projects and exercises that build your portfolio and real-world skills.</p>
+      </div>
+      <div class="unique-benefit-card ub-color-3">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
+          </svg>
+        </div>
+        <h3>Guaranteed Skill Advancement</h3>
+        <p>We promise tangible skill development that directly impacts your career trajectory, making you more competitive in the job market.</p>
+      </div>
+      <div class="unique-benefit-card ub-color-4">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
+          </svg>
+        </div>
+        <h3>Flexible & Accessible Learning</h3>
+        <p>Learn at your own pace, from anywhere in the world. Our flexible modules fit into your schedule, allowing you to balance learning with other commitments.</p>
+      </div>
+      <div class="unique-benefit-card ub-color-5">
+        <div class="icon-circle">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+          </svg>
+        </div>
+        <h3>Vibrant Learning Community</h3>
+        <p>Connect with a network of aspiring professionals and mentors. Collaborate on projects, share insights, and build lasting relationships that extend beyond the course.</p>
       </div>
     </div>
   </section>
 
-  <!-- How to Register Section -->
   <section class="section how-to-register-section">
     <h2>Ready to Elevate Your Skills?</h2>
     <p>
@@ -453,7 +669,6 @@
     <p class="text-xl mt-8" style="color: #e0e0eb;">For Queries Contact Us at : <strong>7525869600</strong></p>
   </section>
 
-  <!-- Footer - Consistent with other pages -->
   <footer>
     <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
     <p>Partnerdesk is a registered MSME under the Government of India.</p>
@@ -512,15 +727,44 @@
       reset: false
     });
 
-    ScrollReveal().reveal('.course-card', {
-      interval: 150,
+    // Animations for the prominent course showcase cards
+    ScrollReveal().reveal('.course-showcase-card', {
+      interval: 200, /* Staggered appearance */
       delay: 400,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Animations for the new "Why Join Our Course?" section
+    ScrollReveal().reveal('.why-join-section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+    ScrollReveal().reveal('.why-join-section .intro-text', {
+      delay: 300,
       distance: '30px',
       origin: 'bottom',
       duration: 900,
       easing: 'ease-in-out',
-      reset: true
+      reset: false
     });
+    ScrollReveal().reveal('.unique-benefit-card', {
+      interval: 150, /* Staggered appearance for each unique benefit card */
+      delay: 500,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
 
     ScrollReveal().reveal('.how-to-register-section', {
       delay: 200,

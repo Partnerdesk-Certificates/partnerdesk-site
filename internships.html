@@ -39,8 +39,8 @@
     }
 
     .logo-title-container .logo {
-      width: 40px; /* Smaller logo */
-      height: 40px;
+      width: 60px; /* Increased logo size for consistency */
+      height: 60px; /* Increased logo size for consistency */
       margin-right: 1rem;
       border-radius: 8px; /* Rounded corners for logo */
       object-fit: cover; /* Ensure logo covers the area */
@@ -181,105 +181,186 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
-    .domain-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+    /* Styles for the prominent showcase cards */
+    .domain-showcase-card {
+      border-radius: 20px; /* Even more rounded corners */
+      padding: 3rem; /* Increased padding for larger content */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid; /* Border will be colored per card */
+      text-align: center; /* Center content within this card */
+      margin-bottom: 4rem; /* Space between cards */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
     }
 
-    .domain-card {
-      background: #2D3748; /* Slightly lighter dark background for cards */
+    .domain-showcase-card img {
+      max-width: 80%; /* Make image responsive within card */
+      height: auto;
+      border-radius: 15px; /* Rounded corners for image */
+      margin-bottom: 2rem;
+      object-fit: cover;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .domain-showcase-card h3 {
+      font-size: 2.5rem; /* Larger title for this prominent card */
+      margin-bottom: 1.5rem;
+    }
+
+    .domain-showcase-card p {
+      font-size: 1.3rem; /* Larger text for this card */
+      color: #c0c0c0;
+      margin-bottom: 2rem;
+      max-width: 800px;
+    }
+
+    .domain-showcase-card .apply-button {
+      display: inline-block;
+      padding: 1.2rem 3rem; /* Even larger button */
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .domain-showcase-card .apply-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Specific colors for each domain showcase card */
+    .hr-card {
+      background: #2D3748; /* Slightly lighter dark background */
+      border-color: #00BCD4; /* Cyan border */
+    }
+    .hr-card h3 { color: #00BCD4; }
+    .hr-card .apply-button { background-color: #00BCD4; }
+    .hr-card .apply-button:hover { background-color: #00ACC1; }
+
+    /* Updated Digital Marketing Card style */
+    .digital-marketing-card {
+      background: #283040; /* Darker blue-grey */
+      border-color: #4DD0E1; /* Light Cyan border */
+    }
+    .digital-marketing-card h3 { color: #4DD0E1; }
+    .digital-marketing-card .apply-button { background-color: #4DD0E1; }
+    .digital-marketing-card .apply-button:hover { background-color: #26C6DA; }
+
+    .financial-literacy-card {
+      background: #2D3748;
+      border-color: #00796B; /* Dark Teal border */
+    }
+    .financial-literacy-card h3 { color: #00796B; }
+    .financial-literacy-card .apply-button { background-color: #00796B; }
+    .financial-literacy-card .apply-button:hover { background-color: #00695C; }
+
+    .ngo-social-work-card {
+      background: #283040;
+      border-color: #80CBC4; /* Light Teal border */
+    }
+    .ngo-social-work-card h3 { color: #80CBC4; }
+    .ngo-social-work-card .apply-button { background-color: #80CBC4; }
+    .ngo-social-work-card .apply-button:hover { background-color: #4DB6AC; }
+
+
+    /* New styles for the "Why Intern with Partnerdesk?" section */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem; /* Increased gap for better spacing */
+      margin-top: 2rem;
+    }
+
+    .benefit-card {
+      background: #2D3748; /* Default background for benefits */
       border-radius: 15px;
       padding: 2rem;
       box-shadow: 0 5px 20px rgba(0,0,0,0.3);
       transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      text-align: left;
+      border: 1px solid; /* Border will be colored per card */
+      text-align: center; /* Center content within card */
       display: flex;
       flex-direction: column;
-      align-items: center; /* Center content within card */
+      align-items: center;
+      justify-content: flex-start; /* Align content to top */
     }
 
-    .domain-card:hover {
+    .benefit-card:hover {
       transform: translateY(-10px) scale(1.02);
       box-shadow: 0 15px 40px rgba(0,0,0,0.5);
     }
 
-    .domain-card img {
-      width: 100%; /* Make image responsive within card */
-      max-width: 250px; /* Limit max size */
-      height: auto;
-      border-radius: 10px;
+    .benefit-card .icon-wrapper {
+      width: 70px; /* Larger icon size */
+      height: 70px;
+      background-color: rgba(255, 255, 255, 0.1); /* Subtle background for icon */
+      border-radius: 50%; /* Circular icon background */
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 1.5rem;
-      object-fit: cover;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
     }
 
-    .domain-card h3 {
-      margin-top: 0;
-      font-size: 1.8rem;
-      color: #00BCD4; /* Accent color: Cyan */
+    .benefit-card .icon-wrapper svg {
+      width: 40px; /* SVG icon size */
+      height: 40px;
+    }
+
+    .benefit-card h3 {
+      font-size: 1.8rem; /* Larger heading for benefits */
       margin-bottom: 1rem;
-      text-align: center; /* Center domain title */
+      font-weight: 700;
     }
 
-    .domain-card p {
+    .benefit-card p {
       font-size: 1.1rem;
-      color: #A0AEC0; /* Lighter grey for card text */
-      margin-bottom: 1.5rem;
-      text-align: center; /* Center domain description */
+      color: #A0AEC0; /* Lighter grey for text */
       flex-grow: 1; /* Allow description to take available space */
     }
 
-    .domain-card .apply-button {
-      display: inline-block;
-      padding: 0.8rem 1.5rem;
-      background-color: #00BCD4; /* Cyan button */
-      color: white;
-      text-decoration: none;
-      border-radius: 25px;
-      font-weight: 600;
-      transition: background-color 0.3s, transform 0.2s;
-      margin-top: auto; /* Push button to the bottom */
-    }
+    /* Specific bright colors for benefit cards */
+    .benefit-card.color-1 { background-color: #38A169; border-color: #68D391; } /* Green */
+    .benefit-card.color-1 .icon-wrapper { background-color: rgba(104, 211, 145, 0.2); }
+    .benefit-card.color-1 h3, .benefit-card.color-1 .icon-wrapper svg { color: #68D391; }
 
-    .domain-card .apply-button:hover {
-      background-color: #00ACC1; /* Darker Cyan on hover */
-      transform: translateY(-2px);
-    }
+    .benefit-card.color-2 { background-color: #3182CE; border-color: #63B3ED; } /* Blue */
+    .benefit-card.color-2 .icon-wrapper { background-color: rgba(99, 179, 237, 0.2); }
+    .benefit-card.color-2 h3, .benefit-card.color-2 .icon-wrapper svg { color: #63B3ED; }
 
-    .benefits-list {
-      text-align: left;
-      margin-top: 2rem;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-    }
+    .benefit-card.color-3 { background-color: #B7791F; border-color: #F6AD55; } /* Orange */
+    .benefit-card.color-3 .icon-wrapper { background-color: rgba(246, 173, 85, 0.2); }
+    .benefit-card.color-3 h3, .benefit-card.color-3 .icon-wrapper svg { color: #F6AD55; }
 
-    .benefit-item {
-      background: #2D3748;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-    }
+    .benefit-card.color-4 { background-color: #805AD5; border-color: #B794F4; } /* Purple */
+    .benefit-card.color-4 .icon-wrapper { background-color: rgba(183, 148, 244, 0.2); }
+    .benefit-card.color-4 h3, .benefit-card.color-4 .icon-wrapper svg { color: #B794F4; }
 
-    .benefit-item h3 {
-      font-size: 1.4rem;
-      color: #00BCD4;
-      margin-bottom: 0.8rem;
-      display: flex;
-      align-items: center;
-    }
+    .benefit-card.color-5 { background-color: #D53F8C; border-color: #F687B3; } /* Pink */
+    .benefit-card.color-5 .icon-wrapper { background-color: rgba(246, 135, 179, 0.2); }
+    .benefit-card.color-5 h3, .benefit-card.color-5 .icon-wrapper svg { color: #F687B3; }
 
-    .benefit-item h3 svg {
-      margin-right: 0.7rem;
-      color: #4DD0E1; /* Light Cyan icon */
-    }
+    .benefit-card.color-6 { background-color: #00A3C4; border-color: #00D1FF; } /* Bright Cyan */
+    .benefit-card.color-6 .icon-wrapper { background-color: rgba(0, 209, 255, 0.2); }
+    .benefit-card.color-6 h3, .benefit-card.color-6 .icon-wrapper svg { color: #00D1FF; }
 
-    .benefit-item p {
-      font-size: 1rem;
-      color: #A0AEC0;
-    }
+    .benefit-card.color-7 { background-color: #C53030; border-color: #FC8181; } /* Red */
+    .benefit-card.color-7 .icon-wrapper { background-color: rgba(252, 129, 129, 0.2); }
+    .benefit-card.color-7 h3, .benefit-card.color-7 .icon-wrapper svg { color: #FC8181; }
+
+    .benefit-card.color-8 { background-color: #6B46C1; border-color: #9F7AEA; } /* Darker Purple */
+    .benefit-card.color-8 .icon-wrapper { background-color: rgba(159, 122, 234, 0.2); }
+    .benefit-card.color-8 h3, .benefit-card.color-8 .icon-wrapper svg { color: #9F7AEA; }
+
+    .benefit-card.color-9 { background-color: #2D3748; border-color: #E2E8F0; } /* Light Gray/Default for remaining */
+    .benefit-card.color-9 .icon-wrapper { background-color: rgba(226, 232, 240, 0.1); }
+    .benefit-card.color-9 h3, .benefit-card.color-9 .icon-wrapper svg { color: #E2E8F0; }
+
 
     .qualifications-section ul {
       list-style: none; /* Remove default bullet points */
@@ -377,6 +458,10 @@
       .logo-title-container .site-title {
         font-size: 1.5rem;
       }
+      .logo-title-container .logo {
+        width: 50px; /* Adjusted for smaller screens */
+        height: 50px; /* Adjusted for smaller screens */
+      }
       nav {
         width: 100%;
         padding-top: 5rem;
@@ -393,14 +478,22 @@
       .section {
         padding: 3rem 1rem;
       }
-      .domain-card {
+      .domain-showcase-card, .benefit-card { /* Apply responsive padding */
         padding: 1.5rem;
       }
-      .domain-card h3 {
+      .domain-showcase-card h3, .benefit-card h3 {
         font-size: 1.5rem;
       }
-      .benefits-list {
+      .benefits-grid {
         grid-template-columns: 1fr; /* Stack benefits on small screens */
+      }
+      .benefit-card .icon-wrapper {
+        width: 60px; /* Smaller icon size for mobile */
+        height: 60px;
+      }
+      .benefit-card .icon-wrapper svg {
+        width: 35px; /* Smaller SVG icon size for mobile */
+        height: 35px;
       }
     }
   </style>
@@ -451,68 +544,40 @@
 
   <!-- Domain Spotlight Section -->
   <section class="section">
-    <h2>Choose from 8 Exciting Domains to Launch Your Career</h2>
+    <h2>Choose from 4 Exciting Domains to Launch Your Career</h2>
     <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
       Are you ready to gain hands-on experience, work on real-world projects, and develop career-building skills? At Partnerdesk, our Internship Program offers dynamic roles across multiple fields — whether you're creative, analytical, people-oriented, or passionate about change. Explore your potential through diverse domains, guided mentorship, and a vibrant work culture.
     </p>
 
-    <div class="domain-grid">
-      <div class="domain-card">
-        <img src="images/hr_management.png" alt="Human Resource Management">
-        <h3>1. Human Resource Management</h3>
-        <p>Get hands-on experience of sourcing, screening, scheduling and conducting interviews, hiring, onboarding and performance tracking. Work with cross-functional teams and play a key role in ensuring smooth HR operations while enhancing your people management skills.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
-      </div>
-
-      <div class="domain-card">
-        <img src="images/sales_marketing.png" alt="Sales and Marketing">
-        <h3>2. Sales and Marketing</h3>
-        <p>Interns will develop client acquisition strategies, conduct market research, and support sales campaigns. They’ll engage in promotional activities, prepare proposals, and analyze market trends. Additionally, as relationship managers, they’ll maintain client relations, gather feedback, and ensure consistent communication to enhance customer satisfaction and retention.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
-      </div>
-
-      <div class="domain-card">
-        <img src="images/digital_marketing.png" alt="Digital Marketing & Content Creation">
-        <h3>3. Digital Marketing & Content Creation</h3>
-        <p>Execute digital strategies using tools like SEO, Google Ads, and email marketing. Plan impactful campaigns across social platforms to improve brand engagement and drive leads in a data-driven environment. Unleash your creativity by designing social media posts, logos, banners, and brand visuals. Write, edit, and produce blogs, articles, videos, and infographics. Get real exposure to building online audiences across podcasting and YouTube platforms as well. Create engaging content including blogs, videos, and graphics to boost online visibility.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
-      </div>
-
-      <div class="domain-card">
-        <img src="images/entrepreneurship.png" alt="Entrepreneurship & Startup Strategy">
-        <h3>4. Entrepreneurship & Startup Strategy</h3>
-        <p>Be part of the startup ecosystem! Contribute to business plans, branding ideas, and go-to-market strategies. Understand how to pitch, innovate, and help early-stage ideas become sustainable ventures.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
-      </div>
-
-      <div class="domain-card">
-        <img src="images/financial_literacy.png" alt="Financial Literacy & Stock Market Analysis">
-        <h3>5. Financial Literacy & Stock Market Analysis</h3>
-        <p>Develop and share knowledge on personal finance, investments, and the stock market. Learn how to interpret data, read charts, and make smart financial decisions while educating others.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
-      </div>
-
-      <div class="domain-card">
-        <img src="images/ngo_social_work.png" alt="NGO & Social Work">
-        <h3>6. NGO & Social Work</h3>
-        <p>Engage with causes you care about by organizing awareness drives, leading fundraising efforts, and managing volunteers. Gain meaningful experience in outreach and community impact.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
-      </div>
-
-      <div class="domain-card">
-        <img src="images/law_internship.png" alt="Law Internship">
-        <h3>7. Law Internship</h3>
-        <p>Assist in legal research, documentation, drafting, and compliance support. A valuable opportunity for law students to apply legal knowledge in a practical setting.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
-      </div>
-
-      <div class="domain-card">
-        <img src="images/leadership.png" alt="Leadership & Volunteership">
-        <h3>8. Leadership & Volunteership</h3>
-        <p>Take charge of intern engagement, task coordination, session management, and team support. Develop leadership qualities by working directly with the core team, guiding peers, and ensuring smooth daily operations.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
-      </div>
+    <!-- Individual Domain Showcase Cards -->
+    <div class="domain-showcase-card hr-card">
+      <img src="images/hr_management_showcase.png" alt="Human Resource Management">
+      <h3>1. Human Resource Management</h3>
+      <p>Get hands-on experience of sourcing, screening, scheduling and conducting interviews, hiring, onboarding and performance tracking. Work with cross-functional teams and play a key role in ensuring smooth HR operations while enhancing your people management skills.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
     </div>
+
+    <div class="domain-showcase-card digital-marketing-card">
+      <img src="images/digital_marketing_showcase.png" alt="Digital Marketing & Content Creation">
+      <h3>2. Digital Marketing & Content Creation</h3>
+      <p>Execute digital strategies using tools like SEO, Google Ads, and email marketing. Plan impactful campaigns across social platforms to improve brand engagement and drive leads in a data-driven environment. Unleash your creativity by designing social media posts, logos, banners, and brand visuals. Write, edit, and produce blogs, articles, videos, and infographics. Get real exposure to building online audiences across podcasting and YouTube platforms as well. Create engaging content including blogs, videos, and graphics to boost online visibility. Interns will also develop client acquisition strategies, conduct market research, and support sales campaigns. They’ll engage in promotional activities, prepare proposals, and analyze market trends. Additionally, as relationship managers, they’ll maintain client relations, gather feedback, and ensure consistent communication to enhance customer satisfaction and retention.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+    </div>
+
+    <div class="domain-showcase-card financial-literacy-card">
+      <img src="images/financial_literacy_showcase.png" alt="Financial Literacy & Stock Market Analysis">
+      <h3>3. Financial Literacy & Stock Market Analysis</h3>
+      <p>Develop and share knowledge on personal finance, investments, and the stock market. Learn how to interpret data, read charts, and make smart financial decisions while educating others.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+    </div>
+
+    <div class="domain-showcase-card ngo-social-work-card">
+      <img src="images/ngo_social_work_showcase.png" alt="NGO & Social Work">
+      <h3>4. NGO & Social Work</h3>
+      <p>Engage with causes you care about by organizing awareness drives, leading fundraising efforts, and managing volunteers. Gain meaningful experience in outreach and community impact.</p>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScJXzLU6K8MV6VBwDRHKZM1aTIAjEOw9JZEuVn1r4o7wkt1SA/viewform" target="_blank" class="apply-button">Apply Now</a>
+    </div>
+
   </section>
 
   <!-- Benefits of Interning with Partnerdesk Section -->
@@ -521,86 +586,86 @@
     <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
       We don’t just offer internships — we create an experience that transforms your potential into performance. Here’s why Partnerdesk is the perfect place to start your professional journey:
     </p>
-    <div class="benefits-list">
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+    <div class="benefits-grid">
+      <div class="benefit-card color-1">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
           </svg>
-          Real-Time Projects & Practical Exposure
-        </h3>
+        </div>
+        <h3>Real-Time Projects & Practical Exposure</h3>
         <p>Get hands-on experience by working on live assignments and real client tasks. No coffee runs or dummy tasks — you’ll be contributing to actual projects that make a difference.</p>
       </div>
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+      <div class="benefit-card color-2">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4zm0 10.99h7c-.53 4.12-3.28 7.79-7 8.94V12H5V6.3l7-3.11v8.8z"/>
           </svg>
-          Mentorship by Industry Experts
-        </h3>
+        </div>
+        <h3>Mentorship by Industry Experts</h3>
         <p>Work under the guidance of experienced professionals who offer practical knowledge, career advice, and one-on-one mentorship. Learn what textbooks can’t teach.</p>
       </div>
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+      <div class="benefit-card color-3">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/>
           </svg>
-          Certificates & Letter of Recommendation
-        </h3>
+        </div>
+        <h3>Certificates & Letter of Recommendation</h3>
         <p>Every intern receives a certificate of completion and eligible candidates are awarded personalized Letters of Recommendation (LORs) — great for your resume and job interviews.</p>
       </div>
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+      <div class="benefit-card color-4">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/>
           </svg>
-          Flexible Work Environment
-        </h3>
+        </div>
+        <h3>Flexible Work Environment</h3>
         <p>We understand students juggle multiple responsibilities. That’s why we offer flexible working hours and a remote-friendly setup — so you can learn without stress.</p>
       </div>
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+      <div class="benefit-card color-5">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
           </svg>
-          Skill Development Across Domains
-        </h3>
-        <p>Choose from 16 diverse fields, including HR, Marketing, Finance, Design, and more. Pick the path that matches your passion, and we’ll help you grow in it.</p>
+        </div>
+        <h3>Skill Development Across Domains</h3>
+        <p>Choose from 4 diverse fields, including HR, Marketing, Finance, and NGO. Pick the path that matches your passion, and we’ll help you grow in it.</p>
       </div>
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+      <div class="benefit-card color-6">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-5-9h10v2H7z"/>
           </svg>
-          Professional Networking
-        </h3>
+        </div>
+        <h3>Professional Networking</h3>
         <p>Connect with industry peers, mentors, and professionals from various fields. Build meaningful relationships that could open doors for future job opportunities.</p>
       </div>
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+      <div class="benefit-card color-7">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm-1 7V3.5L18.5 9H13z"/>
           </svg>
-          Resume & Portfolio Boost
-        </h3>
+        </div>
+        <h3>Resume & Portfolio Boost</h3>
         <p>Gain work experience that stands out on your resume. Whether you're applying for higher studies or your first job, your time at Partnerdesk will give you the edge.</p>
       </div>
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+      <div class="benefit-card color-8">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
           </svg>
-          Growth-Oriented Culture
-        </h3>
+        </div>
+        <h3>Growth-Oriented Culture</h3>
         <p>We value fresh ideas and creativity. Interns at Partnerdesk are encouraged to take initiative, voice their opinions, and think like entrepreneurs.</p>
       </div>
-      <div class="benefit-item">
-        <h3>
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" class="inline-block">
+      <div class="benefit-card color-9">
+        <div class="icon-wrapper">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
             <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
           </svg>
-          Impact-Driven Work
-        </h3>
+        </div>
+        <h3>Impact-Driven Work</h3>
         <p>Whether you're designing a campaign, writing content, or helping NGOs raise funds — your work will have real-world impact on people, businesses, and communities.</p>
       </div>
     </div>
@@ -698,7 +763,6 @@
       reset: false
     });
 
-    // Changed reset to false for these sections to make them animate only once
     ScrollReveal().reveal('.section h2', {
       delay: 200,
       distance: '40px',
@@ -708,18 +772,20 @@
       reset: false
     });
 
-    ScrollReveal().reveal('.domain-card', {
-      interval: 150,
+    // Animations for the prominent domain showcase cards
+    ScrollReveal().reveal('.domain-showcase-card', {
+      interval: 200, /* Staggered appearance */
       delay: 400,
-      distance: '30px',
+      distance: '50px',
       origin: 'bottom',
-      duration: 900,
+      duration: 1000,
       easing: 'ease-in-out',
-      reset: true // Keep this true for individual card animation on scroll
+      reset: false
     });
 
-    ScrollReveal().reveal('.benefits-list .benefit-item', {
-      interval: 100,
+    // Animations for the new benefits cards
+    ScrollReveal().reveal('.benefit-card', {
+      interval: 100, /* Staggered appearance for each benefit card */
       delay: 300,
       distance: '30px',
       origin: 'bottom',
