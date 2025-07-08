@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hire Talent - Partnerdesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #1c1c2e; /* Darker background, slightly different from learning */
+      color: #e0e0eb; /* Light text for dark background */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      transition: background-color 0.3s ease; /* Smooth background transition */
+    }
+
+    body.no-scroll {
+      overflow: hidden; /* Prevent body scroll when nav is open */
+    }
+
+    /* Custom styles for the logo and site title - consistent with other pages */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)); /* Gradient for subtle effect */
+      width: 300px; /* Adjust width as needed */
+    }
+
+    .logo-title-container .logo {
+      width: 60px; /* Increased logo size */
+      height: 60px; /* Increased logo size */
+      margin-right: 1rem;
+      border-radius: 8px; /* Rounded corners for logo */
+      object-fit: cover; /* Ensure logo covers the area */
+    }
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem; /* Big Partnerdesk */
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.05em;
+    }
+
+    /* Navigation Bar - consistent with other pages */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0; /* Align to right */
+      height: 100vh; /* Full height */
+      width: 250px; /* Reduced width */
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+      backdrop-filter: blur(10px); /* Frosted glass effect */
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column; /* Stack links vertically */
+      justify-content: center; /* Center links vertically */
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Shadow on the left side */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for responsiveness */
+      transform: translateX(100%); /* Hidden by default */
+    }
+
+    nav.active {
+      transform: translateX(0%); /* Show when active */
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px; /* Rounded corners */
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right; /* Align text to the right */
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #FFD700; /* Accent color: Gold for freelancing */
+      transform: translateX(-5px); /* Slight hover effect */
+    }
+
+    /* Hamburger menu - consistent with other pages */
+    .hamburger-menu {
+      display: flex; /* Always visible */
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Overlay for when nav is open - consistent with other pages */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+      z-index: 999; /* Below nav, above content */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Page Header Section - New Freelancing Gradient (Professional Blue/Gold) */
+    .page-header {
+      background: linear-gradient(to bottom right, #2C3E50, #34495E, #FFD700); /* Dark Blue to Gold */
+      color: white;
+      padding: 8rem 1rem 4rem; /* Adjusted padding for sub-pages */
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .page-header h1 {
+      font-size: 3rem; /* Slightly smaller for sub-pages */
+      margin: 0 0 1rem;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 1.5rem; /* Increased padding */
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem; /* Larger section titles */
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #e0e0eb; /* Light text for dark background */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Filter Section Styles */
+    .filter-section {
+      background-color: #2a2a4a;
+      padding: 2.5rem;
+      border-radius: 20px;
+      margin-bottom: 4rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    .filter-section .filter-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Combined styles for all input fields, selects, and textareas */
+    .filter-section input[type="text"],
+    .filter-section select,
+    .filter-section input[type="email"],
+    .filter-section input[type="password"],
+    .admin-panel input[type="text"],
+    .admin-panel select,
+    .admin-panel textarea,
+    .admin-panel-container .domain-management input[type="text"] { /* Added for domain input */
+      background-color: #2a2a4a !important; /* Dark background, forced */
+      border: 1px solid #5a5a7a;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      color: #ffffff !important; /* Light text, forced */
+      font-size: 1rem;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 300px; /* Limit width on larger screens */
+    }
+
+    /* Combined styles for all input and textarea placeholders */
+    .filter-section input[type="text"]::placeholder,
+    .filter-section input[type="email"]::placeholder,
+    .filter-section input[type="password"]::placeholder,
+    .admin-panel input[type="text"]::placeholder,
+    .admin-panel textarea::placeholder,
+    .admin-panel-container .domain-management input[type="text"]::placeholder { /* Added for domain input */
+      color: #A0A0B5 !important; /* Slightly darker light grey placeholder, forced */
+    }
+
+    /* Ensure select options are visible */
+    .filter-section select option,
+    .admin-panel select option {
+        background-color: #3e3e5a; /* Dark background for options */
+        color: #E0E0EB; /* Light text for options */
+    }
+
+    /* Specific override for domainNameInput to ensure dark background */
+    #domainNameInput {
+      background-color: #2a2a4a !important;
+      color: #ffffff !important;
+    }
+
+
+    .filter-section button {
+      background-color: #FFD700; /* Gold button */
+      color: #1c1c2e;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+    }
+
+    .filter-section button:hover {
+      background-color: #FFC107;
+      transform: translateY(-2px);
+    }
+
+    /* Freelancer Profiles Grid */
+    .freelancer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2.5rem; /* Increased gap */
+      margin-top: 3rem;
+    }
+
+    .freelancer-card {
+      background-color: #2a2a4a;
+      border-radius: 20px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      cursor: grab; /* Indicate draggable */
+    }
+
+    .freelancer-card:hover {
+      transform: translateY(-10px) scale(1.01);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    }
+
+    .freelancer-card.dragging {
+        opacity: 0.5;
+        border: 2px dashed #FFD700;
+    }
+
+    .freelancer-card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1.5rem;
+      border: 4px solid #FFD700; /* Gold border for profile pic */
+      box-shadow: 0 0 15px rgba(255,215,0,0.4);
+    }
+
+    .freelancer-card h3 {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #FFD700; /* Gold for names */
+      margin-bottom: 0.8rem;
+    }
+
+    .freelancer-card .skills {
+      font-size: 1rem;
+      color: #a0a0b5;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .freelancer-card .skill-tag {
+      background-color: #3e3e5a;
+      color: #FFD700;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .freelancer-card p {
+      font-size: 1.1rem;
+      color: #c0c0d0;
+      margin-bottom: 1.5rem;
+      flex-grow: 1; /* Allow description to take space */
+    }
+
+    .freelancer-card .contact-button {
+      background-color: #4299E1; /* Blue for contact button */
+      color: white;
+      padding: 0.8rem 1.8rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      text-decoration: none;
+      margin-top: auto; /* Push button to bottom */
+    }
+
+    .freelancer-card .contact-button:hover {
+      background-color: #3182CE;
+      transform: translateY(-2px);
+    }
+
+    /* Admin Panel Styles */
+    .admin-panel-container .admin-panel {
+      background-color: #3e3e5a;
+      padding: 2.5rem;
+      border-radius: 20px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      text-align: left;
+    }
+
+    .admin-panel-container .admin-panel h2 {
+      color: #FFD700;
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-panel-container .input-group {
+      margin-bottom: 1rem;
+    }
+
+    .admin-panel-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #e0e0eb;
+      font-weight: 600;
+    }
+
+    .admin-panel-container button {
+      background-color: #4CAF50; /* Green for add button */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      margin-top: 1.5rem;
+      margin-right: 1rem; /* Added margin for multiple buttons */
+    }
+
+    .admin-panel-container button:hover {
+      background-color: #388E3C;
+      transform: translateY(-2px);
+    }
+
+    .admin-panel-container .admin-message {
+      background-color: #2a2a4a;
+      border-left: 4px solid #FFD700;
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      color: #e0e0eb;
+      font-size: 0.95rem;
+    }
+
+    /* Edit and Delete buttons for freelancer profiles */
+    .freelancer-card .edit-button,
+    .freelancer-card .delete-button {
+      display: none; /* Hidden by default */
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      margin: 0.5rem; /* Space between buttons */
+    }
+
+    /* Show edit/delete buttons when admin is logged in */
+    .freelancer-card.admin-mode .edit-button,
+    .freelancer-card.admin-mode .delete-button {
+      display: inline-block;
+    }
+
+    /* Logout Admin button */
+    .admin-panel-container .logout-admin-button {
+      margin-top: 4rem; /* Adjust spacing as needed */
+      background-color: #DC2626; /* Red color for logout */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      display: block; /* Always block when present */
+    }
+
+    .admin-panel-container .logout-admin-button:hover {
+      background-color: #B91C1C;
+      transform: translateY(-2px);
+    }
+
+    /* Domain Management Section within Admin Panel */
+    .admin-panel-container .domain-management {
+      background-color: #2a2a4a; /* Slightly different background for sub-section */
+      padding: 2rem;
+      border-radius: 15px;
+      margin-top: 2rem;
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.3); /* Inner shadow */
+    }
+
+    .admin-panel-container .domain-management h3 {
+      color: #FFD700;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-panel-container .domain-management button {
+      margin-right: 0.5rem;
+    }
+
+    .admin-panel-container .domain-list {
+      margin-top: 1.5rem;
+      max-height: 200px; /* Limit height for scrollability */
+      overflow-y: auto;
+      border: 1px solid #4a4a6a;
+      border-radius: 8px;
+      padding: 0.5rem;
+    }
+
+    .admin-panel-container .domain-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem;
+      border-bottom: 1px solid #3e3e5a;
+      color: #e0e0eb;
+    }
+
+    .admin-panel-container .domain-item:last-child {
+      border-bottom: none;
+    }
+
+    .admin-panel-container .domain-item span {
+      flex-grow: 1;
+      text-align: left;
+    }
+
+    .admin-panel-container .domain-item .domain-actions button {
+      margin-left: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border-radius: 15px;
+      margin-top: 0; /* Override default button margin-top */
+    }
+
+    /* Save Order button for freelancers */
+    .admin-panel-container .save-order-button {
+        background-color: #00BCD4; /* Cyan color for save order */
+        color: white;
+        padding: 0.8rem 2rem;
+        border-radius: 30px;
+        font-weight: 600;
+        transition: background-color 0.3s, transform 0.2s;
+        box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        margin-top: 2rem;
+        display: block; /* Always block when present */
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .admin-panel-container .save-order-button:hover {
+        background-color: #00ACC1;
+        transform: translateY(-2px);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        width: auto;
+        background: rgba(0,0,0,0.8);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border-bottom-right-radius: 15px;
+      }
+      nav {
+        width: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      .logo-title-container .logo {
+        width: 50px;
+        height: 50px;
+      }
+      nav {
+        width: 100%;
+        padding-top: 5rem;
+      }
+      .page-header {
+        padding: 6rem 1rem 3rem;
+      }
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .filter-section {
+        padding: 1.5rem;
+      }
+      .filter-section input[type="text"],
+      .filter-section select {
+        max-width: none; /* Allow full width on small screens */
+      }
+      .freelancer-card {
+        padding: 1.5rem;
+      }
+      .freelancer-card h3 {
+        font-size: 1.5rem;
+      }
+      .freelancer-grid {
+        grid-template-columns: 1fr; /* Stack on small screens */
+      }
+      /* Admin panel container always shown on small screens but its content is dynamic */
+      .admin-panel-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo and Site Title - Consistent with other pages -->
+  <div class="logo-title-container">
+    <img src="logo.png" alt="Partnerdesk Logo" class="logo">
+    <span class="site-title">Partnerdesk</span>
+  </div>
+
+  <!-- Hamburger Menu - Consistent with other pages -->
+  <div class="hamburger-menu" onclick="window.toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navigation Overlay - Consistent with other pages -->
+  <div class="overlay" onclick="window.toggleNav()"></div>
+
+  <!-- Navigation Bar - Consistent with other pages -->
+  <nav id="main-nav">
+    <a href="index.html" onclick="window.toggleNav()">Home</a>
+    <a href="internships.html" onclick="window.toggleNav()">Internships</a>
+    <a href="learning.html" onclick="window.toggleNav()">Learning</a>
+    <a href="freelancing.html" onclick="window.toggleNav()">Freelancing</a>
+    <a href="partners.html" onclick="window.toggleNav()">Partners</a>
+    <a href="about.html" onclick="window.toggleNav()">About</a>
+    <a href="contact.html" onclick="window.toggleNav()">Contact</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div>
+    <a href="authenticate.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
+    <a href="downloads.html" onclick="window.toggleNav()">Downloads</a> <!-- New Downloads tab -->
+    <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a> <!-- New Admin Login link -->
+  </nav>
+
+  <!-- Page Header Section -->
+  <header class="page-header">
+    <h1>Find Your Perfect Talent</h1>
+    <p>Browse our curated list of skilled freelancers, primarily Partnerdesk alumni, ready to elevate your projects.</p>
+  </header>
+
+  <!-- Introduction Section -->
+  <section class="section">
+    <p class="text-xl max-w-3xl mx-auto text-center text-gray-300">
+      Our freelancers are highly trained individuals, many of whom have completed rigorous internships with Partnerdesk, ensuring a high standard of quality and professionalism.
+    </p>
+  </section>
+
+  <!-- Filter Section -->
+  <section class="section">
+    <h2>Filter Freelancers</h2>
+    <div class="filter-section">
+      <div class="filter-group">
+        <input type="text" id="skillSearch" placeholder="Search by skill (e.g., Digital Marketing)">
+        <select id="domainFilter">
+          <option value="">All Domains</option>
+          <!-- Options will be dynamically loaded here by JavaScript -->
+        </select>
+      </div>
+      <button onclick="window.applyFilters()">Apply Filters</button>
+    </div>
+  </section>
+
+  <!-- Freelancer Profiles Section -->
+  <section class="section">
+    <h2>Our Talented Freelancers</h2>
+    <div class="loading-indicator" id="loadingIndicator">Loading freelancers...</div>
+    <div class="freelancer-grid" id="freelancerList">
+      <!-- Freelancer Cards will be loaded dynamically from Firestore here -->
+    </div>
+    <p id="noResultsMessage" class="text-xl text-gray-400 mt-10 hidden">No freelancers found matching your criteria.</p>
+  </section>
+
+  <!-- Container for Admin Panel (will be populated by JS) -->
+  <div id="adminPanelContainer" class="section"></div>
+
+  <!-- Footer - Restored to original structure -->
+  <footer class="text-center py-8 bg-black text-gray-400 text-sm">
+    <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
+    <p>Partnerdesk is a registered MSME under the Government of India.</p>
+    <p>Registration No. : UDYAM-UP-03-0104523</p>
+    <p>Registered Office : 9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</p>
+    <p>Email: info@partnerdesk.in</p>
+  </footer>
+
+  <script type="module">
+    // Firebase SDK imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, doc, deleteDoc, updateDoc, writeBatch } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // IMPORTANT: Replace this with your actual Firebase config object
+    const firebaseConfig = {
+          apiKey: "AIzaSyAiEhapkQvQnOtxZCQFa6TbOEWg3yelS8c",
+          authDomain: "certificates-b42ef.firebaseapp.com",
+          projectId: "certificates-b42ef",
+          storageBucket: "certificates-b42ef.firebasestorage.app",
+          messagingSenderId: "317230336893",
+          appId: "1:317230336893:web:915181dc11ed7264255a14",
+      // measurementId: "YOUR_MEASUREMENT_ID" // Optional
+    };
+
+    // Use your projectId as the appId for consistency with Firestore paths
+    const currentAppId = firebaseConfig.projectId;
+
+    let app;
+    let db;
+    let auth;
+    let currentUserId; // To store the authenticated user's ID
+    let draggedItem = null; // For drag and drop functionality
+
+    // Initialize Firebase and set up auth listener immediately
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    auth = getAuth(app);
+
+    // Expose app, db, and auth globally for console access and admin functions
+    window.app = app;
+    window.db = db;
+    window.auth = auth;
+    window.firebaseConfig = firebaseConfig; // Also expose config if needed
+
+    // Log the App ID being used at startup
+    console.log("App ID being used (from firebaseConfig.projectId):", currentAppId);
+
+    // Function to render the admin panel dynamically
+    function renderAdminPanel() {
+      const adminPanelContainer = document.getElementById('adminPanelContainer');
+      if (!adminPanelContainer) {
+        console.error("Admin panel container not found!");
+        return;
+      }
+
+      adminPanelContainer.innerHTML = `
+        <h2 class="text-3xl font-bold mb-4 text-white">Manage Freelancer Profiles</h2>
+        <div class="admin-panel">
+          <p class="admin-message">
+            <strong>Note:</strong> Changes made here will be saved directly to the database and will persist.
+          </p>
+
+          <input type="hidden" id="currentFreelancerId">
+
+          <div class="input-group">
+            <label for="freelancerName">Name:</label>
+            <input type="text" id="freelancerName" placeholder="e.g., Jane Doe">
+          </div>
+          <div class="input-group">
+            <label for="freelancerSkill">Skill (comma-separated):</label>
+            <input type="text" id="freelancerSkill" placeholder="e.g., Digital Marketing, Web Development">
+          </div>
+          <div class="input-group">
+            <label for="freelancerDescription">Description:</label>
+            <textarea id="freelancerDescription" placeholder="A brief description of the freelancer's expertise."></textarea>
+          </div>
+          <div class="input-group">
+            <label for="freelancerImageUrl">Image URL (e.g., images/freelancer_jane.png):</label>
+            <input type="text" id="freelancerImageUrl" placeholder="e.g., images/freelancer_jane.png">
+          </div>
+          <div class="input-group">
+            <label for="freelancerContactEmail">Contact Email:</label>
+            <input type="text" id="freelancerContactEmail" placeholder="e.g., jane.doe@example.com">
+          </div>
+          <div class="input-group">
+            <label for="freelancerDomain">Primary Domain:</label>
+            <select id="freelancerDomain">
+              <option value="">Select Domain</option>
+              <!-- Options will be dynamically loaded here by JavaScript -->
+            </select>
+          </div>
+
+          <button id="saveFreelancerButton">Add New Freelancer</button>
+          <button id="clearFormButton" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-200">Clear Form</button>
+        </div>
+
+        <div class="domain-management mt-8">
+            <h3>Manage Domains</h3>
+            <input type="hidden" id="currentDomainId">
+            <div class="input-group">
+                <label for="domainNameInput">Domain Name:</label>
+                <input type="text" id="domainNameInput" placeholder="e.g., Digital Marketing">
+            </div>
+            <button id="saveDomainButton">Add New Domain</button>
+            <button id="clearDomainFormButton" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-200">Clear Domain Form</button>
+
+            <div class="domain-list" id="domainListDisplay">
+                <!-- Domains will be listed here -->
+            </div>
+        </div>
+
+        <button id="saveOrderButton" class="save-order-button hidden">Save Freelancer Order</button>
+        <button id="logoutAdminButton" class="logout-admin-button">Logout Admin</button>
+      `;
+
+      // Attach event listeners after elements are created
+      document.getElementById('saveFreelancerButton').onclick = window.addOrUpdateFreelancerProfile;
+      document.getElementById('clearFormButton').onclick = window.clearFreelancerForm;
+      document.getElementById('logoutAdminButton').onclick = window.adminLogout;
+      document.getElementById('saveOrderButton').onclick = window.saveFreelancerOrder;
+
+
+      // Domain management event listeners
+      document.getElementById('saveDomainButton').onclick = window.addOrUpdateDomain;
+      document.getElementById('clearDomainFormButton').onclick = window.clearDomainForm;
+
+      // Load domains after rendering admin panel
+      window.loadDomains();
+    }
+
+    // Listen for authentication state changes
+    onAuthStateChanged(auth, (user) => {
+      const adminPanelContainer = document.getElementById('adminPanelContainer');
+      const adminLoginLink = document.getElementById('adminLoginLink');
+
+      if (user) {
+        currentUserId = user.uid;
+        console.log("onAuthStateChanged: User is authenticated. UID:", currentUserId);
+        renderAdminPanel();
+        // Add admin-mode class to all freelancer cards so edit/delete buttons show
+        document.querySelectorAll('.freelancer-card').forEach(card => {
+          card.classList.add('admin-mode');
+        });
+        if (adminLoginLink) {
+          adminLoginLink.classList.add('hidden'); // Hide Admin Login link if logged in
+        }
+      } else {
+        currentUserId = null;
+        console.log("onAuthStateChanged: No user authenticated.");
+        if (adminPanelContainer) {
+          adminPanelContainer.innerHTML = ''; // Clear admin panel if not logged in
+        }
+        // Remove admin-mode class from all freelancer cards
+        document.querySelectorAll('.freelancer-card').forEach(card => {
+          card.classList.remove('admin-mode');
+        });
+        if (adminLoginLink) {
+          adminLoginLink.classList.remove('hidden'); // Show Admin Login link if not logged in
+        }
+      }
+      // Always load freelancer profiles after auth state is determined
+      window.loadFreelancerProfiles();
+    });
+
+    // Function to render freelancer profile cards
+    window.renderFreelancerProfiles = function(profiles) {
+      const profilesList = document.getElementById('freelancerList');
+      profilesList.innerHTML = ''; // Clear existing cards
+      const noProfilesMessage = document.getElementById('noResultsMessage');
+      document.getElementById('loadingIndicator').classList.add('hidden'); // Hide loading
+
+      if (profiles.length === 0) {
+        noProfilesMessage.classList.remove('hidden');
+      } else {
+        noProfilesMessage.classList.add('hidden');
+        profiles.forEach(profile => {
+          const skillsArray = profile.skill ? profile.skill.split(',').map(s => `<span class="skill-tag">${s.trim()}</span>`).join('\n') : '';
+          const cardHtml = `
+            <div class="freelancer-card ${currentUserId ? 'admin-mode' : ''}" id="freelancer-${profile.id}"
+                 data-id="${profile.id}"
+                 data-skills="${profile.skill ? profile.skill.toLowerCase() : ''}"
+                 data-domain="${profile.domain ? profile.domain.toLowerCase() : ''}"
+                 draggable="${currentUserId ? 'true' : 'false'}"> <!-- Draggable only if admin -->
+              <img src="${profile.imageUrl || 'https://placehold.co/120x120/FFD700/1C1C2E?text=JD'}" alt="${profile.name}" onerror="this.onerror=null;this.src='https://placehold.co/120x120/FFD700/1C1C2E?text=JD';">
+              <h3>${profile.name || 'Untitled Freelancer'}</h3>
+              <div class="skills">${skillsArray}</div>
+              <p>${profile.description || 'No description available.'}</p>
+              <div class="flex flex-wrap justify-center mt-auto">
+                <a href="mailto:${profile.contactEmail || '#'}" class="contact-button">Contact ${profile.name ? profile.name.split(' ')[0] : 'Freelancer'}</a>
+                <button class="edit-button bg-blue-500 hover:bg-blue-600" onclick="window.editFreelancerProfile('${profile.id}')">Edit</button>
+                <button class="delete-button bg-red-500 hover:bg-red-600" onclick="window.deleteFreelancerProfile('${profile.id}')">Delete</button>
+              </div>
+            </div>
+          `;
+          profilesList.insertAdjacentHTML('beforeend', cardHtml);
+        });
+
+        // Add drag and drop event listeners after rendering
+        if (currentUserId) {
+            addDragAndDropListeners();
+        }
+      }
+      window.applyFilters(); // Apply filters after rendering
+    }
+
+    // Function to load freelancer profiles from Firestore in real-time
+    window.loadFreelancerProfiles = function() {
+      if (!db) {
+        console.error("loadFreelancerProfiles: Firestore not initialized. Cannot load data.");
+        document.getElementById('loadingIndicator').textContent = "Error: Database not ready.";
+        return;
+      }
+      const collectionPath = `artifacts/${currentAppId}/public/data/freelancers`;
+      console.log("loadFreelancerProfiles: Attempting to load profiles from path:", collectionPath);
+
+      document.getElementById('loadingIndicator').classList.remove('hidden'); // Show loading
+
+      // Fetch all documents and sort client-side
+      onSnapshot(collection(db, collectionPath), (snapshot) => {
+        document.getElementById('loadingIndicator').classList.add('hidden'); // Hide loading
+        let profiles = [];
+        snapshot.forEach(doc => {
+          profiles.push({ id: doc.id, ...doc.data() });
+        });
+
+        // Client-side sorting by 'order' then 'name'
+        profiles.sort((a, b) => {
+            if (a.order === undefined && b.order === undefined) {
+                return a.name.localeCompare(b.name);
+            }
+            if (a.order === undefined) return 1; // Put undefined orders at the end
+            if (b.order === undefined) return -1; // Put undefined orders at the end
+            if (a.order === b.order) {
+                return a.name.localeCompare(b.name);
+            }
+            return a.order - b.order;
+        });
+
+        window.renderFreelancerProfiles(profiles);
+      }, (error) => {
+        console.error("Error fetching freelancer profiles: ", error);
+        document.getElementById('loadingIndicator').textContent = `Error loading profiles: ${error.message}`;
+      });
+    }
+
+    // Function to add or update a freelancer profile
+    window.addOrUpdateFreelancerProfile = async function() {
+      if (!db || !auth.currentUser) {
+        console.error("Firestore not initialized or user not authenticated. Cannot add/update profile.");
+        alert("Error: Not authenticated. Please log in as admin.");
+        return;
+      }
+
+      const freelancerId = document.getElementById('currentFreelancerId').value;
+      const name = document.getElementById('freelancerName').value.trim();
+      const skill = document.getElementById('freelancerSkill').value.trim();
+      const description = document.getElementById('freelancerDescription').value.trim();
+      let imageUrl = document.getElementById('freelancerImageUrl').value.trim();
+      const contactEmail = document.getElementById('freelancerContactEmail').value.trim();
+      const domain = document.getElementById('freelancerDomain').value.trim();
+
+      if (!name || !skill || !description || !contactEmail || !domain) {
+        alert('Please fill in all required fields to add/update a freelancer profile.');
+        return;
+      }
+
+      // Default image if none provided
+      if (!imageUrl) {
+        const initials = name.split(' ').map(n => n[0]).join('').toUpperCase();
+        const randomColor = Math.floor(Math.random()*16777215).toString(16);
+        imageUrl = `https://placehold.co/120x120/${randomColor}/FFFFFF?text=${initials}`;
+      }
+
+      const profileData = {
+        name: name,
+        skill: skill,
+        description: description,
+        imageUrl: imageUrl,
+        contactEmail: contactEmail,
+        domain: domain,
+        lastUpdated: new Date().toISOString(),
+        updatedBy: auth.currentUser.uid
+      };
+
+      try {
+        if (freelancerId) {
+          const profileDocRef = doc(db, `artifacts/${currentAppId}/public/data/freelancers`, freelancerId);
+          await updateDoc(profileDocRef, profileData);
+          console.log("Document successfully updated with ID: ", freelancerId);
+          alert('Freelancer profile updated successfully!');
+        } else {
+          // For new freelancers, assign an 'order' based on current timestamp
+          profileData.order = Date.now();
+          const docRef = await addDoc(collection(db, `artifacts/${currentAppId}/public/data/freelancers`), profileData);
+          console.log("Document written with ID: ", docRef.id);
+          alert('Freelancer profile added successfully!');
+        }
+        window.clearFreelancerForm();
+      } catch (e) {
+        console.error("Error adding/updating document: ", e);
+        alert(`Error: ${e.message}`);
+      }
+    }
+
+    // Function to populate form for editing
+    window.editFreelancerProfile = function(docId) {
+      const freelancerToEdit = document.getElementById(`freelancer-${docId}`);
+
+      if (freelancerToEdit) {
+        document.getElementById('currentFreelancerId').value = docId;
+        document.getElementById('freelancerName').value = freelancerToEdit.querySelector('h3').textContent;
+        document.getElementById('freelancerSkill').value = freelancerToEdit.querySelector('.skills').textContent.trim().replace(/\s+/g, ', '); // Extract skills, format for input
+        document.getElementById('freelancerDescription').value = freelancerToEdit.querySelector('p').textContent;
+        document.getElementById('freelancerImageUrl').value = freelancerToEdit.querySelector('img').src;
+        // Extract email from mailto link
+        const contactLink = freelancerToEdit.querySelector('.contact-button').href;
+        const emailMatch = contactLink.match(/^mailto:(.*)$/);
+        document.getElementById('freelancerContactEmail').value = emailMatch ? emailMatch[1] : '';
+
+        // Get domain from data attribute
+        document.getElementById('freelancerDomain').value = freelancerToEdit.getAttribute('data-domain');
+
+        document.getElementById('saveFreelancerButton').textContent = 'Update Freelancer';
+        window.scrollTo({ top: document.getElementById('adminPanelContainer').offsetTop, behavior: 'smooth' });
+      } else {
+        console.error("Freelancer not found for editing:", docId);
+      }
+    }
+
+    // Function to clear the admin form
+    window.clearFreelancerForm = function() {
+      document.getElementById('currentFreelancerId').value = '';
+      document.getElementById('freelancerName').value = '';
+      document.getElementById('freelancerSkill').value = '';
+      document.getElementById('freelancerDescription').value = '';
+      document.getElementById('freelancerImageUrl').value = '';
+      document.getElementById('freelancerContactEmail').value = '';
+      document.getElementById('freelancerDomain').value = '';
+      document.getElementById('saveFreelancerButton').textContent = 'Add New Freelancer';
+    }
+
+    // Function to delete a freelancer profile
+    window.deleteFreelancerProfile = async function(docId) {
+      console.log("Attempting to delete freelancer profile with ID:", docId);
+
+      if (!db || !auth.currentUser) {
+        console.error("Error: Firestore not initialized or user not authenticated. Cannot delete profile.");
+        return;
+      }
+
+      const confirmDelete = await new Promise(resolve => {
+          const modal = document.createElement('div');
+          modal.style.cssText = `
+              position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+              background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;
+              z-index: 9999;
+          `;
+          modal.innerHTML = `
+              <div style="background: #2a2a4a; padding: 25px; border-radius: 15px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 5px 20px rgba(0,0,0,0.5); color: #e0e0eb;">
+                  <p style="font-size: 1.1rem; margin-bottom: 20px;">Are you sure you want to delete this freelancer profile? This action cannot be undone.</p>
+                  <button id="confirmDeleteBtn" style="background-color: #EF4444; color: white; padding: 10px 20px; border-radius: 20px; margin-right: 10px; cursor: pointer;">Yes, Delete</button>
+                  <button id="cancelDeleteBtn" style="background-color: #5a5a7a; color: white; padding: 10px 20px; border-radius: 20px; cursor: pointer;">Cancel</button>
+              </div>
+          `;
+          document.body.appendChild(modal);
+
+          document.getElementById('confirmDeleteBtn').onclick = () => {
+              document.body.removeChild(modal);
+              resolve(true);
+          };
+          document.getElementById('cancelDeleteBtn').onclick = () => {
+              document.body.removeChild(modal);
+              resolve(false);
+          };
+      });
+
+      if (!confirmDelete) {
+        console.log("Deletion cancelled by user.");
+        return;
+      }
+
+      try {
+        const freelancerDocRef = doc(db, `artifacts/${currentAppId}/public/data/freelancers`, docId);
+        await deleteDoc(freelancerDocRef);
+        console.log("Document successfully deleted with ID:", docId);
+      } catch (e) {
+        console.error("Error removing document:", e);
+        alert(`Error deleting profile: ${e.message}`);
+      }
+    };
+
+    // Domain Management Functions
+    let currentDomainEditId = null;
+
+    window.loadDomains = function() {
+        if (!db) {
+            console.error("loadDomains: Firestore not initialized. Cannot load data.");
+            return;
+        }
+        const collectionPath = `artifacts/${currentAppId}/public/data/domains`;
+        console.log("loadDomains: Attempting to load domains from path:", collectionPath);
+
+        onSnapshot(collection(db, collectionPath), (snapshot) => {
+            const domains = [];
+            snapshot.forEach(doc => {
+                domains.push({ id: doc.id, ...doc.data() });
+            });
+            window.populateDomainDropdowns(domains);
+            if (currentUserId) { // Only render domain management list if admin is logged in
+                window.renderDomainList(domains);
+            }
+        }, (error) => {
+            console.error("Error fetching domains: ", error);
+        });
+    }
+
+    window.populateDomainDropdowns = function(domains) {
+        const domainFilterSelect = document.getElementById('domainFilter');
+        const freelancerDomainSelect = document.getElementById('freelancerDomain');
+
+        // Clear existing options, keep "All Domains" for filter
+        domainFilterSelect.innerHTML = '<option value="">All Domains</option>';
+        freelancerDomainSelect.innerHTML = '<option value="">Select Domain</option>';
+
+        domains.forEach(domain => {
+            const optionFilter = document.createElement('option');
+            optionFilter.value = domain.name.toLowerCase().replace(/\s+/g, '-');
+            optionFilter.textContent = domain.name;
+            domainFilterSelect.appendChild(optionFilter);
+
+            const optionFreelancer = document.createElement('option');
+            optionFreelancer.value = domain.name.toLowerCase().replace(/\s+/g, '-');
+            optionFreelancer.textContent = domain.name;
+            freelancerDomainSelect.appendChild(optionFreelancer);
+        });
+    }
+
+    window.renderDomainList = function(domains) {
+        const domainListDisplay = document.getElementById('domainListDisplay');
+        if (!domainListDisplay) return; // Exit if element not found (e.g., not admin)
+
+        domainListDisplay.innerHTML = '';
+        if (domains.length === 0) {
+            domainListDisplay.innerHTML = '<p class="text-gray-500 text-center py-4">No domains added yet.</p>';
+            return;
+        }
+
+        domains.forEach(domain => {
+            const domainItem = document.createElement('div');
+            domainItem.className = 'domain-item';
+            domainItem.innerHTML = `
+                <span>${domain.name}</span>
+                <div class="domain-actions">
+                    <button class="bg-blue-500 hover:bg-blue-600" onclick="window.editDomain('${domain.id}', '${domain.name}')">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-600" onclick="window.deleteDomain('${domain.id}')">Delete</button>
+                </div>
+            `;
+            domainListDisplay.appendChild(domainItem);
+        });
+    }
+
+    window.addOrUpdateDomain = async function() {
+        if (!db || !auth.currentUser) {
+            alert("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const domainId = document.getElementById('currentDomainId').value;
+        const domainName = document.getElementById('domainNameInput').value.trim();
+
+        if (!domainName) {
+            alert('Please enter a domain name.');
+            return;
+        }
+
+        const domainData = {
+            name: domainName,
+            lastUpdated: new Date().toISOString(),
+            updatedBy: auth.currentUser.uid
+        };
+
+        try {
+            if (domainId) {
+                const domainDocRef = doc(db, `artifacts/${currentAppId}/public/data/domains`, domainId);
+                await updateDoc(domainDocRef, domainData);
+                alert('Domain updated successfully!');
+            } else {
+                await addDoc(collection(db, `artifacts/${currentAppId}/public/data/domains`), domainData);
+                alert('Domain added successfully!');
+            }
+            window.clearDomainForm();
+        } catch (e) {
+            console.error("Error adding/updating domain: ", e);
+            alert(`Error: ${e.message}`);
+        }
+    }
+
+    window.editDomain = function(id, name) {
+        document.getElementById('currentDomainId').value = id;
+        document.getElementById('domainNameInput').value = name;
+        document.getElementById('saveDomainButton').textContent = 'Update Domain';
+    }
+
+    window.clearDomainForm = function() {
+        document.getElementById('currentDomainId').value = '';
+        document.getElementById('domainNameInput').value = '';
+        document.getElementById('saveDomainButton').textContent = 'Add New Domain';
+    }
+
+    window.deleteDomain = async function(docId) {
+        if (!db || !auth.currentUser) {
+            alert("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const confirmDelete = await new Promise(resolve => {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;
+                z-index: 9999;
+            `;
+            modal.innerHTML = `
+                <div style="background: #2a2a4a; padding: 25px; border-radius: 15px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 5px 20px rgba(0,0,0,0.5); color: #e0e0eb;">
+                    <p style="font-size: 1.1rem; margin-bottom: 20px;">Are you sure you want to delete this domain? This action cannot be undone.</p>
+                    <button id="confirmDeleteBtn" style="background-color: #EF4444; color: white; padding: 10px 20px; border-radius: 20px; margin-right: 10px; cursor: pointer;">Yes, Delete</button>
+                    <button id="cancelDeleteBtn" style="background-color: #5a5a7a; color: white; padding: 10px 20px; border-radius: 20px; cursor: pointer;">Cancel</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            document.getElementById('confirmDeleteBtn').onclick = () => {
+                document.body.removeChild(modal);
+                resolve(true);
+            };
+            document.getElementById('cancelDeleteBtn').onclick = () => {
+                document.body.removeChild(modal);
+                resolve(false);
+            };
+        });
+
+        if (!confirmDelete) {
+            console.log("Deletion cancelled by user.");
+            return;
+        }
+
+        try {
+            const domainDocRef = doc(db, `artifacts/${currentAppId}/public/data/domains`, docId);
+            await deleteDoc(domainDocRef);
+            console.log("Domain successfully deleted with ID:", docId);
+        } catch (e) {
+            console.error("Error removing domain:", e);
+            alert(`Error deleting domain: ${e.message}`);
+        }
+    }
+
+    // Drag and Drop Functions
+    function addDragAndDropListeners() {
+        const freelancerList = document.getElementById('freelancerList');
+        const saveOrderButton = document.getElementById('saveOrderButton');
+
+        if (!freelancerList) return;
+
+        freelancerList.addEventListener('dragstart', (e) => {
+            if (e.target.classList.contains('freelancer-card')) {
+                draggedItem = e.target;
+                e.dataTransfer.effectAllowed = 'move';
+                e.dataTransfer.setData('text/html', draggedItem.innerHTML); // Set data for drag
+                setTimeout(() => {
+                    draggedItem.classList.add('dragging');
+                }, 0);
+            }
+        });
+
+        freelancerList.addEventListener('dragover', (e) => {
+            e.preventDefault(); // Necessary to allow drop
+            if (e.target.classList.contains('freelancer-card') && e.target !== draggedItem) {
+                const boundingBox = e.target.getBoundingClientRect();
+                const offset = e.clientY - boundingBox.top;
+                const center = boundingBox.height / 2;
+
+                const currentContainer = draggedItem.parentNode;
+                const targetCard = e.target;
+
+                if (offset > center) {
+                    currentContainer.insertBefore(draggedItem, targetCard.nextSibling);
+                } else {
+                    currentContainer.insertBefore(draggedItem, targetCard);
+                }
+            }
+        });
+
+        freelancerList.addEventListener('dragend', () => {
+            if (draggedItem) {
+                draggedItem.classList.remove('dragging');
+                draggedItem = null;
+                // Show save order button if admin is logged in
+                if (currentUserId && saveOrderButton) {
+                    saveOrderButton.classList.remove('hidden');
+                }
+            }
+        });
+    }
+
+    window.saveFreelancerOrder = async function() {
+        if (!db || !auth.currentUser) {
+            alert("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const freelancerCards = document.querySelectorAll('.freelancer-card');
+        const batch = writeBatch(db);
+
+        freelancerCards.forEach((card, index) => {
+            const freelancerId = card.dataset.id;
+            const freelancerDocRef = doc(db, `artifacts/${currentAppId}/public/data/freelancers`, freelancerId);
+            batch.update(freelancerDocRef, { order: index }); // Assign new order
+        });
+
+        try {
+            await batch.commit();
+            alert('Freelancer order saved successfully!');
+            document.getElementById('saveOrderButton').classList.add('hidden'); // Hide button after saving
+        } catch (e) {
+            console.error("Error saving freelancer order: ", e);
+            alert(`Error saving order: ${e.message}`);
+        }
+    }
+
+
+    // Client-side filtering logic
+    window.applyFilters = function() {
+      const skillSearchInput = document.getElementById('skillSearch').value.toLowerCase();
+      const domainFilter = document.getElementById('domainFilter').value.toLowerCase();
+      const freelancerCards = document.querySelectorAll('.freelancer-card');
+      let resultsFound = false;
+
+      freelancerCards.forEach(card => {
+        const skills = card.getAttribute('data-skills').toLowerCase();
+        const domain = card.getAttribute('data-domain').toLowerCase();
+
+        const matchesSkill = skillSearchInput === '' || skills.includes(skillSearchInput);
+        const matchesDomain = domainFilter === '' || domain.includes(domainFilter);
+
+        if (matchesSkill && matchesDomain) {
+          card.style.display = 'flex'; // Show the card
+          resultsFound = true;
+        } else {
+          card.style.display = 'none'; // Hide the card
+        }
+      });
+
+      const noResultsMessage = document.getElementById('noResultsMessage');
+      if (resultsFound) {
+        noResultsMessage.classList.add('hidden');
+      } else {
+        noResultsMessage.classList.remove('hidden');
+      }
+    }
+
+    // Function to toggle navigation for mobile
+    window.toggleNav = function() {
+      const nav = document.getElementById('main-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    }
+
+    // Function to logout admin
+    window.adminLogout = async function() {
+      if (!auth) {
+        console.warn("adminLogout: Firebase Auth not initialized.");
+        return;
+      }
+      try {
+        await signOut(auth);
+        console.log("adminLogout: Logged out successfully.");
+        // Redirect back to admin login page after logout
+        window.location.href = 'admin_login.html';
+      } catch (error) {
+        console.error("adminLogout: Error during logout:", error.code, error.message);
+        alert(`Logout error: ${error.message}`);
+      }
+    }
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.filter-section', {
+      delay: 300,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.freelancer-card', {
+      interval: 150,
+      delay: 400,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.admin-panel-container', {
+      delay: 200,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Close nav when a nav link is clicked
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = document.getElementById('main-nav');
+        if (nav.classList.contains('active')) {
+          window.toggleNav();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

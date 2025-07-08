@@ -1,0 +1,1529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Partnerdesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #1c1c2e; /* Consistent dark background */
+      color: #e0e0eb; /* Light text */
+      overflow-x: hidden;
+      transition: background-color 0.3s ease;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    /* Consistent styles from other pages */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0));
+      width: 300px;
+    }
+
+    .logo-title-container .logo {
+      width: 60px;
+      height: 60px;
+      margin-right: 1rem;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.05em;
+    }
+
+    /* Navigation Bar - consistent with other pages */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 250px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(100%);
+    }
+
+    nav.active {
+      transform: translateX(0%);
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #9F7AEA; /* Accent color: Purple for About */
+      transform: translateX(-5px);
+    }
+
+    /* Hamburger menu - consistent with other pages */
+    .hamburger-menu {
+      display: flex;
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Overlay for when nav is open - consistent with other pages */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Page Header Section - About Page Gradient (Subtle Purple/Blue) */
+    .page-header {
+      background: linear-gradient(to bottom right, #667EEA, #9F7AEA, #D6BCFA); /* Blue to Purple to Lighter Purple */
+      color: white;
+      padding: 8rem 1rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      margin: 0 0 1rem;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #e0e0eb;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .about-content-grid {
+      display: grid;
+      gap: 1.5rem; /* Slightly reduced gap */
+      margin-top: 3rem;
+      text-align: left;
+      justify-content: center; /* Center items in the grid */
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Default for smaller screens */
+    }
+
+    /* Specific grid for larger screens for uniformity */
+    @media (min-width: 1024px) {
+      .about-content-grid {
+        grid-template-columns: repeat(4, 1fr); /* Four columns on larger screens */
+      }
+    }
+    @media (min-width: 768px) and (max-width: 1023px) {
+      .about-content-grid {
+        grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
+      }
+    }
+
+
+    .about-card {
+      background: #2a2a4a; /* Card background */
+      border-radius: 20px;
+      padding: 1.5rem; /* Reduced padding */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex; /* Use flex for vertical centering of content */
+      flex-direction: column;
+      align-items: center; /* Center content horizontally */
+      text-align: center; /* Center text within card */
+      height: auto; /* Allow height to adjust */
+      min-height: 350px; /* Minimum height for consistency */
+      margin: 0 auto; /* Center individual cards within their grid cell */
+    }
+
+    .about-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+    }
+
+    .about-card h3 {
+      font-size: 1.4rem; /* Reduced font size */
+      font-weight: 700;
+      margin-bottom: 0.6rem; /* Reduced margin */
+      color: #9F7AEA; /* Purple accent for titles */
+      word-wrap: break-word; /* Ensures long words break and wrap */
+      overflow-wrap: break-word; /* Ensures long words break and wrap */
+      word-break: break-all; /* Force break for very long words */
+    }
+
+    .about-card p {
+      font-size: 0.9rem; /* Reduced font size */
+      color: #c0c0d0;
+      margin-bottom: 0.6rem; /* Reduced margin */
+      flex-grow: 1; /* Allows text to take available space */
+      word-wrap: break-word; /* Ensures long words break and wrap */
+      overflow-wrap: break-word; /* Ensures long words break and wrap */
+      word-break: break-all; /* Force break for very long words */
+    }
+
+    /* Styles for truncated text */
+    .about-card p.truncated {
+      max-height: 4.5em; /* Approx 3 lines of text */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 3; /* Number of lines to show before ellipsis */
+      -webkit-box-orient: vertical;
+      white-space: normal;
+    }
+
+    .about-image {
+      border-radius: 50%; /* Make image circular */
+      width: 120px; /* Reduced width for image */
+      height: 120px; /* Reduced height for image */
+      object-fit: cover; /* Ensures image covers the area, cropping if necessary */
+      object-position: center; /* Centers the image within its bounds */
+      margin-bottom: 1rem; /* Moved margin to bottom for image above text */
+      box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    }
+
+    .linkedin-link, .phone-link {
+        color: #0A66C2; /* LinkedIn blue */
+        font-weight: 600;
+        text-decoration: underline;
+        margin-top: 0.5rem;
+        display: inline-block;
+    }
+    .linkedin-link:hover, .phone-link:hover {
+        color: #084C9A;
+    }
+
+    .read-more-btn {
+        background: none;
+        border: none;
+        color: #667EEA; /* Blueish accent */
+        cursor: pointer;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-decoration: underline;
+        padding: 0;
+        margin-top: 0.5rem;
+        align-self: flex-end; /* Align button to the right */
+    }
+    .read-more-btn:hover {
+        color: #5a67d8;
+    }
+
+    /* Admin Panel Styles (reused from other pages for consistency) */
+    .admin-panel-container {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .admin-panel-container .admin-panel {
+      background-color: #3e3e5a;
+      padding: 2.5rem;
+      border-radius: 20px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      text-align: left;
+    }
+
+    .admin-panel-container .admin-panel h2 {
+      color: #9F7AEA; /* Purple accent for admin panel title */
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-panel-container .input-group {
+      margin-bottom: 1rem;
+    }
+
+    .admin-panel-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #e0e0eb;
+      font-weight: 600;
+    }
+
+    .admin-panel-container input[type="text"],
+    .admin-panel-container textarea,
+    .admin-panel-container input[type="number"] {
+      background-color: #2a2a4a !important;
+      border: 1px solid #5a5a7a;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      color: #ffffff !important;
+      font-size: 1rem;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .admin-panel-container input[type="text"]::placeholder,
+    .admin-panel-container textarea::placeholder,
+    .admin-panel-container input[type="number"]::placeholder {
+      color: #A0A0B5 !important;
+    }
+
+    .admin-panel-container button {
+      background-color: #4CAF50; /* Green for add button */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      margin-top: 1.5rem;
+      margin-right: 1rem;
+    }
+
+    .admin-panel-container button:hover {
+      background-color: #388E3C;
+      transform: translateY(-2px);
+    }
+
+    .admin-panel-container .admin-message {
+      background-color: #2a2a4a;
+      border-left: 44px solid #9F7AEA; /* Purple border for message */
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      color: #e0e0eb;
+      font-size: 0.95rem;
+    }
+
+    .admin-panel-container .logout-admin-button {
+      margin-top: 4rem;
+      background-color: #DC2626; /* Red color for logout */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      display: block;
+    }
+
+    .admin-panel-container .logout-admin-button:hover {
+      background-color: #B91C1C;
+      transform: translateY(-2px);
+    }
+
+    .admin-panel-container .list-display {
+      margin-top: 1.5rem;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #4a4a6a;
+      border-radius: 8px;
+      padding: 0.5rem;
+    }
+
+    .admin-panel-container .list-item {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.8rem;
+      border-bottom: 1px solid #3e3e5a;
+      color: #e0e0eb;
+      text-align: left;
+    }
+
+    .admin-panel-container .list-item:last-child {
+      border-bottom: none;
+    }
+
+    .admin-panel-container .list-item span {
+      flex-grow: 1;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+
+    .admin-panel-container .list-item .item-actions button {
+      margin-left: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border-radius: 15px;
+      margin-top: 0;
+    }
+
+    /* Custom Modal for Confirmations */
+    .custom-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .custom-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .custom-modal-content {
+        background: #2a2a4a;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        color: #e0e0eb;
+    }
+
+    .custom-modal-content p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .custom-modal-content button {
+        padding: 10px 20px;
+        border-radius: 20px;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .custom-modal-content button:hover {
+        transform: translateY(-2px);
+    }
+
+    .custom-modal-content .confirm-btn {
+        background-color: #EF4444; /* Red */
+        color: white;
+    }
+
+    .custom-modal-content .confirm-btn:hover {
+        background-color: #B91C1C;
+    }
+
+    .custom-modal-content .cancel-btn {
+        background-color: #5a5a7a; /* Gray */
+        color: white;
+    }
+
+    .custom-modal-content .cancel-btn:hover {
+        background-color: #4a4a6a;
+    }
+
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: #0a0a0a;
+      font-size: 0.9rem;
+      color: #888888;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        width: auto;
+        background: rgba(0,0,0,0.8);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border-bottom-right-radius: 15px;
+      }
+      nav {
+        width: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      .logo-title-container .logo {
+        width: 50px;
+        height: 50px;
+      }
+      nav {
+        width: 100%;
+        padding-top: 5rem;
+      }
+      .page-header {
+        padding: 6rem 1rem 3rem;
+      }
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .about-card {
+        padding: 1rem; /* Even more reduced padding for smaller cards */
+      }
+      .about-card h3 {
+        font-size: 1.2rem; /* Even more reduced font size */
+      }
+      .about-card p {
+        font-size: 0.8rem; /* Even more reduced font size */
+      }
+      .about-image {
+        width: 100px; /* Even more reduced image size */
+        height: 100px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo and Site Title - Consistent with other pages -->
+  <div class="logo-title-container">
+    <img src="logo.png" alt="Partnerdesk Logo" class="logo">
+    <span class="site-title">Partnerdesk</span>
+  </div>
+
+  <!-- Hamburger Menu - Consistent with other pages -->
+  <div class="hamburger-menu" onclick="window.toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navigation Overlay - Consistent with other pages -->
+  <div class="overlay" onclick="window.toggleNav()"></div>
+
+  <!-- Navigation Bar - Consistent with other pages -->
+  <nav id="main-nav">
+    <a href="index.html" onclick="window.toggleNav()">Home</a>
+    <a href="internships.html" onclick="window.toggleNav()">Internships</a>
+    <a href="learning.html" onclick="window.toggleNav()">Learning</a>
+    <a href="freelancing.html" onclick="window.toggleNav()">Freelancing</a>
+    <a href="partners.html" onclick="window.toggleNav()">Partners</a>
+    <a href="about.html" onclick="window.toggleNav()">About</a>
+    <a href="contact.html" onclick="window.toggleNav()">Contact</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div>
+    <a href="authenticate.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
+    <a href="downloads.html" onclick="window.toggleNav()">Downloads</a>
+    <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a>
+  </nav>
+
+  <!-- Page Header Section -->
+  <header class="page-header">
+    <h1>About Partnerdesk</h1>
+    <p>Empowering the next generation of professionals through practical experience and strategic partnerships.</p>
+  </header>
+
+  <!-- Introduction Section -->
+  <section class="section">
+    <p class="text-xl max-w-3xl mx-auto text-center text-gray-300">
+      Partnerdesk is a dynamic platform dedicated to fostering growth and innovation in the professional world. We connect aspiring talent with real-world opportunities, provide comprehensive learning resources, and build strong partnerships to create a thriving ecosystem.
+    </p>
+  </section>
+
+  <!-- Mission & Vision Section -->
+  <section class="section">
+    <h2>Our Mission & Vision</h2>
+    <div class="about-content-grid">
+      <div class="about-card">
+        <h3>Our Mission</h3>
+        <p>To bridge the gap between academic knowledge and industry demands by providing practical, hands-on experiences and fostering a community of continuous learning and professional development.</p>
+      </div>
+      <div class="about-card">
+        <h3>Our Vision</h3>
+        <p>To be the leading platform for professional growth, recognized for empowering individuals to achieve their full potential and for driving innovation through strategic collaborations.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Values Section -->
+  <section class="section">
+    <h2>Our Core Values</h2>
+    <div class="about-content-grid">
+      <div class="about-card">
+        <h3>Excellence</h3>
+        <p>We are committed to delivering high-quality services and fostering a culture of continuous improvement in everything we do.</p>
+      </div>
+      <div class="about-card">
+        <h3>Innovation</h3>
+        <p>We embrace creativity and forward-thinking, constantly seeking new ways to solve challenges and create value.</p>
+      </div>
+      <div class="about-card">
+        <h3>Collaboration</h3>
+        <p>We believe in the power of working together, building strong relationships with our partners, and supporting our community.</p>
+      </div>
+      <div class="about-card">
+        <h3>Integrity</h3>
+        <p>We operate with honesty, transparency, and ethical conduct, building trust with our users and partners.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Team Section -->
+  <section class="section">
+    <h2>Meet Our Team</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
+      Our dedicated team is passionate about empowering individuals and driving success.
+    </p>
+    <div class="about-content-grid" id="teamMembersGrid">
+      <!-- Team members will be dynamically loaded here -->
+      <p id="noTeamMembersMessage" class="text-xl text-gray-400 mt-10 hidden full-width">No team members added yet.</p>
+    </div>
+  </section>
+
+  <!-- Our Stars Section -->
+  <section class="section">
+    <h2>Our Stars</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
+      These individuals have made a lasting impact on Partnerdesk, earning our prestigious Impact and Legacy Certificate.
+    </p>
+    <div class="about-content-grid" id="ourStarsGrid">
+      <!-- Our Stars will be dynamically loaded here -->
+      <p id="noStarsMessage" class="text-xl text-gray-400 mt-10 hidden full-width">No stars added yet.</p>
+    </div>
+  </section>
+
+  <!-- Admin Panel Container for Team Members -->
+  <div id="teamAdminPanelContainer" class="admin-panel-container"></div>
+
+  <!-- Admin Panel Container for Our Stars -->
+  <div id="starsAdminPanelContainer" class="admin-panel-container"></div>
+
+  <!-- Footer - Consistent with other pages -->
+  <footer>
+    <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
+    <p>Partnerdesk is a registered MSME under the Government of India.</p>
+    <p>Registration No. : UDYAM-UP-03-0104523</p>
+    <p>Registered Office :</p>
+    <p>9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</p>
+    <p>Email: info@partnerdesk.in</p>
+  </footer>
+
+  <script type="module">
+    // Firebase SDK imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, doc, deleteDoc, updateDoc, getDoc, getDocs } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // IMPORTANT: Replace this with your actual Firebase config object
+    const firebaseConfig = {
+          apiKey: "AIzaSyAiEhapkQvQnOtxZCQFa6TbOEWg3yelS8c",
+          authDomain: "certificates-b42ef.firebaseapp.com",
+          projectId: "certificates-b42ef",
+          storageBucket: "certificates-b42ef.firebasestorage.app",
+          messagingSenderId: "317230336893",
+          appId: "1:317230336893:web:915181dc11ed7264255a14",
+      // measurementId: "YOUR_MEASUREMENT_ID" // Optional
+    };
+
+    // Use your projectId as the appId for consistency with Firestore paths
+    const currentAppId = firebaseConfig.projectId;
+
+    let app;
+    let db;
+    let auth;
+    let currentUserId;
+
+    // Initialize Firebase
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    auth = getAuth(app);
+
+    window.app = app;
+    window.db = db;
+    window.auth = auth;
+    window.firebaseConfig = firebaseConfig;
+
+    console.log("App ID being used (from firebaseConfig.projectId):", currentAppId);
+
+    // --- Utility Functions ---
+
+    // Custom Confirmation Modal (replaces alert/confirm)
+    async function showConfirmModal(message) {
+        return new Promise(resolve => {
+            const modalOverlay = document.createElement('div');
+            modalOverlay.className = 'custom-modal-overlay';
+            modalOverlay.innerHTML = `
+                <div class="custom-modal-content">
+                    <p>${message}</p>
+                    <button class="confirm-btn" id="modalConfirmBtn">Yes</button>
+                    <button class="cancel-btn" id="modalCancelBtn">Cancel</button>
+                </div>
+            `;
+            document.body.appendChild(modalOverlay);
+
+            // Activate the modal with a slight delay for CSS transition
+            setTimeout(() => modalOverlay.classList.add('active'), 10);
+
+            document.getElementById('modalConfirmBtn').onclick = () => {
+                modalOverlay.classList.remove('active');
+                modalOverlay.addEventListener('transitionend', () => modalOverlay.remove(), { once: true });
+                resolve(true);
+            };
+            document.getElementById('modalCancelBtn').onclick = () => {
+                modalOverlay.classList.remove('active');
+                modalOverlay.addEventListener('transitionend', () => modalOverlay.remove(), { once: true });
+                resolve(false);
+            };
+        });
+    }
+
+    // --- Admin Panel Rendering Functions ---
+
+    function renderTeamAdminPanel() {
+      const adminPanelContainer = document.getElementById('teamAdminPanelContainer');
+      if (!adminPanelContainer) {
+        console.error("Team Admin panel container not found!");
+        return;
+      }
+
+      adminPanelContainer.innerHTML = `
+        <h2 class="text-3xl font-bold mb-4 text-white">Manage Team Members</h2>
+        <div class="admin-panel">
+          <p class="admin-message">
+            <strong>Note:</strong> Add, edit, or remove team members. Use "Position" to control display order (lower number appears first).
+          </p>
+
+          <input type="hidden" id="currentTeamMemberId">
+          <div class="input-group">
+              <label for="teamMemberNameInput">Name:</label>
+              <input type="text" id="teamMemberNameInput" placeholder="e.g., Jane Doe">
+          </div>
+          <div class="input-group">
+              <label for="teamMemberRoleInput">Role/Title:</label>
+              <input type="text" id="teamMemberRoleInput" placeholder="e.g., CEO, Lead Developer">
+          </div>
+          <div class="input-group">
+              <label for="teamMemberBioInput">Bio:</label>
+              <textarea id="teamMemberBioInput" placeholder="A short bio about the team member."></textarea>
+          </div>
+          <div class="input-group">
+              <label for="teamMemberImageUrlInput">Image URL:</label>
+              <input type="text" id="teamMemberImageUrlInput" placeholder="e.g., https://example.com/jane_doe.jpg">
+          </div>
+          <div class="input-group">
+              <label for="teamMemberLinkedInUrlInput">LinkedIn Profile URL (Optional):</label>
+              <input type="text" id="teamMemberLinkedInUrlInput" placeholder="e.g., https://linkedin.com/in/janedoe">
+          </div>
+          <div class="input-group">
+              <label for="teamMemberPhoneInput">Phone Number (Optional):</label>
+              <input type="text" id="teamMemberPhoneInput" placeholder="e.g., +1234567890">
+          </div>
+          <div class="input-group">
+              <label for="teamMemberPositionInput">Position (Number, Optional):</label>
+              <input type="number" id="teamMemberPositionInput" placeholder="e.g., 1, 2, 3">
+          </div>
+          <button id="saveTeamMemberButton">Add New Team Member</button>
+          <button id="clearTeamMemberFormButton" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-200">Clear Form</button>
+
+          <div class="list-display" id="teamMemberListDisplay">
+              <!-- Team members will be listed here -->
+          </div>
+        </div>
+      `;
+
+      document.getElementById('saveTeamMemberButton').onclick = window.addOrUpdateTeamMember;
+      document.getElementById('clearTeamMemberFormButton').onclick = window.clearTeamMemberForm;
+      window.loadTeamMembersForAdminPanel();
+    }
+
+    function renderStarsAdminPanel() {
+      const adminPanelContainer = document.getElementById('starsAdminPanelContainer');
+      if (!adminPanelContainer) {
+        console.error("Stars Admin panel container not found!");
+        return;
+      }
+
+      adminPanelContainer.innerHTML = `
+        <h2 class="text-3xl font-bold mb-4 text-white">Manage Our Stars</h2>
+        <div class="admin-panel">
+          <p class="admin-message">
+            <strong>Note:</strong> Add, edit, or remove individuals recognized as "Our Stars." Use "Position" to control display order (lower number appears first).
+          </p>
+
+          <input type="hidden" id="currentStarId">
+          <div class="input-group">
+              <label for="starNameInput">Star Name:</label>
+              <input type="text" id="starNameInput" placeholder="e.g., John Smith">
+          </div>
+          <div class="input-group">
+              <label for="starImpactInput">Impact Description:</label>
+              <textarea id="starImpactInput" placeholder="Describe their lasting impact on the platform."></textarea>
+          </div>
+          <div class="input-group">
+              <label for="starCertificateUrlInput">Certificate URL:</label>
+              <input type="text" id="starCertificateUrlInput" placeholder="e.g., https://example.com/certificate_john.pdf">
+          </div>
+          <div class="input-group">
+              <label for="starImageUrlInput">Image URL:</label>
+              <input type="text" id="starImageUrlInput" placeholder="e.g., https://example.com/john_smith.jpg">
+          </div>
+          <div class="input-group">
+              <label for="starLinkedInUrlInput">LinkedIn Profile URL (Optional):</label>
+              <input type="text" id="starLinkedInUrlInput" placeholder="e.g., https://linkedin.com/in/johnsmith">
+          </div>
+          <div class="input-group">
+              <label for="starPhoneInput">Phone Number (Optional):</label>
+              <input type="text" id="starPhoneInput" placeholder="e.g., +1234567890">
+          </div>
+          <div class="input-group">
+              <label for="starPositionInput">Position (Number, Optional):</label>
+              <input type="number" id="starPositionInput" placeholder="e.g., 1, 2, 3">
+          </div>
+          <button id="saveStarButton">Add New Star</button>
+          <button id="clearStarFormButton" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-200">Clear Form</button>
+
+          <div class="list-display" id="starListDisplay">
+              <!-- Stars will be listed here -->
+          </div>
+        </div>
+        <button id="logoutAdminButton" class="logout-admin-button">Logout Admin</button>
+      `;
+
+      document.getElementById('saveStarButton').onclick = window.addOrUpdateStar;
+      document.getElementById('clearStarFormButton').onclick = window.clearStarForm;
+      document.getElementById('logoutAdminButton').onclick = window.adminLogout;
+      window.loadStarsForAdminPanel();
+    }
+
+    // --- Firebase Data Management Functions (Team Members) ---
+
+    window.loadTeamMembersForAdminPanel = function() {
+        if (!db) {
+            console.error("loadTeamMembersForAdminPanel: Firestore not initialized.");
+            return;
+        }
+        const collectionPath = `artifacts/${currentAppId}/public/data/teamMembers`;
+        onSnapshot(collection(db, collectionPath), (snapshot) => { // Removed orderBy from query
+            const members = [];
+            snapshot.forEach(doc => {
+                members.push({ id: doc.id, ...doc.data() });
+            });
+            // Sort client-side
+            members.sort((a, b) => {
+                const posA = a.position !== null ? a.position : Infinity;
+                const posB = b.position !== null ? b.position : Infinity;
+                if (posA !== posB) {
+                    return posA - posB;
+                }
+                return (a.name || '').localeCompare(b.name || '');
+            });
+            window.renderTeamMemberList(members);
+        }, (error) => {
+            console.error("Error fetching team members for admin panel: ", error);
+        });
+    }
+
+    window.renderTeamMemberList = function(members) {
+        const teamMemberListDisplay = document.getElementById('teamMemberListDisplay');
+        if (!teamMemberListDisplay) return;
+
+        teamMemberListDisplay.innerHTML = '';
+        if (members.length === 0) {
+            teamMemberListDisplay.innerHTML = '<p class="text-gray-500 text-center py-4">No team members added yet.</p>';
+            return;
+        }
+
+        members.forEach(member => {
+            const memberItem = document.createElement('div');
+            memberItem.className = 'list-item';
+            memberItem.innerHTML = `
+                <div>
+                    <strong class="text-white">${member.name}</strong><br>
+                    <span class="text-gray-400 text-sm">${member.role} - ${member.bio.substring(0, 50)}...</span>
+                    ${member.linkedinUrl ? `<br><a href="${ensureHttps(member.linkedinUrl)}" target="_blank" class="text-blue-400 hover:underline text-sm">LinkedIn</a>` : ''}
+                    ${member.phoneNumber ? `<br><a href="tel:${member.phoneNumber}" class="text-blue-400 hover:underline text-sm">Phone: ${member.phoneNumber}</a>` : ''}
+                    ${member.position !== undefined && member.position !== null ? `<br><span class="text-gray-400 text-sm">Position: ${member.position}</span>` : ''}
+                </div>
+                <div class="item-actions mt-2">
+                    <button class="bg-blue-500 hover:bg-blue-600" onclick="window.editTeamMember('${member.id}')">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-600" onclick="window.deleteTeamMember('${member.id}')">Delete</button>
+                </div>
+            `;
+            teamMemberListDisplay.appendChild(memberItem);
+        });
+    }
+
+    window.addOrUpdateTeamMember = async function() {
+        if (!db || !auth.currentUser) {
+            await showConfirmModal("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const memberId = document.getElementById('currentTeamMemberId').value;
+        const name = document.getElementById('teamMemberNameInput').value.trim();
+        const role = document.getElementById('teamMemberRoleInput').value.trim();
+        const bio = document.getElementById('teamMemberBioInput').value.trim();
+        let imageUrl = document.getElementById('teamMemberImageUrlInput').value.trim();
+        const linkedinUrl = document.getElementById('teamMemberLinkedInUrlInput').value.trim();
+        const phoneNumber = document.getElementById('teamMemberPhoneInput').value.trim();
+        const position = document.getElementById('teamMemberPositionInput').value.trim();
+
+
+        if (!name || !role || !bio) {
+            await showConfirmModal('Please fill in all required fields (Name, Role, Bio).');
+            return;
+        }
+
+        if (!imageUrl) {
+            imageUrl = 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member'; /* Adjusted default size */
+        }
+
+        const memberData = {
+            name,
+            role,
+            bio,
+            imageUrl,
+            linkedinUrl,
+            phoneNumber,
+            position: position ? parseInt(position, 10) : null, // Store as number or null
+            lastUpdated: new Date().toISOString(),
+            updatedBy: auth.currentUser.uid
+        };
+
+        try {
+            if (memberId) {
+                const memberDocRef = doc(db, `artifacts/${currentAppId}/public/data/teamMembers`, memberId);
+                await updateDoc(memberDocRef, memberData);
+                await showConfirmModal('Team member updated successfully!');
+            } else {
+                await addDoc(collection(db, `artifacts/${currentAppId}/public/data/teamMembers`), memberData);
+                await showConfirmModal('Team member added successfully!');
+            }
+            window.clearTeamMemberForm();
+        } catch (e) {
+            console.error("Error adding/updating team member: ", e);
+            await showConfirmModal(`Error: ${e.message}`);
+        }
+    }
+
+    window.editTeamMember = async function(id) {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot edit team member.");
+            return;
+        }
+        const memberDocRef = doc(db, `artifacts/${currentAppId}/public/data/teamMembers`, id);
+        try {
+            const docSnap = await getDoc(memberDocRef);
+            if (docSnap.exists()) {
+                const member = docSnap.data();
+                document.getElementById('currentTeamMemberId').value = id;
+                document.getElementById('teamMemberNameInput').value = member.name;
+                document.getElementById('teamMemberRoleInput').value = member.role;
+                document.getElementById('teamMemberBioInput').value = member.bio;
+                document.getElementById('teamMemberImageUrlInput').value = member.imageUrl || '';
+                document.getElementById('teamMemberLinkedInUrlInput').value = member.linkedinUrl || '';
+                document.getElementById('teamMemberPhoneInput').value = member.phoneNumber || '';
+                document.getElementById('teamMemberPositionInput').value = member.position !== null ? member.position : ''; // Populate Position
+                document.getElementById('saveTeamMemberButton').textContent = 'Update Team Member';
+                window.scrollTo({ top: document.getElementById('teamAdminPanelContainer').offsetTop, behavior: 'smooth' });
+            } else {
+                console.error("No such team member document!");
+            }
+        } catch (e) {
+            console.error("Error fetching team member for edit: ", e);
+            await showConfirmModal(`Error fetching team member: ${e.message}`);
+        }
+    }
+
+    window.clearTeamMemberForm = function() {
+        document.getElementById('currentTeamMemberId').value = '';
+        document.getElementById('teamMemberNameInput').value = '';
+        document.getElementById('teamMemberRoleInput').value = '';
+        document.getElementById('teamMemberBioInput').value = '';
+        document.getElementById('teamMemberImageUrlInput').value = '';
+        document.getElementById('teamMemberLinkedInUrlInput').value = '';
+        document.getElementById('teamMemberPhoneInput').value = '';
+        document.getElementById('teamMemberPositionInput').value = ''; // Clear Position
+        document.getElementById('saveTeamMemberButton').textContent = 'Add New Team Member';
+    }
+
+    window.deleteTeamMember = async function(docId) {
+        if (!db || !auth.currentUser) {
+            await showConfirmModal("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const confirmDelete = await showConfirmModal("Are you sure you want to delete this team member? This action cannot be undone.");
+        if (!confirmDelete) {
+            console.log("Deletion cancelled by user.");
+            return;
+        }
+
+        try {
+            const memberDocRef = doc(db, `artifacts/${currentAppId}/public/data/teamMembers`, docId);
+            await deleteDoc(memberDocRef);
+            console.log("Team member successfully deleted with ID:", docId);
+        } catch (e) {
+            console.error("Error removing team member:", e);
+            await showConfirmModal(`Error deleting team member: ${e.message}`);
+        }
+    }
+
+    // --- Firebase Data Management Functions (Our Stars) ---
+
+    window.loadStarsForAdminPanel = function() {
+        if (!db) {
+            console.error("loadStarsForAdminPanel: Firestore not initialized.");
+            return;
+        }
+        const collectionPath = `artifacts/${currentAppId}/public/data/ourStars`;
+        onSnapshot(collection(db, collectionPath), (snapshot) => { // Removed orderBy from query
+            const stars = [];
+            snapshot.forEach(doc => {
+                stars.push({ id: doc.id, ...doc.data() });
+            });
+            // Sort client-side
+            stars.sort((a, b) => {
+                const posA = a.position !== null ? a.position : Infinity;
+                const posB = b.position !== null ? b.position : Infinity;
+                if (posA !== posB) {
+                    return posA - posB;
+                }
+                return (a.name || '').localeCompare(b.name || '');
+            });
+            window.renderStarList(stars);
+        }, (error) => {
+            console.error("Error fetching stars for admin panel: ", error);
+        });
+    }
+
+    window.renderStarList = function(stars) {
+        const starListDisplay = document.getElementById('starListDisplay');
+        if (!starListDisplay) return;
+
+        starListDisplay.innerHTML = '';
+        if (stars.length === 0) {
+            starListDisplay.innerHTML = '<p class="text-gray-500 text-center py-4">No stars added yet.</p>';
+            return;
+        }
+
+        stars.forEach(star => {
+            const starItem = document.createElement('div');
+            starItem.className = 'list-item';
+            starItem.innerHTML = `
+                <div>
+                    <strong class="text-white">${star.name}</strong><br>
+                    <span class="text-gray-400 text-sm">${star.impact.substring(0, 50)}...</span>
+                    ${star.linkedinUrl ? `<br><a href="${ensureHttps(star.linkedinUrl)}" target="_blank" class="text-blue-400 hover:underline text-sm">LinkedIn</a>` : ''}
+                    ${star.phoneNumber ? `<br><a href="tel:${star.phoneNumber}" class="text-blue-400 hover:underline text-sm">Phone: ${star.phoneNumber}</a>` : ''}
+                    ${star.position !== undefined && star.position !== null ? `<br><span class="text-gray-400 text-sm">Position: ${star.position}</span>` : ''}
+                </div>
+                <div class="item-actions mt-2">
+                    <button class="bg-blue-500 hover:bg-blue-600" onclick="window.editStar('${star.id}')">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-600" onclick="window.deleteStar('${star.id}')">Delete</button>
+                </div>
+            `;
+            starListDisplay.appendChild(starItem);
+        });
+    }
+
+    window.addOrUpdateStar = async function() {
+        if (!db || !auth.currentUser) {
+            await showConfirmModal("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const starId = document.getElementById('currentStarId').value;
+        const name = document.getElementById('starNameInput').value.trim();
+        const impact = document.getElementById('starImpactInput').value.trim();
+        let certificateUrl = document.getElementById('starCertificateUrlInput').value.trim();
+        let imageUrl = document.getElementById('starImageUrlInput').value.trim();
+        const linkedinUrl = document.getElementById('starLinkedInUrlInput').value.trim();
+        const phoneNumber = document.getElementById('starPhoneInput').value.trim();
+        const position = document.getElementById('starPositionInput').value.trim();
+
+        if (!name || !impact) {
+            await showConfirmModal('Please fill in all required fields (Name, Impact Description).');
+            return;
+        }
+
+        if (!imageUrl) {
+            imageUrl = 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Our+Star'; /* Adjusted default size */
+        }
+        if (!certificateUrl) {
+            certificateUrl = '#'; // Default to a non-functional link if none provided
+        }
+
+        const starData = {
+            name,
+            impact,
+            certificateUrl,
+            imageUrl,
+            linkedinUrl,
+            phoneNumber,
+            position: position ? parseInt(position, 10) : null, // Store as number or null
+            lastUpdated: new Date().toISOString(),
+            updatedBy: auth.currentUser.uid
+        };
+
+        try {
+            if (starId) {
+                const starDocRef = doc(db, `artifacts/${currentAppId}/public/data/ourStars`, starId);
+                await updateDoc(starDocRef, starData);
+                await showConfirmModal('Star updated successfully!');
+            } else {
+                await addDoc(collection(db, `artifacts/${currentAppId}/public/data/ourStars`), starData);
+                await showConfirmModal('Star added successfully!');
+            }
+            window.clearStarForm();
+        } catch (e) {
+            console.error("Error adding/updating star: ", e);
+            await showConfirmModal(`Error: ${e.message}`);
+        }
+    }
+
+    window.editStar = async function(id) {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot edit star.");
+            return;
+        }
+        const starDocRef = doc(db, `artifacts/${currentAppId}/public/data/ourStars`, id);
+        try {
+            const docSnap = await getDoc(starDocRef);
+            if (docSnap.exists()) {
+                const star = docSnap.data();
+                document.getElementById('currentStarId').value = id;
+                document.getElementById('starNameInput').value = star.name;
+                document.getElementById('starImpactInput').value = star.impact;
+                document.getElementById('starCertificateUrlInput').value = star.certificateUrl || '';
+                document.getElementById('starImageUrlInput').value = star.imageUrl || '';
+                document.getElementById('starLinkedInUrlInput').value = star.linkedinUrl || '';
+                document.getElementById('starPhoneInput').value = star.phoneNumber || '';
+                document.getElementById('starPositionInput').value = star.position !== null ? star.position : ''; // Populate Position
+                document.getElementById('saveStarButton').textContent = 'Update Star';
+                window.scrollTo({ top: document.getElementById('starsAdminPanelContainer').offsetTop, behavior: 'smooth' });
+            } else {
+                console.error("No such star document!");
+            }
+        } catch (e) {
+            console.error("Error fetching star for edit: ", e);
+            await showConfirmModal(`Error fetching star: ${e.message}`);
+        }
+    }
+
+    window.clearStarForm = function() {
+        document.getElementById('currentStarId').value = '';
+        document.getElementById('starNameInput').value = '';
+        document.getElementById('starImpactInput').value = '';
+        document.getElementById('starCertificateUrlInput').value = '';
+        document.getElementById('starImageUrlInput').value = '';
+        document.getElementById('starLinkedInUrlInput').value = '';
+        document.getElementById('starPhoneInput').value = '';
+        document.getElementById('starPositionInput').value = ''; // Clear Position
+        document.getElementById('saveStarButton').textContent = 'Add New Star';
+    }
+
+    window.deleteStar = async function(docId) {
+        if (!db || !auth.currentUser) {
+            await showConfirmModal("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const confirmDelete = await showConfirmModal("Are you sure you want to delete this star? This action cannot be undone.");
+        if (!confirmDelete) {
+            console.log("Deletion cancelled by user.");
+            return;
+        }
+
+        try {
+            const starDocRef = doc(db, `artifacts/${currentAppId}/public/data/ourStars`, docId);
+            await deleteDoc(starDocRef);
+            console.log("Star successfully deleted with ID:", docId);
+        } catch (e) {
+            console.error("Error removing star:", e);
+            await showConfirmModal(`Error deleting star: ${e.message}`);
+        }
+    }
+
+    // Helper function to ensure URL has https:// protocol
+    function ensureHttps(url) {
+        if (!url) return '';
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            return url;
+        }
+        return `https://${url}`;
+    }
+
+    // Function to handle "Read More/Less" toggle
+    function toggleReadMore(button) {
+        const paragraph = button.previousElementSibling; // The <p> tag
+        paragraph.classList.toggle('truncated');
+        if (paragraph.classList.contains('truncated')) {
+            button.textContent = 'Read More';
+        } else {
+            button.textContent = 'Read Less';
+        }
+    }
+
+    // --- Public Display Functions ---
+
+    window.loadTeamMembersForDisplay = function() {
+        if (!db) {
+            console.error("loadTeamMembersForDisplay: Firestore not initialized. Cannot load data.");
+            const noTeamMembersMessage = document.getElementById('noTeamMembersMessage');
+            if (noTeamMembersMessage) {
+                noTeamMembersMessage.textContent = "Error: Database not ready.";
+                noTeamMembersMessage.classList.remove('hidden');
+            }
+            return;
+        }
+        const collectionPath = `artifacts/${currentAppId}/public/data/teamMembers`;
+        onSnapshot(collection(db, collectionPath), (snapshot) => { // Removed orderBy from query
+            const teamMembersGrid = document.getElementById('teamMembersGrid');
+            const noTeamMembersMessage = document.getElementById('noTeamMembersMessage');
+            teamMembersGrid.innerHTML = ''; // Clear existing content
+
+            const members = [];
+            snapshot.forEach(doc => {
+                members.push({ id: doc.id, ...doc.data() });
+            });
+
+            // Sort client-side
+            members.sort((a, b) => {
+                const posA = a.position !== null ? a.position : Infinity;
+                const posB = b.position !== null ? b.position : Infinity;
+                if (posA !== posB) {
+                    return posA - posB;
+                }
+                return (a.name || '').localeCompare(b.name || '');
+            });
+
+            if (members.length === 0) {
+                if (noTeamMembersMessage) {
+                    noTeamMembersMessage.classList.remove('hidden');
+                }
+            } else {
+                if (noTeamMembersMessage) {
+                    noTeamMembersMessage.classList.add('hidden');
+                }
+                members.forEach(member => {
+                    const fullBio = member.bio || 'No bio available.';
+                    const needsReadMore = fullBio.length > 150;
+
+                    const cardHtml = `
+                        <div class="about-card">
+                            <img src="${member.imageUrl || 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member'}" alt="${member.name}" class="about-image mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member';">
+                            <h3>${member.name || 'Untitled Member'}</h3>
+                            <p><strong>${member.role || 'No Role'}</strong></p>
+                            <p class="bio-text ${needsReadMore ? 'truncated' : ''}">${fullBio}</p>
+                            ${needsReadMore ? `<button class="read-more-btn">Read More</button>` : ''}
+                            ${member.linkedinUrl ? `<a href="${ensureHttps(member.linkedinUrl)}" target="_blank" class="linkedin-link">LinkedIn Profile</a>` : ''}
+                            ${member.phoneNumber ? `<a href="tel:${member.phoneNumber}" class="phone-link">Phone: ${member.phoneNumber}</a>` : ''}
+                        </div>
+                    `;
+                    teamMembersGrid.insertAdjacentHTML('beforeend', cardHtml);
+                });
+
+                // Attach event listeners for "Read More" buttons after they are added to the DOM
+                teamMembersGrid.querySelectorAll('.read-more-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        toggleReadMore(button);
+                    });
+                });
+            }
+        }, (error) => {
+            console.error("Error fetching team members for display: ", error);
+            const noTeamMembersMessage = document.getElementById('noTeamMembersMessage');
+            if (noTeamMembersMessage) {
+                noTeamMembersMessage.textContent = `Error loading team members: ${error.message}`;
+                noTeamMembersMessage.classList.remove('hidden');
+            }
+        });
+    }
+
+    window.loadStarsForDisplay = function() {
+        if (!db) {
+            console.error("loadStarsForDisplay: Firestore not initialized. Cannot load data.");
+            const noStarsMessage = document.getElementById('noStarsMessage');
+            if (noStarsMessage) {
+                noStarsMessage.textContent = "Error: Database not ready.";
+                noStarsMessage.classList.remove('hidden');
+            }
+            return;
+        }
+        const collectionPath = `artifacts/${currentAppId}/public/data/ourStars`;
+        onSnapshot(collection(db, collectionPath), (snapshot) => { // Removed orderBy from query
+            const ourStarsGrid = document.getElementById('ourStarsGrid');
+            const noStarsMessage = document.getElementById('noStarsMessage');
+            ourStarsGrid.innerHTML = ''; // Clear existing content
+
+            const stars = [];
+            snapshot.forEach(doc => {
+                stars.push({ id: doc.id, ...doc.data() });
+            });
+
+            // Sort client-side
+            stars.sort((a, b) => {
+                const posA = a.position !== null ? a.position : Infinity;
+                const posB = b.position !== null ? b.position : Infinity;
+                if (posA !== posB) {
+                    return posA - posB;
+                }
+                return (a.name || '').localeCompare(b.name || '');
+            });
+
+            if (stars.length === 0) {
+                if (noStarsMessage) {
+                    noStarsMessage.classList.remove('hidden');
+                }
+            } else {
+                if (noStarsMessage) {
+                    noStarsMessage.classList.add('hidden');
+                }
+                stars.forEach(star => {
+                    const fullImpact = star.impact || 'No impact description available.';
+                    const needsReadMore = fullImpact.length > 150;
+
+                    const cardHtml = `
+                        <div class="about-card">
+                            <img src="${star.imageUrl || 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Our+Star'}" alt="${star.name}" class="about-image mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x120/4a4a6a/e0e0eb?text=Our+Star';">
+                            <h3>${star.name || 'Untitled Star'}</h3>
+                            <p class="impact-text ${needsReadMore ? 'truncated' : ''}">${fullImpact}</p>
+                            ${needsReadMore ? `<button class="read-more-btn">Read More</button>` : ''}
+                            ${star.linkedinUrl ? `<a href="${ensureHttps(star.linkedinUrl)}" target="_blank" class="linkedin-link">LinkedIn Profile</a>` : ''}
+                            ${star.phoneNumber ? `<a href="tel:${star.phoneNumber}" class="phone-link">Phone: ${star.phoneNumber}</a>` : ''}
+                        </div>
+                    `;
+                    ourStarsGrid.insertAdjacentHTML('beforeend', cardHtml);
+                });
+
+                // Attach event listeners for "Read More" buttons after they are added to the DOM
+                ourStarsGrid.querySelectorAll('.read-more-btn').forEach(button => {
+                    button.addEventListener('click', () => {
+                        toggleReadMore(button);
+                    });
+                });
+            }
+        }, (error) => {
+            console.error("Error fetching stars for display: ", error);
+            const noStarsMessage = document.getElementById('noStarsMessage');
+            if (noStarsMessage) {
+                noStarsMessage.textContent = `Error loading stars: ${error.message}`;
+                noStarsMessage.classList.remove('hidden');
+            }
+        });
+    }
+
+    // --- Global UI Functions ---
+
+    // Function to toggle navigation for mobile
+    window.toggleNav = function() {
+      const nav = document.getElementById('main-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    }
+
+    // Function to logout admin
+    window.adminLogout = async function() {
+      if (!auth) {
+        console.warn("adminLogout: Firebase Auth not initialized.");
+        return;
+      }
+      const confirmLogout = await showConfirmModal("Are you sure you want to log out?");
+      if (!confirmLogout) {
+          console.log("Logout cancelled.");
+          return;
+      }
+      try {
+        await signOut(auth);
+        console.log("adminLogout: Logged out successfully.");
+        window.location.href = 'admin_login.html'; // Redirect to admin login page
+      } catch (error) {
+        console.error("adminLogout: Error during logout:", error.code, error.message);
+        await showConfirmModal(`Logout error: ${error.message}`);
+      }
+    }
+
+    // --- Event Listeners and Initial Load ---
+
+    document.addEventListener('DOMContentLoaded', () => {
+        onAuthStateChanged(auth, (user) => {
+            const adminLoginLink = document.getElementById('adminLoginLink');
+
+            if (user) {
+                currentUserId = user.uid;
+                console.log("onAuthStateChanged: User is authenticated. UID:", currentUserId);
+                renderTeamAdminPanel();
+                renderStarsAdminPanel();
+                if (adminLoginLink) {
+                    adminLoginLink.classList.add('hidden'); // Hide admin login link if logged in
+                }
+            } else {
+                currentUserId = null;
+                console.log("onAuthStateChanged: No user authenticated.");
+                document.getElementById('teamAdminPanelContainer').innerHTML = ''; // Clear admin panels
+                document.getElementById('starsAdminPanelContainer').innerHTML = '';
+                if (adminLoginLink) {
+                    adminLoginLink.classList.remove('hidden'); // Show admin login link if not logged in
+                }
+            }
+            // Always load public data regardless of admin status
+            window.loadTeamMembersForDisplay();
+            window.loadStarsForDisplay();
+        });
+    });
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.about-card', {
+      interval: 150,
+      delay: 400,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Close nav when a nav link is clicked
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = document.getElementById('main-nav');
+        if (nav.classList.contains('active')) {
+          window.toggleNav();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

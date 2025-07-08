@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Our Partners - Partnerdesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #1c1c2e; /* Consistent dark background */
+      color: #e0e0eb; /* Light text */
+      overflow-x: hidden;
+      transition: background-color 0.3s ease;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    /* Consistent styles from other pages */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0));
+      width: 300px;
+    }
+
+    .logo-title-container .logo {
+      width: 60px;
+      height: 60px;
+      margin-right: 1rem;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.05em;
+    }
+
+    /* Navigation Bar - consistent with other pages */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      height: 100vh;
+      width: 250px;
+      background: rgba(0, 0, 0, 0.8);
+      backdrop-filter: blur(10px);
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease-in-out;
+      transform: translateX(100%);
+    }
+
+    nav.active {
+      transform: translateX(0%);
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right;
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #4299E1; /* Accent color: Blue for partners */
+      transform: translateX(-5px);
+    }
+
+    /* Hamburger menu - consistent with other pages */
+    .hamburger-menu {
+      display: flex;
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Overlay for when nav is open - consistent with other pages */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Page Header Section - New Partners Gradient (Professional Blue/Purple) */
+    .page-header {
+      background: linear-gradient(to bottom right, #4299E1, #667EEA, #9F7AEA); /* Blue to Purple */
+      color: white;
+      padding: 8rem 1rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+
+    .page-header h1 {
+      font-size: 3rem;
+      margin: 0 0 1rem;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    .page-header p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #e0e0eb;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Partner Showcase Grid - Now a stacked layout */
+    .partner-showcase-grid {
+      display: flex; /* Use flexbox for stacking */
+      flex-direction: column; /* Stack vertically */
+      gap: 3.5rem; /* Increased gap between cards */
+      margin-top: 3rem;
+      align-items: center; /* Center cards horizontally */
+    }
+
+    /* Partner Card - Redesigned for prominent display */
+    .partner-card {
+      background: rgba(255, 255, 255, 0.08); /* Semi-transparent white for cards */
+      border-radius: 20px; /* Even more rounded corners */
+      padding: 3rem; /* Increased padding for larger content */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
+      transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); /* Smoother animation */
+      border: 1px solid; /* Border will be colored per card */
+      text-align: center; /* Center content within this card */
+      width: 100%; /* Take full width of its container */
+      max-width: 900px; /* Max width for large screens */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .partner-card:hover {
+      transform: translateY(-10px) scale(1.01); /* More pronounced lift and slight scale */
+      box-shadow: 0 15px 40px rgba(0,0,0,0.5); /* Even stronger shadow on hover */
+    }
+
+    .partner-card img {
+      max-width: 200px; /* Larger logo size */
+      height: auto;
+      border-radius: 15px; /* Rounded corners for image */
+      margin-bottom: 2rem;
+      object-fit: contain;
+      background-color: #ffffff; /* White background for logos */
+      padding: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .partner-card h3 {
+      font-size: 2.2rem; /* Larger title for this prominent card */
+      margin-bottom: 1.5rem;
+      color: #4299E1; /* Blue accent for partner names */
+    }
+
+    .partner-card p {
+      font-size: 1.15rem; /* Larger text for this card */
+      color: #c0c0d0;
+      margin-bottom: 2rem;
+      max-width: 700px;
+    }
+
+    .partner-card .cta-button {
+      display: inline-block;
+      padding: 1rem 2.5rem; /* Larger button */
+      background-color: #667EEA; /* Purple for CTA button */
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .partner-card .cta-button:hover {
+      background-color: #5A67D8; /* Darker purple on hover */
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Specific colors for each partner card (example, you can add more) */
+    .partner-card.angel-one { border-color: #FF6600; } /* Orange */
+    .partner-card.angel-one .cta-button { background-color: #FF6600; }
+    .partner-card.angel-one .cta-button:hover { background-color: #E65C00; }
+    .partner-card.angel-one h3 { color: #FF6600; }
+
+    .partner-card.upstox { border-color: #8A2BE2; } /* Amethyst */
+    .partner-card.upstox .cta-button { background-color: #8A2BE2; }
+    .partner-card.upstox .cta-button:hover { background-color: #7A1ED1; }
+    .partner-card.upstox h3 { color: #8A2BE2; }
+
+    .partner-card.m-stock { border-color: #00BCD4; } /* Cyan */
+    .partner-card.m-stock .cta-button { background-color: #00BCD4; }
+    .partner-card.m-stock .cta-button:hover { background-color: #00ACC1; }
+    .partner-card.m-stock h3 { color: #00BCD4; }
+
+    .partner-card.fivpaisa { border-color: #4CAF50; } /* Green */
+    .partner-card.fivpaisa .cta-button { background-color: #4CAF50; }
+    .partner-card.fivpaisa .cta-button:hover { background-color: #388E3C; }
+    .partner-card.fivpaisa h3 { color: #4CAF50; }
+
+    .partner-card.appreciate-wealth { border-color: #FFD700; } /* Gold */
+    .partner-card.appreciate-wealth .cta-button { background-color: #FFD700; color: #333; }
+    .partner-card.appreciate-wealth .cta-button:hover { background-color: #E6C200; }
+    .partner-card.appreciate-wealth h3 { color: #FFD700; }
+
+    .partner-card.axis-bank { border-color: #1E90FF; } /* Dodger Blue */
+    .partner-card.axis-bank .cta-button { background-color: #1E90FF; }
+    .partner-card.axis-bank .cta-button:hover { background-color: #1C7ED1; }
+    .partner-card.axis-bank h3 { color: #1E90FF; }
+
+    .partner-card.tide-bank { border-color: #FF4500; } /* Orange Red */
+    .partner-card.tide-bank .cta-button { background-color: #FF4500; }
+    .partner-card.tide-bank .cta-button:hover { background-color: #E63E00; }
+    .partner-card.tide-bank h3 { color: #FF4500; }
+
+    .partner-card.airtel-bank { border-color: #DC143C; } /* Crimson */
+    .partner-card.airtel-bank .cta-button { background-color: #DC143C; }
+    .partner-card.airtel-bank .cta-button:hover { background-color: #C31235; }
+    .partner-card.airtel-bank h3 { color: #DC143C; }
+
+    .partner-card.choice { border-color: #6A5ACD; } /* Slate Blue */
+    .partner-card.choice .cta-button { background-color: #6A5ACD; }
+    .partner-card.choice .cta-button:hover { background-color: #5D4FBC; }
+    .partner-card.choice h3 { color: #6A5ACD; }
+
+
+    /* Admin Panel Styles (reused from freelancing page for consistency) */
+    .admin-panel-container {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .admin-panel-container .admin-panel {
+      background-color: #3e3e5a;
+      padding: 2.5rem;
+      border-radius: 20px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      text-align: left;
+    }
+
+    .admin-panel-container .admin-panel h2 {
+      color: #9F7AEA; /* Purple accent for admin panel title */
+      margin-bottom: 1.5rem;
+    }
+
+    .admin-panel-container .input-group {
+      margin-bottom: 1rem;
+    }
+
+    .admin-panel-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #e0e0eb;
+      font-weight: 600;
+    }
+
+    .admin-panel-container input[type="text"],
+    .admin-panel-container textarea {
+      background-color: #2a2a4a !important;
+      border: 1px solid #5a5a7a;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      color: #ffffff !important;
+      font-size: 1rem;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .admin-panel-container input[type="text"]::placeholder,
+    .admin-panel-container textarea::placeholder {
+      color: #A0A0B5 !important;
+    }
+
+    .admin-panel-container button {
+      background-color: #4CAF50; /* Green for add button */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      margin-top: 1.5rem;
+      margin-right: 1rem;
+    }
+
+    .admin-panel-container button:hover {
+      background-color: #388E3C;
+      transform: translateY(-2px);
+    }
+
+    .admin-panel-container .admin-message {
+      background-color: #2a2a4a;
+      border-left: 4px solid #9F7AEA; /* Purple border for message */
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      color: #e0e0eb;
+      font-size: 0.95rem;
+    }
+
+    .admin-panel-container .logout-admin-button {
+      margin-top: 4rem;
+      background-color: #DC2626; /* Red color for logout */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      display: block;
+    }
+
+    .admin-panel-container .logout-admin-button:hover {
+      background-color: #B91C1C;
+      transform: translateY(-2px);
+    }
+
+    .admin-panel-container .partner-list {
+      margin-top: 1.5rem;
+      max-height: 300px;
+      overflow-y: auto;
+      border: 1px solid #4a4a6a;
+      border-radius: 8px;
+      padding: 0.5rem;
+    }
+
+    .admin-panel-container .partner-item {
+      display: flex;
+      flex-direction: column; /* Stack name/description and buttons */
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.8rem;
+      border-bottom: 1px solid #3e3e5a;
+      color: #e0e0eb;
+      text-align: left;
+    }
+
+    .admin-panel-container .partner-item:last-child {
+      border-bottom: none;
+    }
+
+    .admin-panel-container .partner-item span {
+      flex-grow: 1;
+      text-align: left;
+      margin-bottom: 0.5rem;
+    }
+
+    .admin-panel-container .partner-item .partner-actions button {
+      margin-left: 0.5rem;
+      padding: 0.4rem 0.8rem;
+      font-size: 0.8rem;
+      border-radius: 15px;
+      margin-top: 0;
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: #0a0a0a;
+      font-size: 0.9rem;
+      color: #888888;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        width: auto;
+        background: rgba(0,0,0,0.8);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border-bottom-right-radius: 15px;
+      }
+      nav {
+        width: 300px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      .logo-title-container .logo {
+        width: 50px;
+        height: 50px;
+      }
+      nav {
+        width: 100%;
+        padding-top: 5rem;
+      }
+      .page-header {
+        padding: 6rem 1rem 3rem;
+      }
+      .page-header h1 {
+        font-size: 2rem;
+      }
+      .page-header p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .partner-card {
+        padding: 1.5rem;
+      }
+      .partner-card h3 {
+        font-size: 1.5rem;
+      }
+      .partner-showcase-grid {
+        gap: 2rem; /* Adjust gap for smaller screens */
+      }
+      .admin-panel-container {
+        padding: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo and Site Title - Consistent with other pages -->
+  <div class="logo-title-container">
+    <img src="logo.png" alt="Partnerdesk Logo" class="logo">
+    <span class="site-title">Partnerdesk</span>
+  </div>
+
+  <!-- Hamburger Menu - Consistent with other pages -->
+  <div class="hamburger-menu" onclick="window.toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navigation Overlay - Consistent with other pages -->
+  <div class="overlay" onclick="window.toggleNav()"></div>
+
+  <!-- Navigation Bar - Consistent with other pages -->
+  <nav id="main-nav">
+    <a href="index.html" onclick="window.toggleNav()">Home</a>
+    <a href="internships.html" onclick="window.toggleNav()">Internships</a>
+    <a href="learning.html" onclick="window.toggleNav()">Learning</a>
+    <a href="freelancing.html" onclick="window.toggleNav()">Freelancing</a>
+    <a href="partners.html" onclick="window.toggleNav()">Partners</a>
+    <a href="about.html" onclick="window.toggleNav()">About</a>
+    <a href="contact.html" onclick="window.toggleNav()">Contact</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div>
+    <a href="authenticate.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
+    <a href="downloads.html" onclick="window.toggleNav()">Downloads</a>
+    <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a>
+  </nav>
+
+  <!-- Page Header Section -->
+  <header class="page-header">
+    <h1>Our Esteemed Partners</h1>
+    <p>Collaborating with industry leaders to bring you unparalleled opportunities and services.</p>
+  </header>
+
+  <!-- Introduction Section -->
+  <section class="section">
+    <p class="text-xl max-w-3xl mx-auto text-center text-gray-300">
+      At Partnerdesk, we are proud to collaborate with some of the most esteemed names in the banking and finance industry. Our partnerships allow us to offer our clients unparalleled access to a wide range of financial services and opportunities.
+    </p>
+  </section>
+
+  <!-- Partners Showcase Section -->
+  <section class="section">
+    <h2>Meet Our Partners</h2>
+    <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
+      Each partner brings unique expertise, resources, and opportunities to the table, enabling us to deliver exceptional value and service.
+    </p>
+
+    <div class="partner-showcase-grid" id="partnerShowcaseGrid">
+      <!-- Partner cards will be dynamically loaded here -->
+      <div class="loading-indicator" id="partnerLoadingIndicator">Loading partners...</div>
+      <p id="noPartnersMessage" class="text-xl text-gray-400 mt-10 hidden">No partners found.</p>
+    </div>
+  </section>
+
+  <!-- Final Call to Action Section (Optional, adjust as needed) -->
+  <section class="section final-cta-section">
+    <h2>Join Our Network</h2>
+    <p>
+      Interested in partnering with Partnerdesk? Reach out to us to explore collaboration opportunities.
+    </p>
+    <div class="cta-button-group">
+      <a href="contact.html" class="apply-button">Contact Us</a>
+    </div>
+    <p class="text-xl mt-8" style="color: #e0e0eb;">For Queries Contact Us at : <strong>7525869600</strong></p>
+  </section>
+
+  <!-- Container for Admin Panel -->
+  <div id="adminPanelContainer" class="admin-panel-container"></div>
+
+  <!-- Footer - Consistent with other pages -->
+  <footer>
+    <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
+    <p>Partnerdesk is a registered MSME under the Government of India.</p>
+    <p>Registration No. : UDYAM-UP-03-0104523</p>
+    <p>Registered Office :</p>
+    <p>9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</p>
+    <p>Email: info@partnerdesk.in</p>
+  </footer>
+
+  <script type="module">
+    // Firebase SDK imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, collection, addDoc, onSnapshot, query, doc, deleteDoc, updateDoc, getDoc, getDocs, orderBy } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // IMPORTANT: Replace this with your actual Firebase config object
+    const firebaseConfig = {
+          apiKey: "AIzaSyAiEhapkQvQnOtxZCQFa6TbOEWg3yelS8c",
+          authDomain: "certificates-b42ef.firebaseapp.com",
+          projectId: "certificates-b42ef",
+          storageBucket: "certificates-b42ef.firebasestorage.app",
+          messagingSenderId: "317230336893",
+          appId: "1:317230336893:web:915181dc11ed7264255a14",
+      // measurementId: "YOUR_MEASUREMENT_ID" // Optional
+    };
+
+    // Use your projectId as the appId for consistency with Firestore paths
+    const currentAppId = firebaseConfig.projectId;
+
+    let app;
+    let db;
+    let auth;
+    let currentUserId;
+    let allPartners = []; // Store all partners to facilitate reordering
+
+    // Initialize Firebase
+    app = initializeApp(firebaseConfig);
+    db = getFirestore(app);
+    auth = getAuth(app);
+
+    window.app = app;
+    window.db = db;
+    window.auth = auth;
+    window.firebaseConfig = firebaseConfig;
+
+    console.log("App ID being used (from firebaseConfig.projectId):", currentAppId);
+
+    // Function to render the admin panel dynamically
+    function renderAdminPanel() {
+      const adminPanelContainer = document.getElementById('adminPanelContainer');
+      if (!adminPanelContainer) {
+        console.error("Admin panel container not found!");
+        return;
+      }
+
+      adminPanelContainer.innerHTML = `
+        <h2 class="text-3xl font-bold mb-4 text-white">Manage Partners</h2>
+        <div class="admin-panel">
+          <p class="admin-message">
+            <strong>Note:</strong> Changes made here will be saved directly to the database and will persist.
+          </p>
+
+          <input type="hidden" id="currentPartnerId">
+          <div class="input-group">
+              <label for="partnerNameInput">Partner Name:</label>
+              <input type="text" id="partnerNameInput" placeholder="e.g., Angel One">
+          </div>
+          <div class="input-group">
+              <label for="partnerDescriptionInput">Description:</label>
+              <textarea id="partnerDescriptionInput" placeholder="A brief description of the partner and their offerings."></textarea>
+          </div>
+          <div class="input-group">
+              <label for="partnerLogoUrlInput">Logo Image URL (e.g., images/angel_one_logo.jpg):</label>
+              <input type="text" id="partnerLogoUrlInput" placeholder="e.g., https://your-storage.com/angel_one_logo.jpg">
+          </div>
+          <div class="input-group">
+              <label for="partnerLinkUrlInput">Registration Link URL:</label>
+              <input type="text" id="partnerLinkUrlInput" placeholder="e.g., https://partner.link/register">
+          </div>
+          <button id="savePartnerButton">Add New Partner</button>
+          <button id="clearPartnerFormButton" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-200">Clear Form</button>
+
+          <div class="partner-list" id="partnerListDisplay">
+              <!-- Partners will be listed here -->
+          </div>
+        </div>
+        <button id="logoutAdminButton" class="logout-admin-button">Logout Admin</button>
+      `;
+
+      // Attach event listeners after elements are created
+      document.getElementById('savePartnerButton').onclick = window.addOrUpdatePartner;
+      document.getElementById('clearPartnerFormButton').onclick = window.clearPartnerForm;
+      document.getElementById('logoutAdminButton').onclick = window.adminLogout;
+
+      // Load partners for the admin panel
+      window.loadPartnersForAdminPanel();
+    }
+
+    // Listen for authentication state changes
+    document.addEventListener('DOMContentLoaded', () => {
+        onAuthStateChanged(auth, async (user) => {
+            const adminPanelContainer = document.getElementById('adminPanelContainer');
+            const adminLoginLink = document.getElementById('adminLoginLink');
+
+            if (user) {
+                currentUserId = user.uid;
+                console.log("onAuthStateChanged: User is authenticated. UID:", currentUserId);
+                renderAdminPanel();
+                if (adminLoginLink) {
+                    adminLoginLink.classList.add('hidden');
+                }
+            } else {
+                currentUserId = null;
+                console.log("onAuthStateChanged: No user authenticated.");
+                if (adminPanelContainer) {
+                    adminPanelContainer.innerHTML = ''; // Clear admin panel if not logged in
+                }
+                if (adminLoginLink) {
+                    adminLoginLink.classList.remove('hidden');
+                }
+            }
+            // Always load partners for the main display regardless of admin status
+            window.loadPartnersForDisplay();
+        });
+    });
+
+    // Partner Management Functions for Admin Panel
+    window.loadPartnersForAdminPanel = function() {
+        if (!db) {
+            console.error("loadPartnersForAdminPanel: Firestore not initialized. Cannot load data.");
+            return;
+        }
+        const collectionPath = `artifacts/${currentAppId}/public/data/partners`;
+        console.log("loadPartnersForAdminPanel: Attempting to load partners from path:", collectionPath);
+
+        // Order by the 'order' field for consistent display
+        const q = query(collection(db, collectionPath), orderBy('order', 'asc'));
+
+        onSnapshot(q, (snapshot) => {
+            allPartners = []; // Clear previous list
+            snapshot.forEach(doc => {
+                allPartners.push({ id: doc.id, ...doc.data() });
+            });
+            window.renderPartnerList(allPartners);
+        }, (error) => {
+            console.error("Error fetching partners for admin panel: ", error);
+        });
+    }
+
+    window.renderPartnerList = function(partners) {
+        const partnerListDisplay = document.getElementById('partnerListDisplay');
+        if (!partnerListDisplay) return;
+
+        partnerListDisplay.innerHTML = '';
+        if (partners.length === 0) {
+            partnerListDisplay.innerHTML = '<p class="text-gray-500 text-center py-4">No partners added yet.</p>';
+            return;
+        }
+
+        partners.forEach((partner, index) => {
+            const partnerItem = document.createElement('div');
+            partnerItem.className = 'partner-item';
+            partnerItem.innerHTML = `
+                <div>
+                    <strong class="text-white">${partner.name}</strong><br>
+                    <span class="text-gray-400 text-sm">Order: ${partner.order || 'N/A'} - ${partner.description.substring(0, 70)}...</span>
+                </div>
+                <div class="partner-actions mt-2">
+                    <button class="bg-blue-500 hover:bg-blue-600" onclick="window.editPartner('${partner.id}')">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-600" onclick="window.deletePartner('${partner.id}')">Delete</button>
+                    <button class="bg-gray-500 hover:bg-gray-600 ${index === 0 ? 'opacity-50 cursor-not-allowed' : ''}" ${index === 0 ? 'disabled' : ''} onclick="window.movePartnerUp('${partner.id}', ${partner.order})">↑ Move Up</button>
+                    <button class="bg-gray-500 hover:bg-gray-600 ${index === partners.length - 1 ? 'opacity-50 cursor-not-allowed' : ''}" ${index === partners.length - 1 ? 'disabled' : ''} onclick="window.movePartnerDown('${partner.id}', ${partner.order})">↓ Move Down</button>
+                </div>
+            `;
+            partnerListDisplay.appendChild(partnerItem);
+        });
+    }
+
+    window.addOrUpdatePartner = async function() {
+        if (!db || !auth.currentUser) {
+            alert("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const partnerId = document.getElementById('currentPartnerId').value;
+        const name = document.getElementById('partnerNameInput').value.trim();
+        const description = document.getElementById('partnerDescriptionInput').value.trim();
+        let logoUrl = document.getElementById('partnerLogoUrlInput').value.trim();
+        const linkUrl = document.getElementById('partnerLinkUrlInput').value.trim();
+
+        if (!name || !description || !linkUrl) {
+            alert('Please fill in all required fields (Name, Description, Logo URL, Link URL).');
+            return;
+        }
+
+        // Provide a default image if none is given
+        if (!logoUrl) {
+            logoUrl = 'https://placehold.co/150x80/ffffff/4299E1?text=Partner';
+        }
+
+        // Determine the order for new partners
+        let newOrder = 0;
+        if (allPartners.length > 0) {
+            // Find the maximum existing order and add 1
+            newOrder = Math.max(...allPartners.map(p => p.order || 0)) + 1;
+        } else {
+            newOrder = 1; // First item
+        }
+
+
+        const partnerData = {
+            name: name,
+            description: description,
+            logoUrl: logoUrl,
+            linkUrl: linkUrl,
+            order: newOrder, // Assign order
+            lastUpdated: new Date().toISOString(),
+            updatedBy: auth.currentUser.uid
+        };
+
+        try {
+            if (partnerId) {
+                const partnerDocRef = doc(db, `artifacts/${currentAppId}/public/data/partners`, partnerId);
+                // When updating, preserve existing order unless explicitly changed in the form
+                const existingOrder = allPartners.find(p => p.id === partnerId)?.order || newOrder;
+                await updateDoc(partnerDocRef, { ...partnerData, order: existingOrder }); // Keep original order on update
+                alert('Partner updated successfully!');
+            } else {
+                await addDoc(collection(db, `artifacts/${currentAppId}/public/data/partners`), partnerData);
+                alert('Partner added successfully!');
+            }
+            window.clearPartnerForm();
+        } catch (e) {
+            console.error("Error adding/updating partner: ", e);
+            alert(`Error: ${e.message}`);
+        }
+    }
+
+    window.editPartner = async function(id) {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot edit partner.");
+            return;
+        }
+        const partnerDocRef = doc(db, `artifacts/${currentAppId}/public/data/partners`, id);
+        try {
+            const docSnap = await getDoc(partnerDocRef);
+            if (docSnap.exists()) {
+                const partner = docSnap.data();
+                document.getElementById('currentPartnerId').value = id;
+                document.getElementById('partnerNameInput').value = partner.name;
+                document.getElementById('partnerDescriptionInput').value = partner.description;
+                document.getElementById('partnerLogoUrlInput').value = partner.logoUrl || '';
+                document.getElementById('partnerLinkUrlInput').value = partner.linkUrl;
+                document.getElementById('savePartnerButton').textContent = 'Update Partner';
+                window.scrollTo({ top: document.getElementById('adminPanelContainer').offsetTop, behavior: 'smooth' });
+            } else {
+                console.error("No such partner document!");
+            }
+        } catch (e) {
+            console.error("Error fetching partner for edit: ", e);
+            alert(`Error fetching partner: ${e.message}`);
+        }
+    }
+
+    window.clearPartnerForm = function() {
+        document.getElementById('currentPartnerId').value = '';
+        document.getElementById('partnerNameInput').value = '';
+        document.getElementById('partnerDescriptionInput').value = '';
+        document.getElementById('partnerLogoUrlInput').value = '';
+        document.getElementById('partnerLinkUrlInput').value = '';
+        document.getElementById('savePartnerButton').textContent = 'Add New Partner';
+    }
+
+    window.deletePartner = async function(docId) {
+        if (!db || !auth.currentUser) {
+            alert("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const confirmDelete = await new Promise(resolve => {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+                background: rgba(0,0,0,0.7); display: flex; justify-content: center; align-items: center;
+                z-index: 9999;
+            `;
+            modal.innerHTML = `
+                <div style="background: #2a2a4a; padding: 25px; border-radius: 15px; text-align: center; max-width: 400px; width: 90%; box-shadow: 0 5px 20px rgba(0,0,0,0.5); color: #e0e0eb;">
+                    <p style="font-size: 1.1rem; margin-bottom: 20px;">Are you sure you want to delete this partner? This action cannot be undone.</p>
+                    <button id="confirmDeleteBtn" style="background-color: #EF4444; color: white; padding: 10px 20px; border-radius: 20px; margin-right: 10px; cursor: pointer;">Yes, Delete</button>
+                    <button id="cancelDeleteBtn" style="background-color: #5a5a7a; color: white; padding: 10px 20px; border-radius: 20px; cursor: pointer;">Cancel</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            document.getElementById('confirmDeleteBtn').onclick = () => {
+                document.body.removeChild(modal);
+                resolve(true);
+            };
+            document.getElementById('cancelDeleteBtn').onclick = () => {
+                document.body.removeChild(modal);
+                resolve(false);
+            };
+        });
+
+        if (!confirmDelete) {
+            console.log("Deletion cancelled by user.");
+            return;
+        }
+
+        try {
+            const partnerDocRef = doc(db, `artifacts/${currentAppId}/public/data/partners`, docId);
+            await deleteDoc(partnerDocRef);
+            console.log("Partner successfully deleted with ID:", docId);
+        } catch (e) {
+            console.error("Error removing partner:", e);
+            alert(`Error deleting partner: ${e.message}`);
+        }
+    }
+
+    window.movePartnerUp = async function(idToMove, currentOrder) {
+        if (!db || !auth.currentUser) {
+            alert("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const currentIndex = allPartners.findIndex(p => p.id === idToMove);
+        if (currentIndex <= 0) return; // Already at the top or not found
+
+        const partnerAbove = allPartners[currentIndex - 1];
+        const partnerToMove = allPartners[currentIndex];
+
+        try {
+            // Swap orders
+            await updateDoc(doc(db, `artifacts/${currentAppId}/public/data/partners`, partnerToMove.id), { order: partnerAbove.order });
+            await updateDoc(doc(db, `artifacts/${currentAppId}/public/data/partners`, partnerAbove.id), { order: partnerToMove.order });
+            console.log(`Moved partner ${partnerToMove.name} up.`);
+        } catch (e) {
+            console.error("Error moving partner up:", e);
+            alert(`Error moving partner: ${e.message}`);
+        }
+    }
+
+    window.movePartnerDown = async function(idToMove, currentOrder) {
+        if (!db || !auth.currentUser) {
+            alert("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const currentIndex = allPartners.findIndex(p => p.id === idToMove);
+        if (currentIndex >= allPartners.length - 1 || currentIndex === -1) return; // Already at the bottom or not found
+
+        const partnerBelow = allPartners[currentIndex + 1];
+        const partnerToMove = allPartners[currentIndex];
+
+        try {
+            // Swap orders
+            await updateDoc(doc(db, `artifacts/${currentAppId}/public/data/partners`, partnerToMove.id), { order: partnerBelow.order });
+            await updateDoc(doc(db, `artifacts/${currentAppId}/public/data/partners`, partnerBelow.id), { order: partnerToMove.order });
+            console.log(`Moved partner ${partnerToMove.name} down.`);
+        } catch (e) {
+            console.error("Error moving partner down:", e);
+            alert(`Error moving partner: ${e.message}`);
+        }
+    }
+
+
+    // Function to load partners for display on the main page
+    window.loadPartnersForDisplay = function() {
+        if (!db) {
+            console.error("loadPartnersForDisplay: Firestore not initialized. Cannot load data.");
+            const partnerLoadingIndicator = document.getElementById('partnerLoadingIndicator');
+            if (partnerLoadingIndicator) {
+                partnerLoadingIndicator.textContent = "Error: Database not ready.";
+            }
+            return;
+        }
+        const collectionPath = `artifacts/${currentAppId}/public/data/partners`;
+        console.log("loadPartnersForDisplay: Attempting to load partners from path:", collectionPath);
+
+        const partnerShowcaseGrid = document.getElementById('partnerShowcaseGrid');
+        if (!partnerShowcaseGrid) {
+            console.error("partnerShowcaseGrid element not found.");
+            return;
+        }
+        partnerShowcaseGrid.innerHTML = ''; // Clear existing static cards
+        const partnerLoadingIndicator = document.getElementById('partnerLoadingIndicator');
+        if (partnerLoadingIndicator) {
+            partnerLoadingIndicator.classList.remove('hidden'); // Show loading
+        }
+
+        // Order by the 'order' field for consistent display
+        const q = query(collection(db, collectionPath), orderBy('order', 'asc'));
+
+        onSnapshot(q, (snapshot) => {
+            if (partnerLoadingIndicator) {
+                partnerLoadingIndicator.classList.add('hidden'); // Hide loading
+            }
+            const partners = [];
+            snapshot.forEach(doc => {
+                partners.push({ id: doc.id, ...doc.data() });
+            });
+
+            const noPartnersMessage = document.getElementById('noPartnersMessage');
+            if (partners.length === 0) {
+                if (noPartnersMessage) {
+                    noPartnersMessage.classList.remove('hidden');
+                }
+            } else {
+                if (noPartnersMessage) {
+                    noPartnersMessage.classList.add('hidden');
+                }
+                // Define a mapping for partner names to CSS classes for specific colors
+                const partnerClassMap = {
+                    "Angel One": "angel-one",
+                    "Upstox": "upstox",
+                    "M Stock": "m-stock",
+                    "5paisa": "fivpaisa",
+                    "Appreciate Wealth": "appreciate-wealth",
+                    "Axis Bank": "axis-bank",
+                    "Tide Online Banking Account": "tide-bank",
+                    "Airtel Payments Bank": "airtel-bank",
+                    "Choice": "choice"
+                };
+
+                partners.forEach(partner => {
+                    const partnerClassName = partnerClassMap[partner.name] || ''; // Get specific class or empty
+                    const cardHtml = `
+                        <div class="partner-card ${partnerClassName}">
+                            <img src="${partner.logoUrl || 'https://placehold.co/150x80/ffffff/4299E1?text=Partner'}" alt="${partner.name}" onerror="this.onerror=null;this.src='https://placehold.co/150x80/ffffff/4299E1?text=Partner';">
+                            <h3>${partner.name || 'Untitled Partner'}</h3>
+                            <p>${partner.description || 'No description available.'}</p>
+                            <a href="${partner.linkUrl || '#'}" target="_blank" class="cta-button">Register Now →</a>
+                        </div>
+                    `;
+                    partnerShowcaseGrid.insertAdjacentHTML('beforeend', cardHtml);
+                });
+            }
+        }, (error) => {
+            console.error("Error fetching partners for display: ", error);
+            if (partnerLoadingIndicator) {
+                partnerLoadingIndicator.textContent = `Error loading partners: ${error.message}`;
+            }
+        });
+    }
+
+    // Function to toggle navigation for mobile
+    window.toggleNav = function() {
+      const nav = document.getElementById('main-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('no-scroll');
+    }
+
+    // Function to logout admin
+    window.adminLogout = async function() {
+      if (!auth) {
+        console.warn("adminLogout: Firebase Auth not initialized.");
+        return;
+      }
+      try {
+        await signOut(auth);
+        console.log("adminLogout: Logged out successfully.");
+        window.location.href = 'admin_login.html';
+      } catch (error) {
+        console.error("adminLogout: Error during logout:", error.code, error.message);
+        alert(`Logout error: ${e.message}`);
+      }
+    }
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.page-header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.partner-card', {
+      interval: 150,
+      delay: 400,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.final-cta-section', {
+      delay: 200,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Close nav when a nav link is clicked
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = document.getElementById('main-nav');
+        if (nav.classList.contains('active')) {
+          window.toggleNav();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
