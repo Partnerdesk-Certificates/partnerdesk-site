@@ -4,6 +4,71 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Partnerdesk - Grow With Us</title>
+
+  <!-- SEO Meta Tags -->
+  <meta name="description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects in digital marketing, sales, AI, and more.">
+  <meta name="keywords" content="Partnerdesk, internships, freelancing, digital marketing, sales, AI, online courses, learning, career growth, skill development, business collaboration, student opportunities, professional network, India">
+  <meta name="author" content="Partnerdesk">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourwebsite.com/index.html"> <!-- Replace with your actual canonical URL -->
+
+  <!-- Open Graph / Facebook / LinkedIn Meta Tags -->
+  <meta property="og:title" content="Partnerdesk - Grow With Us">
+  <meta property="og:description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects.">
+  <meta property="og:image" content="https://yourwebsite.com/images/logo.png"> <!-- Replace with your actual logo URL -->
+  <meta property="og:url" content="https://yourwebsite.com/index.html"> <!-- Replace with your actual URL -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Partnerdesk">
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Partnerdesk_Official"> <!-- Replace with your actual Twitter handle -->
+  <meta name="twitter:title" content="Partnerdesk - Grow With Us">
+  <meta name="twitter:description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects.">
+  <meta name="twitter:image" content="https://yourwebsite.com/images/logo.png"> <!-- Replace with your actual logo URL -->
+
+  <!-- JSON-LD Schema Markup for Organization and WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://yourwebsite.com/#organization",
+        "name": "Partnerdesk",
+        "url": "https://yourwebsite.com/",
+        "logo": "https://yourwebsite.com/images/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-XXXXXXXXXX",
+          "contactType": "Customer Service",
+          "email": "info@partnerdesk.in"
+        },
+        "sameAs": [
+          "https://twitter.com/Partnerdesk_Official",
+          "https://instagram.com/Partnerdesk_Official",
+          "https://youtube.com/@Partnerdesk_Official",
+          "https://facebook.com/Partnerdesk_Official"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://yourwebsite.com/#website",
+        "url": "https://yourwebsite.com/",
+        "name": "Partnerdesk",
+        "publisher": {
+          "@id": "https://yourwebsite.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://yourwebsite.com/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <script src="https://unpkg.com/scrollreveal"></script>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -39,8 +104,8 @@
     }
 
     .logo-title-container .logo {
-      width: 60px; /* Increased logo size for consistency */
-      height: 60px; /* Increased logo size for consistency */
+      width: 90px; /* Increased logo size by 50% (from 60px) */
+      height: 90px; /* Increased logo size by 50% (from 60px) */
       margin-right: 1rem;
       border-radius: 8px; /* Rounded corners for logo */
       object-fit: cover; /* Ensure logo covers the area */
@@ -71,6 +136,7 @@
       box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Shadow on the left side */
       transition: transform 0.3s ease-in-out; /* Smooth transition for responsiveness */
       transform: translateX(100%); /* Hidden by default */
+      overflow-y: auto; /* Make it scrollable */
     }
 
     nav.active {
@@ -138,8 +204,8 @@
 
     /* Header Section */
     header {
-      /* Violety spectrum of colors */
-      background: linear-gradient(to bottom right, #4B0082, #8A2BE2, #9400D3, #BA55D3, #DA70D6);
+      /* New Dynamic Gradient: Blue, Green, Violet */
+      background: linear-gradient(to bottom right, #007bff, #00c853, #6f42c1); /* Blue, Green, Violet */
       color: white;
       padding: 12rem 1rem 10rem; /* Increased padding */
       text-align: center;
@@ -172,7 +238,7 @@
       margin: 0.7rem;
       padding: 1rem 2.5rem; /* Larger buttons */
       background-color: #ffffff;
-      color: #4b0082; /* Primary purple */
+      color: #121212; /* Dark text for contrast on white background */
       text-decoration: none;
       border-radius: 30px; /* Pill-shaped buttons */
       font-weight: 700;
@@ -181,8 +247,8 @@
     }
 
     .cta-buttons a:hover {
-      background-color: #4b0082;
-      color: white;
+      background-color: #6f42c1; /* Violet from new gradient for hover */
+      color: white; /* White text on violet hover */
       transform: translateY(-3px); /* Lift effect */
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
     }
@@ -219,11 +285,11 @@
     }
 
     .showcase-card img {
-      max-width: 80%; /* Make image responsive within card */
-      height: auto;
+      max-width: 350px; /* Increased width for images */
+      height: 200px; /* Increased height for images */
       border-radius: 15px; /* Rounded corners for image */
       margin-bottom: 2rem;
-      object-fit: cover;
+      object-fit: cover; /* Ensure image covers the area, cropping if necessary */
       box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
@@ -256,41 +322,42 @@
     }
 
     /* Specific colors for each showcase card */
+    /* Updated border colors to better complement the new blue/green/violet gradient */
     .internship-card {
       background: rgba(255, 255, 255, 0.08);
-      border-color: #8a2be2; /* Purple border */
+      border-color: #007bff; /* A vibrant blue */
     }
-    .internship-card h3 { color: #8a2be2; }
-    .internship-card .cta-button { background-color: #8a2be2; }
-    .internship-card .cta-button:hover { background-color: #9370db; }
+    .internship-card h3 { color: #007bff; }
+    .internship-card .cta-button { background-color: #007bff; }
+    .internship-card .cta-button:hover { background-color: #0056b3; }
 
     .learning-card {
-      background: #2a2a40; /* Darker purple-blue */
-      border-color: #e94560; /* Pink border from learning page */
+      background: #2a2a40; /* Darker blue-grey */
+      border-color: #00c853; /* A vibrant green from the new gradient */
     }
-    .learning-card h3 { color: #e94560; }
-    .learning-card .cta-button { background-color: #e94560; }
-    .learning-card .cta-button:hover { background-color: #d63050; }
+    .learning-card h3 { color: #00c853; }
+    .learning-card .cta-button { background-color: #00c853; }
+    .learning-card .cta-button:hover { background-color: #218838; }
 
     .freelancing-card {
       background: #283040; /* Dark blue-grey */
-      border-color: #00BCD4; /* Cyan border from internships page */
+      border-color: #17a2b8; /* A vibrant teal */
     }
-    .freelancing-card h3 { color: #00BCD4; }
-    .freelancing-card .cta-button { background-color: #00BCD4; }
-    .freelancing-card .cta-button:hover { background-color: #00ACC1; }
+    .freelancing-card h3 { color: #17a2b8; }
+    .freelancing-card .cta-button { background-color: #17a2b8; }
+    .freelancing-card .cta-button:hover { background-color: #138496; }
 
     .partners-card {
       background: #253028; /* Dark green-grey */
-      border-color: #00796B; /* Teal border from internships page */
+      border-color: #6f42c1; /* A vibrant violet from the new gradient */
     }
-    .partners-card h3 { color: #00796B; }
-    .partners-card .cta-button { background-color: #00796B; }
-    .partners-card .cta-button:hover { background-color: #00695C; }
+    .partners-card h3 { color: #6f42c1; }
+    .partners-card .cta-button { background-color: #6f42c1; }
+    .partners-card .cta-button:hover { background-color: #5a36a0; }
 
 
     .extra-content {
-      margin-top: 6rem; /* More space */
+      margin-top: 3rem; /* Reduced margin-top to shift it upwards */
       text-align: center;
     }
 
@@ -384,31 +451,33 @@
 
   <!-- Logo and Site Title -->
   <div class="logo-title-container">
-    <img src="logo.png" alt="Partnerdesk Logo" class="logo">
+    <img src="images/logo.png" alt="Partnerdesk Logo" class="logo">
     <span class="site-title">Partnerdesk</span>
   </div>
 
   <!-- Hamburger Menu -->
-  <div class="hamburger-menu" onclick="toggleNav()">
+  <div class="hamburger-menu" onclick="window.toggleNav()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
 
   <!-- Navigation Overlay -->
-  <div class="overlay" onclick="toggleNav()"></div>
+  <div class="overlay" onclick="window.toggleNav()"></div>
 
   <!-- Navigation Bar -->
   <nav id="main-nav">
-    <a href="index.html" onclick="toggleNav()">Home</a>
-    <a href="internships.html" onclick="toggleNav()">Internships</a>
-    <a href="learning.html" onclick="toggleNav()">Learning</a>
-    <a href="freelancing.html" onclick="toggleNav()">Freelancing</a>
-    <a href="partners.html" onclick="toggleNav()">Partners</a>
-    <a href="about.html" onclick="toggleNav()">About</a>
-    <a href="contact.html" onclick="toggleNav()">Contact</a>
+    <a href="index.html" onclick="window.toggleNav()">Home</a>
+    <a href="internships.html" onclick="window.toggleNav()">Internships</a>
+    <a href="learning.html" onclick="window.toggleNav()">Learning</a>
+    <a href="freelancing.html" onclick="window.toggleNav()">Freelancing</a>
+    <a href="partners.html" onclick="window.toggleNav()">Partners</a>
+    <a href="about.html" onclick="window.toggleNav()">About</a>
+    <a href="contact.html" onclick="window.toggleNav()">Contact</a>
     <div class="nav-divider my-4 h-px bg-gray-700"></div> <!-- Divider for new section -->
-    <a href="verify.html" onclick="toggleNav()">Authenticate Your Certificate</a>
+    <a href="verify.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
+    <a href="downloads.html" onclick="window.toggleNav()">Downloads</a> <!-- Downloads link restored -->
+    <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a>
   </nav>
 
   <!-- Header Section -->
@@ -473,15 +542,53 @@
   <footer>
     <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
     <p>Partnerdesk is a registered MSME under the Government of India.</p>
-    <p>Registration No. : UDYAM-UP-03-0104523</p>
+    <p>Registration No. : <span id="footerMsmeRegNo">UDYAM-UP-03-0104523</span></p>
     <p>Registered Office :</p>
-    <p>9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</p>
-    <p>Email: info@partnerdesk.in</p>
+    <p><span id="footerAddress">9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</span></p>
+    <p>Email: <span id="footerEmail">info@partnerdesk.in</span></p>
+    <p>Phone: <span id="footerPhone">+91-XXXXXXXXXX</span></p>
+    <!-- Removed social media links from here -->
   </footer>
 
-  <script>
-    // Function to toggle navigation for mobile
-    function toggleNav() {
+  <script type="module">
+    // Firebase SDK imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Firebase configuration and initialization
+    // This configuration is directly embedded for consistent behavior
+    const firebaseConfig = {
+      apiKey: "AIzaSyAiEhapkQvQnOtxZCQFa6TbOEWg3yelS8c",
+      authDomain: "certificates-b42ef.firebaseapp.com",
+      projectId: "certificates-b42ef",
+      storageBucket: "certificates-b42ef.firebasestorage.app",
+      messagingSenderId: "317230336893",
+      appId: "1:317230336893:web:915181dc11ed7264255a14",
+    };
+
+    // Use projectId as appId for consistency with Firestore paths
+    const appId = firebaseConfig.projectId; 
+    
+    // Firebase variables
+    let app;
+    let db;
+    let auth;
+
+    // Initialize Firebase
+    try {
+        app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+    } catch (e) {
+        console.error("Firebase initialization failed:", e);
+        app = null; db = null; auth = null; // Explicitly set to null if initialization fails
+    }
+
+    // --- Utility Functions ---
+
+    // Function to toggle navigation for mobile, exposed globally
+    window.toggleNav = function() {
       const nav = document.getElementById('main-nav');
       const overlay = document.querySelector('.overlay');
       const body = document.body;
@@ -490,6 +597,80 @@
       overlay.classList.toggle('active');
       body.classList.toggle('no-scroll'); // Prevent scrolling when nav is open
     }
+
+    // Helper function to ensure URL has https:// protocol (not strictly needed for footer now, but good practice)
+    function ensureHttps(url) {
+        if (!url) return '';
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            return url;
+        }
+        return `https://${url}`;
+    }
+
+    // Function to load contact info into the footer
+    function loadContactInfoIntoFooter() {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot load contact info.");
+            return;
+        }
+
+        const contactDocRef = doc(db, `artifacts/${appId}/public/data/contactInfo`, 'mainContact');
+
+        onSnapshot(contactDocRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById('footerAddress').textContent = data.address || '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+                document.getElementById('footerEmail').textContent = data.email || 'info@partnerdesk.in';
+                // Corrected: Use data.phone to retrieve the phone number
+                document.getElementById('footerPhone').textContent = data.phone || '+91-XXXXXXXXXX';
+                document.getElementById('footerMsmeRegNo').textContent = data.msmeRegNo || 'UDYAM-UP-03-0104523';
+
+            } else {
+                // Default static info if no document exists
+                document.getElementById('footerAddress').textContent = '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+                document.getElementById('footerEmail').textContent = 'info@partnerdesk.in';
+                document.getElementById('footerPhone').textContent = '+91-XXXXXXXXXX';
+            }
+        }, (error) => {
+            console.error("Error fetching contact info:", error);
+            // Fallback to default static info on error
+            document.getElementById('footerAddress').textContent = '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+            document.getElementById('footerEmail').textContent = 'info@partnerdesk.in';
+            document.getElementById('footerPhone').textContent = '+91-XXXXXXXXXX';
+        });
+    }
+
+    // --- Event Listeners and Initial Load ---
+
+    document.addEventListener('DOMContentLoaded', () => {
+        // Load contact info immediately when DOM is ready
+        loadContactInfoIntoFooter();
+
+        // Only proceed with auth state listener if Firebase Auth is initialized
+        if (auth) {
+            onAuthStateChanged(auth, (user) => {
+                const adminLoginLink = document.getElementById('adminLoginLink');
+
+                if (user) {
+                    // User is logged in, hide admin login link
+                    if (adminLoginLink) {
+                        adminLoginLink.classList.remove('hidden');
+                    }
+                } else {
+                    // No user logged in, show admin login link
+                    if (adminLoginLink) {
+                        adminLoginLink.classList.add('hidden');
+                    }
+                }
+            });
+        } else {
+            // If Firebase Auth isn't initialized, ensure the admin login link is visible by default
+            const adminLoginLink = document.getElementById('adminLoginLink');
+            if (adminLoginLink) {
+                adminLoginLink.classList.remove('hidden');
+            }
+        }
+    });
 
     // ScrollReveal animations
     ScrollReveal().reveal('.logo-title-container', {
@@ -535,10 +716,10 @@
       origin: 'top',
       duration: 900,
       easing: 'ease-in-out',
-      reset: false /* Changed to false for single animation */
+      reset: false
     });
 
-    // Animations for the new prominent showcase cards
+    // Animations for the prominent showcase cards (as per your original file)
     ScrollReveal().reveal('.internship-card', {
       delay: 400,
       distance: '50px',
@@ -549,7 +730,7 @@
     });
 
     ScrollReveal().reveal('.learning-card', {
-      delay: 600, /* Adjusted delay to appear after the internship showcase */
+      delay: 600,
       distance: '50px',
       origin: 'bottom',
       duration: 1000,
@@ -558,7 +739,7 @@
     });
 
     ScrollReveal().reveal('.freelancing-card', {
-      delay: 800, /* Adjusted delay */
+      delay: 800,
       distance: '50px',
       origin: 'bottom',
       duration: 1000,
@@ -567,7 +748,7 @@
     });
 
     ScrollReveal().reveal('.partners-card', {
-      delay: 1000, /* Adjusted delay */
+      delay: 1000,
       distance: '50px',
       origin: 'bottom',
       duration: 1000,
@@ -605,14 +786,12 @@
     // Close nav when a nav link is clicked
     document.querySelectorAll('#main-nav a').forEach(link => {
       link.addEventListener('click', () => {
-        // Only close if the nav is currently active (i.e., on smaller screens)
         const nav = document.getElementById('main-nav');
         if (nav.classList.contains('active')) {
-          toggleNav();
+          window.toggleNav();
         }
       });
     });
-
   </script>
 </body>
 </html>
