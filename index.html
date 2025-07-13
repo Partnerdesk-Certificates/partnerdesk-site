@@ -740,7 +740,6 @@
     // Firebase SDK imports
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
     import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-    // ADDED getDoc to the import list
     import { getFirestore, doc, setDoc, onSnapshot, collection, getDocs, query, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
     // Firebase configuration and initialization
@@ -761,8 +760,8 @@
     let currentUserId; // To store the authenticated user's UID
 
     // Cloudinary Configuration
-    const CLOUDINARY_CLOUD_NAME = 'dy15lyntn'; // Replace with your Cloudinary Cloud Name
-    const CLOUDINARY_UPLOAD_PRESET = 'homepage_uploads'; // Replace with your Cloudinary Upload Preset (unsigned)
+    const CLOUDINARY_CLOUD_NAME = 'YOUR_CLOUD_NAME'; // Replace with your Cloudinary Cloud Name
+    const CLOUDINARY_UPLOAD_PRESET = 'YOUR_UPLOAD_PRESET'; // Replace with your Cloudinary Upload Preset (unsigned)
     const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
 
     // Initialize Firebase
@@ -775,6 +774,58 @@
         console.error("Firebase initialization failed:", e);
         app = null; db = null; auth = null;
     }
+
+    // --- Centralized Default Homepage Content ---
+    const DEFAULT_HOMEPAGE_CONTENT = {
+        header: {
+            title: 'Grow With Us — Partnerdesk',
+            subtitle: 'Your bridge to internships, freelancing, and real business collaboration.'
+        },
+        extraContent: {
+            title: 'Why Choose Partnerdesk?',
+            para1: 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.',
+            para2: 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.',
+            para3: 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.'
+        },
+        showcase_internships: {
+            title: 'Internships',
+            description: 'Gain invaluable experience in digital marketing, sales, AI, and more, shaping your future career with real-world projects and expert mentorship.',
+            imageUrl: 'images/internship_showcase.png',
+            ctaText: 'Learn More About Internships →',
+            ctaLink: 'internships.html',
+            bgColor: 'rgba(255, 255, 255, 0.08)',
+            borderColor: '#007bff'
+        },
+        showcase_learning: {
+            title: 'Learning Centre',
+            description: 'Access expertly curated paid courses designed by industry professionals to elevate your skills and stay ahead in your career.',
+            imageUrl: 'images/learning_showcase.png',
+            ctaText: 'Explore Courses →',
+            ctaLink: 'learning.html',
+            bgColor: '#2a2a40',
+            borderColor: '#00c853'
+        },
+        showcase_freelancing: {
+            title: 'Freelancing',
+            description: 'Earn through engaging in real-world projects under the trusted Partnerdesk umbrella, building your portfolio and expanding your professional network.',
+            imageUrl: 'images/freelancing_showcase.png',
+            ctaText: 'Find Freelance Work →',
+            ctaLink: 'freelancing.html',
+            bgColor: '#283040',
+            borderColor: '#17a2b8'
+        },
+        showcase_partners: {
+            title: 'Partner With Us',
+            description: 'Join hands with Partnerdesk for mutual growth, innovation, and significant impact, leveraging our network for your business success.',
+            imageUrl: 'images/partners_showcase.png',
+            ctaText: 'Become a Partner →',
+            ctaLink: 'partners.html',
+            bgColor: '#253028',
+            borderColor: '#6f42c1'
+        }
+    };
+    // --- End Centralized Default Homepage Content ---
+
 
     // --- Utility Functions ---
 
@@ -920,108 +971,58 @@
             return;
         }
 
-        // Corrected Firestore paths for documents within the 'homepage' collection
         const headerDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'header');
         const extraContentDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'extraContent');
-        const showcaseCardsCollectionRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'homepage'); // Collection for all homepage documents
+        const showcaseCardsCollectionRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'homepage');
 
         try {
             // Fetch header content
             const headerSnap = await getDoc(headerDocRef);
-            if (headerSnap.exists()) {
-                const data = headerSnap.data();
-                document.getElementById('editHeaderTitle').value = data.title || '';
-                document.getElementById('editHeaderSubtitle').value = data.subtitle || '';
-            } else {
-                // Set default if no data exists and save it
-                const defaultHeader = {
-                    title: 'Grow With Us — Partnerdesk',
-                    subtitle: 'Your bridge to internships, freelancing, and real business collaboration.'
-                };
-                await setDoc(headerDocRef, defaultHeader, { merge: true });
-                document.getElementById('editHeaderTitle').value = defaultHeader.title;
-                document.getElementById('editHeaderSubtitle').value = defaultHeader.subtitle;
+            let headerData = headerSnap.exists() ? headerSnap.data() : DEFAULT_HOMEPAGE_CONTENT.header;
+            if (!headerSnap.exists()) {
+                await setDoc(headerDocRef, DEFAULT_HOMEPAGE_CONTENT.header, { merge: true });
                 console.log("Default header content set and saved.");
             }
+            document.getElementById('editHeaderTitle').value = headerData.title || '';
+            document.getElementById('editHeaderSubtitle').value = headerData.subtitle || '';
+
 
             // Fetch extra content
             const extraContentSnap = await getDoc(extraContentDocRef);
-            if (extraContentSnap.exists()) {
-                const data = extraContentSnap.data();
-                document.getElementById('editWhyChooseTitle').value = data.title || '';
-                document.getElementById('editWhyChoosePara1').value = data.para1 || '';
-                document.getElementById('editWhyChoosePara2').value = data.para2 || '';
-                document.getElementById('editWhyChoosePara3').value = data.para3 || '';
-            } else {
-                // Set default if no data exists and save it
-                const defaultExtraContent = {
-                    title: 'Why Choose Partnerdesk?',
-                    para1: 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.',
-                    para2: 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.',
-                    para3: 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.'
-                };
-                await setDoc(extraContentDocRef, defaultExtraContent, { merge: true });
-                document.getElementById('editWhyChooseTitle').value = defaultExtraContent.title;
-                document.getElementById('editWhyChoosePara1').value = defaultExtraContent.para1;
-                document.getElementById('editWhyChoosePara2').value = defaultExtraContent.para2;
-                document.getElementById('editWhyChoosePara3').value = defaultExtraContent.para3;
+            let extraContentData = extraContentSnap.exists() ? extraContentSnap.data() : DEFAULT_HOMEPAGE_CONTENT.extraContent;
+            if (!extraContentSnap.exists()) {
+                await setDoc(extraContentDocRef, DEFAULT_HOMEPAGE_CONTENT.extraContent, { merge: true });
                 console.log("Default extra content set and saved.");
             }
+            document.getElementById('editWhyChooseTitle').value = extraContentData.title || '';
+            document.getElementById('editWhyChoosePara1').value = extraContentData.para1 || '';
+            document.getElementById('editWhyChoosePara2').value = extraContentData.para2 || '';
+            document.getElementById('editWhyChoosePara3').value = extraContentData.para3 || '';
+
 
             // Fetch showcase cards
-            // Only fetch documents that start with 'showcase_' prefix
-            // The 'query' function is now correctly imported
             const q = query(showcaseCardsCollectionRef);
             const showcaseCardsSnapshot = await getDocs(q);
 
-            const showcaseCardsData = {};
+            const showcaseCardsLive = {};
             showcaseCardsSnapshot.forEach(doc => {
-                // Filter for documents that are actually showcase cards
                 if (doc.id.startsWith('showcase_')) {
-                    showcaseCardsData[doc.id] = doc.data();
+                    showcaseCardsLive[doc.id] = doc.data();
                 }
             });
 
-            // Corrected cardIds to match new document IDs
             const cardIds = ['showcase_internships', 'showcase_learning', 'showcase_freelancing', 'showcase_partners'];
             const showcaseCardFormsContainer = document.getElementById('showcaseCardAdminForms');
             showcaseCardFormsContainer.innerHTML = ''; // Clear existing forms
 
             for (const cardId of cardIds) {
-                let cardData = showcaseCardsData[cardId];
-                const baseCardName = cardId.replace('showcase_', ''); // e.g., 'internships'
-                const displayCardName = baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1); // e.g., 'Internships'
+                let cardData = showcaseCardsLive[cardId];
+                const baseCardName = cardId.replace('showcase_', '');
+                const displayCardName = baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1);
 
                 if (!cardData) {
-                    // Set default data if card doesn't exist and save it
-                    const defaultCard = {
-                        title: displayCardName,
-                        description: `Default description for ${displayCardName} section.`,
-                        imageUrl: `https://placehold.co/350x200/4a4a6a/e0e0e0?text=${displayCardName.toUpperCase()}`,
-                        ctaText: `Learn More About ${displayCardName} →`,
-                        ctaLink: `${baseCardName}.html`,
-                        bgColor: '#2a2a40', // Default dark grey
-                        borderColor: '#007bff' // Default blue
-                    };
-                    if (baseCardName === 'internships') {
-                        defaultCard.bgColor = 'rgba(255, 255, 255, 0.08)';
-                        defaultCard.borderColor = '#007bff';
-                        defaultCard.imageUrl = 'images/internship_showcase.png';
-                    } else if (baseCardName === 'learning') {
-                        defaultCard.bgColor = '#2a2a40';
-                        defaultCard.borderColor = '#00c853';
-                        defaultCard.imageUrl = 'images/learning_showcase.png';
-                    } else if (baseCardName === 'freelancing') {
-                        defaultCard.bgColor = '#283040';
-                        defaultCard.borderColor = '#17a2b8';
-                        defaultCard.imageUrl = 'images/freelancing_showcase.png';
-                    } else if (baseCardName === 'partners') {
-                        defaultCard.bgColor = '#253028';
-                        defaultCard.borderColor = '#6f42c1';
-                        defaultCard.imageUrl = 'images/partners_showcase.png';
-                    }
-                    await setDoc(doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', cardId), defaultCard, { merge: true });
-                    cardData = defaultCard;
+                    cardData = DEFAULT_HOMEPAGE_CONTENT[cardId]; // Use default from centralized object
+                    await setDoc(doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', cardId), cardData, { merge: true });
                     console.log(`Default data set and saved for ${cardId} card.`);
                 }
 
@@ -1087,10 +1088,10 @@
                             currentImageUrlInput.value = '';
                             imageStatus.textContent = 'Upload failed.';
                             imageStatus.style.color = '#EF4444';
-                            imagePreview.src = 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image';
+                            imagePreview.src = cardData.imageUrl || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image'; // Revert to previous or placeholder
                         }
                     } else {
-                        imagePreview.src = currentImageUrlInput.value || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image';
+                        imagePreview.src = currentImageUrlInput.value || cardData.imageUrl || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image';
                         imageStatus.textContent = '';
                     }
                 });
@@ -1172,124 +1173,96 @@
             return;
         }
 
-        // Corrected Firestore paths for documents within the 'homepage' collection
         const headerDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'header');
         const extraContentDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'extraContent');
-        const showcaseCardsCollectionRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'homepage'); // Collection for all homepage documents
+        const showcaseCardsCollectionRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'homepage');
 
         // Header Section
         onSnapshot(headerDocRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                document.getElementById('headerTitle').textContent = data.title || 'Grow With Us — Partnerdesk';
-                document.getElementById('headerSubtitle').textContent = data.subtitle || 'Your bridge to internships, freelancing, and real business collaboration.';
-            } else {
-                // Fallback to static defaults if no data
-                document.getElementById('headerTitle').textContent = 'Grow With Us — Partnerdesk';
-                document.getElementById('headerSubtitle').textContent = 'Your bridge to internships, freelancing, and real business collaboration.';
-            }
+            const data = docSnap.exists() ? docSnap.data() : DEFAULT_HOMEPAGE_CONTENT.header;
+            document.getElementById('headerTitle').textContent = data.title;
+            document.getElementById('headerSubtitle').textContent = data.subtitle;
         }, (error) => {
             console.error("Error fetching header content:", error);
             // Fallback to static defaults on error
-            document.getElementById('headerTitle').textContent = 'Grow With Us — Partnerdesk';
-            document.getElementById('headerSubtitle').textContent = 'Your bridge to internships, freelancing, and real business collaboration.';
+            document.getElementById('headerTitle').textContent = DEFAULT_HOMEPAGE_CONTENT.header.title;
+            document.getElementById('headerSubtitle').textContent = DEFAULT_HOMEPAGE_CONTENT.header.subtitle;
         });
 
         // Extra Content (Why Choose Partnerdesk?)
         onSnapshot(extraContentDocRef, (docSnap) => {
-            if (docSnap.exists()) {
-                const data = docSnap.data();
-                document.getElementById('whyChooseTitle').textContent = data.title || 'Why Choose Partnerdesk?';
-                document.getElementById('whyChoosePara1').textContent = data.para1 || 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.';
-                document.getElementById('whyChoosePara2').textContent = data.para2 || 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.';
-                document.getElementById('whyChoosePara3').textContent = data.para3 || 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.';
-            } else {
-                // Fallback to static defaults if no data
-                document.getElementById('whyChooseTitle').textContent = 'Why Choose Partnerdesk?';
-                document.getElementById('whyChoosePara1').textContent = 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.';
-                document.getElementById('whyChoosePara2').textContent = 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.';
-                document.getElementById('whyChoosePara3').textContent = 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.';
-            }
+            const data = docSnap.exists() ? docSnap.data() : DEFAULT_HOMEPAGE_CONTENT.extraContent;
+            document.getElementById('whyChooseTitle').textContent = data.title;
+            document.getElementById('whyChoosePara1').textContent = data.para1;
+            document.getElementById('whyChoosePara2').textContent = data.para2;
+            document.getElementById('whyChoosePara3').textContent = data.para3;
         }, (error) => {
             console.error("Error fetching extra content:", error);
             // Fallback to static defaults on error
-            document.getElementById('whyChooseTitle').textContent = 'Why Choose Partnerdesk?';
-            document.getElementById('whyChoosePara1').textContent = 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.';
-            document.getElementById('whyChoosePara2').textContent = 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.';
-            document.getElementById('whyChoosePara3').textContent = 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.';
+            document.getElementById('whyChooseTitle').textContent = DEFAULT_HOMEPAGE_CONTENT.extraContent.title;
+            document.getElementById('whyChoosePara1').textContent = DEFAULT_HOMEPAGE_CONTENT.extraContent.para1;
+            document.getElementById('whyChoosePara2').textContent = DEFAULT_HOMEPAGE_CONTENT.extraContent.para2;
+            document.getElementById('whyChoosePara3').textContent = DEFAULT_HOMEPAGE_CONTENT.extraContent.para3;
         });
 
         // Showcase Cards
         onSnapshot(showcaseCardsCollectionRef, (snapshot) => {
+            const cardIds = ['showcase_internships', 'showcase_learning', 'showcase_freelancing', 'showcase_partners'];
+            const fetchedCards = {};
             snapshot.forEach(docSnap => {
-                const cardId = docSnap.id;
-                // Only process documents that are actual showcase cards
-                if (cardId.startsWith('showcase_')) {
-                    const data = docSnap.data();
-                    const baseCardName = cardId.replace('showcase_', ''); // e.g., 'internships'
-                    const cardElement = document.getElementById(`${cardId}Card`);
-                    if (cardElement) {
-                        document.getElementById(`${cardId}Image`).src = data.imageUrl || `images/${baseCardName}_showcase.png`; // Fallback to local image
-                        document.getElementById(`${cardId}Title`).textContent = data.title || baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1);
-                        document.getElementById(`${cardId}Description`).textContent = data.description || `Default description for ${baseCardName} section.`;
-                        document.getElementById(`${cardId}CtaLink`).textContent = data.ctaText || `Learn More About ${baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1)} →`;
-                        document.getElementById(`${cardId}CtaLink`).href = data.ctaLink || `${baseCardName}.html`;
-
-                        // Apply colors dynamically
-                        cardElement.style.backgroundColor = data.bgColor || '';
-                        cardElement.style.borderColor = data.borderColor || '';
-                        document.getElementById(`${cardId}Title`).style.color = data.borderColor || ''; // Title color matches border
-                        document.getElementById(`${cardId}CtaLink`).style.backgroundColor = data.borderColor || ''; // Button color matches border
-                        document.getElementById(`${cardId}CtaLink`).onmouseover = function() {
-                            this.style.backgroundColor = adjustColor(data.borderColor || '#007bff', -20); // Darken on hover
-                        };
-                        document.getElementById(`${cardId}CtaLink`).onmouseout = function() {
-                            this.style.backgroundColor = data.borderColor || '#007bff'; // Revert on mouse out
-                        };
-                    }
+                if (docSnap.id.startsWith('showcase_')) {
+                    fetchedCards[docSnap.id] = docSnap.data();
                 }
             });
+
+            for (const cardId of cardIds) {
+                const data = fetchedCards[cardId] || DEFAULT_HOMEPAGE_CONTENT[cardId];
+                const baseCardName = cardId.replace('showcase_', '');
+                const cardElement = document.getElementById(`${cardId}Card`);
+                if (cardElement && data) {
+                    document.getElementById(`${cardId}Image`).src = data.imageUrl;
+                    document.getElementById(`${cardId}Title`).textContent = data.title;
+                    document.getElementById(`${cardId}Description`).textContent = data.description;
+                    document.getElementById(`${cardId}CtaLink`).textContent = data.ctaText;
+                    document.getElementById(`${cardId}CtaLink`).href = data.ctaLink;
+
+                    // Apply colors dynamically
+                    cardElement.style.backgroundColor = data.bgColor;
+                    cardElement.style.borderColor = data.borderColor;
+                    document.getElementById(`${cardId}Title`).style.color = data.borderColor;
+                    document.getElementById(`${cardId}CtaLink`).style.backgroundColor = data.borderColor;
+                    document.getElementById(`${cardId}CtaLink`).onmouseover = function() {
+                        this.style.backgroundColor = adjustColor(data.borderColor, -20); // Darken on hover
+                    };
+                    document.getElementById(`${cardId}CtaLink`).onmouseout = function() {
+                        this.style.backgroundColor = data.borderColor; // Revert on mouse out
+                    };
+                }
+            }
         }, (error) => {
             console.error("Error fetching showcase cards:", error);
             // Fallback to static defaults for each card on error
             const cardIds = ['showcase_internships', 'showcase_learning', 'showcase_freelancing', 'showcase_partners'];
             for (const cardId of cardIds) {
-                const baseCardName = cardId.replace('showcase_', '');
+                const data = DEFAULT_HOMEPAGE_CONTENT[cardId];
                 const cardElement = document.getElementById(`${cardId}Card`);
-                if (cardElement) {
-                    let defaultBg = '#2a2a40';
-                    let defaultBorder = '#007bff';
-                    let defaultImage = `images/${baseCardName}_showcase.png`;
+                if (cardElement && data) {
+                    const baseCardName = cardId.replace('showcase_', '');
+                    document.getElementById(`${cardId}Image`).src = data.imageUrl;
+                    document.getElementById(`${cardId}Title`).textContent = data.title;
+                    document.getElementById(`${cardId}Description`).textContent = data.description;
+                    document.getElementById(`${cardId}CtaLink`).textContent = data.ctaText;
+                    document.getElementById(`${cardId}CtaLink`).href = data.ctaLink;
 
-                    if (baseCardName === 'internships') {
-                        defaultBg = 'rgba(255, 255, 255, 0.08)';
-                        defaultBorder = '#007bff';
-                    } else if (baseCardName === 'learning') {
-                        defaultBg = '#2a2a40';
-                        defaultBorder = '#00c853';
-                    } else if (baseCardName === 'freelancing') {
-                        defaultBg = '#283040';
-                        defaultBorder = '#17a2b8';
-                    } else if (baseCardName === 'partners') {
-                        defaultBg = '#253028';
-                        defaultBorder = '#6f42c1';
-                    }
-
-                    document.getElementById(`${cardId}Image`).src = defaultImage;
-                    document.getElementById(`${cardId}Title`).textContent = baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1);
-                    document.getElementById(`${cardId}Description`).textContent = `Default description for ${baseCardName} section.`;
-                    document.getElementById(`${cardId}CtaLink`).textContent = `Learn More About ${baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1)} →`;
-                    document.getElementById(`${cardId}CtaLink`).href = `${baseCardName}.html`;
-
-                    cardElement.style.backgroundColor = defaultBg;
-                    cardElement.style.borderColor = defaultBorder;
-                    document.getElementById(`${cardId}Title`).style.color = defaultBorder;
-                    document.getElementById(`${cardId}CtaLink`).style.backgroundColor = defaultBorder;
+                    cardElement.style.backgroundColor = data.bgColor;
+                    cardElement.style.borderColor = data.borderColor;
+                    document.getElementById(`${cardId}Title`).style.color = data.borderColor;
+                    document.getElementById(`${cardId}CtaLink`).style.backgroundColor = data.borderColor;
                     document.getElementById(`${cardId}CtaLink`).onmouseover = function() {
-                        this.style.backgroundColor = adjustColor(defaultBorder, -20);
+                        this.style.backgroundColor = adjustColor(data.borderColor, -20);
                     };
                     document.getElementById(`${cardId}CtaLink`).onmouseout = function() {
-                        this.style.backgroundColor = defaultBorder;
+                        this.style.backgroundColor = data.borderColor;
                     };
                 }
             }
@@ -1350,7 +1323,7 @@
                 // Default static info if no document exists
                 document.getElementById('footerAddress').textContent = '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
                 document.getElementById('footerEmail').textContent = 'info@partnerdesk.in';
-                document.getElementById('footerPhone').textContent = '+91-XXXXXXXXXX';
+                document.getElementById('footerPhone').textContent = '91-XXXXXXXXXX';
                 document.getElementById('footerMsmeRegNo').textContent = 'UDYAM-UP-03-0104523';
             }
         }, (error) => {
@@ -1358,7 +1331,7 @@
             // Fallback to default static info on error
             document.getElementById('footerAddress').textContent = '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
             document.getElementById('footerEmail').textContent = 'info@partnerdesk.in';
-            document.getElementById('footerPhone').textContent = '+91-XXXXXXXXXX';
+            document.getElementById('footerPhone').textContent = '91-XXXXXXXXXX';
             document.getElementById('footerMsmeRegNo').textContent = 'UDYAM-UP-03-0104523';
         });
     }
