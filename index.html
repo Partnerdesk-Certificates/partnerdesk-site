@@ -5,19 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Partnerdesk - Grow With Us</title>
 
+  <!-- SEO Meta Tags -->
   <meta name="description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects in digital marketing, sales, AI, and more.">
   <meta name="keywords" content="Partnerdesk, internships, freelancing, digital marketing, sales, AI, online courses, learning, career growth, skill development, business collaboration, student opportunities, professional network, India">
   <meta name="author" content="Partnerdesk">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://yourwebsite.com/index.html"> <meta property="og:title" content="Partnerdesk - Grow With Us">
+  <link rel="canonical" href="https://yourwebsite.com/index.html"> <!-- Replace with your actual canonical URL -->
+
+  <!-- Open Graph / Facebook / LinkedIn Meta Tags -->
+  <meta property="og:title" content="Partnerdesk - Grow With Us">
   <meta property="og:description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects.">
-  <meta property="og:image" content="https://yourwebsite.com/images/logo.png"> <meta property="og:url" content="https://yourwebsite.com/index.html"> <meta property="og:type" content="website">
+  <meta property="og:image" content="https://yourwebsite.com/images/logo.png"> <!-- Replace with your actual logo URL -->
+  <meta property="og:url" content="https://yourwebsite.com/index.html"> <!-- Replace with your actual URL -->
+  <meta property="og:type" content="website">
   <meta property="og:site_name" content="Partnerdesk">
 
+  <!-- Twitter Card Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@Partnerdesk_Official"> <meta name="twitter:title" content="Partnerdesk - Grow With Us">
+  <meta name="twitter:site" content="@Partnerdesk_Official"> <!-- Replace with your actual Twitter handle -->
+  <meta name="twitter:title" content="Partnerdesk - Grow With Us">
   <meta name="twitter:description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects.">
-  <meta name="twitter:image" content="https://yourwebsite.com/images/logo.png"> <script type="application/ld+json">
+  <meta name="twitter:image" content="https://yourwebsite.com/images/logo.png"> <!-- Replace with your actual logo URL -->
+
+  <!-- JSON-LD Schema Markup for Organization and WebSite -->
+  <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@graph": [
@@ -636,6 +647,7 @@
 </head>
 <body>
 
+  <!-- Custom Confirmation Modal HTML (replaces alert/confirm) -->
   <div id="customConfirmModal" class="custom-modal-overlay">
     <div class="custom-modal-content">
       <p id="modalMessageText"></p>
@@ -644,19 +656,23 @@
     </div>
   </div>
 
+  <!-- Logo and Site Title -->
   <div class="logo-title-container">
     <img src="images/logo.png" alt="Partnerdesk Logo" class="logo" id="siteLogo">
     <span class="site-title">Partnerdesk</span>
   </div>
 
+  <!-- Hamburger Menu -->
   <div class="hamburger-menu" onclick="window.toggleNav()">
     <div class="bar"></div>
     <div class="bar"></div>
     <div class="bar"></div>
   </div>
 
+  <!-- Navigation Overlay -->
   <div class="overlay" onclick="window.toggleNav()"></div>
 
+  <!-- Navigation Bar -->
   <nav id="main-nav">
     <a href="index.html" onclick="window.toggleNav()">Home</a>
     <a href="internships.html" onclick="window.toggleNav()">Internships</a>
@@ -665,10 +681,13 @@
     <a href="partners.html" onclick="window.toggleNav()">Partners</a>
     <a href="about.html" onclick="window.toggleNav()">About</a>
     <a href="contact.html" onclick="window.toggleNav()">Contact</a>
-    <div class="nav-divider my-4 h-px bg-gray-700"></div> <a href="verify.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
-    <a href="downloads.html" onclick="window.toggleNav()">Downloads</a> <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div> <!-- Divider for new section -->
+    <a href="verify.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
+    <a href="downloads.html" onclick="window.toggleNav()">Downloads</a> <!-- Downloads link restored -->
+    <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a>
   </nav>
 
+  <!-- Header Section -->
   <header>
     <h1 id="headerTitle">Grow With Us — Partnerdesk</h1>
     <p id="headerSubtitle">Your bridge to internships, freelancing, and real business collaboration.</p>
@@ -681,9 +700,11 @@
     </div>
   </header>
 
+  <!-- Main Content Sections -->
   <section class="section">
     <h2 id="ecosystemTitle">Explore Our Ecosystem</h2>
 
+    <!-- Prominent Internships Showcase Card -->
     <div class="showcase-card" id="showcase_internshipsCard">
       <img src="images/internship_showcase.png" alt="Internships Showcase" id="showcase_internshipsImage">
       <h3 id="showcase_internshipsTitle">Internships</h3>
@@ -691,6 +712,7 @@
       <a href="internships.html" class="cta-button" id="showcase_internshipsCtaLink">Learn More About Internships →</a>
     </div>
 
+    <!-- Prominent Learning Centre Showcase Card -->
     <div class="showcase-card" id="showcase_learningCard">
       <img src="images/learning_showcase.png" alt="Learning Centre Showcase" id="showcase_learningImage">
       <h3 id="showcase_learningTitle">Learning Centre</h3>
@@ -698,6 +720,7 @@
       <a href="learning.html" class="cta-button" id="showcase_learningCtaLink">Explore Courses →</a>
     </div>
 
+    <!-- Prominent Freelancing Showcase Card -->
     <div class="showcase-card" id="showcase_freelancingCard">
       <img src="images/freelancing_showcase.png" alt="Freelancing Showcase" id="showcase_freelancingImage">
       <h3 id="showcase_freelancingTitle">Freelancing</h3>
@@ -705,6 +728,7 @@
       <a href="freelancing.html" class="cta-button" id="showcase_freelancingCtaLink">Find Freelance Work →</a>
     </div>
 
+    <!-- Prominent Partner With Us Showcase Card -->
     <div class="showcase-card" id="showcase_partnersCard">
       <img src="images/partners_showcase.png" alt="Partner With Us Showcase" id="showcase_partnersImage">
       <h3 id="showcase_partnersTitle">Partner With Us</h3>
@@ -721,11 +745,14 @@
     <p id="whyChoosePara3">We are committed to building partnerships that last and foster long-term success. Whether you're an ambitious student, an innovative startup, or an established enterprise — there's a dedicated space for you to thrive and collaborate at Partnerdesk.</p>
   </section>
 
+  <!-- Admin Panel Container -->
   <section class="section">
     <div id="adminPanelContainer" class="admin-panel-container">
-      </div>
+      <!-- Admin panel content will be rendered here by JavaScript -->
+    </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>© 2025 Partnerdesk. All Rights Reserved.</p>
     <p>Partnerdesk is a registered MSME under the Government of India.</p>
@@ -734,7 +761,8 @@
     <p><span id="footerAddress">9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</span></p>
     <p>Email: <span id="footerEmail">info@partnerdesk.in</span></p>
     <p>Phone: <span id="footerPhone">+91-XXXXXXXXXX</span></p>
-    </footer>
+    <!-- Removed social media links from here -->
+  </footer>
 
   <script type="module">
     // Firebase SDK imports
@@ -823,15 +851,20 @@
             bgColor: '#253028',
             borderColor: '#6f42c1'
         },
+        // Only logoUrl is managed here for general settings
         generalSettings: {
-            logoUrl: 'images/logo.png', // Default local path
-            footerMsmeRegNo: 'UDYAM-UP-03-0104523',
-            footerAddress: '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001',
-            footerEmail: 'info@partnerdesk.in',
-            footerPhone: '+91-XXXXXXXXXX'
+            logoUrl: 'images/logo.png' // Default local path
         }
     };
     // --- End Centralized Default Homepage Content ---
+
+    // --- Default Contact Info (for footer fallback if Firestore fails) ---
+    const DEFAULT_CONTACT_INFO = {
+        msmeRegNo: 'UDYAM-UP-03-0104523',
+        address: '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001',
+        email: 'info@partnerdesk.in',
+        phone: '+91-XXXXXXXXXX'
+    };
 
 
     // --- Utility Functions ---
@@ -917,6 +950,7 @@
             <h2 class="text-3xl font-bold mb-4 text-white">Manage Homepage Content</h2>
             <p id="adminMessage" class="admin-message"></p>
 
+            <!-- General Settings Section Controls (Only Logo) -->
             <div class="admin-panel bg-gray-800 p-6 rounded-lg mb-8">
                 <h3 class="text-2xl font-bold mb-4 text-white">General Settings</h3>
                 <div class="input-group">
@@ -928,24 +962,9 @@
                     </div>
                     <input type="hidden" id="currentLogoImageUrl" value="">
                 </div>
-                <div class="input-group">
-                    <label for="editMsmeRegNo">MSME Registration No.:</label>
-                    <input type="text" id="editMsmeRegNo" placeholder="e.g., UDYAM-UP-03-0104523">
-                </div>
-                <div class="input-group">
-                    <label for="editFooterAddress">Registered Office Address:</label>
-                    <textarea id="editFooterAddress" placeholder="e.g., 9/8, George Town, Prayagraj..."></textarea>
-                </div>
-                <div class="input-group">
-                    <label for="editFooterEmail">Email:</label>
-                    <input type="email" id="editFooterEmail" placeholder="e.g., info@partnerdesk.in">
-                </div>
-                <div class="input-group">
-                    <label for="editFooterPhone">Phone:</label>
-                    <input type="tel" id="editFooterPhone" placeholder="e.g., +91-XXXXXXXXXX">
-                </div>
             </div>
 
+            <!-- Header Section Controls -->
             <div class="admin-panel bg-gray-800 p-6 rounded-lg mb-8">
                 <h3 class="text-2xl font-bold mb-4 text-white">Header Section</h3>
                 <div class="input-group">
@@ -958,12 +977,15 @@
                 </div>
             </div>
 
+            <!-- Showcase Cards Controls -->
             <div class="admin-panel bg-gray-800 p-6 rounded-lg mb-8">
                 <h3 class="text-2xl font-bold mb-4 text-white">Showcase Cards</h3>
                 <div id="showcaseCardAdminForms">
-                    </div>
+                    <!-- Forms for each card will be dynamically inserted here -->
+                </div>
             </div>
 
+            <!-- Why Choose Partnerdesk? Section Controls -->
             <div class="admin-panel bg-gray-800 p-6 rounded-lg mb-8">
                 <h3 class="text-2xl font-bold mb-4 text-white">Why Choose Partnerdesk? Section</h3>
                 <div class="input-group">
@@ -1016,7 +1038,7 @@
                     currentLogoImageUrlInput.value = '';
                     logoImageStatus.textContent = 'Upload failed.';
                     logoImageStatus.style.color = '#EF4444';
-                    logoImagePreview.src = currentLogoImageUrlInput.value || DEFAULT_HOMEPAGE_CONTENT.generalSettings.logoUrl || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image'; // Revert to previous or placeholder
+                    logoImagePreview.src = DEFAULT_HOMEPAGE_CONTENT.generalSettings.logoUrl || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image'; // Revert to previous or placeholder
                 }
             } else {
                 logoImagePreview.src = currentLogoImageUrlInput.value || DEFAULT_HOMEPAGE_CONTENT.generalSettings.logoUrl || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image';
@@ -1043,7 +1065,7 @@
         const showcaseCardsCollectionRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'homepage');
 
         try {
-            // Fetch General Settings (including logo and footer)
+            // Fetch General Settings (only logo)
             const generalSettingsSnap = await getDoc(generalSettingsDocRef);
             let generalSettingsData = generalSettingsSnap.exists() ? generalSettingsSnap.data() : DEFAULT_HOMEPAGE_CONTENT.generalSettings;
             if (!generalSettingsSnap.exists()) {
@@ -1052,10 +1074,6 @@
             }
             document.getElementById('previewLogoImage').src = generalSettingsData.logoUrl || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image';
             document.getElementById('currentLogoImageUrl').value = generalSettingsData.logoUrl || '';
-            document.getElementById('editMsmeRegNo').value = generalSettingsData.footerMsmeRegNo || '';
-            document.getElementById('editFooterAddress').value = generalSettingsData.footerAddress || '';
-            document.getElementById('editFooterEmail').value = generalSettingsData.footerEmail || '';
-            document.getElementById('editFooterPhone').value = generalSettingsData.footerPhone || '';
 
 
             // Fetch header content
@@ -1201,13 +1219,9 @@
         document.getElementById('adminMessage').style.color = '#ffda79';
 
         try {
-            // Save General Settings (including logo and footer)
+            // Save General Settings (only logo)
             const generalSettingsData = {
                 logoUrl: document.getElementById('currentLogoImageUrl').value.trim(),
-                footerMsmeRegNo: document.getElementById('editMsmeRegNo').value.trim(),
-                footerAddress: document.getElementById('editFooterAddress').value.trim(),
-                footerEmail: document.getElementById('editFooterEmail').value.trim(),
-                footerPhone: document.getElementById('editFooterPhone').value.trim(),
                 lastUpdated: new Date().toISOString(),
                 updatedBy: auth.currentUser.uid
             };
@@ -1271,23 +1285,32 @@
         const headerDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'header');
         const extraContentDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'extraContent');
         const generalSettingsDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'generalSettings', 'mainSettings');
+        const contactDocRef = doc(db, `artifacts/${currentAppId}/public/data/contactInfo`, 'mainContact'); // Separate for footer
         const showcaseCardsCollectionRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'homepage');
 
-        // General Settings (including logo and footer)
+        // General Settings (only logo)
         onSnapshot(generalSettingsDocRef, (docSnap) => {
             const data = docSnap.exists() ? docSnap.data() : DEFAULT_HOMEPAGE_CONTENT.generalSettings;
             document.getElementById('siteLogo').src = data.logoUrl || DEFAULT_HOMEPAGE_CONTENT.generalSettings.logoUrl;
-            document.getElementById('footerMsmeRegNo').textContent = data.footerMsmeRegNo || DEFAULT_HOMEPAGE_CONTENT.generalSettings.footerMsmeRegNo;
-            document.getElementById('footerAddress').textContent = data.footerAddress || DEFAULT_HOMEPAGE_CONTENT.generalSettings.footerAddress;
-            document.getElementById('footerEmail').textContent = data.footerEmail || DEFAULT_HOMEPAGE_CONTENT.generalSettings.footerEmail;
-            document.getElementById('footerPhone').textContent = data.footerPhone || DEFAULT_HOMEPAGE_CONTENT.generalSettings.footerPhone;
         }, (error) => {
             console.error("Error fetching general settings:", error);
             document.getElementById('siteLogo').src = DEFAULT_HOMEPAGE_CONTENT.generalSettings.logoUrl;
-            document.getElementById('footerMsmeRegNo').textContent = DEFAULT_HOMEPAGE_CONTENT.generalSettings.footerMsmeRegNo;
-            document.getElementById('footerAddress').textContent = DEFAULT_HOMEPAGE_CONTENT.generalSettings.footerAddress;
-            document.getElementById('footerEmail').textContent = DEFAULT_HOMEPAGE_CONTENT.generalSettings.footerEmail;
-            document.getElementById('footerPhone').textContent = DEFAULT_HOMEPAGE_CONTENT.generalSettings.footerPhone;
+        });
+
+        // Footer Contact Info (always loaded separately)
+        onSnapshot(contactDocRef, (docSnap) => {
+            const data = docSnap.exists() ? docSnap.data() : DEFAULT_CONTACT_INFO;
+            document.getElementById('footerMsmeRegNo').textContent = data.msmeRegNo;
+            document.getElementById('footerAddress').textContent = data.address;
+            document.getElementById('footerEmail').textContent = data.email;
+            document.getElementById('footerPhone').textContent = data.phone;
+        }, (error) => {
+            console.error("Error fetching contact info:", error);
+            // Fallback to default static info on error
+            document.getElementById('footerMsmeRegNo').textContent = DEFAULT_CONTACT_INFO.msmeRegNo;
+            document.getElementById('footerAddress').textContent = DEFAULT_CONTACT_INFO.address;
+            document.getElementById('footerEmail').textContent = DEFAULT_CONTACT_INFO.email;
+            document.getElementById('footerPhone').textContent = DEFAULT_CONTACT_INFO.phone;
         });
 
 
@@ -1441,7 +1464,7 @@
     // --- Event Listeners and Initial Load ---
 
     document.addEventListener('DOMContentLoaded', () => {
-        loadPublicHomepageContent(); // Load public content including general settings
+        loadPublicHomepageContent(); // Load public content including general settings and footer contact info
 
         if (auth) {
             onAuthStateChanged(auth, (user) => {
