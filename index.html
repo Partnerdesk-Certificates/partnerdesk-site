@@ -1300,7 +1300,6 @@
         // Footer Contact Info (always loaded separately)
         onSnapshot(contactDocRef, (docSnap) => {
             const data = docSnap.exists() ? docSnap.data() : DEFAULT_CONTACT_INFO;
-            document.getElementById('footerMsmeRegNo').textContent = data.msmeRegNo;
             document.getElementById('footerAddress').textContent = data.address;
             document.getElementById('footerEmail').textContent = data.email;
             document.getElementById('footerPhone').textContent = data.phone;
