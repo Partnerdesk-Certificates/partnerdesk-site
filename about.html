@@ -71,6 +71,7 @@
       box-shadow: -5px 0 15px rgba(0,0,0,0.3);
       transition: transform 0.3s ease-in-out;
       transform: translateX(100%);
+      overflow-y: auto; /* Make it scrollable for many links */
     }
 
     nav.active {
@@ -181,47 +182,108 @@
       text-shadow: 0 2px 10px rgba(0,0,0,0.3);
     }
 
+    /* Specific Section Backgrounds for visual appeal */
+    .mission-vision-section {
+      background-color: #22223b; /* Slightly lighter dark purple */
+      border-radius: 20px;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem 2rem; /* Adjusted padding */
+    }
+
+    .values-section {
+      background-color: #252540; /* Another shade of dark purple */
+      border-radius: 20px;
+      margin-bottom: 3rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 3rem 2rem; /* Adjusted padding */
+    }
+
+    /* Team Category Section Styling */
+    .team-category-section {
+      background-color: #2a2a4a; /* Darker background for category sections */
+      border-radius: 20px;
+      padding: 2.5rem;
+      margin-bottom: 3rem; /* Space between categories */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: left; /* Align category text to left */
+    }
+
+    .team-category-section h3 {
+      font-size: 2rem; /* Larger heading for category */
+      font-weight: 700;
+      color: #9F7AEA; /* Purple accent */
+      margin-bottom: 0.8rem;
+      text-align: center;
+    }
+
+    .team-category-section p.category-description {
+      font-size: 1.1rem;
+      color: #c0c0d0;
+      margin-bottom: 2rem;
+      text-align: center;
+    }
+
     .about-content-grid {
       display: grid;
       gap: 1.5rem; /* Slightly reduced gap */
-      margin-top: 3rem;
+      margin-top: 1.5rem; /* Space between category description and members */
       text-align: left;
       justify-content: center; /* Center items in the grid */
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Default for smaller screens */
     }
 
-    /* Specific grid for larger screens for uniformity */
-    @media (min-width: 1024px) {
-      .about-content-grid {
-        grid-template-columns: repeat(4, 1fr); /* Four columns on larger screens */
-      }
+    /* Specific grid for larger screens for uniformity (Mission & Vision) */
+    .mission-vision-section .about-content-grid {
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); /* Wider cards for M&V */
     }
-    @media (min-width: 768px) and (max-width: 1023px) {
-      .about-content-grid {
-        grid-template-columns: repeat(2, 1fr); /* Two columns on medium screens */
-      }
+
+    /* Specific grid for larger screens for uniformity (Values) */
+    .values-section .about-content-grid {
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Four columns on larger screens */
     }
 
 
+    /* General .about-card styles (for Mission/Vision/Values) */
     .about-card {
       background: #2a2a4a; /* Card background */
       border-radius: 20px;
-      padding: 1.5rem; /* Reduced padding */
+      padding: 1.5rem;
       box-shadow: 0 8px 30px rgba(0,0,0,0.4);
       transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      display: flex; /* Use flex for vertical centering of content */
+      display: flex;
       flex-direction: column;
-      align-items: center; /* Center content horizontally */
-      text-align: center; /* Center text within card */
-      height: auto; /* Allow height to adjust */
-      min-height: 350px; /* Minimum height for consistency */
-      margin: 0 auto; /* Center individual cards within their grid cell */
+      align-items: center;
+      text-align: center;
+      height: auto;
+      min-height: 280px; /* Adjusted min-height for Mission/Vision/Values cards */
+      margin: 0 auto;
     }
 
+    /* Override for team member cards - merge with background */
+    .team-category-section .about-card {
+      background: none; /* Make background transparent */
+      border: none; /* Remove border */
+      box-shadow: none; /* Remove shadow */
+      height: 400px; /* Maintain fixed height */
+      min-height: auto; /* Override min-height from general .about-card */
+      padding: 1.5rem; /* Keep padding for spacing */
+    }
+
+    /* General hover effect for all cards (will be overridden for team members) */
     .about-card:hover {
       transform: translateY(-8px);
-      box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.5); /* This applies to M/V/Values cards */
+    }
+
+    /* Specific hover effect for team member cards */
+    .team-category-section .about-card:hover {
+      box-shadow: none; /* Remove shadow on hover for team member cards */
+      /* transform: translateY(-8px); // Keep the lift effect if desired, it's inherited */
     }
 
     .about-card h3 {
@@ -229,9 +291,8 @@
       font-weight: 700;
       margin-bottom: 0.6rem; /* Reduced margin */
       color: #9F7AEA; /* Purple accent for titles */
-      word-wrap: break-word; /* Ensures long words break and wrap */
       overflow-wrap: break-word; /* Ensures long words break and wrap */
-      word-break: break-all; /* Force break for very long words */
+      word-break: normal; /* Ensures entire words go to next line */
     }
 
     .about-card p {
@@ -239,9 +300,8 @@
       color: #c0c0d0;
       margin-bottom: 0.6rem; /* Reduced margin */
       flex-grow: 1; /* Allows text to take available space */
-      word-wrap: break-word; /* Ensures long words break and wrap */
       overflow-wrap: break-word; /* Ensures long words break and wrap */
-      word-break: break-all; /* Force break for very long words */
+      word-break: normal; /* Ensures entire words go to next line */
     }
 
     /* Styles for truncated text */
@@ -327,7 +387,8 @@
 
     .admin-panel-container input[type="text"],
     .admin-panel-container textarea,
-    .admin-panel-container input[type="number"] {
+    .admin-panel-container input[type="number"],
+    .admin-panel-container select { /* Added select for consistency */
       background-color: #2a2a4a !important;
       border: 1px solid #5a5a7a;
       padding: 0.8rem 1.2rem;
@@ -338,6 +399,41 @@
       width: 100%;
       max-width: 400px;
     }
+
+    /* Style for category checkboxes */
+    .admin-panel-container .category-checkbox-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-top: 0.5rem;
+        max-width: 400px;
+    }
+
+    .admin-panel-container .category-checkbox-group label {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background-color: #2a2a4a;
+        padding: 0.6rem 1rem;
+        border-radius: 20px;
+        border: 1px solid #5a5a7a;
+        cursor: pointer;
+        transition: background-color 0.2s, border-color 0.2s;
+    }
+
+    .admin-panel-container .category-checkbox-group label:hover {
+        background-color: #3e3e5a;
+        border-color: #9F7AEA;
+    }
+
+    .admin-panel-container .category-checkbox-group input[type="checkbox"] {
+        width: 16px;
+        height: 16px;
+        accent-color: #9F7AEA; /* Purple accent for checkbox */
+        cursor: pointer;
+        margin: 0; /* Remove default margin */
+    }
+
 
     .admin-panel-container input[type="text"]::placeholder,
     .admin-panel-container textarea::placeholder,
@@ -364,7 +460,7 @@
 
     .admin-panel-container .admin-message {
       background-color: #2a2a4a;
-      border-left: 44px solid #9F7AEA; /* Purple border for message */
+      border-left: 4px solid #9F7AEA; /* Purple border for message */
       padding: 1rem;
       margin-top: 2rem;
       border-radius: 8px;
@@ -495,6 +591,25 @@
         background-color: #4a4a6a;
     }
 
+    /* Image upload preview */
+    .image-preview-container {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .image-preview-container img {
+        max-width: 150px;
+        max-height: 150px;
+        border-radius: 8px;
+        border: 1px solid #5a5a7a;
+        object-fit: cover;
+    }
+
+    .image-preview-container p {
+        font-size: 0.85rem;
+        color: #c0c0d0;
+        margin-top: 0.5rem;
+    }
 
     footer {
       text-align: center;
@@ -504,10 +619,17 @@
       color: #888888;
       border-top-left-radius: 30px;
       border-top-right-radius: 30px;
+      border-top: none; /* Ensure no top border */
     }
 
     footer p {
       margin-bottom: 0.5rem;
+    }
+
+    /* Ensure dynamic spans in footer appear on new lines */
+    footer p span {
+      display: block; /* Make spans take full width, forcing new line */
+      margin-top: 0.2rem; /* Small margin for visual separation */
     }
 
     /* Responsive adjustments */
@@ -563,10 +685,23 @@
         width: 100px; /* Even more reduced image size */
         height: 100px;
       }
+      /* Ensure team member cards stay fixed height on smaller screens too */
+      .team-category-section .about-card {
+        height: 380px; /* Adjusted fixed height for mobile */
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Custom Confirmation Modal HTML (replaces alert/confirm) -->
+  <div id="customConfirmModal" class="custom-modal-overlay">
+    <div class="custom-modal-content">
+      <p id="modalMessageText"></p>
+      <button class="confirm-btn" id="modalConfirmBtn">Yes</button>
+      <button class="cancel-btn" id="modalCancelBtn">Cancel</button>
+    </div>
+  </div>
 
   <!-- Logo and Site Title - Consistent with other pages -->
   <div class="logo-title-container">
@@ -592,9 +727,9 @@
     <a href="freelancing.html" onclick="window.toggleNav()">Freelancing</a>
     <a href="partners.html" onclick="window.toggleNav()">Partners</a>
     <a href="about.html" onclick="window.toggleNav()">About</a>
-    <a href="contact.html" onclick="window.toggleNav()">Contact</a>
+    <a href="contact.html" onclick="window.toggleNav()">Contact</a> <!-- Added Contact link -->
     <div class="nav-divider my-4 h-px bg-gray-700"></div>
-    <a href="authenticate.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
+    <a href="verify.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
     <a href="downloads.html" onclick="window.toggleNav()">Downloads</a>
     <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a>
   </nav>
@@ -613,7 +748,7 @@
   </section>
 
   <!-- Mission & Vision Section -->
-  <section class="section">
+  <section class="section mission-vision-section">
     <h2>Our Mission & Vision</h2>
     <div class="about-content-grid">
       <div class="about-card">
@@ -628,7 +763,7 @@
   </section>
 
   <!-- Our Values Section -->
-  <section class="section">
+  <section class="section values-section">
     <h2>Our Core Values</h2>
     <div class="about-content-grid">
       <div class="about-card">
@@ -656,38 +791,23 @@
     <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
       Our dedicated team is passionate about empowering individuals and driving success.
     </p>
-    <div class="about-content-grid" id="teamMembersGrid">
-      <!-- Team members will be dynamically loaded here -->
+    <div id="teamCategoriesAndMembersDisplay">
+      <!-- Team categories and their members will be dynamically loaded here -->
       <p id="noTeamMembersMessage" class="text-xl text-gray-400 mt-10 hidden full-width">No team members added yet.</p>
     </div>
   </section>
 
-  <!-- Our Stars Section -->
-  <section class="section">
-    <h2>Our Stars</h2>
-    <p class="text-lg max-w-3xl mx-auto mb-10 text-gray-400">
-      These individuals have made a lasting impact on Partnerdesk, earning our prestigious Impact and Legacy Certificate.
-    </p>
-    <div class="about-content-grid" id="ourStarsGrid">
-      <!-- Our Stars will be dynamically loaded here -->
-      <p id="noStarsMessage" class="text-xl text-gray-400 mt-10 hidden full-width">No stars added yet.</p>
-    </div>
-  </section>
-
-  <!-- Admin Panel Container for Team Members -->
+  <!-- Admin Panel Container for Team Categories and Members -->
   <div id="teamAdminPanelContainer" class="admin-panel-container"></div>
-
-  <!-- Admin Panel Container for Our Stars -->
-  <div id="starsAdminPanelContainer" class="admin-panel-container"></div>
 
   <!-- Footer - Consistent with other pages -->
   <footer>
     <p>&copy; 2025 Partnerdesk. All Rights Reserved.</p>
     <p>Partnerdesk is a registered MSME under the Government of India.</p>
-    <p>Registration No. : UDYAM-UP-03-0104523</p>
-    <p>Registered Office :</p>
-    <p>9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</p>
-    <p>Email: info@partnerdesk.in</p>
+    <p>Registration No. : <span id="footerMsmeRegNo">UDYAM-UP-03-0104523</span></p>
+    <p>Registered Office : <span id="footerAddress">9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</span></p>
+    <p>Email: <span id="footerEmail">info@partnerdesk.in</span></p>
+    <p>Phone: <span id="footerPhone">+91-XXXXXXXXXX</span></p>
   </footer>
 
   <script type="module">
@@ -715,6 +835,14 @@
     let auth;
     let currentUserId;
 
+    // Cloudinary Configuration (REPLACE WITH YOUR OWN CREDENTIALS)
+    // You need to set up a Cloudinary account and get your Cloud Name and an Upload Preset.
+    // Ensure your Upload Preset is "unsigned" for client-side direct uploads.
+    const CLOUDINARY_CLOUD_NAME = 'dy15lyntn'; // e.g., 'my-cloud-name'
+    const CLOUDINARY_UPLOAD_PRESET = 'team_members_upload'; // e.g., 'my_unsigned_preset'
+    const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+
     // Initialize Firebase
     app = initializeApp(firebaseConfig);
     db = getFirestore(app);
@@ -727,37 +855,137 @@
 
     console.log("App ID being used (from firebaseConfig.projectId):", currentAppId);
 
+    /*
+     * IMPORTANT FIREBASE SECURITY RULES UPDATE:
+     *
+     * The 'permission-denied' error indicates that your Firestore Security Rules
+     * are preventing the public display of data. For the "Meet Our Team",
+     * "Our Stars", and "Footer Contact Info" sections to be visible to all users
+     * (even unauthenticated ones), you need to update your Firestore Security Rules
+     * in the Firebase Console.
+     *
+     * Please go to your Firebase Project -> Firestore Database -> Rules tab
+     * and replace your existing rules with the following:
+     *
+     * rules_version = '2';
+     * service cloud.firestore {
+     * match /databases/{database}/documents {
+     *
+     * // This rule allows public read access and authenticated write access
+     * // to ALL documents within ANY subcollection directly under
+     * // 'artifacts/{appId}/public/data/'
+     * match /artifacts/{appId}/public/data/{document=**} {
+     * allow read: true;
+     * allow write: if request.auth != null;
+     * }
+     *
+     * // Rule for the existing Certificates section (if it's a top-level collection)
+     * // Keep this separate if 'certificates' is not under 'artifacts/{appId}/public/data/'
+     * match /certificates/{docId} {
+     * allow read: true; // Public read access for certificate verification
+     * }
+     *
+     * // Standard rule for user-specific private data
+     * match /artifacts/{appId}/users/{userId}/{documents=**} {
+     * allow read, write: if request.auth != null && request.auth.uid == userId;
+     * }
+     * }
+     * }
+     *
+     * After updating the rules, remember to 'Publish' them.
+     */
+
     // --- Utility Functions ---
 
     // Custom Confirmation Modal (replaces alert/confirm)
     async function showConfirmModal(message) {
         return new Promise(resolve => {
-            const modalOverlay = document.createElement('div');
-            modalOverlay.className = 'custom-modal-overlay';
-            modalOverlay.innerHTML = `
-                <div class="custom-modal-content">
-                    <p>${message}</p>
-                    <button class="confirm-btn" id="modalConfirmBtn">Yes</button>
-                    <button class="cancel-btn" id="modalCancelBtn">Cancel</button>
-                </div>
-            `;
-            document.body.appendChild(modalOverlay);
+            const modalOverlay = document.getElementById('customConfirmModal');
+            const modalMessageText = document.getElementById('modalMessageText');
+            const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+            const modalCancelBtn = document.getElementById('modalCancelBtn');
 
-            // Activate the modal with a slight delay for CSS transition
-            setTimeout(() => modalOverlay.classList.add('active'), 10);
+            if (!modalOverlay || !modalMessageText || !modalConfirmBtn || !modalCancelBtn) {
+                console.error("Custom confirmation modal elements not found. Falling back to native confirm.");
+                resolve(confirm(message));
+                return;
+            }
 
-            document.getElementById('modalConfirmBtn').onclick = () => {
+            modalMessageText.textContent = message;
+            modalOverlay.classList.add('active');
+
+            const cleanup = () => {
                 modalOverlay.classList.remove('active');
-                modalOverlay.addEventListener('transitionend', () => modalOverlay.remove(), { once: true });
+                modalConfirmBtn.onclick = null;
+                modalCancelBtn.onclick = null;
+            };
+
+            modalConfirmBtn.onclick = () => {
+                cleanup();
                 resolve(true);
             };
-            document.getElementById('modalCancelBtn').onclick = () => {
-                modalOverlay.classList.remove('active');
-                modalOverlay.addEventListener('transitionend', () => modalOverlay.remove(), { once: true });
+            modalCancelBtn.onclick = () => {
+                cleanup();
                 resolve(false);
             };
         });
     }
+
+    // Helper function to ensure URL has https:// protocol
+    function ensureHttps(url) {
+        if (!url) return '';
+        if (url.startsWith('http://') || url.startsWith('https://')) {
+            return url;
+        }
+        return `https://${url}`;
+    }
+
+    // Function to handle "Read More/Less" toggle
+    function toggleReadMore(button) {
+        const paragraph = button.previousElementSibling; // The <p> tag
+        paragraph.classList.toggle('truncated');
+        if (paragraph.classList.contains('truncated')) {
+            button.textContent = 'Read More';
+        } else {
+            button.textContent = 'Read Less';
+        }
+    }
+
+    /**
+     * Uploads an image file to Cloudinary.
+     * @param {File} file - The image file to upload.
+     * @returns {Promise<string|null>} - A promise that resolves with the Cloudinary URL or null on error.
+     */
+    async function uploadImageToCloudinary(file) {
+        if (!file) return null;
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+        try {
+            const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Cloudinary upload failed:', errorData);
+                await showConfirmModal(`Image upload failed: ${errorData.error ? errorData.error.message : 'Unknown error'}`);
+                return null;
+            }
+
+            const data = await response.json();
+            console.log('Cloudinary upload successful:', data);
+            return data.secure_url;
+        } catch (error) {
+            console.error('Error uploading image to Cloudinary:', error);
+            await showConfirmModal(`Error uploading image: ${error.message}`);
+            return null;
+        }
+    }
+
 
     // --- Admin Panel Rendering Functions ---
 
@@ -769,13 +997,46 @@
       }
 
       adminPanelContainer.innerHTML = `
-        <h2 class="text-3xl font-bold mb-4 text-white">Manage Team Members</h2>
-        <div class="admin-panel">
+        <h2 class="text-3xl font-bold mb-4 text-white">Manage Team Categories</h2>
+        <div class="admin-panel mb-8">
           <p class="admin-message">
-            <strong>Note:</strong> Add, edit, or remove team members. Use "Position" to control display order (lower number appears first).
+            <strong>Note:</strong> Add, edit, or remove team categories (e.g., "Core Team", "Volunteers"). Use "Order" to control their display position.
+          </p>
+
+          <input type="hidden" id="currentTeamCategoryId">
+          <div class="input-group">
+              <label for="teamCategoryNameInput">Category Name:</label>
+              <input type="text" id="teamCategoryNameInput" placeholder="e.g., Core Team">
+          </div>
+          <div class="input-group">
+              <label for="teamCategoryDescriptionInput">Category Description:</label>
+              <textarea id="teamCategoryDescriptionInput" placeholder="A brief description of this team category."></textarea>
+          </div>
+          <div class="input-group">
+              <label for="teamCategoryOrderInput">Order (Number):</label>
+              <input type="number" id="teamCategoryOrderInput" placeholder="e.g., 1, 2, 3">
+          </div>
+          <button id="saveTeamCategoryButton">Add New Category</button>
+          <button id="clearTeamCategoryFormButton" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-200">Clear Form</button>
+
+          <div class="list-display" id="teamCategoryListDisplay">
+              <!-- Team categories will be listed here -->
+          </div>
+        </div>
+
+        <h2 class="text-3xl font-bold mb-4 text-white">Manage Team Members</h2>
+        <div class="admin-panel" id="teamMemberAdminPanel"> <!-- Added ID here -->
+          <p class="admin-message">
+            <strong>Note:</strong> Add, edit, or remove individual team members. Assign them to one or more categories.
           </p>
 
           <input type="hidden" id="currentTeamMemberId">
+          <div class="input-group">
+              <label>Categories:</label>
+              <div id="teamMemberCategoryCheckboxes" class="category-checkbox-group">
+                <!-- Category checkboxes will be dynamically populated here -->
+              </div>
+          </div>
           <div class="input-group">
               <label for="teamMemberNameInput">Name:</label>
               <input type="text" id="teamMemberNameInput" placeholder="e.g., Jane Doe">
@@ -789,8 +1050,13 @@
               <textarea id="teamMemberBioInput" placeholder="A short bio about the team member."></textarea>
           </div>
           <div class="input-group">
-              <label for="teamMemberImageUrlInput">Image URL:</label>
-              <input type="text" id="teamMemberImageUrlInput" placeholder="e.g., https://example.com/jane_doe.jpg">
+              <label for="teamMemberImageUpload">Upload Image:</label>
+              <input type="file" id="teamMemberImageUpload" accept="image/*">
+              <div id="teamMemberImagePreviewContainer" class="image-preview-container">
+                  <img id="teamMemberImagePreview" src="https://placehold.co/120x120/4a4a6a/e0e0eb?text=No+Image" alt="Image Preview">
+                  <p id="teamMemberUploadStatus"></p>
+              </div>
+              <input type="hidden" id="teamMemberImageUrlInput"> <!-- Hidden input to store Cloudinary URL -->
           </div>
           <div class="input-group">
               <label for="teamMemberLinkedInUrlInput">LinkedIn Profile URL (Optional):</label>
@@ -811,73 +1077,238 @@
               <!-- Team members will be listed here -->
           </div>
         </div>
-      `;
-
-      document.getElementById('saveTeamMemberButton').onclick = window.addOrUpdateTeamMember;
-      document.getElementById('clearTeamMemberFormButton').onclick = window.clearTeamMemberForm;
-      window.loadTeamMembersForAdminPanel();
-    }
-
-    function renderStarsAdminPanel() {
-      const adminPanelContainer = document.getElementById('starsAdminPanelContainer');
-      if (!adminPanelContainer) {
-        console.error("Stars Admin panel container not found!");
-        return;
-      }
-
-      adminPanelContainer.innerHTML = `
-        <h2 class="text-3xl font-bold mb-4 text-white">Manage Our Stars</h2>
-        <div class="admin-panel">
-          <p class="admin-message">
-            <strong>Note:</strong> Add, edit, or remove individuals recognized as "Our Stars." Use "Position" to control display order (lower number appears first).
-          </p>
-
-          <input type="hidden" id="currentStarId">
-          <div class="input-group">
-              <label for="starNameInput">Star Name:</label>
-              <input type="text" id="starNameInput" placeholder="e.g., John Smith">
-          </div>
-          <div class="input-group">
-              <label for="starImpactInput">Impact Description:</label>
-              <textarea id="starImpactInput" placeholder="Describe their lasting impact on the platform."></textarea>
-          </div>
-          <div class="input-group">
-              <label for="starCertificateUrlInput">Certificate URL:</label>
-              <input type="text" id="starCertificateUrlInput" placeholder="e.g., https://example.com/certificate_john.pdf">
-          </div>
-          <div class="input-group">
-              <label for="starImageUrlInput">Image URL:</label>
-              <input type="text" id="starImageUrlInput" placeholder="e.g., https://example.com/john_smith.jpg">
-          </div>
-          <div class="input-group">
-              <label for="starLinkedInUrlInput">LinkedIn Profile URL (Optional):</label>
-              <input type="text" id="starLinkedInUrlInput" placeholder="e.g., https://linkedin.com/in/johnsmith">
-          </div>
-          <div class="input-group">
-              <label for="starPhoneInput">Phone Number (Optional):</label>
-              <input type="text" id="starPhoneInput" placeholder="e.g., +1234567890">
-          </div>
-          <div class="input-group">
-              <label for="starPositionInput">Position (Number, Optional):</label>
-              <input type="number" id="starPositionInput" placeholder="e.g., 1, 2, 3">
-          </div>
-          <button id="saveStarButton">Add New Star</button>
-          <button id="clearStarFormButton" class="bg-gray-600 hover:bg-gray-700 text-white py-2 px-4 rounded-lg transition duration-200">Clear Form</button>
-
-          <div class="list-display" id="starListDisplay">
-              <!-- Stars will be listed here -->
-          </div>
-        </div>
         <button id="logoutAdminButton" class="logout-admin-button">Logout Admin</button>
       `;
 
-      document.getElementById('saveStarButton').onclick = window.addOrUpdateStar;
-      document.getElementById('clearStarFormButton').onclick = window.clearStarForm;
+      // Attach event listeners for Team Categories
+      document.getElementById('saveTeamCategoryButton').onclick = window.addOrUpdateTeamCategory;
+      document.getElementById('clearTeamCategoryFormButton').onclick = window.clearTeamCategoryForm;
+      window.loadTeamCategoriesForAdminPanel(); // Load categories for admin view
+
+      // Attach event listeners for Team Members
+      document.getElementById('saveTeamMemberButton').onclick = window.addOrUpdateTeamMember;
+      document.getElementById('clearTeamMemberFormButton').onclick = window.clearTeamMemberForm;
       document.getElementById('logoutAdminButton').onclick = window.adminLogout;
-      window.loadStarsForAdminPanel();
+
+      // Image upload event listener
+      const teamMemberImageUpload = document.getElementById('teamMemberImageUpload');
+      const teamMemberImagePreview = document.getElementById('teamMemberImagePreview');
+      const teamMemberUploadStatus = document.getElementById('teamMemberUploadStatus');
+      const teamMemberImageUrlInput = document.getElementById('teamMemberImageUrlInput');
+
+      teamMemberImageUpload.addEventListener('change', async (event) => {
+          const file = event.target.files[0];
+          if (file) {
+              teamMemberImagePreview.src = URL.createObjectURL(file);
+              teamMemberUploadStatus.textContent = 'Uploading...';
+              teamMemberUploadStatus.style.color = '#ffda79'; // Yellowish for uploading
+
+              const imageUrl = await uploadImageToCloudinary(file);
+              if (imageUrl) {
+                  teamMemberImageUrlInput.value = imageUrl;
+                  teamMemberUploadStatus.textContent = 'Upload complete!';
+                  teamMemberUploadStatus.style.color = '#4CAF50'; // Green for success
+              } else {
+                  teamMemberImageUrlInput.value = ''; // Clear URL on failure
+                  teamMemberUploadStatus.textContent = 'Upload failed.';
+                  teamMemberImagePreview.src = 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=No+Image'; // Reset preview
+              }
+          } else {
+              teamMemberImagePreview.src = 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=No+Image';
+              teamMemberImageUrlInput.value = '';
+              teamMemberUploadStatus.textContent = '';
+          }
+      });
+
+      window.loadTeamMembersForAdminPanel(); // Load members for admin view
+    }
+
+    // --- Firebase Data Management Functions (Team Categories) ---
+    window.loadTeamCategoriesForAdminPanel = function() {
+        if (!db) {
+            console.error("loadTeamCategoriesForAdminPanel: Firestore not initialized.");
+            return;
+        }
+        const collectionPath = `artifacts/${currentAppId}/public/data/teamCategories`;
+        onSnapshot(collection(db, collectionPath), (snapshot) => {
+            const categories = [];
+            snapshot.forEach(doc => {
+                categories.push({ id: doc.id, ...doc.data() });
+            });
+            // Sort client-side by order
+            categories.sort((a, b) => {
+                const posA = a.order !== null ? a.order : Infinity;
+                const posB = b.order !== null ? b.order : Infinity;
+                if (posA !== posB) {
+                    return posA - posB;
+                }
+                return (a.name || '').localeCompare(b.name || '');
+            });
+            window.renderTeamCategoryList(categories);
+            window.populateTeamCategoryCheckboxes(categories); // Populate checkboxes for team members
+        }, (error) => {
+            console.error("Error fetching team categories for admin panel: ", error);
+        });
+    }
+
+    window.renderTeamCategoryList = function(categories) {
+        const teamCategoryListDisplay = document.getElementById('teamCategoryListDisplay');
+        if (!teamCategoryListDisplay) return;
+
+        teamCategoryListDisplay.innerHTML = '';
+        if (categories.length === 0) {
+            teamCategoryListDisplay.innerHTML = '<p class="text-gray-500 text-center py-4">No team categories added yet.</p>';
+            return;
+        }
+
+        categories.forEach(category => {
+            const categoryItem = document.createElement('div');
+            categoryItem.className = 'list-item';
+            categoryItem.innerHTML = `
+                <div>
+                    <strong class="text-white">${category.name}</strong><br>
+                    <span class="text-gray-400 text-sm">${category.description.substring(0, 70)}...</span>
+                    ${category.order !== undefined && category.order !== null ? `<br><span class="text-gray-400 text-sm">Order: ${category.order}</span>` : ''}
+                </div>
+                <div class="item-actions mt-2">
+                    <button class="bg-blue-500 hover:bg-blue-600" onclick="window.editTeamCategory('${category.id}')">Edit</button>
+                    <button class="bg-red-500 hover:bg-red-600" onclick="window.deleteTeamCategory('${category.id}')">Delete</button>
+                </div>
+            `;
+            teamCategoryListDisplay.appendChild(categoryItem);
+        });
+    }
+
+    window.addOrUpdateTeamCategory = async function() {
+        if (!db || !auth.currentUser) {
+            await showConfirmModal("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        const categoryId = document.getElementById('currentTeamCategoryId').value;
+        const name = document.getElementById('teamCategoryNameInput').value.trim();
+        const description = document.getElementById('teamCategoryDescriptionInput').value.trim();
+        const order = document.getElementById('teamCategoryOrderInput').value.trim();
+
+        if (!name || !description || order === '') {
+            await showConfirmModal('Please fill in all required fields (Name, Description, Order).');
+            return;
+        }
+
+        const categoryData = {
+            name,
+            description,
+            order: parseInt(order, 10),
+            lastUpdated: new Date().toISOString(),
+            updatedBy: auth.currentUser.uid
+        };
+
+        try {
+            if (categoryId) {
+                const categoryDocRef = doc(db, `artifacts/${currentAppId}/public/data/teamCategories`, categoryId);
+                await updateDoc(categoryDocRef, categoryData);
+                await showConfirmModal('Team category updated successfully!');
+            } else {
+                await addDoc(collection(db, `artifacts/${currentAppId}/public/data/teamCategories`), categoryData);
+                await showConfirmModal('Team category added successfully!');
+            }
+            window.clearTeamCategoryForm();
+        } catch (e) {
+            console.error("Error adding/updating team category: ", e);
+            await showConfirmModal(`Error: ${e.message}`);
+        }
+    }
+
+    window.editTeamCategory = async function(id) {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot edit team category.");
+            return;
+        }
+        const categoryDocRef = doc(db, `artifacts/${currentAppId}/public/data/teamCategories`, id);
+        try {
+            const docSnap = await getDoc(categoryDocRef);
+            if (docSnap.exists()) {
+                const category = docSnap.data();
+                document.getElementById('currentTeamCategoryId').value = id;
+                document.getElementById('teamCategoryNameInput').value = category.name;
+                document.getElementById('teamCategoryDescriptionInput').value = category.description;
+                document.getElementById('teamCategoryOrderInput').value = category.order !== null ? category.order : '';
+                document.getElementById('saveTeamCategoryButton').textContent = 'Update Category';
+                window.scrollTo({ top: document.getElementById('teamAdminPanelContainer').offsetTop, behavior: 'smooth' });
+            } else {
+                console.error("No such team category document!");
+            }
+        } catch (e) {
+            console.error("Error fetching team category for edit: ", e);
+            await showConfirmModal(`Error fetching team category: ${e.message}`);
+        }
+    }
+
+    window.clearTeamCategoryForm = function() {
+        document.getElementById('currentTeamCategoryId').value = '';
+        document.getElementById('teamCategoryNameInput').value = '';
+        document.getElementById('teamCategoryDescriptionInput').value = '';
+        document.getElementById('teamCategoryOrderInput').value = '';
+        document.getElementById('saveTeamCategoryButton').textContent = 'Add New Category';
+    }
+
+    window.deleteTeamCategory = async function(docId) {
+        if (!db || !auth.currentUser) {
+            await showConfirmModal("Error: Not authenticated. Please log in as admin.");
+            return;
+        }
+
+        // Check if any team members are linked to this category
+        const teamMembersRef = collection(db, `artifacts/${currentAppId}/public/data/teamMembers`);
+        const q = query(teamMembersRef); // Fetch all members to check their categoryIds
+        const querySnapshot = await getDocs(q);
+        let membersLinked = false;
+        querySnapshot.forEach(doc => {
+            const memberCategoryIds = doc.data().categoryIds || [];
+            if (memberCategoryIds.includes(docId)) {
+                membersLinked = true;
+            }
+        });
+
+        if (membersLinked) {
+            await showConfirmModal("This category has team members assigned to it. Please reassign or delete those members first before deleting this category.");
+            return;
+        }
+
+        const confirmDelete = await showConfirmModal("Are you sure you want to delete this team category? This action cannot be undone.");
+        if (!confirmDelete) {
+            console.log("Deletion cancelled by user.");
+            return;
+        }
+
+        try {
+            const categoryDocRef = doc(db, `artifacts/${currentAppId}/public/data/teamCategories`, docId);
+            await deleteDoc(categoryDocRef);
+            console.log("Team category successfully deleted with ID:", docId);
+        } catch (e) {
+            console.error("Error removing team category:", e);
+            await showConfirmModal(`Error deleting team category: ${e.message}`);
+        }
     }
 
     // --- Firebase Data Management Functions (Team Members) ---
+
+    window.populateTeamCategoryCheckboxes = function(categories) {
+        const checkboxContainer = document.getElementById('teamMemberCategoryCheckboxes');
+        if (!checkboxContainer) return;
+
+        checkboxContainer.innerHTML = ''; // Clear existing checkboxes
+        categories.forEach(category => {
+            const checkboxId = `category-${category.id}`;
+            const checkboxHtml = `
+                <label for="${checkboxId}">
+                    <input type="checkbox" id="${checkboxId}" value="${category.id}" data-category-name="${category.name}">
+                    ${category.name}
+                </label>
+            `;
+            checkboxContainer.insertAdjacentHTML('beforeend', checkboxHtml);
+        });
+    }
 
     window.loadTeamMembersForAdminPanel = function() {
         if (!db) {
@@ -885,7 +1316,7 @@
             return;
         }
         const collectionPath = `artifacts/${currentAppId}/public/data/teamMembers`;
-        onSnapshot(collection(db, collectionPath), (snapshot) => { // Removed orderBy from query
+        onSnapshot(collection(db, collectionPath), (snapshot) => {
             const members = [];
             snapshot.forEach(doc => {
                 members.push({ id: doc.id, ...doc.data() });
@@ -918,10 +1349,18 @@
         members.forEach(member => {
             const memberItem = document.createElement('div');
             memberItem.className = 'list-item';
+            const categoryNames = (member.categoryIds || [])
+                                    .map(id => {
+                                        const checkbox = document.getElementById(`category-${id}`);
+                                        return checkbox ? checkbox.dataset.categoryName : 'Unknown Category';
+                                    })
+                                    .join(', ');
+
             memberItem.innerHTML = `
                 <div>
                     <strong class="text-white">${member.name}</strong><br>
-                    <span class="text-gray-400 text-sm">${member.role} - ${member.bio.substring(0, 50)}...</span>
+                    <span class="text-gray-400 text-sm">${member.role}</span>
+                    ${categoryNames ? `<br><span class="text-gray-400 text-sm">Categories: ${categoryNames}</span>` : ''}
                     ${member.linkedinUrl ? `<br><a href="${ensureHttps(member.linkedinUrl)}" target="_blank" class="text-blue-400 hover:underline text-sm">LinkedIn</a>` : ''}
                     ${member.phoneNumber ? `<br><a href="tel:${member.phoneNumber}" class="text-blue-400 hover:underline text-sm">Phone: ${member.phoneNumber}</a>` : ''}
                     ${member.position !== undefined && member.position !== null ? `<br><span class="text-gray-400 text-sm">Position: ${member.position}</span>` : ''}
@@ -945,26 +1384,31 @@
         const name = document.getElementById('teamMemberNameInput').value.trim();
         const role = document.getElementById('teamMemberRoleInput').value.trim();
         const bio = document.getElementById('teamMemberBioInput').value.trim();
-        let imageUrl = document.getElementById('teamMemberImageUrlInput').value.trim();
+        const imageUrlInput = document.getElementById('teamMemberImageUrlInput').value.trim(); // Get URL from hidden input
         const linkedinUrl = document.getElementById('teamMemberLinkedInUrlInput').value.trim();
         const phoneNumber = document.getElementById('teamMemberPhoneInput').value.trim();
         const position = document.getElementById('teamMemberPositionInput').value.trim();
 
+        // Get selected categories
+        const selectedCategoryCheckboxes = document.querySelectorAll('#teamMemberCategoryCheckboxes input[type="checkbox"]:checked');
+        const categoryIds = Array.from(selectedCategoryCheckboxes).map(cb => cb.value);
 
-        if (!name || !role || !bio) {
-            await showConfirmModal('Please fill in all required fields (Name, Role, Bio).');
+        if (!name || !role || !bio || categoryIds.length === 0) {
+            await showConfirmModal('Please fill in all required fields (Name, Role, Bio) and select at least one Category.');
             return;
         }
 
-        if (!imageUrl) {
-            imageUrl = 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member'; /* Adjusted default size */
+        let finalImageUrl = imageUrlInput;
+        if (!finalImageUrl) {
+            finalImageUrl = 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member'; /* Adjusted default size */
         }
 
         const memberData = {
+            categoryIds: categoryIds, // Store as array of IDs
             name,
             role,
             bio,
-            imageUrl,
+            imageUrl: finalImageUrl,
             linkedinUrl,
             phoneNumber,
             position: position ? parseInt(position, 10) : null, // Store as number or null
@@ -1005,9 +1449,37 @@
                 document.getElementById('teamMemberImageUrlInput').value = member.imageUrl || '';
                 document.getElementById('teamMemberLinkedInUrlInput').value = member.linkedinUrl || '';
                 document.getElementById('teamMemberPhoneInput').value = member.phoneNumber || '';
-                document.getElementById('teamMemberPositionInput').value = member.position !== null ? member.position : ''; // Populate Position
+                document.getElementById('teamMemberPositionInput').value = member.position !== null ? member.position : '';
+
+                // Set image preview
+                const teamMemberImagePreview = document.getElementById('teamMemberImagePreview');
+                teamMemberImagePreview.src = member.imageUrl || 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=No+Image';
+                document.getElementById('teamMemberUploadStatus').textContent = ''; // Clear upload status
+
+                // Clear the file input value to avoid re-uploading the same file on update if not changed
+                document.getElementById('teamMemberImageUpload').value = '';
+
+                // Check the appropriate category checkboxes
+                const allCheckboxes = document.querySelectorAll('#teamMemberCategoryCheckboxes input[type="checkbox"]');
+                allCheckboxes.forEach(cb => {
+                    cb.checked = false; // Uncheck all first
+                });
+                (member.categoryIds || []).forEach(catId => {
+                    const checkbox = document.getElementById(`category-${catId}`);
+                    if (checkbox) {
+                        checkbox.checked = true;
+                    }
+                });
+
                 document.getElementById('saveTeamMemberButton').textContent = 'Update Team Member';
-                window.scrollTo({ top: document.getElementById('teamAdminPanelContainer').offsetTop, behavior: 'smooth' });
+                // Scroll to the specific team member admin panel
+                const teamMemberAdminPanel = document.getElementById('teamMemberAdminPanel');
+                if (teamMemberAdminPanel) {
+                    teamMemberAdminPanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                } else {
+                    // Fallback to the main container if specific panel not found (shouldn't happen with ID added)
+                    window.scrollTo({ top: document.getElementById('teamAdminPanelContainer').offsetTop, behavior: 'smooth' });
+                }
             } else {
                 console.error("No such team member document!");
             }
@@ -1025,8 +1497,18 @@
         document.getElementById('teamMemberImageUrlInput').value = '';
         document.getElementById('teamMemberLinkedInUrlInput').value = '';
         document.getElementById('teamMemberPhoneInput').value = '';
-        document.getElementById('teamMemberPositionInput').value = ''; // Clear Position
+        document.getElementById('teamMemberPositionInput').value = '';
         document.getElementById('saveTeamMemberButton').textContent = 'Add New Team Member';
+
+        // Clear image preview and status
+        document.getElementById('teamMemberImagePreview').src = 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=No+Image';
+        document.getElementById('teamMemberImageUpload').value = ''; // Clear file input
+        document.getElementById('teamMemberUploadStatus').textContent = '';
+
+        // Uncheck all category checkboxes
+        document.querySelectorAll('#teamMemberCategoryCheckboxes input[type="checkbox"]').forEach(cb => {
+            cb.checked = false;
+        });
     }
 
     window.deleteTeamMember = async function(docId) {
@@ -1051,207 +1533,12 @@
         }
     }
 
-    // --- Firebase Data Management Functions (Our Stars) ---
-
-    window.loadStarsForAdminPanel = function() {
-        if (!db) {
-            console.error("loadStarsForAdminPanel: Firestore not initialized.");
-            return;
-        }
-        const collectionPath = `artifacts/${currentAppId}/public/data/ourStars`;
-        onSnapshot(collection(db, collectionPath), (snapshot) => { // Removed orderBy from query
-            const stars = [];
-            snapshot.forEach(doc => {
-                stars.push({ id: doc.id, ...doc.data() });
-            });
-            // Sort client-side
-            stars.sort((a, b) => {
-                const posA = a.position !== null ? a.position : Infinity;
-                const posB = b.position !== null ? b.position : Infinity;
-                if (posA !== posB) {
-                    return posA - posB;
-                }
-                return (a.name || '').localeCompare(b.name || '');
-            });
-            window.renderStarList(stars);
-        }, (error) => {
-            console.error("Error fetching stars for admin panel: ", error);
-        });
-    }
-
-    window.renderStarList = function(stars) {
-        const starListDisplay = document.getElementById('starListDisplay');
-        if (!starListDisplay) return;
-
-        starListDisplay.innerHTML = '';
-        if (stars.length === 0) {
-            starListDisplay.innerHTML = '<p class="text-gray-500 text-center py-4">No stars added yet.</p>';
-            return;
-        }
-
-        stars.forEach(star => {
-            const starItem = document.createElement('div');
-            starItem.className = 'list-item';
-            starItem.innerHTML = `
-                <div>
-                    <strong class="text-white">${star.name}</strong><br>
-                    <span class="text-gray-400 text-sm">${star.impact.substring(0, 50)}...</span>
-                    ${star.linkedinUrl ? `<br><a href="${ensureHttps(star.linkedinUrl)}" target="_blank" class="text-blue-400 hover:underline text-sm">LinkedIn</a>` : ''}
-                    ${star.phoneNumber ? `<br><a href="tel:${star.phoneNumber}" class="text-blue-400 hover:underline text-sm">Phone: ${star.phoneNumber}</a>` : ''}
-                    ${star.position !== undefined && star.position !== null ? `<br><span class="text-gray-400 text-sm">Position: ${star.position}</span>` : ''}
-                </div>
-                <div class="item-actions mt-2">
-                    <button class="bg-blue-500 hover:bg-blue-600" onclick="window.editStar('${star.id}')">Edit</button>
-                    <button class="bg-red-500 hover:bg-red-600" onclick="window.deleteStar('${star.id}')">Delete</button>
-                </div>
-            `;
-            starListDisplay.appendChild(starItem);
-        });
-    }
-
-    window.addOrUpdateStar = async function() {
-        if (!db || !auth.currentUser) {
-            await showConfirmModal("Error: Not authenticated. Please log in as admin.");
-            return;
-        }
-
-        const starId = document.getElementById('currentStarId').value;
-        const name = document.getElementById('starNameInput').value.trim();
-        const impact = document.getElementById('starImpactInput').value.trim();
-        let certificateUrl = document.getElementById('starCertificateUrlInput').value.trim();
-        let imageUrl = document.getElementById('starImageUrlInput').value.trim();
-        const linkedinUrl = document.getElementById('starLinkedInUrlInput').value.trim();
-        const phoneNumber = document.getElementById('starPhoneInput').value.trim();
-        const position = document.getElementById('starPositionInput').value.trim();
-
-        if (!name || !impact) {
-            await showConfirmModal('Please fill in all required fields (Name, Impact Description).');
-            return;
-        }
-
-        if (!imageUrl) {
-            imageUrl = 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Our+Star'; /* Adjusted default size */
-        }
-        if (!certificateUrl) {
-            certificateUrl = '#'; // Default to a non-functional link if none provided
-        }
-
-        const starData = {
-            name,
-            impact,
-            certificateUrl,
-            imageUrl,
-            linkedinUrl,
-            phoneNumber,
-            position: position ? parseInt(position, 10) : null, // Store as number or null
-            lastUpdated: new Date().toISOString(),
-            updatedBy: auth.currentUser.uid
-        };
-
-        try {
-            if (starId) {
-                const starDocRef = doc(db, `artifacts/${currentAppId}/public/data/ourStars`, starId);
-                await updateDoc(starDocRef, starData);
-                await showConfirmModal('Star updated successfully!');
-            } else {
-                await addDoc(collection(db, `artifacts/${currentAppId}/public/data/ourStars`), starData);
-                await showConfirmModal('Star added successfully!');
-            }
-            window.clearStarForm();
-        } catch (e) {
-            console.error("Error adding/updating star: ", e);
-            await showConfirmModal(`Error: ${e.message}`);
-        }
-    }
-
-    window.editStar = async function(id) {
-        if (!db) {
-            console.error("Firestore not initialized. Cannot edit star.");
-            return;
-        }
-        const starDocRef = doc(db, `artifacts/${currentAppId}/public/data/ourStars`, id);
-        try {
-            const docSnap = await getDoc(starDocRef);
-            if (docSnap.exists()) {
-                const star = docSnap.data();
-                document.getElementById('currentStarId').value = id;
-                document.getElementById('starNameInput').value = star.name;
-                document.getElementById('starImpactInput').value = star.impact;
-                document.getElementById('starCertificateUrlInput').value = star.certificateUrl || '';
-                document.getElementById('starImageUrlInput').value = star.imageUrl || '';
-                document.getElementById('starLinkedInUrlInput').value = star.linkedinUrl || '';
-                document.getElementById('starPhoneInput').value = star.phoneNumber || '';
-                document.getElementById('starPositionInput').value = star.position !== null ? star.position : ''; // Populate Position
-                document.getElementById('saveStarButton').textContent = 'Update Star';
-                window.scrollTo({ top: document.getElementById('starsAdminPanelContainer').offsetTop, behavior: 'smooth' });
-            } else {
-                console.error("No such star document!");
-            }
-        } catch (e) {
-            console.error("Error fetching star for edit: ", e);
-            await showConfirmModal(`Error fetching star: ${e.message}`);
-        }
-    }
-
-    window.clearStarForm = function() {
-        document.getElementById('currentStarId').value = '';
-        document.getElementById('starNameInput').value = '';
-        document.getElementById('starImpactInput').value = '';
-        document.getElementById('starCertificateUrlInput').value = '';
-        document.getElementById('starImageUrlInput').value = '';
-        document.getElementById('starLinkedInUrlInput').value = '';
-        document.getElementById('starPhoneInput').value = '';
-        document.getElementById('starPositionInput').value = ''; // Clear Position
-        document.getElementById('saveStarButton').textContent = 'Add New Star';
-    }
-
-    window.deleteStar = async function(docId) {
-        if (!db || !auth.currentUser) {
-            await showConfirmModal("Error: Not authenticated. Please log in as admin.");
-            return;
-        }
-
-        const confirmDelete = await showConfirmModal("Are you sure you want to delete this star? This action cannot be undone.");
-        if (!confirmDelete) {
-            console.log("Deletion cancelled by user.");
-            return;
-        }
-
-        try {
-            const starDocRef = doc(db, `artifacts/${currentAppId}/public/data/ourStars`, docId);
-            await deleteDoc(starDocRef);
-            console.log("Star successfully deleted with ID:", docId);
-        } catch (e) {
-            console.error("Error removing star:", e);
-            await showConfirmModal(`Error deleting star: ${e.message}`);
-        }
-    }
-
-    // Helper function to ensure URL has https:// protocol
-    function ensureHttps(url) {
-        if (!url) return '';
-        if (url.startsWith('http://') || url.startsWith('https://')) {
-            return url;
-        }
-        return `https://${url}`;
-    }
-
-    // Function to handle "Read More/Less" toggle
-    function toggleReadMore(button) {
-        const paragraph = button.previousElementSibling; // The <p> tag
-        paragraph.classList.toggle('truncated');
-        if (paragraph.classList.contains('truncated')) {
-            button.textContent = 'Read More';
-        } else {
-            button.textContent = 'Read Less';
-        }
-    }
-
     // --- Public Display Functions ---
 
-    window.loadTeamMembersForDisplay = function() {
+    // This function will now fetch both categories and members and render them together
+    window.loadTeamCategoriesAndMembersForDisplay = function() {
         if (!db) {
-            console.error("loadTeamMembersForDisplay: Firestore not initialized. Cannot load data.");
+            console.error("loadTeamCategoriesAndMembersForDisplay: Firestore not initialized. Cannot load data.");
             const noTeamMembersMessage = document.getElementById('noTeamMembersMessage');
             if (noTeamMembersMessage) {
                 noTeamMembersMessage.textContent = "Error: Database not ready.";
@@ -1259,28 +1546,40 @@
             }
             return;
         }
-        const collectionPath = `artifacts/${currentAppId}/public/data/teamMembers`;
-        onSnapshot(collection(db, collectionPath), (snapshot) => { // Removed orderBy from query
-            const teamMembersGrid = document.getElementById('teamMembersGrid');
-            const noTeamMembersMessage = document.getElementById('noTeamMembersMessage');
-            teamMembersGrid.innerHTML = ''; // Clear existing content
 
-            const members = [];
-            snapshot.forEach(doc => {
-                members.push({ id: doc.id, ...doc.data() });
+        const categoriesCollectionRef = collection(db, `artifacts/${currentAppId}/public/data/teamCategories`);
+        const membersCollectionRef = collection(db, `artifacts/${currentAppId}/public/data/teamMembers`);
+
+        // Use Promise.all to fetch both collections concurrently
+        Promise.all([
+            new Promise(resolve => onSnapshot(categoriesCollectionRef, resolve)),
+            new Promise(resolve => onSnapshot(membersCollectionRef, resolve))
+        ]).then(([categoriesSnapshot, membersSnapshot]) => {
+            const teamCategoriesAndMembersDisplay = document.getElementById('teamCategoriesAndMembersDisplay');
+            const noTeamMembersMessage = document.getElementById('noTeamMembersMessage');
+            teamCategoriesAndMembersDisplay.innerHTML = ''; // Clear existing content
+
+            let categories = [];
+            categoriesSnapshot.forEach(doc => {
+                categories.push({ id: doc.id, ...doc.data() });
             });
 
-            // Sort client-side
-            members.sort((a, b) => {
-                const posA = a.position !== null ? a.position : Infinity;
-                const posB = b.position !== null ? b.position : Infinity;
+            let teamMembers = [];
+            membersSnapshot.forEach(doc => {
+                teamMembers.push({ id: doc.id, ...doc.data() });
+            });
+
+            // Sort categories by their 'order' field
+            categories.sort((a, b) => {
+                const posA = a.order !== null ? a.order : Infinity;
+                const posB = b.order !== null ? b.order : Infinity;
                 if (posA !== posB) {
                     return posA - posB;
                 }
                 return (a.name || '').localeCompare(b.name || '');
             });
 
-            if (members.length === 0) {
+            if (categories.length === 0 && teamMembers.length === 0) {
                 if (noTeamMembersMessage) {
                     noTeamMembersMessage.classList.remove('hidden');
                 }
@@ -1288,113 +1587,118 @@
                 if (noTeamMembersMessage) {
                     noTeamMembersMessage.classList.add('hidden');
                 }
-                members.forEach(member => {
-                    const fullBio = member.bio || 'No bio available.';
-                    const needsReadMore = fullBio.length > 150;
 
-                    const cardHtml = `
-                        <div class="about-card">
-                            <img src="${member.imageUrl || 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member'}" alt="${member.name}" class="about-image mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member';">
-                            <h3>${member.name || 'Untitled Member'}</h3>
-                            <p><strong>${member.role || 'No Role'}</strong></p>
-                            <p class="bio-text ${needsReadMore ? 'truncated' : ''}">${fullBio}</p>
-                            ${needsReadMore ? `<button class="read-more-btn">Read More</button>` : ''}
-                            ${member.linkedinUrl ? `<a href="${ensureHttps(member.linkedinUrl)}" target="_blank" class="linkedin-link">LinkedIn Profile</a>` : ''}
-                            ${member.phoneNumber ? `<a href="tel:${member.phoneNumber}" class="phone-link">Phone: ${member.phoneNumber}</a>` : ''}
+                categories.forEach(category => {
+                    const categorySection = document.createElement('div');
+                    categorySection.className = 'team-category-section';
+                    categorySection.innerHTML = `
+                        <h3>${category.name || 'Unnamed Category'}</h3>
+                        <p class="category-description">${category.description || 'No description available.'}</p>
+                        <div class="about-content-grid">
+                            <!-- Team members for this category will go here -->
                         </div>
                     `;
-                    teamMembersGrid.insertAdjacentHTML('beforeend', cardHtml);
+                    const categoryMembersGrid = categorySection.querySelector('.about-content-grid');
+
+                    // Filter and sort members for the current category
+                    const membersInThisCategory = teamMembers
+                        .filter(member => (member.categoryIds || []).includes(category.id)) // Check if categoryId is in array
+                        .sort((a, b) => {
+                            const posA = a.position !== null ? a.position : Infinity;
+                            const posB = b.position !== null ? b.position : Infinity;
+                            if (posA !== posB) {
+                                return posA - posB;
+                            }
+                            return (a.name || '').localeCompare(b.name || '');
+                        });
+
+                    if (membersInThisCategory.length > 0) {
+                        membersInThisCategory.forEach(member => {
+                            const fullBio = member.bio || 'No bio available.';
+                            const needsReadMore = fullBio.length > 100; // Shorter truncation for compact cards
+
+                            const cardHtml = `
+                                <div class="about-card">
+                                    <img src="${member.imageUrl || 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member'}" alt="${member.name}" class="about-image mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member';">
+                                    <h3>${member.name || 'Untitled Member'}</h3>
+                                    <p><strong>${member.role || 'No Role'}</strong></p>
+                                    <p class="bio-text ${needsReadMore ? 'truncated' : ''}">${fullBio}</p>
+                                    ${needsReadMore ? `<button class="read-more-btn">Read More</button>` : ''}
+                                    ${member.linkedinUrl ? `<a href="${ensureHttps(member.linkedinUrl)}" target="_blank" class="linkedin-link">LinkedIn Profile</a>` : ''}
+                                    ${member.phoneNumber ? `<a href="tel:${member.phoneNumber}" class="phone-link">Phone: ${member.phoneNumber}</a>` : ''}
+                                </div>
+                            `;
+                            categoryMembersGrid.insertAdjacentHTML('beforeend', cardHtml);
+                        });
+
+                        // Attach event listeners for "Read More" buttons within this category
+                        categoryMembersGrid.querySelectorAll('.read-more-btn').forEach(button => {
+                            button.addEventListener('click', () => {
+                                toggleReadMore(button);
+                            });
+                        });
+                    } else {
+                        categoryMembersGrid.innerHTML = '<p class="text-gray-500 text-center py-4 col-span-full">No team members in this category yet.</p>';
+                    }
+                    teamCategoriesAndMembersDisplay.appendChild(categorySection);
                 });
 
-                // Attach event listeners for "Read More" buttons after they are added to the DOM
-                teamMembersGrid.querySelectorAll('.read-more-btn').forEach(button => {
-                    button.addEventListener('click', () => {
-                        toggleReadMore(button);
-                    });
+                // Handle any team members that might not have any categoryIds or belong to non-existent categories
+                const allCategoryIds = new Set(categories.map(cat => cat.id));
+                const unassignedMembers = teamMembers.filter(member => {
+                    const memberCatIds = member.categoryIds || [];
+                    return memberCatIds.length === 0 || !memberCatIds.some(id => allCategoryIds.has(id));
                 });
+
+                if (unassignedMembers.length > 0) {
+                    const unassignedSection = document.createElement('div');
+                    unassignedSection.className = 'team-category-section';
+                    unassignedSection.innerHTML = `
+                        <h3>Uncategorized Members</h3>
+                        <p class="category-description">These team members are not assigned to any specific category or their assigned categories no longer exist.</p>
+                        <div class="about-content-grid">
+                            <!-- Uncategorized team members will go here -->
+                        </div>
+                    `;
+                    const unassignedMembersGrid = unassignedSection.querySelector('.about-content-grid');
+                    unassignedMembers.sort((a, b) => (a.name || '').localeCompare(b.name || '')); // Sort unassigned by name
+
+                    unassignedMembers.forEach(member => {
+                        const fullBio = member.bio || 'No bio available.';
+                        const needsReadMore = fullBio.length > 100;
+
+                        const cardHtml = `
+                            <div class="about-card">
+                                <img src="${member.imageUrl || 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member'}" alt="${member.name}" class="about-image mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x120/4a4a6a/e0e0eb?text=Team+Member';">
+                                <h3>${member.name || 'Untitled Member'}</h3>
+                                <p><strong>${member.role || 'No Role'}</strong></p>
+                                <p class="bio-text ${needsReadMore ? 'truncated' : ''}">${fullBio}</p>
+                                ${needsReadMore ? `<button class="read-more-btn">Read More</button>` : ''}
+                                ${member.linkedinUrl ? `<a href="${ensureHttps(member.linkedinUrl)}" target="_blank" class="linkedin-link">LinkedIn Profile</a>` : ''}
+                                ${member.phoneNumber ? `<a href="tel:${member.phoneNumber}" class="phone-link">Phone: ${member.phoneNumber}</a>` : ''}
+                            </div>
+                        `;
+                        unassignedMembersGrid.insertAdjacentHTML('beforeend', cardHtml);
+                    });
+                    unassignedMembersGrid.querySelectorAll('.read-more-btn').forEach(button => {
+                        button.addEventListener('click', () => {
+                            toggleReadMore(button);
+                        });
+                    });
+                    teamCategoriesAndMembersDisplay.appendChild(unassignedSection);
+                }
             }
-        }, (error) => {
-            console.error("Error fetching team members for display: ", error);
+        }).catch(error => {
+            console.error("Error fetching team categories or members for display: ", error);
             const noTeamMembersMessage = document.getElementById('noTeamMembersMessage');
             if (noTeamMembersMessage) {
-                noTeamMembersMessage.textContent = `Error loading team members: ${error.message}`;
+                noTeamMembersMessage.textContent = `Error loading team: ${error.message}`;
                 noTeamMembersMessage.classList.remove('hidden');
             }
         });
     }
 
-    window.loadStarsForDisplay = function() {
-        if (!db) {
-            console.error("loadStarsForDisplay: Firestore not initialized. Cannot load data.");
-            const noStarsMessage = document.getElementById('noStarsMessage');
-            if (noStarsMessage) {
-                noStarsMessage.textContent = "Error: Database not ready.";
-                noStarsMessage.classList.remove('hidden');
-            }
-            return;
-        }
-        const collectionPath = `artifacts/${currentAppId}/public/data/ourStars`;
-        onSnapshot(collection(db, collectionPath), (snapshot) => { // Removed orderBy from query
-            const ourStarsGrid = document.getElementById('ourStarsGrid');
-            const noStarsMessage = document.getElementById('noStarsMessage');
-            ourStarsGrid.innerHTML = ''; // Clear existing content
-
-            const stars = [];
-            snapshot.forEach(doc => {
-                stars.push({ id: doc.id, ...doc.data() });
-            });
-
-            // Sort client-side
-            stars.sort((a, b) => {
-                const posA = a.position !== null ? a.position : Infinity;
-                const posB = b.position !== null ? b.position : Infinity;
-                if (posA !== posB) {
-                    return posA - posB;
-                }
-                return (a.name || '').localeCompare(b.name || '');
-            });
-
-            if (stars.length === 0) {
-                if (noStarsMessage) {
-                    noStarsMessage.classList.remove('hidden');
-                }
-            } else {
-                if (noStarsMessage) {
-                    noStarsMessage.classList.add('hidden');
-                }
-                stars.forEach(star => {
-                    const fullImpact = star.impact || 'No impact description available.';
-                    const needsReadMore = fullImpact.length > 150;
-
-                    const cardHtml = `
-                        <div class="about-card">
-                            <img src="${star.imageUrl || 'https://placehold.co/120x120/4a4a6a/e0e0eb?text=Our+Star'}" alt="${star.name}" class="about-image mx-auto" onerror="this.onerror=null;this.src='https://placehold.co/120x120/4a4a6a/e0e0eb?text=Our+Star';">
-                            <h3>${star.name || 'Untitled Star'}</h3>
-                            <p class="impact-text ${needsReadMore ? 'truncated' : ''}">${fullImpact}</p>
-                            ${needsReadMore ? `<button class="read-more-btn">Read More</button>` : ''}
-                            ${star.linkedinUrl ? `<a href="${ensureHttps(star.linkedinUrl)}" target="_blank" class="linkedin-link">LinkedIn Profile</a>` : ''}
-                            ${star.phoneNumber ? `<a href="tel:${star.phoneNumber}" class="phone-link">Phone: ${star.phoneNumber}</a>` : ''}
-                        </div>
-                    `;
-                    ourStarsGrid.insertAdjacentHTML('beforeend', cardHtml);
-                });
-
-                // Attach event listeners for "Read More" buttons after they are added to the DOM
-                ourStarsGrid.querySelectorAll('.read-more-btn').forEach(button => {
-                    button.addEventListener('click', () => {
-                        toggleReadMore(button);
-                    });
-                });
-            }
-        }, (error) => {
-            console.error("Error fetching stars for display: ", error);
-            const noStarsMessage = document.getElementById('noStarsMessage');
-            if (noStarsMessage) {
-                noStarsMessage.textContent = `Error loading stars: ${error.message}`;
-                noStarsMessage.classList.remove('hidden');
-            }
-        });
-    }
+    // Removed window.loadStarsForDisplay and related functions as per user request.
 
     // --- Global UI Functions ---
 
@@ -1430,17 +1734,88 @@
       }
     }
 
+    // Function to load contact info into the footer
+    function loadContactInfoIntoFooter() {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot load contact info.");
+            return;
+        }
+
+        const contactDocRef = doc(db, `artifacts/${currentAppId}/public/data/contactInfo`, 'mainContact');
+
+        onSnapshot(contactDocRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById('footerMsmeRegNo').textContent = data.msmeRegNo || 'UDYAM-UP-03-0104523';
+                document.getElementById('footerAddress').textContent = data.address || '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+                document.getElementById('footerEmail').textContent = data.email || 'info@partnerdesk.in';
+                document.getElementById('footerPhone').textContent = data.phone || '+91-XXXXXXXXXX';
+
+            } else {
+                // Default static info if no document exists
+                document.getElementById('footerMsmeRegNo').textContent = 'UDYAM-UP-03-0104523';
+                document.getElementById('footerAddress').textContent = '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+                document.getElementById('footerEmail').textContent = 'info@partnerdesk.in';
+                document.getElementById('footerPhone').textContent = '+91-XXXXXXXXXX';
+            }
+        }, (error) => {
+            console.error("Error fetching contact info:", error);
+            // Fallback to default static info on error
+            document.getElementById('footerMsmeRegNo').textContent = 'UDYAM-UP-03-0104523';
+            document.getElementById('footerAddress').textContent = '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+            document.getElementById('footerEmail').textContent = 'info@partnerdesk.in';
+            document.getElementById('footerPhone').textContent = '+91-XXXXXXXXXX';
+        });
+    }
+
+    // --- Initial Data Cleanup (Run this ONCE if you need to delete existing members) ---
+    // Uncomment the following function call and run the page once, then comment it out again.
+    /*
+    window.deleteAllExistingTeamMembers = async function() {
+        if (!db || !auth.currentUser) {
+            await showConfirmModal("Error: Not authenticated. Please log in as admin to delete existing members.");
+            return;
+        }
+        const confirmClear = await showConfirmModal("Are you sure you want to delete ALL existing team members? This cannot be undone.");
+        if (!confirmClear) {
+            console.log("Deletion of all existing members cancelled.");
+            return;
+        }
+        try {
+            const membersRef = collection(db, `artifacts/${currentAppId}/public/data/teamMembers`);
+            const snapshot = await getDocs(membersRef);
+            const batch = db.batch();
+            snapshot.docs.forEach((doc) => {
+                batch.delete(doc.ref);
+            });
+            await batch.commit();
+            await showConfirmModal("All existing team members deleted successfully!");
+            console.log("All existing team members deleted.");
+        } catch (error) {
+            console.error("Error deleting all existing team members:", error);
+            await showConfirmModal(`Error deleting existing members: ${error.message}`);
+        }
+    };
+    // Call this function once if needed:
+    // window.deleteAllExistingTeamMembers();
+    */
+    // --- End of Initial Data Cleanup ---
+
+
     // --- Event Listeners and Initial Load ---
 
     document.addEventListener('DOMContentLoaded', () => {
+        // Load contact info for footer immediately when DOM is ready
+        loadContactInfoIntoFooter();
+
         onAuthStateChanged(auth, (user) => {
             const adminLoginLink = document.getElementById('adminLoginLink');
 
             if (user) {
                 currentUserId = user.uid;
                 console.log("onAuthStateChanged: User is authenticated. UID:", currentUserId);
-                renderTeamAdminPanel();
-                renderStarsAdminPanel();
+                renderTeamAdminPanel(); // Render team category and member admin panels
+                // Removed renderStarsAdminPanel() call
                 if (adminLoginLink) {
                     adminLoginLink.classList.add('hidden'); // Hide admin login link if logged in
                 }
@@ -1448,14 +1823,14 @@
                 currentUserId = null;
                 console.log("onAuthStateChanged: No user authenticated.");
                 document.getElementById('teamAdminPanelContainer').innerHTML = ''; // Clear admin panels
-                document.getElementById('starsAdminPanelContainer').innerHTML = '';
+                // Removed starsAdminPanelContainer clearing
                 if (adminLoginLink) {
                     adminLoginLink.classList.remove('hidden'); // Show admin login link if not logged in
                 }
             }
             // Always load public data regardless of admin status
-            window.loadTeamMembersForDisplay();
-            window.loadStarsForDisplay();
+            window.loadTeamCategoriesAndMembersForDisplay(); // Load categories and members for public display
+            // Removed window.loadStarsForDisplay() call
         });
     });
 
@@ -1491,6 +1866,25 @@
       delay: 200,
       distance: '40px',
       origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Apply ScrollReveal to the new section classes for better animation control
+    ScrollReveal().reveal('.mission-vision-section', {
+      delay: 200,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.values-section', {
+      delay: 200,
+      distance: '50px',
+      origin: 'bottom',
       duration: 900,
       easing: 'ease-in-out',
       reset: false
