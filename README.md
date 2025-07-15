@@ -39,12 +39,6 @@ Partnerdesk enables students and interns to:
 
 ---
 
-## 📸 Screenshots
-
-_(Add screenshots here or link to `/screenshots` folder if applicable)_
-
----
-
 ## 🧠 Built By
 
 👋 Hi, I’m **Abhinav Agarwal**, a 19-year-old student from India, soon joining NIT for Electrical Engineering.
