@@ -1,7 +1,5 @@
 # Partnerdesk.in — Full-Stack Internship & Freelancing Platform
 
-![Partnerdesk Logo](https://partnerdesk.in/favicon.ico)
-
 This repository contains the source code for [**Partnerdesk.in**](https://partnerdesk.in) — a dynamic, real-world platform designed and built by a solo student developer using **Gemini Flash 2.5**, **Firebase**, **Cloudinary**, and **Netlify**.
 
 Partnerdesk enables students and interns to:
