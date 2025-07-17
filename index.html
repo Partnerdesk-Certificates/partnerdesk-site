@@ -1,0 +1,1507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Partnerdesk - Grow With Us</title>
+
+  <meta name="description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects in digital marketing, sales, AI, and more.">
+  <meta name="keywords" content="Partnerdesk, internships, freelancing, digital marketing, sales, AI, online courses, learning, career growth, skill development, business collaboration, student opportunities, professional network, India">
+  <meta name="author" content="Partnerdesk">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourwebsite.com/index.html"> <meta property="og:title" content="Partnerdesk - Grow With Us">
+  <meta property="og:description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects.">
+  <meta property="og:image" content="https://yourwebsite.com/images/logo.png"> <meta property="og:url" content="https://yourwebsite.com/index.html"> <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Partnerdesk">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@Partnerdesk_Official"> <meta name="twitter:title" content="Partnerdesk - Grow With Us">
+  <meta name="twitter:description" content="Partnerdesk: Your gateway to internships, freelancing, and strategic partnerships. Grow your skills, build your portfolio, and collaborate on real-world projects.">
+  <meta name="twitter:image" content="https://yourwebsite.com/images/logo.png"> <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://yourwebsite.com/#organization",
+        "name": "Partnerdesk",
+        "url": "https://yourwebsite.com/",
+        "logo": "https://yourwebsite.com/images/logo.png",
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+91-XXXXXXXXXX",
+          "contactType": "Customer Service",
+          "email": "info@partnerdesk.in"
+        },
+        "sameAs": [
+          "https://twitter.com/Partnerdesk_Official",
+          "https://instagram.com/Partnerdesk_Official",
+          "https://youtube.com/@Partnerdesk_Official",
+          "https://facebook.com/Partnerdesk_Official"
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://yourwebsite.com/#website",
+        "url": "https://yourwebsite.com/",
+        "name": "Partnerdesk",
+        "publisher": {
+          "@id": "https://yourwebsite.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://yourwebsite.com/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    ]
+  }
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #121212; /* Deeper dark background */
+      color: #e0e0e0; /* Light text for dark background */
+      overflow-x: hidden; /* Prevent horizontal scroll */
+      transition: background-color 0.3s ease; /* Smooth background transition */
+    }
+
+    body.no-scroll {
+      overflow: hidden; /* Prevent body scroll when nav is open */
+    }
+
+    /* Custom styles for the logo and site title */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, rgba(0,0,0,0.8), rgba(0,0,0,0)); /* Gradient for subtle effect */
+      /* Using max-width to prevent overlap with hamburger menu */
+      max-width: calc(100% - 6rem); /* Default for larger screens: 100% minus hamburger area (roughly 1.5rem right + 1.5rem gap + 30px width) */
+      width: auto; /* Allow it to shrink if content is smaller */
+    }
+
+    .logo-title-container .logo {
+      width: 90px; /* Increased logo size by 50% (from 60px) */
+      height: 90px; /* Increased logo size by 50% (from 60px) */
+      margin-right: 1rem;
+      border-radius: 8px; /* Rounded corners for logo */
+      object-fit: cover; /* Ensure logo covers the area */
+    }
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem; /* Big Partnerdesk */
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: 0.05em; /* Increased letter spacing */
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0; /* Align to right */
+      height: 100vh; /* Full height */
+      /* Using clamp for flexible width: min 200px, preferred 70vw, max 250px */
+      width: clamp(200px, 70vw, 250px);
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+      backdrop-filter: blur(10px); /* Frosted glass effect */
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column; /* Stack links vertically */
+      justify-content: center; /* Center links vertically */
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Shadow on the left side */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for responsiveness */
+      transform: translateX(100%); /* Hidden by default */
+      overflow-y: auto; /* Make it scrollable */
+      box-sizing: border-box; /* Include padding and border in element's total width */
+    }
+
+    nav.active {
+      transform: translateX(0%); /* Show when active */
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px; /* Rounded corners */
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right; /* Align text to the right */
+      letter-spacing: 0.05em; /* Increased letter spacing */
+      white-space: nowrap; /* Prevent text wrapping */
+      overflow: hidden; /* Hide overflowing content */
+      text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+      box-sizing: border-box; /* Include padding and border in element's total width */
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #8a2be2; /* Accent color: Amethyst */
+      transform: translateX(-5px); /* Slight hover effect */
+    }
+
+    /* Hamburger menu */
+    .hamburger-menu {
+      display: flex; /* Always visible */
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Overlay for when nav is open */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+      z-index: 999; /* Below nav, above content */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Header Section */
+    header {
+      /* New Dynamic Gradient: Blue, Green, Violet */
+      background: linear-gradient(to bottom right, #007bff, #00c853, #6f42c1); /* Blue, Green, Violet */
+      color: white;
+      padding: 12rem 1rem 10rem; /* Increased padding */
+      text-align: center;
+      position: relative;
+      overflow: hidden; /* For background animations */
+      border-bottom-left-radius: 50px; /* Rounded bottom corners */
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5); /* Stronger shadow */
+    }
+
+    header h1 {
+      font-size: 3.5rem; /* Larger font size */
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.05em; /* Increased letter spacing */
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3); /* Text shadow */
+    }
+
+    header p {
+      font-size: 1.5rem; /* Larger paragraph font */
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+      letter-spacing: 0.02em; /* Increased letter spacing */
+    }
+
+    .cta-buttons a {
+      display: inline-block;
+      margin: 0.7rem;
+      padding: 1rem 2.5rem; /* Larger buttons */
+      background-color: #ffffff;
+      color: #121212; /* Dark text for contrast on white background */
+      text-decoration: none;
+      border-radius: 30px; /* Pill-shaped buttons */
+      font-weight: 700;
+      transition: background-color 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      letter-spacing: 0.03em; /* Increased letter spacing */
+    }
+
+    .cta-buttons a:hover {
+      background-color: #6f42c1; /* Violet from new gradient for hover */
+      color: white; /* White text on violet hover */
+      transform: translateY(-3px); /* Lift effect */
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Section Styling */
+    .section {
+      padding: 5rem 1.5rem; /* Increased padding */
+      max-width: 1200px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem; /* Larger section titles */
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #ffffff; /* White for dark background */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      letter-spacing: 0.05em; /* Increased letter spacing */
+    }
+
+    /* Styles for the prominent showcase cards */
+    .showcase-card {
+      border-radius: 20px; /* Even more rounded corners */
+      padding: 3rem; /* Increased padding for larger content */
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4); /* Stronger shadow */
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      border: 1px solid; /* Border will be colored per card */
+      text-align: center; /* Center content within this card */
+      margin-bottom: 4rem; /* Space between cards */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .showcase-card img {
+      max-width: 350px; /* Increased width for images */
+      height: 200px; /* Increased height for images */
+      border-radius: 15px; /* Rounded corners for image */
+      margin-bottom: 2rem;
+      object-fit: cover; /* Ensure image covers the area, cropping if necessary */
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .showcase-card h3 {
+      font-size: 2.5rem; /* Larger title for this prominent card */
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.04em; /* Increased letter spacing */
+    }
+
+    .showcase-card p {
+      font-size: 1.3rem; /* Larger text for this card */
+      color: #c0c0c0;
+      margin-bottom: 2rem;
+      max-width: 800px;
+      letter-spacing: 0.02em; /* Increased letter spacing */
+    }
+
+    .showcase-card .cta-button {
+      display: inline-block;
+      padding: 1.2rem 3rem; /* Even larger button */
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: 700;
+      transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      letter-spacing: 0.03em; /* Increased letter spacing */
+    }
+
+    .showcase-card .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Specific colors for each showcase card */
+    /* Updated border colors to better complement the new blue/green/violet gradient */
+    .internship-card {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: #007bff; /* A vibrant blue */
+    }
+    .internship-card h3 { color: #007bff; }
+    .internship-card .cta-button { background-color: #007bff; }
+    .internship-card .cta-button:hover { background-color: #0056b3; }
+
+    .learning-card {
+      background: #2a2a40; /* Darker blue-grey */
+      border-color: #00c853; /* A vibrant green from the new gradient */
+    }
+    .learning-card h3 { color: #00c853; }
+    .learning-card .cta-button { background-color: #00c853; }
+    .learning-card .cta-button:hover { background-color: #218838; }
+
+    .freelancing-card {
+      background: #283040; /* Dark blue-grey */
+      border-color: #17a2b8; /* A vibrant teal */
+    }
+    .freelancing-card h3 { color: #17a2b8; }
+    .freelancing-card .cta-button { background-color: #17a2b8; }
+    .freelancing-card .cta-button:hover { background-color: #138496; }
+
+    .partners-card {
+      background: #253028; /* Dark green-grey */
+      border-color: #6f42c1; /* A vibrant violet from the new gradient */
+    }
+    .partners-card h3 { color: #6f42c1; }
+    .partners-card .cta-button { background-color: #6f42c1; }
+    .partners-card .cta-button:hover { background-color: #5a36a0; }
+
+
+    .extra-content {
+      margin-top: 3rem; /* Reduced margin-top to shift it upwards */
+      text-align: center;
+    }
+
+    .extra-content h2 {
+      font-size: 3rem; /* Even larger title */
+      margin-bottom: 2rem;
+      color: #ffffff;
+      letter-spacing: 0.05em; /* Increased letter spacing */
+    }
+
+    .extra-content p {
+      max-width: 900px;
+      margin: 0 auto 2rem;
+      font-size: 1.2rem;
+      color: #c0c0c0;
+      letter-spacing: 0.02em; /* Increased letter spacing */
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: #0a0a0a; /* Very dark footer */
+      font-size: 0.9rem;
+      color: #888888;
+      border-top-left-radius: 30px; /* Rounded top corners */
+      border-top-right-radius: 30px;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem; /* Spacing for footer lines */
+      letter-spacing: 0.01em; /* Increased letter spacing */
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        max-width: calc(100% - 5rem); /* Adjust for smaller screens */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+        max-width: calc(100% - 4.5rem); /* Adjust for smaller screens */
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      .logo-title-container .logo {
+        width: 50px; /* Adjusted for smaller screens */
+        height: 50px; /* Adjusted for smaller screens */
+      }
+      /* Removed nav width override here, clamp handles it */
+    }
+
+    @media (max-width: 480px) { /* For very small phones */
+      .logo-title-container {
+        max-width: calc(100% - 4rem); /* Even smaller margin for very small screens */
+      }
+      /* Removed nav width override here, clamp handles it */
+    }
+
+    /* Admin Panel Styles */
+    .admin-panel-container {
+      background-color: #2a2a4a;
+      padding: 2.5rem;
+      border-radius: 20px;
+      margin-top: 4rem;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+      text-align: left;
+      opacity: 0; /* Hidden by default */
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .admin-panel-container.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .admin-panel-container h2 {
+      color: #8a2be2; /* Amethyst for admin panel title */
+      margin-bottom: 1.5rem;
+      text-align: center;
+    }
+
+    .admin-panel-container .input-group {
+      margin-bottom: 1rem;
+    }
+
+    .admin-panel-container label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #e0e0e0;
+      font-weight: 600;
+    }
+
+    .admin-panel-container input[type="text"],
+    .admin-panel-container textarea,
+    .admin-panel-container input[type="url"],
+    .admin-panel-container input[type="color"] {
+      background-color: #1c1c2e !important;
+      border: 1px solid #5a5a7a;
+      padding: 0.8rem 1.2rem;
+      border-radius: 10px;
+      color: #ffffff !important;
+      font-size: 1rem;
+      box-sizing: border-box;
+      width: 100%;
+      max-width: 500px; /* Wider inputs for content */
+    }
+
+    .admin-panel-container input[type="file"] {
+      padding: 0.8rem 0; /* Adjust padding for file input */
+      background: none;
+      border: none;
+    }
+
+    .admin-panel-container input[type="text"]::placeholder,
+    .admin-panel-container textarea::placeholder,
+    .admin-panel-container input[type="url"]::placeholder {
+      color: #A0A0B5 !important;
+    }
+
+    .admin-panel-container button {
+      background-color: #4CAF50; /* Green for add/save button */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      margin-top: 1.5rem;
+      margin-right: 1rem;
+      cursor: pointer;
+    }
+
+    .admin-panel-container button:hover {
+      background-color: #388E3C;
+      transform: translateY(-2px);
+    }
+
+    .admin-panel-container .admin-message {
+      background-color: #2a2a4a;
+      border-left: 4px solid #8a2be2; /* Amethyst border for message */
+      padding: 1rem;
+      margin-top: 2rem;
+      border-radius: 8px;
+      color: #e0e0e0;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    .admin-panel-container .logout-admin-button {
+      margin-top: 4rem;
+      background-color: #DC2626; /* Red color for logout */
+      color: white;
+      padding: 0.8rem 2rem;
+      border-radius: 30px;
+      font-weight: 600;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .admin-panel-container .logout-admin-button:hover {
+      background-color: #B91C1C;
+      transform: translateY(-2px);
+    }
+
+    .admin-panel-container .image-preview-container {
+        margin-top: 1rem;
+        text-align: center;
+    }
+
+    .admin-panel-container .image-preview-container img {
+        max-width: 200px;
+        max-height: 150px;
+        border-radius: 8px;
+        border: 1px solid #5a5a7a;
+        object-fit: cover;
+    }
+
+    .admin-panel-container .image-preview-container p {
+        font-size: 0.85rem;
+        color: #c0c0c0;
+        margin-top: 0.5rem;
+    }
+
+    /* Custom Modal for Confirmations */
+    .custom-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .custom-modal-overlay.active {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .custom-modal-content {
+        background: #2a2a4a;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        max-width: 400px;
+        width: 90%;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        color: #e0e0e0;
+    }
+
+    .custom-modal-content p {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+
+    .custom-modal-content button {
+        padding: 10px 20px;
+        border-radius: 20px;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .custom-modal-content button:hover {
+        transform: translateY(-2px);
+    }
+
+    .custom-modal-content .confirm-btn {
+        background-color: #EF4444; /* Red */
+        color: white;
+    }
+
+    .custom-modal-content .confirm-btn:hover {
+        background-color: #B91C1C;
+    }
+
+    .custom-modal-content .cancel-btn {
+        background-color: #5a5a7a; /* Gray */
+        color: white;
+    }
+
+    .custom-modal-content .cancel-btn:hover {
+        background-color: #4a4a6a;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div id="customConfirmModal" class="custom-modal-overlay">
+    <div class="custom-modal-content">
+      <p id="modalMessageText"></p>
+      <button class="confirm-btn" id="modalConfirmBtn">Yes</button>
+      <button class="cancel-btn" id="modalCancelBtn">Cancel</button>
+    </div>
+  </div>
+
+  <div class="logo-title-container">
+    <img src="images/logo.png" alt="Partnerdesk Logo" class="logo">
+    <span class="site-title">Partnerdesk</span>
+  </div>
+
+  <div class="hamburger-menu" onclick="window.toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <div class="overlay" onclick="window.toggleNav()"></div>
+
+  <nav id="main-nav">
+    <a href="index.html" onclick="window.toggleNav()">Home</a>
+    <a href="internships.html" onclick="window.toggleNav()">Internships</a>
+    <a href="learning.html" onclick="window.toggleNav()">Learning Centre</a>
+    <a href="freelancing.html" onclick="window.toggleNav()">Freelancing</a>
+    <a href="partners.html" onclick="window.toggleNav()">Our Partners</a>
+    <a href="about.html" onclick="window.toggleNav()">About</a>
+    <a href="careers.html" onclick="window.toggleNav()">Careers</a>
+    <a href="blog.html" onclick="window.toggleNav()">Blog</a>
+    <a href="contact.html" onclick="window.toggleNav()">Contact Us</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div> <a href="verify.html" onclick="window.toggleNav()">Authenticate Your Certificate</a>
+    <a href="downloads.html" onclick="window.toggleNav()">Downloads</a> <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a>
+  </nav>
+
+  <header>
+    <h1 id="headerTitle">Grow With Us — Partnerdesk</h1>
+    <p id="headerSubtitle">Your bridge to internships, freelancing, and real business collaboration.</p>
+    <div class="cta-buttons">
+      <a href="internships.html">Explore Internships</a>
+      <a href="partners.html">Our Partners</a>
+      <a href="learning.html">Learning Centre</a>
+      <a href="freelancing.html">Hire a Freelancer</a>
+      <a href="blog.html">Read Our Blog</a>
+      <a href="contact.html">Contact Us</a>
+    </div>
+  </header>
+
+  <section class="section">
+    <h2 id="ecosystemTitle">Explore Our Ecosystem</h2>
+
+    <div class="showcase-card" id="showcase_internshipsCard">
+      <img src="images/internship_showcase.png" alt="Internships Showcase" id="showcase_internshipsImage">
+      <h3 id="showcase_internshipsTitle">Internships</h3>
+      <p id="showcase_internshipsDescription">Gain invaluable experience in digital marketing, sales, AI, and more, shaping your future career with real-world projects and expert mentorship.</p>
+      <a href="internships.html" class="cta-button" id="showcase_internshipsCtaLink">Learn More About Internships →</a>
+    </div>
+
+    <div class="showcase-card" id="showcase_learningCard">
+      <img src="images/learning_showcase.png" alt="Learning Centre Showcase" id="showcase_learningImage">
+      <h3 id="showcase_learningTitle">Learning Centre</h3>
+      <p id="showcase_learningDescription">Access expertly curated paid courses designed by industry professionals to elevate your skills and stay ahead in your career.</p>
+      <a href="learning.html" class="cta-button" id="showcase_learningCtaLink">Explore Courses →</a>
+    </div>
+
+    <div class="showcase-card" id="showcase_freelancingCard">
+      <img src="images/freelancing_showcase.png" alt="Freelancing Showcase" id="showcase_freelancingImage">
+      <h3 id="showcase_freelancingTitle">Freelancing</h3>
+      <p id="showcase_freelancingDescription">Earn through engaging in real-world projects under the trusted Partnerdesk umbrella, building your portfolio and expanding your professional network.</p>
+      <a href="freelancing.html" class="cta-button" id="showcase_freelancingCtaLink">Find Freelance Work →</a>
+    </div>
+
+    <div class="showcase-card" id="showcase_partnersCard">
+      <img src="images/partners_showcase.png" alt="Partner With Us Showcase" id="showcase_partnersImage">
+      <h3 id="showcase_partnersTitle">Partner With Us</h3>
+      <p id="showcase_partnersDescription">Join hands with Partnerdesk for mutual growth, innovation, and significant impact, leveraging our network for your business success.</p>
+      <a href="partners.html" class="cta-button" id="showcase_partnersCtaLink">Become a Partner →</a>
+    </div>
+
+  </section>
+
+  <section class="section extra-content">
+    <h2 id="whyChooseTitle">Why Choose Partnerdesk?</h2>
+    <p id="whyChoosePara1">We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.</p>
+    <p id="whyChoosePara2">Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.</p>
+    <p id="whyChoosePara3">We are committed to building partnerships that last and foster long-term success. Whether you're an ambitious student, an innovative startup, or an established enterprise — there's a dedicated space for you to thrive and collaborate at Partnerdesk.</p>
+  </section>
+
+  <section class="section">
+    <div id="adminPanelContainer" class="admin-panel-container">
+      </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Partnerdesk. All Rights Reserved.</p>
+    <p>Partnerdesk is a registered MSME under the Government of India.</p>
+    <p>Registration No. : <span id="footerMsmeRegNo">UDYAM-UP-03-0104523</span></p>
+    <p>Registered Office :</p>
+    <p><span id="footerAddress">9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001</span></p>
+    <p>Email: <span id="footerEmail">info@partnerdesk.in</span></p>
+    <p>Phone: <span id="footerPhone">+91-XXXXXXXXXX</span></p>
+    </footer>
+
+  <script type="module">
+    // Firebase SDK imports
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    // ADDED getDoc to the import list
+    import { getFirestore, doc, setDoc, onSnapshot, collection, getDocs, query, getDoc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Firebase configuration and initialization
+    const firebaseConfig = {
+      apiKey: "AIzaSyAiEhapkQvQnOtxZCQFa6TbOEWg3yelS8c",
+      authDomain: "certificates-b42ef.firebaseapp.com",
+      projectId: "certificates-b42ef",
+      storageBucket: "certificates-b42ef.firebasestorage.app",
+      messagingSenderId: "317230336893",
+      appId: "1:317230336893:web:915181dc11ed7264255a14",
+    };
+
+    const currentAppId = firebaseConfig.projectId;
+
+    let app;
+    let db;
+    let auth;
+    let currentUserId; // To store the authenticated user's UID
+
+    // Cloudinary Configuration
+    const CLOUDINARY_CLOUD_NAME = 'dy15lyntn'; // Replace with your Cloudinary Cloud Name
+    const CLOUDINARY_UPLOAD_PRESET = 'homepage_uploads'; // Replace with your Cloudinary Upload Preset (unsigned)
+    const CLOUDINARY_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+    // Initialize Firebase
+    try {
+        app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+        console.log("Firebase initialized successfully.");
+    } catch (e) {
+        console.error("Firebase initialization failed:", e);
+        app = null; db = null; auth = null;
+    }
+
+    // --- Utility Functions ---
+
+    // Custom Confirmation Modal (replaces alert/confirm)
+    async function showConfirmModal(message) {
+        return new Promise(resolve => {
+            const modalOverlay = document.getElementById('customConfirmModal');
+            const modalMessageText = document.getElementById('modalMessageText');
+            const modalConfirmBtn = document.getElementById('modalConfirmBtn');
+            const modalCancelBtn = document.getElementById('modalCancelBtn');
+
+            if (!modalOverlay || !modalMessageText || !modalConfirmBtn || !modalCancelBtn) {
+                console.error("Custom confirmation modal elements not found. Falling back to native confirm.");
+                resolve(confirm(message));
+                return;
+            }
+
+            modalMessageText.textContent = message;
+            modalOverlay.classList.add('active');
+
+            const cleanup = () => {
+                modalOverlay.classList.remove('active');
+                modalConfirmBtn.onclick = null;
+                modalCancelBtn.onclick = null;
+            };
+
+            modalConfirmBtn.onclick = () => {
+                cleanup();
+                resolve(true);
+            };
+            modalCancelBtn.onclick = () => {
+                cleanup();
+                resolve(false);
+            };
+        });
+    }
+
+    /**
+     * Uploads an image file to Cloudinary.
+     * @param {File} file - The image file to upload.
+     * @returns {Promise<string|null>} - A promise that resolves with the Cloudinary URL or null on error.
+     */
+    async function uploadImageToCloudinary(file) {
+        if (!file) return null;
+
+        const formData = new FormData();
+        formData.append('file', file);
+        formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+        try {
+            const response = await fetch(CLOUDINARY_UPLOAD_URL, {
+                method: 'POST',
+                body: formData,
+            });
+
+            if (!response.ok) {
+                const errorData = await response.json();
+                console.error('Cloudinary upload failed:', errorData);
+                await showConfirmModal(`Image upload failed: ${errorData.error ? errorData.error.message : 'Unknown error'}`);
+                return null;
+            }
+
+            const data = await response.json();
+            console.log('Cloudinary upload successful:', data);
+            return data.secure_url;
+        } catch (error) {
+            console.error('Error uploading image to Cloudinary:', error);
+            await showConfirmModal(`Error uploading image: ${error.message}`);
+            return null;
+        }
+    }
+
+    // --- Admin Panel Rendering ---
+    function renderAdminPanel() {
+        const adminPanelContainer = document.getElementById('adminPanelContainer');
+        if (!adminPanelContainer) {
+            console.error("Admin panel container not found!");
+            return;
+        }
+
+        adminPanelContainer.innerHTML = `
+            <h2 class="text-3xl font-bold mb-4 text-white">Manage Homepage Content</h2>
+            <p id="adminMessage" class="admin-message"></p>
+
+            <div class="admin-panel bg-gray-800 p-6 rounded-lg mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-white">Header Section</h3>
+                <div class="input-group">
+                    <label for="editHeaderTitle">Main Title:</label>
+                    <input type="text" id="editHeaderTitle" placeholder="e.g., Grow With Us — Partnerdesk">
+                </div>
+                <div class="input-group">
+                    <label for="editHeaderSubtitle">Subtitle:</label>
+                    <textarea id="editHeaderSubtitle" placeholder="e.g., Your bridge to internships, freelancing..."></textarea>
+                </div>
+            </div>
+
+            <div class="admin-panel bg-gray-800 p-6 rounded-lg mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-white">Showcase Cards</h3>
+                <div id="showcaseCardAdminForms">
+                    </div>
+            </div>
+
+            <div class="admin-panel bg-gray-800 p-6 rounded-lg mb-8">
+                <h3 class="text-2xl font-bold mb-4 text-white">Why Choose Partnerdesk? Section</h3>
+                <div class="input-group">
+                    <label for="editWhyChooseTitle">Section Title:</label>
+                    <input type="text" id="editWhyChooseTitle" placeholder="e.g., Why Choose Partnerdesk?">
+                </div>
+                <div class="input-group">
+                    <label for="editWhyChoosePara1">Paragraph 1:</label>
+                    <textarea id="editWhyChoosePara1" placeholder="First paragraph of the section."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="editWhyChoosePara2">Paragraph 2:</label>
+                    <textarea id="editWhyChoosePara2" placeholder="Second paragraph of the section."></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="editWhyChoosePara3">Paragraph 3:</label>
+                    <textarea id="editWhyChoosePara3" placeholder="Third paragraph of the section."></textarea>
+                </div>
+            </div>
+
+            <div class="flex justify-center gap-4 mt-8">
+                <button id="saveHomepageContentBtn" class="bg-blue-500 hover:bg-blue-600">Save All Changes</button>
+                <button id="logoutAdminButton" class="logout-admin-button">Logout Admin</button>
+            </div>
+        `;
+
+        // Attach event listeners
+        document.getElementById('saveHomepageContentBtn').addEventListener('click', saveHomepageContent);
+        document.getElementById('logoutAdminButton').addEventListener('click', adminLogout);
+
+        // Load current data into admin panel fields
+        loadHomepageContentForAdminPanel();
+    }
+
+    // --- Load Content for Admin Panel ---
+    async function loadHomepageContentForAdminPanel() {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot load content for admin panel.");
+            document.getElementById('adminMessage').textContent = "Error: Database not initialized.";
+            document.getElementById('adminMessage').style.color = '#EF4444';
+            return;
+        }
+
+        // Corrected Firestore paths for documents within the 'homepage' collection
+        const headerDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'header');
+        const extraContentDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'extraContent');
+        const showcaseCardsCollectionRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'homepage'); // Collection for all homepage documents
+
+        try {
+            // Fetch header content
+            const headerSnap = await getDoc(headerDocRef);
+            if (headerSnap.exists()) {
+                const data = headerSnap.data();
+                document.getElementById('editHeaderTitle').value = data.title || '';
+                document.getElementById('editHeaderSubtitle').value = data.subtitle || '';
+            } else {
+                // Set default if no data exists and save it
+                const defaultHeader = {
+                    title: 'Grow With Us — Partnerdesk',
+                    subtitle: 'Your bridge to internships, freelancing, and real business collaboration.'
+                };
+                await setDoc(headerDocRef, defaultHeader, { merge: true });
+                document.getElementById('editHeaderTitle').value = defaultHeader.title;
+                document.getElementById('editHeaderSubtitle').value = defaultHeader.subtitle;
+                console.log("Default header content set and saved.");
+            }
+
+            // Fetch extra content
+            const extraContentSnap = await getDoc(extraContentDocRef);
+            if (extraContentSnap.exists()) {
+                const data = extraContentSnap.data();
+                document.getElementById('editWhyChooseTitle').value = data.title || '';
+                document.getElementById('editWhyChoosePara1').value = data.para1 || '';
+                document.getElementById('editWhyChoosePara2').value = data.para2 || '';
+                document.getElementById('editWhyChoosePara3').value = data.para3 || '';
+            } else {
+                // Set default if no data exists and save it
+                const defaultExtraContent = {
+                    title: 'Why Choose Partnerdesk?',
+                    para1: 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.',
+                    para2: 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.',
+                    para3: 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.'
+                };
+                await setDoc(extraContentDocRef, defaultExtraContent, { merge: true });
+                document.getElementById('editWhyChooseTitle').value = defaultExtraContent.title;
+                document.getElementById('editWhyChoosePara1').value = defaultExtraContent.para1;
+                document.getElementById('editWhyChoosePara2').value = defaultExtraContent.para2;
+                document.getElementById('editWhyChoosePara3').value = defaultExtraContent.para3;
+                console.log("Default extra content set and saved.");
+            }
+
+            // Fetch showcase cards
+            // Only fetch documents that start with 'showcase_' prefix
+            // The 'query' function is now correctly imported
+            const q = query(showcaseCardsCollectionRef);
+            const showcaseCardsSnapshot = await getDocs(q);
+
+            const showcaseCardsData = {};
+            showcaseCardsSnapshot.forEach(doc => {
+                // Filter for documents that are actually showcase cards
+                if (doc.id.startsWith('showcase_')) {
+                    showcaseCardsData[doc.id] = doc.data();
+                }
+            });
+
+            // Corrected cardIds to match new document IDs
+            const cardIds = ['showcase_internships', 'showcase_learning', 'showcase_freelancing', 'showcase_partners'];
+            const showcaseCardFormsContainer = document.getElementById('showcaseCardAdminForms');
+            showcaseCardFormsContainer.innerHTML = ''; // Clear existing forms
+
+            for (const cardId of cardIds) {
+                let cardData = showcaseCardsData[cardId];
+                const baseCardName = cardId.replace('showcase_', ''); // e.g., 'internships'
+                const displayCardName = baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1); // e.g., 'Internships'
+
+                if (!cardData) {
+                    // Set default data if card doesn't exist and save it
+                    const defaultCard = {
+                        title: displayCardName,
+                        description: `Default description for ${displayCardName} section.`,
+                        imageUrl: `https://placehold.co/350x200/4a4a6a/e0e0e0?text=${displayCardName.toUpperCase()}`,
+                        ctaText: `Learn More About ${displayCardName} →`,
+                        ctaLink: `${baseCardName}.html`,
+                        bgColor: '#2a2a40', // Default dark grey
+                        borderColor: '#007bff' // Default blue
+                    };
+                    if (baseCardName === 'internships') {
+                        defaultCard.bgColor = 'rgba(255, 255, 255, 0.08)';
+                        defaultCard.borderColor = '#007bff';
+                        defaultCard.imageUrl = 'images/internship_showcase.png';
+                    } else if (baseCardName === 'learning') {
+                        defaultCard.bgColor = '#2a2a40';
+                        defaultCard.borderColor = '#00c853';
+                        defaultCard.imageUrl = 'images/learning_showcase.png';
+                    } else if (baseCardName === 'freelancing') {
+                        defaultCard.bgColor = '#283040';
+                        defaultCard.borderColor = '#17a2b8';
+                        defaultCard.imageUrl = 'images/freelancing_showcase.png';
+                    } else if (baseCardName === 'partners') {
+                        defaultCard.bgColor = '#253028';
+                        defaultCard.borderColor = '#6f42c1';
+                        defaultCard.imageUrl = 'images/partners_showcase.png';
+                    }
+                    await setDoc(doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', cardId), defaultCard, { merge: true });
+                    cardData = defaultCard;
+                    console.log(`Default data set and saved for ${cardId} card.`);
+                }
+
+                const cardFormHtml = `
+                    <div class="bg-gray-700 p-5 rounded-lg mb-6">
+                        <h4 class="text-xl font-bold mb-3 text-white">${displayCardName} Card</h4>
+                        <div class="input-group">
+                            <label for="edit${cardId}Title">Title:</label>
+                            <input type="text" id="edit${cardId}Title" value="${cardData.title || ''}">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit${cardId}Description">Description:</label>
+                            <textarea id="edit${cardId}Description">${cardData.description || ''}</textarea>
+                        </div>
+                        <div class="input-group">
+                            <label for="upload${cardId}Image">Image:</label>
+                            <input type="file" id="upload${cardId}Image" accept="image/*">
+                            <div class="image-preview-container">
+                                <img id="preview${cardId}Image" src="${cardData.imageUrl || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image'}" alt="Image Preview">
+                                <p id="status${cardId}Image"></p>
+                            </div>
+                            <input type="hidden" id="current${cardId}ImageUrl" value="${cardData.imageUrl || ''}">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit${cardId}CtaText">CTA Button Text:</label>
+                            <input type="text" id="edit${cardId}CtaText" value="${cardData.ctaText || ''}">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit${cardId}CtaLink">CTA Button Link:</label>
+                            <input type="url" id="edit${cardId}CtaLink" value="${cardData.ctaLink || ''}">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit${cardId}BgColor">Background Color:</label>
+                            <input type="color" id="edit${cardId}BgColor" value="${cardData.bgColor || '#2a2a4a'}">
+                        </div>
+                        <div class="input-group">
+                            <label for="edit${cardId}BorderColor">Border Color:</label>
+                            <input type="color" id="edit${cardId}BorderColor" value="${cardData.borderColor || '#007bff'}">
+                        </div>
+                    </div>
+                `;
+                showcaseCardFormsContainer.insertAdjacentHTML('beforeend', cardFormHtml);
+
+                // Attach image upload listener for each card
+                const imageUploadInput = document.getElementById(`upload${cardId}Image`);
+                const imagePreview = document.getElementById(`preview${cardId}Image`);
+                const imageStatus = document.getElementById(`status${cardId}Image`);
+                const currentImageUrlInput = document.getElementById(`current${cardId}ImageUrl`);
+
+                imageUploadInput.addEventListener('change', async (event) => {
+                    const file = event.target.files[0];
+                    if (file) {
+                        imagePreview.src = URL.createObjectURL(file);
+                        imageStatus.textContent = 'Uploading...';
+                        imageStatus.style.color = '#ffda79';
+
+                        const imageUrl = await uploadImageToCloudinary(file);
+                        if (imageUrl) {
+                            currentImageUrlInput.value = imageUrl;
+                            imageStatus.textContent = 'Upload complete!';
+                            imageStatus.style.color = '#4CAF50';
+                        } else {
+                            currentImageUrlInput.value = '';
+                            imageStatus.textContent = 'Upload failed.';
+                            imageStatus.style.color = '#EF4444';
+                            imagePreview.src = 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image';
+                        }
+                    } else {
+                        imagePreview.src = currentImageUrlInput.value || 'https://placehold.co/200x150/4a4a6a/e0e0e0?text=No+Image';
+                        imageStatus.textContent = '';
+                    }
+                });
+            }
+
+            document.getElementById('adminMessage').textContent = "Content loaded for editing.";
+            document.getElementById('adminMessage').style.color = '#8a2be2';
+
+        } catch (error) {
+            console.error("Error loading homepage content for admin panel:", error);
+            document.getElementById('adminMessage').textContent = `Error loading content: ${error.message}`;
+            document.getElementById('adminMessage').style.color = '#EF4444';
+        }
+    }
+
+    // --- Save Homepage Content ---
+    async function saveHomepageContent() {
+        if (!db || !auth.currentUser) {
+            document.getElementById('adminMessage').textContent = "Error: Not authenticated. Please log in as admin.";
+            document.getElementById('adminMessage').style.color = '#EF4444';
+            return;
+        }
+
+        document.getElementById('adminMessage').textContent = "Saving changes...";
+        document.getElementById('adminMessage').style.color = '#ffda79';
+
+        try {
+            // Save Header Content
+            const headerData = {
+                title: document.getElementById('editHeaderTitle').value.trim(),
+                subtitle: document.getElementById('editHeaderSubtitle').value.trim(),
+                lastUpdated: new Date().toISOString(),
+                updatedBy: auth.currentUser.uid
+            };
+            await setDoc(doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'header'), headerData, { merge: true });
+
+            // Save Extra Content (Why Choose Partnerdesk?)
+            const extraContentData = {
+                title: document.getElementById('editWhyChooseTitle').value.trim(),
+                para1: document.getElementById('editWhyChoosePara1').value.trim(),
+                para2: document.getElementById('editWhyChoosePara2').value.trim(),
+                para3: document.getElementById('editWhyChoosePara3').value.trim(),
+                lastUpdated: new Date().toISOString(),
+                updatedBy: auth.currentUser.uid
+            };
+            await setDoc(doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'extraContent'), extraContentData, { merge: true });
+
+            // Save Showcase Cards
+            const cardIds = ['showcase_internships', 'showcase_learning', 'showcase_freelancing', 'showcase_partners'];
+            for (const cardId of cardIds) {
+                const cardData = {
+                    title: document.getElementById(`edit${cardId}Title`).value.trim(),
+                    description: document.getElementById(`edit${cardId}Description`).value.trim(),
+                    imageUrl: document.getElementById(`current${cardId}ImageUrl`).value.trim(), // Use the URL from hidden input
+                    ctaText: document.getElementById(`edit${cardId}CtaText`).value.trim(),
+                    ctaLink: document.getElementById(`edit${cardId}CtaLink`).value.trim(),
+                    bgColor: document.getElementById(`edit${cardId}BgColor`).value.trim(),
+                    borderColor: document.getElementById(`edit${cardId}BorderColor`).value.trim(),
+                    lastUpdated: new Date().toISOString(),
+                    updatedBy: auth.currentUser.uid
+                };
+                await setDoc(doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', cardId), cardData, { merge: true });
+            }
+
+            document.getElementById('adminMessage').textContent = "All homepage content saved successfully!";
+            document.getElementById('adminMessage').style.color = '#4CAF50';
+
+        } catch (error) {
+            console.error("Error saving homepage content:", error);
+            document.getElementById('adminMessage').textContent = `Error saving content: ${error.message}`;
+            document.getElementById('adminMessage').style.color = '#EF4444';
+        }
+    }
+
+    // --- Load Public Homepage Content ---
+    async function loadPublicHomepageContent() {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot load public homepage content.");
+            return;
+        }
+
+        // Corrected Firestore paths for documents within the 'homepage' collection
+        const headerDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'header');
+        const extraContentDocRef = doc(db, 'artifacts', currentAppId, 'public', 'data', 'homepage', 'extraContent');
+        const showcaseCardsCollectionRef = collection(db, 'artifacts', currentAppId, 'public', 'data', 'homepage'); // Collection for all homepage documents
+
+        // Header Section
+        onSnapshot(headerDocRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById('headerTitle').textContent = data.title || 'Grow With Us — Partnerdesk';
+                document.getElementById('headerSubtitle').textContent = data.subtitle || 'Your bridge to internships, freelancing, and real business collaboration.';
+            } else {
+                // Fallback to static defaults if no data
+                document.getElementById('headerTitle').textContent = 'Grow With Us — Partnerdesk';
+                document.getElementById('headerSubtitle').textContent = 'Your bridge to internships, freelancing, and real business collaboration.';
+            }
+        }, (error) => {
+            console.error("Error fetching header content:", error);
+            // Fallback to static defaults on error
+            document.getElementById('headerTitle').textContent = 'Grow With Us — Partnerdesk';
+            document.getElementById('headerSubtitle').textContent = 'Your bridge to internships, freelancing, and real business collaboration.';
+        });
+
+        // Extra Content (Why Choose Partnerdesk?)
+        onSnapshot(extraContentDocRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById('whyChooseTitle').textContent = data.title || 'Why Choose Partnerdesk?';
+                document.getElementById('whyChoosePara1').textContent = data.para1 || 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.';
+                document.getElementById('whyChoosePara2').textContent = data.para2 || 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.';
+                document.getElementById('whyChoosePara3').textContent = data.para3 || 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.';
+            } else {
+                // Fallback to static defaults if no data
+                document.getElementById('whyChooseTitle').textContent = 'Why Choose Partnerdesk?';
+                document.getElementById('whyChoosePara1').textContent = 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.';
+                document.getElementById('whyChoosePara2').textContent = 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.';
+                document.getElementById('whyChoosePara3').textContent = 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.';
+            }
+        }, (error) => {
+            console.error("Error fetching extra content:", error);
+            // Fallback to static defaults on error
+            document.getElementById('whyChooseTitle').textContent = 'Why Choose Partnerdesk?';
+            document.getElementById('whyChoosePara1').textContent = 'We are more than just an internship provider. Partnerdesk is a vibrant community of learners, innovators, and dreamers who are driven to achieve more. We empower our interns to take ownership, significantly grow their portfolios, and contribute meaningfully to real-world challenges.';
+            document.getElementById('whyChoosePara2').textContent = 'Through our dynamic freelancing platform, students gain hands-on project opportunities from trusted clients. Our comprehensive learning center offers practical, cutting-edge courses meticulously designed by industry professionals, ensuring career-readiness is at the core of every offering.';
+            document.getElementById('whyChoosePara3').textContent = 'We are committed to building partnerships that last and foster long-term success. Whether you\'re an ambitious student, an innovative startup, or an established enterprise — there\'s a dedicated space for you to thrive and collaborate at Partnerdesk.';
+        });
+
+        // Showcase Cards
+        onSnapshot(showcaseCardsCollectionRef, (snapshot) => {
+            snapshot.forEach(docSnap => {
+                const cardId = docSnap.id;
+                // Only process documents that are actual showcase cards
+                if (cardId.startsWith('showcase_')) {
+                    const data = docSnap.data();
+                    const baseCardName = cardId.replace('showcase_', ''); // e.g., 'internships'
+                    const cardElement = document.getElementById(`${cardId}Card`);
+                    if (cardElement) {
+                        document.getElementById(`${cardId}Image`).src = data.imageUrl || `images/${baseCardName}_showcase.png`; // Fallback to local image
+                        document.getElementById(`${cardId}Title`).textContent = data.title || baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1);
+                        document.getElementById(`${cardId}Description`).textContent = data.description || `Default description for ${baseCardName} section.`;
+                        document.getElementById(`${cardId}CtaLink`).textContent = data.ctaText || `Learn More About ${baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1)} →`;
+                        document.getElementById(`${cardId}CtaLink`).href = data.ctaLink || `${baseCardName}.html`;
+
+                        // Apply colors dynamically
+                        cardElement.style.backgroundColor = data.bgColor || '';
+                        cardElement.style.borderColor = data.borderColor || '';
+                        document.getElementById(`${cardId}Title`).style.color = data.borderColor || ''; // Title color matches border
+                        document.getElementById(`${cardId}CtaLink`).style.backgroundColor = data.borderColor || ''; // Button color matches border
+                        document.getElementById(`${cardId}CtaLink`).onmouseover = function() {
+                            this.style.backgroundColor = adjustColor(data.borderColor || '#007bff', -20); // Darken on hover
+                        };
+                        document.getElementById(`${cardId}CtaLink`).onmouseout = function() {
+                            this.style.backgroundColor = data.borderColor || '#007bff'; // Revert on mouse out
+                        };
+                    }
+                }
+            });
+        }, (error) => {
+            console.error("Error fetching showcase cards:", error);
+            // Fallback to static defaults for each card on error
+            const cardIds = ['showcase_internships', 'showcase_learning', 'showcase_freelancing', 'showcase_partners'];
+            for (const cardId of cardIds) {
+                const baseCardName = cardId.replace('showcase_', '');
+                const cardElement = document.getElementById(`${cardId}Card`);
+                if (cardElement) {
+                    let defaultBg = '#2a2a40';
+                    let defaultBorder = '#007bff';
+                    let defaultImage = `images/${baseCardName}_showcase.png`;
+
+                    if (baseCardName === 'internships') {
+                        defaultBg = 'rgba(255, 255, 255, 0.08)';
+                        defaultBorder = '#007bff';
+                    } else if (baseCardName === 'learning') {
+                        defaultBg = '#2a2a40';
+                        defaultBorder = '#00c853';
+                    } else if (baseCardName === 'freelancing') {
+                        defaultBg = '#283040';
+                        defaultBorder = '#17a2b8';
+                    } else if (baseCardName === 'partners') {
+                        defaultBg = '#253028';
+                        defaultBorder = '#6f42c1';
+                    }
+
+                    document.getElementById(`${cardId}Image`).src = defaultImage;
+                    document.getElementById(`${cardId}Title`).textContent = baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1);
+                    document.getElementById(`${cardId}Description`).textContent = `Default description for ${baseCardName} section.`;
+                    document.getElementById(`${cardId}CtaLink`).textContent = `Learn More About ${baseCardName.charAt(0).toUpperCase() + baseCardName.slice(1)} →`;
+                    document.getElementById(`${cardId}CtaLink`).href = `${baseCardName}.html`;
+
+                    cardElement.style.backgroundColor = defaultBg;
+                    cardElement.style.borderColor = defaultBorder;
+                    document.getElementById(`${cardId}Title`).style.color = defaultBorder;
+                    document.getElementById(`${cardId}CtaLink`).style.backgroundColor = defaultBorder;
+                    document.getElementById(`${cardId}CtaLink`).onmouseover = function() {
+                        this.style.backgroundColor = adjustColor(defaultBorder, -20);
+                    };
+                    document.getElementById(`${cardId}CtaLink`).onmouseout = function() {
+                        this.style.backgroundColor = defaultBorder;
+                    };
+                }
+            }
+        });
+    }
+
+    // Helper function to adjust color (darken/lighten) for hover effects
+    function adjustColor(hex, lum) {
+        // validate hex string
+        hex = String(hex).replace(/[^0-9a-f]/gi, '');
+        if (hex.length < 6) {
+            hex = hex[0]+hex[0]+hex[1]+hex[1]+hex[2]+hex[2];
+        }
+        lum = lum || 0;
+
+        // convert to decimal and change luminosity
+        var rgb = "#", c, i;
+        for (i = 0; i < 3; i++) {
+            c = parseInt(hex.substr(i*2,2), 16);
+            c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
+            rgb += ("00"+c).substr(c.length);
+        }
+        return rgb;
+    }
+
+
+    // --- Global UI Functions ---
+
+    // Function to toggle navigation for mobile, exposed globally
+    window.toggleNav = function() {
+      const nav = document.getElementById('main-nav');
+      const overlay = document.querySelector('.overlay');
+      const body = document.body;
+
+      nav.classList.toggle('active');
+      overlay.classList.toggle('active');
+      body.classList.toggle('no-scroll'); // Prevent scrolling when nav is open
+    }
+
+    // Function to load contact info into the footer
+    function loadContactInfoIntoFooter() {
+        if (!db) {
+            console.error("Firestore not initialized. Cannot load contact info.");
+            return;
+        }
+
+        const contactDocRef = doc(db, `artifacts/${currentAppId}/public/data/contactInfo`, 'mainContact');
+
+        onSnapshot(contactDocRef, (docSnap) => {
+            if (docSnap.exists()) {
+                const data = docSnap.data();
+                document.getElementById('footerAddress').textContent = data.address || '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+                document.getElementById('footerEmail').textContent = data.email || 'info@partnerdesk.in';
+                document.getElementById('footerPhone').textContent = data.phone || '+91-XXXXXXXXXX';
+                document.getElementById('footerMsmeRegNo').textContent = data.msmeRegNo || 'UDYAM-UP-03-0104523';
+
+            } else {
+                // Default static info if no document exists
+                document.getElementById('footerAddress').textContent = '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+                document.getElementById('footerEmail').textContent = 'info@partnerdesk.in';
+                document.getElementById('footerPhone').textContent = '+91-XXXXXXXXXX';
+                document.getElementById('footerMsmeRegNo').textContent = 'UDYAM-UP-03-0104523';
+            }
+        }, (error) => {
+            console.error("Error fetching contact info:", error);
+            // Fallback to default static info on error
+            document.getElementById('footerAddress').textContent = '9/8, George Town, Prayagraj, Uttar Pradesh, Pin–211001';
+            document.getElementById('footerEmail').textContent = 'info@partnerdesk.in';
+            document.getElementById('footerPhone').textContent = '+91-XXXXXXXXXX';
+            document.getElementById('footerMsmeRegNo').textContent = 'UDYAM-UP-03-0104523';
+        });
+    }
+
+    // Function to logout admin
+    async function adminLogout() {
+      if (!auth) {
+        console.warn("adminLogout: Firebase Auth not initialized.");
+        return;
+      }
+      const confirmLogout = await showConfirmModal("Are you sure you want to log out?");
+      if (!confirmLogout) {
+          console.log("Logout cancelled.");
+          return;
+      }
+      try {
+        await signOut(auth);
+        console.log("adminLogout: Logged out successfully.");
+        window.location.href = 'admin_login.html'; // Redirect to admin login page
+      } catch (error) {
+        console.error("adminLogout: Error during logout:", error.code, error.message);
+        await showConfirmModal(`Logout error: ${error.message}`);
+      }
+    }
+
+
+    // --- Event Listeners and Initial Load ---
+
+    document.addEventListener('DOMContentLoaded', () => {
+        loadContactInfoIntoFooter();
+        loadPublicHomepageContent(); // Load public content first
+
+        if (auth) {
+            onAuthStateChanged(auth, (user) => {
+                const adminLoginLink = document.getElementById('adminLoginLink');
+                const adminPanelContainer = document.getElementById('adminPanelContainer');
+
+                if (user) {
+                    currentUserId = user.uid;
+                    console.log("onAuthStateChanged: User is authenticated. UID:", currentUserId);
+                    adminPanelContainer.classList.add('active'); // Show admin panel
+                    renderAdminPanel(); // Render admin panel with its controls
+                    adminLoginLink.classList.add('hidden'); // Hide admin login link
+                } else {
+                    currentUserId = null;
+                    console.log("onAuthStateChanged: No user authenticated.");
+                    adminPanelContainer.classList.remove('active'); // Hide admin panel
+                    adminPanelContainer.innerHTML = ''; // Clear admin panel content
+                    adminLoginLink.classList.remove('hidden'); // Show admin login link
+                }
+            });
+        } else {
+            console.warn("Firebase Auth not initialized, admin features will be disabled.");
+            document.getElementById('adminLoginLink').classList.remove('hidden'); // Ensure link is visible if auth fails
+        }
+    });
+
+    // ScrollReveal animations
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.cta-buttons a', {
+      interval: 100,
+      delay: 700,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Animations for the prominent showcase cards (as per your original file)
+    ScrollReveal().reveal('.showcase-card', { /* Changed from specific card classes to general showcase-card */
+      interval: 150, /* Staggered reveal for all showcase cards */
+      delay: 400,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.extra-content h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false /* Changed from true to false */
+    });
+
+    ScrollReveal().reveal('.extra-content p', {
+      delay: 300,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false /* Changed from true to false */
+    });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Close nav when a nav link is clicked
+    document.querySelectorAll('#main-nav a').forEach(link => {
+      link.addEventListener('click', () => {
+        const nav = document.getElementById('main-nav');
+        if (nav.classList.contains('active')) {
+          window.toggleNav();
+        }
+      });
+    });
+  </script>
+</body>
+</html>

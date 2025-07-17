@@ -1,0 +1,1154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us - Partnerdesk</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #1c2833; /* Deep blue-grey background */
+      color: #e0e0eb; /* Light text */
+      overflow-x: hidden;
+      transition: background-color 0.3s ease;
+    }
+
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    /* Consistent styles for logo and title from index.html */
+    .logo-title-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      padding: 1.5rem 2rem;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      background: linear-gradient(to right, rgba(28, 40, 51, 0.8), rgba(28, 40, 51, 0)); /* Gradient matching new body background */
+      width: 300px;
+    }
+
+    .logo-title-container .logo {
+      width: 60px;
+      height: 60px;
+      margin-right: 1rem;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+
+    .logo-title-container .site-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #ffffff;
+      letter-spacing: -0.05em;
+    }
+
+    /* Navigation Bar */
+    nav {
+      position: fixed;
+      top: 0;
+      right: 0; /* Align to right */
+      height: 100vh; /* Full height */
+      /* Using clamp for flexible width: min 200px, preferred 70vw, max 250px */
+      width: clamp(200px, 70vw, 250px);
+      background: rgba(0, 0, 0, 0.8); /* Semi-transparent dark background */
+      backdrop-filter: blur(10px); /* Frosted glass effect */
+      color: white;
+      padding: 2rem 1rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column; /* Stack links vertically */
+      justify-content: center; /* Center links vertically */
+      box-shadow: -5px 0 15px rgba(0,0,0,0.3); /* Shadow on the left side */
+      transition: transform 0.3s ease-in-out; /* Smooth transition for responsiveness */
+      transform: translateX(100%); /* Hidden by default */
+      overflow-y: auto; /* Make it scrollable */
+      box-sizing: border-box; /* Include padding and border in element's total width */
+    }
+
+    nav.active {
+      transform: translateX(0%); /* Show when active */
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 600;
+      padding: 0.8rem 1.5rem;
+      margin: 0.5rem 0;
+      border-radius: 8px; /* Rounded corners */
+      transition: background-color 0.3s, color 0.3s, transform 0.2s;
+      text-align: right; /* Align text to the right */
+      letter-spacing: 0.05em; /* Increased letter spacing */
+      white-space: nowrap; /* Prevent text wrapping */
+      overflow: hidden; /* Hide overflowing content */
+      text-overflow: ellipsis; /* Show ellipsis for overflowed text */
+      box-sizing: border-box; /* Include padding and border in element's total width */
+    }
+
+    nav a:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      color: #8a2be2; /* Accent color: Amethyst */
+      transform: translateX(-5px); /* Slight hover effect */
+    }
+
+    /* Hamburger menu */
+    .hamburger-menu {
+      display: flex; /* Always visible */
+      position: fixed;
+      top: 1.5rem;
+      right: 1.5rem;
+      z-index: 1002;
+      cursor: pointer;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 25px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .hamburger-menu .bar {
+      width: 100%;
+      height: 3px;
+      background-color: white;
+      border-radius: 2px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    /* Overlay for when nav is open */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+      z-index: 999; /* Below nav, above content */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+    }
+
+    .overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    /* Header Section (New Theme) */
+    header {
+      background: linear-gradient(to bottom right, #2d3e50, #00b894, #ffda79); /* Deep blue to vibrant green to soft gold */
+      color: white;
+      padding: 12rem 1rem 10rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom-left-radius: 50px;
+      border-bottom-right-radius: 50px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      margin-bottom: 3rem;
+    }
+
+    header h1 {
+      font-size: 3.5rem;
+      margin: 0 0 1.5rem;
+      font-weight: 700;
+      letter-spacing: -0.08em;
+      text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    }
+
+    header p {
+      font-size: 1.5rem;
+      margin-bottom: 3rem;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+      opacity: 0.9;
+    }
+
+    /* Section Styling (New Theme) */
+    .section {
+      padding: 5rem 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+      text-align: center;
+    }
+
+    .section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      font-weight: 700;
+      color: #ffda79; /* Soft gold for section titles */
+      text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* Contact Info Cards (New Theme) */
+    .contact-info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .contact-card {
+      background: #2c3e50; /* Darker blue-grey for cards */
+      border: 1px solid #00b894; /* Vibrant green border */
+      border-radius: 20px;
+      padding: 3rem;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+      transition: transform 0.6s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+      text-align: center;
+    }
+
+    .contact-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    .contact-card svg {
+      width: 60px;
+      height: 60px;
+      color: #00b894; /* Vibrant green for icons */
+      margin-bottom: 1.5rem;
+      filter: drop-shadow(0 0 8px rgba(0, 184, 148, 0.7));
+    }
+
+    .contact-card h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #e0e0eb;
+      margin-bottom: 1rem;
+    }
+
+    .contact-card p {
+      font-size: 1.1rem;
+      color: #c0c0d0;
+      line-height: 1.8;
+    }
+
+    .contact-card a {
+      color: #ffda79; /* Soft gold for links */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-card a:hover {
+      color: #ffeaa7; /* Lighter gold on hover */
+      text-decoration: underline;
+    }
+
+    .social-media-links a {
+        display: inline-block;
+        margin: 0 0.5rem;
+        color: #ffda79;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease, transform 0.2s ease;
+    }
+
+    .social-media-links a:hover {
+        color: #ffeaa7;
+        transform: translateY(-2px);
+    }
+
+    /* Contact Form (New Theme) */
+    .contact-form-section {
+      background: #2c3e50; /* Darker blue-grey for form section */
+      border: 1px solid #00b894; /* Vibrant green border */
+      padding: 4rem 2rem;
+      border-radius: 20px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+    }
+
+    .input-group {
+      margin-bottom: 1.5rem;
+      text-align: left;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 1.1rem;
+      color: #e0e0eb;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+    }
+
+    .input-group input,
+    .input-group textarea {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 10px;
+      border: 1px solid #00b894; /* Vibrant green border */
+      background-color: #34495e; /* Medium blue-grey for input background */
+      color: #e0e0eb;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .input-group input:focus,
+    .input-group textarea:focus {
+      outline: none;
+      border-color: #ffda79; /* Soft gold on focus */
+      box-shadow: 0 0 10px rgba(255, 218, 121, 0.5);
+    }
+
+    .input-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    .submit-button {
+      background: linear-gradient(90deg, #00b894, #00c853); /* Green gradient */
+      color: #1c2833; /* Dark text on green */
+      padding: 1.2rem 3rem;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      display: block;
+      width: fit-content;
+      margin: 2rem auto 0;
+    }
+
+    .submit-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+    }
+
+    /* Admin Panel Styles (New Theme) */
+    .admin-panel-container {
+      background-color: #2c3e50; /* Matching card background */
+      padding: 2rem;
+      border-radius: 15px;
+      margin-top: 3rem;
+      border: 1px solid rgba(0, 184, 148, 0.3); /* Green border */
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+      /* Changed from display: none; to control visibility with opacity/visibility */
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      text-align: left; /* Align content to left */
+    }
+
+    .admin-panel-container.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .admin-panel-container h2 {
+      color: #ffda79; /* Soft gold for admin panel title */
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      text-shadow: 0 0 8px rgba(255, 218, 121, 0.5);
+    }
+
+    .admin-panel-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+
+    .admin-button {
+      background: linear-gradient(90deg, #00b894, #00c853); /* Green gradient */
+      color: #1c2833;
+      padding: 0.75rem 1.5rem;
+      border-radius: 9999px;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 184, 148, 0.3);
+    }
+
+    .admin-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 15px rgba(0, 184, 148, 0.5);
+    }
+
+    .admin-button.save {
+      background: linear-gradient(90deg, #4CAF50, #45a049); /* Green for save */
+      box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+    }
+
+    .admin-button.save:hover {
+      box-shadow: 0 6px 15px rgba(76, 175, 80, 0.5);
+    }
+
+    .admin-button.logout {
+      background: linear-gradient(90deg, #EF4444, #DC2626); /* Red for logout */
+      box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+    }
+
+    .admin-button.logout:hover {
+      box-shadow: 0 6px 15px rgba(239, 68, 68, 0.5);
+    }
+
+    /* Editable content styling */
+    [contenteditable="true"] {
+      outline: 2px dashed #ffda79; /* Soft gold outline */
+      padding: 5px;
+      border-radius: 5px;
+      min-width: 50px;
+      display: inline-block;
+      background-color: #34495e; /* Match input background */
+    }
+    [contenteditable="true"]:focus {
+      outline: 2px solid #ffeaa7;
+      box-shadow: 0 0 10px rgba(255, 218, 121, 0.7);
+    }
+
+    /* Admin message display */
+    .admin-message {
+      background-color: #34495e;
+      border-left: 4px solid #ffda79;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      color: #e0e0eb;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    /* Footer (Mimicking index.html) */
+    footer {
+      text-align: center;
+      padding: 3rem;
+      background: #0f1a24; /* Even darker blue-grey for footer */
+      font-size: 0.9rem;
+      color: #888888;
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      border-top: none;
+    }
+
+    footer p {
+      margin-bottom: 0.5rem;
+    }
+
+    footer a {
+      color: #00b894; /* Vibrant green link color */
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    footer a:hover {
+      color: #00c853; /* Lighter green on hover */
+      text-decoration: underline;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 1024px) {
+      .logo-title-container {
+        width: auto;
+        background: rgba(28, 40, 51, 0.8);
+        box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        border-bottom-right-radius: 15px;
+      }
+      nav {
+        width: 300px;
+      }
+      header {
+        padding: 8rem 1rem 6rem;
+      }
+      header h1 {
+        font-size: 3rem;
+      }
+      header p {
+        font-size: 1.25rem;
+      }
+      .section h2 {
+        font-size: 2rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .logo-title-container {
+        padding: 1rem 1.5rem;
+      }
+      .logo-title-container .site-title {
+        font-size: 1.5rem;
+      }
+      .logo-title-container .logo {
+        width: 50px;
+        height: 50px;
+      }
+      nav {
+        width: 100%;
+        padding-top: 5rem;
+      }
+      header {
+        padding: 6rem 1rem 3rem;
+      }
+      header h1 {
+        font-size: 2.5rem;
+      }
+      header p {
+        font-size: 1rem;
+      }
+      .section {
+        padding: 3rem 1rem;
+      }
+      .contact-card {
+        padding: 1.5rem;
+      }
+      .contact-card h3 {
+        font-size: 1.5rem;
+      }
+      .contact-card p {
+        font-size: 1rem;
+      }
+      .input-group label {
+        font-size: 1rem;
+      }
+      .input-group input,
+      .input-group textarea {
+        padding: 0.8rem;
+        font-size: 0.9rem;
+      }
+      .submit-button {
+        padding: 0.9rem 2rem;
+        font-size: 1.1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-title-container {
+        padding: 1rem;
+      }
+      .site-title {
+        font-size: 1.5rem;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
+      header p {
+        font-size: 0.9rem;
+      }
+      .section {
+        padding: 2rem 1rem;
+      }
+      .section h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Logo and Site Title -->
+  <div class="logo-title-container">
+    <!-- Updated logo source to local file -->
+    <img src="logo.png" alt="Partnerdesk Logo" class="logo">
+    <span class="site-title">Partnerdesk</span>
+  </div>
+
+  <!-- Hamburger Menu -->
+  <div class="hamburger-menu" onclick="window.toggleNav()">
+    <div class="bar"></div>
+    <div class="bar"></div>
+    <div class="bar"></div>
+  </div>
+
+  <!-- Navigation Overlay -->
+  <div class="overlay" onclick="window.toggleNav()"></div>
+
+  <!-- Navigation Bar -->
+  <nav id="main-nav">
+    <a href="index.html" onclick="window.toggleNav()">Home</a>
+    <a href="about.html" onclick="window.toggleNav()">About Us</a>
+    <a href="internships.html" onclick="window.toggleNav()">Internships</a>
+    <a href="learning.html" onclick="window.toggleNav()">Learning</a>
+    <a href="freelancing.html" onclick="window.toggleNav()">Freelancing</a>
+    <a href="hire_talent.html" onclick="window.toggleNav()">Hire Talent</a>
+    <a href="partners.html" onclick="window.toggleNav()">Partners</a>
+    <a href="blog.html" onclick="window.toggleNav()">Blog</a>
+    <a href="careers.html" onclick="window.toggleNav()">Careers</a>
+    <a href="contact.html" class="active" onclick="window.toggleNav()">Contact Us</a>
+    <div class="nav-divider my-4 h-px bg-gray-700"></div>
+    <a href="admin_login.html" id="adminLoginLink" class="hidden" onclick="window.toggleNav()">Admin Login</a>
+  </nav>
+
+  <!-- Page Header -->
+  <header>
+    <h1>Get in Touch</h1>
+    <p>We'd love to hear from you! Whether you have a question, feedback, or just want to say hello, our team is ready to assist.</p>
+  </header>
+
+  <!-- Contact Information Section -->
+  <section class="section contact-info-section">
+    <h2>Our Contact Details</h2>
+    <div class="contact-info-grid">
+      <div class="contact-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </svg>
+        <h3>Address</h3>
+        <p id="contactAddress" contenteditable="false">Loading...</p>
+      </div>
+      <div class="contact-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20.01 15.38c-1.23 0-2.42-.29-3.5-.81-.33-.16-.7-.1-.94.12l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.2c.22-.24.28-.61.12-.94-.52-1.08-.81-2.27-.81-3.5 0-.55-.45-1-1-1H3.5c-.55 0-1 .45-1 1C2.5 12.54 8.46 18.5 15.48 18.5c.55 0 1-.45 1-1V16.38c0-.55-.45-1-1-1z"/>
+        </svg>
+        <h3>Phone</h3>
+        <p><a href="tel:" id="contactPhone" contenteditable="false">Loading...</a></p>
+      </div>
+      <div class="contact-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </svg>
+        <h3>Email</h3>
+        <p><a href="mailto:" id="contactEmail" contenteditable="false">Loading...</a></p>
+      </div>
+      <div class="contact-card">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M22.46 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.49-1.76.85-2.75 1.05C18.18 4.34 17.03 4 15.82 4c-2.37 0-4.31 1.94-4.31 4.31 0 .34.03.67.09.99-.45-.02-.89-.08-1.33-.18-3.03-.61-5.71-2.03-7.53-4.14-.31.54-.48 1.16-.48 1.83 0 1.5.76 2.81 1.92 3.59-.7-.02-1.37-.21-1.95-.53v.03c0 2.1 1.49 3.85 3.47 4.26-.36.1-.74.15-1.13.15-.28 0-.55-.03-.81-.08.55 1.72 2.14 2.98 4.02 3.31-1.49 1.17-3.37 1.87-5.43 1.87-.35 0-.69-.02-1.03-.06C4.01 20.27 6.13 21 8.35 21c7.02 0 10.86-5.82 10.86-10.86 0-.16 0-.32-.01-.48.75-.55 1.4-1.23 1.92-2.01z"/>
+        </svg>
+        <h3>Social Media</h3>
+        <p id="contactSocialMediaDisplay" class="social-media-links">Loading...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Form Section -->
+  <section class="section contact-form-section">
+    <h2>Send Us a Message</h2>
+    <form action="#" method="POST">
+      <div class="input-group">
+        <label for="name">Your Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+      </div>
+      <div class="input-group">
+        <label for="email">Your Email</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required>
+      </div>
+      <div class="input-group">
+        <label for="subject">Subject</label>
+        <input type="text" id="subject" name="subject" placeholder="What's your message about?" required>
+      </div>
+      <div class="input-group">
+        <label for="message">Your Message</label>
+        <textarea id="message" name="message" placeholder="Type your message here..." required></textarea>
+      </div>
+      <button type="submit" class="submit-button">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Admin Panel -->
+  <section class="section">
+    <div id="adminPanelContainer" class="admin-panel-container">
+      <!-- Admin panel content will be rendered here by JavaScript -->
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Partnerdesk. All rights reserved.</p>
+    <p>
+      <a href="index.html">Home</a> |
+      <a href="about.html">About Us</a> |
+      <a href="contact.html">Contact Us</a>
+    </p>
+  </footer>
+
+  <script type="module">
+    // Import Firebase modules
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+    import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+    import { getFirestore, doc, getDoc, setDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+    // Firebase configuration and initialization
+    // This configuration is directly embedded based on your admin_login.html
+    const firebaseConfig = {
+      apiKey: "AIzaSyAiEhapkQvQnOtxZCQFa6TbOEWg3yelS8c",
+      authDomain: "certificates-b42ef.firebaseapp.com",
+      projectId: "certificates-b42ef",
+      storageBucket: "certificates-b42ef.firebasestorage.app",
+      messagingSenderId: "317230336893",
+      appId: "1:317230336893:web:915181dc11ed7264255a14",
+    };
+
+    // Use projectId as appId for consistency with Firestore paths
+    const appId = firebaseConfig.projectId; 
+    
+    // initialAuthToken is not used for sign-in on this page, as sign-in is handled by admin_login.html
+    // and session persistence.
+    const initialAuthToken = typeof __initial_auth_token !== 'undefined' ? __initial_auth_token : null;
+
+
+    // Initialize Firebase
+    let app;
+    let db;
+    let auth;
+
+    try {
+        app = initializeApp(firebaseConfig);
+        db = getFirestore(app);
+        auth = getAuth(app);
+        console.log("Firebase initialized successfully with embedded config.");
+        console.log("App ID being used:", appId);
+    } catch (e) {
+        console.error("Error initializing Firebase with embedded config:", e);
+        console.warn("Firebase initialization failed. Admin features will be disabled.");
+        app = null; db = null; auth = null; // Explicitly set to null if initialization fails
+    }
+
+
+    // DOM Elements
+    const hamburger = document.querySelector('.hamburger-menu');
+    const mobileNavOverlay = document.querySelector('.overlay');
+    const mainNav = document.getElementById('main-nav');
+    const adminLoginLink = document.getElementById('adminLoginLink'); // Get the admin login link
+
+    const adminPanelContainer = document.getElementById('adminPanelContainer');
+    const contactAddress = document.getElementById('contactAddress');
+    const contactPhone = document.getElementById('contactPhone');
+    const contactEmail = document.getElementById('contactEmail');
+    const contactSocialMediaDisplay = document.getElementById('contactSocialMediaDisplay'); // Updated ID for display
+
+    let isEditMode = false; // Track editing state
+
+    // --- Navigation Toggle ---
+    window.toggleNav = function() {
+      hamburger.classList.toggle('open');
+      mainNav.classList.toggle('active');
+      mobileNavOverlay.classList.toggle('active');
+      document.body.classList.toggle('no-scroll');
+    };
+
+    // Close nav when a nav link is clicked
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (mainNav.classList.contains('active')) {
+          window.toggleNav();
+        }
+      });
+    });
+
+    // --- Render Admin Panel Function ---
+    function renderAdminPanel() {
+        adminPanelContainer.innerHTML = `
+            <h2>Admin Panel: Edit Contact Information</h2>
+            <p id="adminMessage" class="admin-message"></p>
+            <div class="input-group">
+                <label for="editableAddress">Address</label>
+                <p id="editableAddress" contenteditable="false" class="p-2 rounded-md transition-all duration-200"></p>
+            </div>
+            <div class="input-group">
+                <label for="editablePhone">Phone</label>
+                <p id="editablePhone" contenteditable="false" class="p-2 rounded-md transition-all duration-200"></p>
+            </div>
+            <div class="input-group">
+                <label for="editableEmail">Email</label>
+                <p id="editableEmail" contenteditable="false" class="p-2 rounded-md transition-all duration-200"></p>
+            </div>
+            <div class="input-group">
+                <label for="editableXUrl">X (Twitter) URL</label>
+                <p id="editableXUrl" contenteditable="false" class="p-2 rounded-md transition-all duration-200"></p>
+            </div>
+            <div class="input-group">
+                <label for="editableInstagramUrl">Instagram URL</label>
+                <p id="editableInstagramUrl" contenteditable="false" class="p-2 rounded-md transition-all duration-200"></p>
+            </div>
+            <div class="input-group">
+                <label for="editableYoutubeUrl">YouTube URL</label>
+                <p id="editableYoutubeUrl" contenteditable="false" class="p-2 rounded-md transition-all duration-200"></p>
+            </div>
+            <div class="input-group">
+                <label for="editableFacebookUrl">Facebook URL</label>
+                <p id="editableFacebookUrl" contenteditable="false" class="p-2 rounded-md transition-all duration-200"></p>
+            </div>
+            <div class="admin-panel-buttons">
+                <button id="editContactBtn" class="admin-button">Edit Contact Details</button>
+                <button id="saveContactBtn" class="admin-button save" style="display: none;">Save Changes</button>
+                <button id="logoutAdminBtn" class="admin-button logout">Logout Admin</button>
+            </div>
+        `;
+
+        // Re-get elements after they are rendered
+        const editContactBtn = document.getElementById('editContactBtn');
+        const saveContactBtn = document.getElementById('saveContactBtn');
+        const logoutAdminBtn = document.getElementById('logoutAdminBtn');
+        const adminMessage = document.getElementById('adminMessage');
+
+        const editableAddress = document.getElementById('editableAddress');
+        const editablePhone = document.getElementById('editablePhone');
+        const editableEmail = document.getElementById('editableEmail');
+        const editableXUrl = document.getElementById('editableXUrl');
+        const editableInstagramUrl = document.getElementById('editableInstagramUrl');
+        const editableYoutubeUrl = document.getElementById('editableYoutubeUrl');
+        const editableFacebookUrl = document.getElementById('editableFacebookUrl');
+
+        // Attach event listeners
+        editContactBtn.addEventListener('click', () => toggleEditable(true));
+        saveContactBtn.addEventListener('click', saveContactData);
+        logoutAdminBtn.addEventListener('click', logoutAdmin);
+
+        // Expose for global access if needed (e.g., for initial data load)
+        window.editableAddress = editableAddress;
+        window.editablePhone = editablePhone;
+        window.editableEmail = editableEmail;
+        window.editableXUrl = editableXUrl;
+        window.editableInstagramUrl = editableInstagramUrl;
+        window.editableYoutubeUrl = editableYoutubeUrl;
+        window.editableFacebookUrl = editableFacebookUrl;
+        window.adminMessage = adminMessage;
+
+        // Load data into admin panel
+        fetchContactData(true); // Fetch for admin panel
+    }
+
+    /**
+     * Toggles the contenteditable attribute for specified elements in the admin panel.
+     * @param {boolean} enable - True to enable editing, false to disable.
+     */
+    function toggleEditable(enable) {
+      const editableElements = [
+        window.editableAddress, 
+        window.editablePhone, 
+        window.editableEmail, 
+        window.editableXUrl,
+        window.editableInstagramUrl,
+        window.editableYoutubeUrl,
+        window.editableFacebookUrl
+      ];
+      editableElements.forEach(el => {
+        if (el) { // Ensure element exists
+            el.contentEditable = enable;
+            el.classList.toggle('bg-gray-800', enable);
+            el.classList.toggle('rounded-md', enable);
+            el.classList.toggle('p-1', enable);
+        }
+      });
+      isEditMode = enable;
+      const editContactBtn = document.getElementById('editContactBtn');
+      const saveContactBtn = document.getElementById('saveContactBtn');
+      const adminMessage = document.getElementById('adminMessage');
+
+      if (editContactBtn) editContactBtn.style.display = enable ? 'none' : 'inline-block';
+      if (saveContactBtn) saveContactBtn.style.display = enable ? 'inline-block' : 'none';
+      if (adminMessage) {
+        adminMessage.textContent = enable ? 'Editing mode active. Make your changes.' : '';
+        adminMessage.style.color = enable ? '#ffda79' : ''; /* Soft gold for editing message */
+      }
+    }
+
+    /**
+     * Fetches contact data from Firestore.
+     * @param {boolean} forAdminPanel - If true, loads data into admin panel fields.
+     */
+    async function fetchContactData(forAdminPanel = false) {
+      if (!db) {
+        console.error("Firestore is not initialized. Cannot fetch data.");
+        if (window.adminMessage && forAdminPanel) {
+            window.adminMessage.textContent = "Error: Database not initialized.";
+            window.adminMessage.style.color = '#EF4444';
+        }
+        return;
+      }
+
+      const docRef = doc(db, `artifacts/${appId}/public/data/contactInfo/mainContact`);
+
+      // Use onSnapshot for real-time updates on the main page, getDoc for admin panel initial load
+      const updateUI = (data) => {
+        contactAddress.textContent = data.address || 'Not available';
+        contactPhone.textContent = data.phone || 'Not available';
+        contactEmail.textContent = data.email || 'Not available';
+        
+        // Handle social media links
+        const xUrl = data.xUrl || '';
+        const instagramUrl = data.instagramUrl || '';
+        const youtubeUrl = data.youtubeUrl || '';
+        const facebookUrl = data.facebookUrl || '';
+
+        let socialMediaHtml = '';
+        if (xUrl) socialMediaHtml += `<a href="${xUrl}" target="_blank" rel="noopener noreferrer">X (Twitter)</a>`;
+        if (instagramUrl) socialMediaHtml += `${socialMediaHtml ? ' | ' : ''}<a href="${instagramUrl}" target="_blank" rel="noopener noreferrer">Instagram</a>`;
+        if (youtubeUrl) socialMediaHtml += `${socialMediaHtml ? ' | ' : ''}<a href="${youtubeUrl}" target="_blank" rel="noopener noreferrer">YouTube</a>`;
+        if (facebookUrl) socialMediaHtml += `${socialMediaHtml ? ' | ' : ''}<a href="${facebookUrl}" target="_blank" rel="noopener noreferrer">Facebook</a>`;
+        
+        if (!socialMediaHtml) socialMediaHtml = 'Not available';
+
+        contactSocialMediaDisplay.innerHTML = socialMediaHtml;
+
+
+        // Update hrefs for phone and email
+        contactPhone.href = `tel:${data.phone ? data.phone.replace(/\s/g, '') : ''}`;
+        contactEmail.href = `mailto:${data.email || ''}`;
+      };
+
+      const updateAdminUI = (data) => {
+        if (window.editableAddress) window.editableAddress.textContent = data.address || '';
+        if (window.editablePhone) window.editablePhone.textContent = data.phone || '';
+        if (window.editableEmail) window.editableEmail.textContent = data.email || '';
+        if (window.editableXUrl) window.editableXUrl.textContent = data.xUrl || '';
+        if (window.editableInstagramUrl) window.editableInstagramUrl.textContent = data.instagramUrl || '';
+        if (window.editableYoutubeUrl) window.editableYoutubeUrl.textContent = data.youtubeUrl || '';
+        if (window.editableFacebookUrl) window.editableFacebookUrl.textContent = data.facebookUrl || '';
+      };
+
+      try {
+        if (forAdminPanel) {
+            const docSnap = await getDoc(docRef);
+            if (docSnap.exists()) {
+                updateAdminUI(docSnap.data());
+                console.log("Contact data fetched for admin panel:", docSnap.data());
+            } else {
+                console.log("No contact data found in Firestore for admin panel, setting defaults.");
+                const defaultData = {
+                    address: '123 Partnerdesk Lane, Innovation City, PC 45678',
+                    phone: '+1 (234) 567-890',
+                    email: 'info@partnerdesk.com',
+                    xUrl: 'https://twitter.com/Partnerdesk_Official',
+                    instagramUrl: 'https://instagram.com/Partnerdesk_Official',
+                    youtubeUrl: 'https://youtube.com/@Partnerdesk_Official',
+                    facebookUrl: 'https://facebook.com/Partnerdesk_Official'
+                };
+                await setDoc(docRef, defaultData, { merge: true });
+                updateAdminUI(defaultData);
+                if (window.adminMessage) {
+                    window.adminMessage.textContent = "Default contact data loaded. You can now edit.";
+                    window.adminMessage.style.color = '#ffda79';
+                }
+            }
+        } else {
+            // Use onSnapshot for the main public display
+            onSnapshot(docRef, (docSnap) => {
+                if (docSnap.exists()) {
+                    updateUI(docSnap.data());
+                    console.log("Contact data updated in real-time for public view:", docSnap.data());
+                } else {
+                    console.log("No contact data found in Firestore for public view, using defaults.");
+                    // Set static defaults if no data exists
+                    updateUI({
+                        address: '123 Partnerdesk Lane, Innovation City, PC 45678',
+                        phone: '+1 (234) 567-890',
+                        email: 'info@partnerdesk.com',
+                        xUrl: 'https://twitter.com/Partnerdesk_Official',
+                        instagramUrl: 'https://instagram.com/Partnerdesk_Official',
+                        youtubeUrl: 'https://youtube.com/@Partnerdesk_Official',
+                        facebookUrl: 'https://facebook.com/Partnerdesk_Official'
+                    });
+                }
+            }, (error) => {
+                console.error("Error fetching contact data with onSnapshot:", error);
+                // Fallback to static defaults on error
+                updateUI({
+                    address: '123 Partnerdesk Lane, Innovation City, PC 45678',
+                    phone: '+1 (234) 567-890',
+                    email: 'info@partnerdesk.com',
+                    xUrl: 'https://twitter.com/Partnerdesk_Official',
+                    instagramUrl: 'https://instagram.com/Partnerdesk_Official',
+                    youtubeUrl: 'https://youtube.com/@Partnerdesk_Official',
+                    facebookUrl: 'https://facebook.com/Partnerdesk_Official'
+                });
+            });
+        }
+      } catch (error) {
+        console.error("Error in fetchContactData:", error);
+        if (window.adminMessage && forAdminPanel) {
+            window.adminMessage.textContent = `Error loading contact data: ${error.message}`;
+            window.adminMessage.style.color = '#EF4444';
+        }
+      }
+    }
+
+    /**
+     * Saves contact data to Firestore.
+     */
+    async function saveContactData() {
+      if (!db || !auth.currentUser) {
+        if (window.adminMessage) {
+            window.adminMessage.textContent = "Error: Not authenticated. Please log in as admin.";
+            window.adminMessage.style.color = '#EF4444';
+        }
+        return;
+      }
+      try {
+        const dataToSave = {
+          address: window.editableAddress.textContent.trim(),
+          phone: window.editablePhone.textContent.trim(),
+          email: window.editableEmail.textContent.trim(),
+          xUrl: window.editableXUrl.textContent.trim(),
+          instagramUrl: window.editableInstagramUrl.textContent.trim(),
+          youtubeUrl: window.editableYoutubeUrl.textContent.trim(),
+          facebookUrl: window.editableFacebookUrl.textContent.trim()
+        };
+
+        console.log("Attempting to save contact data:", dataToSave);
+        const docRef = doc(db, `artifacts/${appId}/public/data/contactInfo/mainContact`);
+        await setDoc(docRef, dataToSave, { merge: true });
+
+        if (window.adminMessage) {
+            window.adminMessage.textContent = "Contact details saved successfully!";
+            window.adminMessage.style.color = '#4CAF50';
+        }
+        toggleEditable(false);
+        console.log("Contact data saved successfully.");
+
+      } catch (error) {
+        console.error("Error saving contact data:", error);
+        if (window.adminMessage) {
+            window.adminMessage.textContent = `Error saving contact details: ${error.message}`;
+            window.adminMessage.style.color = '#EF4444';
+        }
+      }
+    }
+
+    /**
+     * Handles admin logout.
+     */
+    async function logoutAdmin() {
+        if (!auth) {
+            console.error("Firebase Auth is not initialized.");
+            return;
+        }
+        try {
+            await signOut(auth);
+            console.log("Admin logged out. Redirecting to admin_login.html.");
+            window.location.href = 'admin_login.html';
+        } catch (error) {
+            console.error("Error logging out:", error);
+            if (window.adminMessage) {
+                window.adminMessage.textContent = `Error logging out: ${error.message}`;
+                window.adminMessage.style.color = '#EF4444';
+            }
+        }
+    }
+
+    // --- Authentication State Listener ---
+    document.addEventListener('DOMContentLoaded', () => {
+        // Always fetch public data initially, regardless of authentication state.
+        // This ensures content is visible even if not logged in.
+        fetchContactData(false);
+
+        // Only proceed with auth state listener if Firebase Auth is initialized
+        if (auth) {
+            onAuthStateChanged(auth, async (user) => {
+                console.log("onAuthStateChanged triggered. User:", user);
+
+                if (user) {
+                    // User is logged in (could be admin or any authenticated user)
+                    adminPanelContainer.classList.add('active'); // Show admin panel for any logged-in user
+                    renderAdminPanel(); // Render and populate admin panel
+                    adminLoginLink.style.display = 'none'; // Hide admin login link when logged in
+
+                    const urlParams = new URLSearchParams(window.location.search);
+                    const adminLoggedIn = urlParams.get('adminLoggedIn') === 'true';
+
+                    if (window.adminMessage) {
+                        if (adminLoggedIn) {
+                            window.adminMessage.textContent = "Welcome, Admin! You can edit contact details.";
+                            window.adminMessage.style.color = '#00b894'; /* Green for welcome message */
+                        } else {
+                            // This case means a user is logged in, but not necessarily via the admin_login.html redirect
+                            // (e.g., if they were already logged in and just navigated here).
+                            // We still show the admin panel but with a generic message.
+                            window.adminMessage.textContent = "You are logged in. Admin editing features are available.";
+                            window.adminMessage.style.color = '#ffda79'; // Soft gold for general logged-in message
+                        }
+                    }
+                    console.log("Admin panel activated. Fetching contact data for editing.");
+                } else {
+                    // No user logged in. Ensure admin panel is hidden and link is visible.
+                    adminPanelContainer.classList.remove('active');
+                    adminLoginLink.style.display = 'block'; // Show admin login link when logged out
+                    console.log("No user logged in. Admin panel remains hidden.");
+                }
+            });
+        } else {
+            console.warn("Firebase Auth not initialized, skipping auth state listener. Admin panel will remain hidden.");
+            adminLoginLink.style.display = 'block'; // Ensure it's visible if Firebase Auth isn't even initialized
+            // Public data fetch already initiated outside this block.
+        }
+    });
+
+    // --- ScrollReveal Animations ---
+    ScrollReveal().reveal('.logo-title-container', {
+      delay: 100,
+      origin: 'left',
+      distance: '30px',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('header h1', {
+      delay: 300,
+      distance: '50px',
+      origin: 'top',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('header p', {
+      delay: 500,
+      distance: '30px',
+      origin: 'bottom',
+      duration: 1000,
+      easing: 'ease-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.section h2', {
+      delay: 200,
+      distance: '40px',
+      origin: 'top',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.contact-card', {
+      interval: 150,
+      delay: 400,
+      distance: '50px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    ScrollReveal().reveal('.contact-form-section', {
+      delay: 200,
+      distance: '40px',
+      origin: 'bottom',
+      duration: 900,
+      easing: 'ease-in-out',
+      reset: false
+    });
+
+    // Removed ScrollReveal for admin-panel-container to fix visibility issue
+    // ScrollReveal().reveal('.admin-panel-container', {
+    //   delay: 200,
+    //   distance: '40px',
+    //   origin: 'bottom',
+    //   duration: 900,
+    //   easing: 'ease-in-out',
+    //   reset: false
+    // });
+
+    ScrollReveal().reveal('footer', {
+      delay: 100,
+      distance: '20px',
+      origin: 'bottom',
+      duration: 800,
+      easing: 'ease-in-out',
+      reset: false
+    });
+  </script>
+</body>
+</html>
